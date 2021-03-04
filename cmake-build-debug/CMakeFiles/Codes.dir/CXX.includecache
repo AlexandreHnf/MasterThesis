@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/Dijkstra1.cpp
+Dijkstra1.h
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/Dijkstra1.h
+iostream
+-
+cmath
+-
+
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/Dijkstra1.h
+iostream
+-
+vector
+-
+GraphDijkstra.h
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/GraphDijkstra.h
+Node.h
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/Node.h
+
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/GraphDijkstra.h
+iostream
+-
+vector
+-
+Node.h
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/Node.h
+
+D:/Users/Alexandre/Desktop/ULB/MA2/Memoire/Codes/Node.h
+iostream
+-
+vector
+-
+
