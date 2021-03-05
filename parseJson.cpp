@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-void parse(const char string1[14]) {
+void parse(const char string[14]) {
   string line;
   ifstream myfile ("example.txt");
   if (myfile.is_open())
