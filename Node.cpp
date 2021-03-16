@@ -28,3 +28,7 @@ float Node::getDistFromStart() const {return _distanceFromStart;}
 bool Node::getMark() const {return _marked;}
 Node* Node::getAdjacentNode(int i) const {return _adjacents.at(i);}
 int Node::getNbAdjacents() const {return _adjacents.size();}
+
+void Node::show() const {
+    cout << "node " << _id << ", " << endl;
+}

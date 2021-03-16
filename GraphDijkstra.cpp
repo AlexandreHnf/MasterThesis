@@ -31,6 +31,7 @@ void GraphDijkstra::show() const {
         for (int j = 0; j < _nodes.at(i)->getNbAdjacents(); j++) {
             std::cout << _nodes.at(i)->getAdjacentNode(j)->getId() << ", ";
         }
+        std::cout << "marked : " << _nodes.at(i)->getMark();
         std::cout << endl;;
     }
 }

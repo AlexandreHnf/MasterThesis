@@ -38,6 +38,8 @@ class Node {
         void mark(bool) ;
         void addAdjacentNode(Node*) ;
         void setPrevious(Node*);
+
+        void show() const;
 };
 
 

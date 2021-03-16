@@ -98,7 +98,7 @@ int main() {
     std::cout << "Hello, World!" << std::endl;
     // test_fibonacci_heap();
 
-    GraphDijkstra G = parse("D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\testgraph.txt");
+    GraphDijkstra G = parse("D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\testgraph.txt");
     Dijkstra1 D = Dijkstra1(0, 4, G);
     D.runDijkstra();
 

@@ -1,5 +1,5 @@
 //
-// Created by Alexandre on 12-11-20.
+// Created by Alexandre Heneffe on 12-11-20.
 //
 
 #include "Dijkstra1.h"
@@ -84,8 +84,10 @@ float Dijkstra1::Distance(Node* node1, Node* node2){
 void Dijkstra1::runDijkstra(){
     Node* current = _graph.getNode(_start);
     while (current->getId() != _dest+1) { // while not destination node
+        current->show();
         cout << "ici ?" << endl;
         vector<Node*>* adjacentNodes = AdjacentRemainingNodes(current);
+        cout << "nb adjacents " << adjacentNodes->size() << endl;
 
         for (int i = 0; i < adjacentNodes->size(); i++){
             Node* adjacent = adjacentNodes->at(i);
