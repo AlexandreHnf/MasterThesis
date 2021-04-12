@@ -5,6 +5,8 @@ from Dijkstra import *
 import time 
 import json
 
+W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\Datasets_graphs\\"
+
 def parse(filename):
     p = [] # new nodes 
 
@@ -35,7 +37,24 @@ def parse(filename):
     # except:
     #     print("Problem when reading a file : ", filename )
 
-def writeSolToJson(shortest_path):
+def parse2(filename_nodes, filename_adj):
+    G = GraphDijkstra()
+    with open(filename_nodes, "r") as fn:
+        nodes = json.loads(fn.read())
+    with open(filename_adj) as fa:
+        adj = json.loads(fa.read())
+
+    for nid, coords in nodes.items():
+        G.createNode(int(nid)-1, coords[0], coords[1])
+    for nid, adjs in adj.items():
+        adjacents = [G.getNode(int(a)-1) for a in adjs] # bc ID start at 0
+        G.getNode(int(nid)-1).setAdjacencyList(adjacents)
+
+    print(G.getNode(0))
+    print(G.getNode(200))
+    return G
+
+def writeSolToJson(shortest_path, filename):
     to_write = {
         "type": "FeatureCollection",
         "features": []
@@ -45,7 +64,7 @@ def writeSolToJson(shortest_path):
         to_write["features"].append({"type":"Feature", "geometry":{"type": "Point", "coordinates": coordinates}, "properties":{"id":node.getID()}})
     
     # print(json.dumps(to_write, indent = 4, sort_keys=True))
-    with open('D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\py\\test.json', 'w') as json_file:
+    with open(filename, 'w') as json_file:
         json.dump(to_write, json_file)
 
 def timing(start_time):
@@ -55,7 +74,7 @@ def timing(start_time):
     print("Time spent : {0} min {1} sec. Total : {2} sec".format(nb_minutes, nb_seconds, end))
 
 def testSimpleGraph():
-    filename_testgraph = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\py\\testgraph.txt"
+    filename_testgraph = W + "small_graph\\testgraph.txt"
     G = parse(filename_testgraph)
 
     D = Dijkstra(2,4, G)
@@ -65,7 +84,7 @@ def testSimpleGraph():
     timing(begin)
 
 def testBxlSquare():
-    filename_bxl_square = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\py\\testgraph2.txt"
+    filename_bxl_square = W + "small_graph\\test_bxl_square.txt"
     G = parse(filename_bxl_square)
     G.showStats()
 
@@ -77,7 +96,22 @@ def testBxlSquare():
     D.runDijkstra()
     timing(begin)
 
-    writeSolToJson(D.getShortestPath())
+    filename_out = W + "small_graph\\test_bxl_square_sp.json"
+    writeSolToJson(D.getShortestPath(), filename_out)
+
+def testBxlSquare2():
+    filename_bxl_square_nodes = W + "small_graph\\test_bxl_square_nodes.json"
+    filename_bxl_square_adj = W + "small_graph\\test_bxl_square_adj.json"
+    G = parse2(filename_bxl_square_nodes, filename_bxl_square_adj)
+    G.showStats()
+
+    D = Dijkstra(6, 1334, G)
+    begin = time.time()
+    D.runDijkstra()
+    timing(begin)
+
+    filename_out = W + "small_graph\\test_bxl_square_sp2.json"
+    writeSolToJson(D.getShortestPath(), filename_out)
 
 def main():
 
@@ -85,7 +119,10 @@ def main():
     # testSimpleGraph()
     
     # test Dijkstra on bxl square
-    testBxlSquare()
+    # testBxlSquare()
+
+    # test Dijkstra on bxl square with directed edges
+    testBxlSquare2()
 
 if __name__ == "__main__":
     main()

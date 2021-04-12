@@ -20,6 +20,9 @@ class Node:
             if node.getID() == other_node.getID():
                 return True 
         return False
+
+    def setAdjacencyList(self, adjacents):
+        self.adjacents = adjacents
     
     def setPrevious(self, p):
         self.previous = p 

@@ -101,7 +101,7 @@ class Dijkstra:
 
         while (current.getID() != self.t):
             # print("========== it = ", it)
-            # current.show()
+            current.show()
             adjacent_nodes = self.adjacentRemainingNodes(current)
             # print("nb adjacents : ", len(adjacent_nodes))
 

@@ -12,6 +12,8 @@ import json
  - obj.features[i].tgt
 """
 
+W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\Datasets_graphs\\"
+
 def parseJson(filename):
     # read file
     with open(filename, 'r') as myfile:
@@ -41,19 +43,47 @@ def parseJson(filename):
                         print("deja dedans le reverse ah")
     return node_coords, adjlist
 
-def main():
-    small_graph = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\big graphs\\small_graph.json"
-
-    small_graph_nodes = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\big graphs\\small_graph_nodes.json"
-    small_graph_adj = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\big graphs\\small_graph_adj.json"
-
-    node_coords, adjlist = parseJson(small_graph)
-
-    with open(small_graph_adj, 'w') as fp:
+def writeToJson(node_coords, adjlist, fAdj, fNodes):
+    with open(fAdj, 'w') as fp:
         fp.write(json.dumps(adjlist))
-    with open(small_graph_nodes, 'w') as fp:
+    with open(fNodes, 'w') as fp:
         fp.write(json.dumps(node_coords))
 
+def smallGraph():
+    small_graph = W + "small_graph\\small_graph.json"
+    small_graph_nodes = W + "small_graph\\small_graph_nodes.json"
+    small_graph_adj = W + "small_graph\\small_graph_adj.json"
+
+    node_coords, adjlist = parseJson(small_graph)
+    writeToJson(node_coords, adjlist, small_graph_adj, small_graph_nodes)
+
+def bxlSquare():
+    small_graph = W + "small_graph\\test_bxl_square.json"
+    small_graph_nodes = W + "small_graph\\test_bxl_square_nodes.json"
+    small_graph_adj = W + "small_graph\\test_bxl_square_adj.json"
+
+    node_coords, adjlist = parseJson(small_graph)
+    writeToJson(node_coords, adjlist, small_graph_adj, small_graph_nodes)
+
+def ulbGraph():
+    pass
+
+def bxlCtrGraph():
+    pass
+
+def bxlGraph():
+    pass
+
+def beCtrGraph():
+    pass
+
+def beGraph():
+    pass
+
+def main():
+    # smallGraph()
+
+    bxlSquare()
 
 
 
