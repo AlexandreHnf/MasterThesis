@@ -14,6 +14,12 @@ class Node:
     def addAdjacentNode(self, v):
         if (v not in self.adjacents):
             self.adjacents.append(v)
+
+    def isAdjacentTo(self, other_node):
+        for node in self.adjacents:
+            if node.getID() == other_node.getID():
+                return True 
+        return False
     
     def setPrevious(self, p):
         self.previous = p 
