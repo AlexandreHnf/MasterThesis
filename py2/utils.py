@@ -12,7 +12,8 @@ def haversine(lat1d, lon1d, lat2d, lon2d):
     """
     Returns the distance between two points on the Earth.
     Direct translation from http://en.wikipedia.org/wiki/Haversine_formula
-    Code from https://stackoverflow.com/questions/10198985/calculating-the-distance-between-2-latitudes-and-longitudes-that-are-saved-in-a
+    Code from
+    https://stackoverflow.com/questions/10198985/calculating-the-distance-between-2-latitudes-and-longitudes-that-are-saved-in-a
 
     :param lat1d: Latitude of the first point in degrees
     :param lon1d: Longitude of the first point in degrees
