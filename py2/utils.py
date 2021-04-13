@@ -98,3 +98,9 @@ def path_len(coords_list):
         length += haversine(prev_lat, prev_lng, lat, lng)
         prev_lat, prev_lng = lat, lng
     return length
+
+if __name__== "__main__":
+    point1 = 50.846, 4.3496
+    point2 = 50.860, 4.37
+    print(haversine(point1[0], point1[1], point2[0], point2[1]))
+    print(haversine2(point1[0], point1[1], point2[0], point2[1]))
