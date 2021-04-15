@@ -236,15 +236,6 @@ def showQtree(qtree, nodes_coords, landmarks):
     ax.scatter(lm_x, lm_y, s=4, marker="D", c="r")
 
     # ===========================================================
-    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-    labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
-    sizes = [15, 30, 45, 10]
-    explode = (0, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
-    ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-            shadow=True, startangle=90)
-    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
     # ax.invert_yaxis()
     plt.tight_layout()
     plt.show()

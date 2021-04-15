@@ -12,6 +12,7 @@ from heapq import heappush, heappop
 from quadtree import point_dict_to_quadtree, showQtree
 from collections import defaultdict
 from utils import haversine, bearing
+from time import time
 
 W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\Datasets_graphs\\"
 
@@ -84,11 +85,11 @@ def landmark_distances(landmarks, graph, graph_coords):
         x, y = lm_coord
         for pid, coord in graph_coords.items():
             lm_est[lm_id][pid] = haversine(x, y, coord[0], coord[1])
-    qtree = point_dict_to_quadtree(graph_coords, multiquadtree=True)
+    qtree = point_dict_to_quadtree(graph_coords, 40, multiquadtree=True)
     lm_dists = defaultdict(list)
     l = len(graph_coords)
     for i, pid in enumerate(graph_coords):
-        print(i, '/', l, ':', pid)
+        # print(i, '/', l, ':', pid)
         for landmark, _ in landmarks:
             try:
                 d = lm_exact_dist(pid, landmark, graph, graph_coords, lm_est)
@@ -173,7 +174,7 @@ def mp_landmark_distances(landmarks, graph, graph_coords, nprocs):
         l = len(graph_coords)
         for pid in pids:
             counter.value += 1
-            print(counter.value, '/', l, ':', pid)
+            # print(counter.value, '/', l, ':', pid)
             for landmark, _ in landmarks:
                 try:
                     d = lm_exact_dist(pid, landmark, graph, graph_coords, lm_est)
@@ -253,18 +254,25 @@ def main():
     rect = qtree.query_range(4.33, 4.34, 50.845, 50.850)
     # print(rect)
 
-    # planar landmark selection
     k = 16
     origin = 50.8460, 4.3496
-    landmarks = planar_landmark_selection(k, origin, graph_coords, graph, qtree)
+
+    # farthest landmark selection
+    landmarks = farthest_landmark_selection(k, origin, graph_coords)
+
+    # planar landmark selection
+    # landmarks = planar_landmark_selection(k, origin, graph_coords, graph, qtree)
+
     landmarks = list(zip([find_closest_node(l, qtree) for l in landmarks], landmarks))
     print("landmarks : ", landmarks)
 
     showQtree(qtree, graph_coords, landmarks)
 
     # compute all shortest paths from any node to each landmark
-    # lm_dists = mp_landmark_distances(landmarks, graph, graph_coords, 8)
-    # with open('lm_dists_2.j', 'w') as fp:
+    start = time()
+    lm_dists = landmark_distances(landmarks, graph, graph_coords)
+    print("time landmark distances : ", time() - start, " seconds.")
+    # with open(W + 'small_graph\\test_bxl_square_Flm_dists.json', 'w') as fp:
     #     fp.write(json.dumps(lm_dists))
 
 if __name__ == '__main__':

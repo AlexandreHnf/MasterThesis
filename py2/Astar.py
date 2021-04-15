@@ -1,0 +1,41 @@
+from heapq import heappush, heappop
+from Dijkstra import Dijkstra
+
+class Astar(Dijkstra):
+
+    def __init__(self, graph, nodes_coords, heuristic):
+        Dijkstra.__init__(graph, nodes_coords)
+        self.heuristic = heuristic # string : euclidean, manhattan, octile
+        self.h_fun = self.heuristicSelector(heuristic) # heuristic function, by default, euclidean distance (haversine)
+        # function that, given a node, gives the heuristic value with h_fun
+        self.h = None
+
+    def heuristicSelector(self, heuristic):
+        h_fun = self.util._euclidean
+        if heuristic == "manhattan":
+            h_fun = self.util._manhattan
+        elif heuristic == "octile":
+            h_fun = self.util._octile
+        return h_fun
+
+    def findShortestPath(self, source, dest):
+        s, t = self.findSourceDest(source, dest)
+        self.h = lambda v: self.h_fun(v, dest)
+        # here, for A*, we call dijkstra but heuristic will be used when
+        # relaxing vertices
+        path, pred = self.dijkstra(s, t)
+        return self.processSearchResult(path, pred, t)
+
+    def relaxVertex(self, v, t, pred, unvisited, closed_set):
+        """
+        # v = the current vertex, t = destination node
+        Relax all arcs coming from vertex v
+        """
+        for neighbour, arc_weight in self.graph[v]:
+            if neighbour in closed_set:
+                continue
+            new_dist = pred[v]["dist"] + arc_weight
+            if neighbour not in pred or new_dist < pred[neighbour]["dist"]:
+                pred[neighbour] = {"pred": v, "dist": new_dist}
+                estimation = new_dist + self.h(neighbour)  # heuristic estimation
+                heappush(unvisited, (estimation, neighbour) )
