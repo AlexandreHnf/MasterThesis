@@ -85,7 +85,6 @@ def landmark_distances(landmarks, graph, graph_coords):
         x, y = lm_coord
         for pid, coord in graph_coords.items():
             lm_est[lm_id][pid] = haversine(x, y, coord[0], coord[1])
-    qtree = point_dict_to_quadtree(graph_coords, 40, multiquadtree=True)
     lm_dists = defaultdict(list)
     l = len(graph_coords)
     for i, pid in enumerate(graph_coords):
@@ -143,6 +142,7 @@ def farthest_landmark_selection(k, origin, coords):
             landmarks.pop(0)
     return landmarks
 
+# ======================================================
 
 def load_graph(filename_adj, filename_nodes):
 
@@ -152,66 +152,6 @@ def load_graph(filename_adj, filename_nodes):
         graph_coords = json.loads(fp.read())
     return graph, graph_coords
 
-
-from multiprocessing import Queue, Process, Value
-import math
-
-
-def mp_landmark_distances(landmarks, graph, graph_coords, nprocs):
-    def worker(landmarks, graph, graph_coords, pids, out_q, counter):
-        """ The worker function, invoked in a process. 'nums' is a
-            list of numbers to factor. The results are placed in
-            a dictionary that's pushed to a queue.
-        """
-        lm_est = {}
-        for lm_id, lm_coord in landmarks:
-            lm_est[lm_id] = {}
-            x, y = lm_coord
-            for pid, coord in graph_coords.items():
-                lm_est[lm_id][pid] = haversine(x, y, coord[0], coord[1])
-        qtree = point_dict_to_quadtree(graph_coords, multiquadtree=True)
-        lm_dists = defaultdict(list)
-        l = len(graph_coords)
-        for pid in pids:
-            counter.value += 1
-            # print(counter.value, '/', l, ':', pid)
-            for landmark, _ in landmarks:
-                try:
-                    d = lm_exact_dist(pid, landmark, graph, graph_coords, lm_est)
-                except KeyError:
-                    d = None
-                lm_dists[pid].append(d)
-        out_q.put(lm_dists)
-
-    # Each process will get 'chunksize' nums and a queue to put his out
-    # dict into
-    counter = Value("i")
-    # all_pids = graph_coords.keys()
-    all_pids = list(graph_coords)
-    out_q = Queue()
-    chunksize = int(math.ceil(len(all_pids) / float(nprocs)))
-    procs = []
-
-    for i in range(nprocs):
-        # print(chunksize * i, chunksize * (i + 1), sep="|")
-        chunk = all_pids[chunksize * i:chunksize * (i + 1)]
-        p = Process(
-            target=worker,
-            args=(landmarks, graph, graph_coords, chunk, out_q, counter)
-        )
-        procs.append(p)
-        p.start()
-
-    # Collect all results into a single result dict. We know how many dicts
-    # with results to expect.
-    resultdict = {}
-    for i in range(nprocs):
-        resultdict.update(out_q.get())
-
-    # Wait for all worker processes to finish
-    for p in procs:
-        p.join()
-    return resultdict
 
 def computeBaseDistances(graph, nodes):
     """

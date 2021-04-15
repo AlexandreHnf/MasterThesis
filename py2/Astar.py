@@ -3,10 +3,10 @@ from Dijkstra import Dijkstra
 
 class Astar(Dijkstra):
 
-    def __init__(self, graph, nodes_coords, heuristic):
-        Dijkstra.__init__(graph, nodes_coords)
-        self.heuristic = heuristic # string : euclidean, manhattan, octile
-        self.h_fun = self.heuristicSelector(heuristic) # heuristic function, by default, euclidean distance (haversine)
+    def __init__(self, graph, nodes_coords, heuristic=""):
+        Dijkstra.__init__(self, graph, nodes_coords)
+        self.heuristic = heuristic  # string : euclidean, manhattan, octile
+        self.h_fun = self.heuristicSelector(heuristic)  # heuristic function, by default, euclidean distance (haversine)
         # function that, given a node, gives the heuristic value with h_fun
         self.h = None
 

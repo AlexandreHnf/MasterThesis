@@ -194,7 +194,7 @@ def bounding_box(point_list):
             min_y = y_pnt
     return min_x, max_x, min_y, max_y
 
-def point_dict_to_quadtree(point_dict, bucket_size, multiquadtree=False):
+def point_dict_to_quadtree(point_dict, bucket_size=40, multiquadtree=False):
     """ Convert a dictionary of { point_id : (lat, lon) } to quadtree. """
     # bbox = bounding_box(point_dict.itervalues())
     bbox = bounding_box(point_dict.values())

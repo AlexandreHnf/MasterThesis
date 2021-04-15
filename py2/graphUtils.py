@@ -31,7 +31,7 @@ class GraphUtil(object):
         close_vertices = self.qtree.query_range(x - rng, x + rng, y - rng, y + rng)
         best_vertex = None
         best_dist = float("inf")
-        for point, vertices in close_vertices.iteritems():
+        for point, vertices in close_vertices.items():
             dist = haversine(point[0], point[1], target[0], target[1])
             if dist < best_dist:
                 best_dist = dist

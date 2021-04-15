@@ -11,6 +11,14 @@ class Dijkstra(ShortestPath):
         path, pred = self.dijkstra(s, t)
         return self.processSearchResult(path, pred, t)
 
+    def existShortestPath(self, source, dest):
+        """
+        Check whether there exists a shortest path from s to t
+        """
+        s, t = self.findSourceDest(source, dest)
+        path, pred = self.dijkstra(s, t)
+        return path == {} and pred == []
+
     def dijkstra(self, s, t):
         """
         Find the shortest path from s to t.
@@ -21,7 +29,7 @@ class Dijkstra(ShortestPath):
         sequence = []
         pred = {s : {"dist": 0, "pred": None}}
         closed_set = set()
-        unvisited = [(0, s)] # datastructure : heap, fibonacci heap, or simple list
+        unvisited = [(0, s)] # TODO : datastructure : heap, fibonacci heap, or simple list
         while unvisited:
             _, v = heappop(unvisited)
             sequence.append( (pred[v]["pred"], [v]) )
@@ -31,7 +39,7 @@ class Dijkstra(ShortestPath):
                 return sequence[1:], pred
             closed_set.add(v)
             self.relaxVertex(v, t, pred, unvisited, closed_set)
-        return None # if no valid path has been found (some node inaccessible before t
+        return {}, []  # if no valid path has been found (some node inaccessible before t
 
     def relaxVertex(self, v, t, pred, unvisited, closed_set):
         """
