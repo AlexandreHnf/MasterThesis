@@ -18,9 +18,9 @@ class Astar(Dijkstra):
             h_fun = self.util._octile
         return h_fun
 
-    def findShortestPath(self, source, dest):
-        s, t = self.findSourceDest(source, dest)
-        self.h = lambda v: self.h_fun(v, dest)
+    def findShortestPath(self, s, t):
+        # s, t = self.findSourceDest(source, dest)
+        self.h = lambda v: self.h_fun(v, t)
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices
         path, pred = self.dijkstra(s, t)

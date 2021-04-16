@@ -15,9 +15,9 @@ class Dijkstra(ShortestPath):
         """
         Check whether there exists a shortest path from s to t
         """
-        s, t = self.findSourceDest(source, dest)
-        path, pred = self.dijkstra(s, t)
-        return path == {} and pred == []
+        # s, t = self.findSourceDest(source, dest)
+        path, pred = self.dijkstra(source, dest)
+        return not (path == {} and pred == [])
 
     def dijkstra(self, s, t):
         """
@@ -29,7 +29,7 @@ class Dijkstra(ShortestPath):
         sequence = []
         pred = {s : {"dist": 0, "pred": None}}
         closed_set = set()
-        unvisited = [(0, s)] # TODO : datastructure : heap, fibonacci heap, or simple list
+        unvisited = [(0, s)]  # TODO : datastructure : heap, fibonacci heap, or simple list
         while unvisited:
             _, v = heappop(unvisited)
             sequence.append( (pred[v]["pred"], [v]) )

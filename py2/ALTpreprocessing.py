@@ -62,19 +62,53 @@ class ALTpreprocessing:
         d = Dijkstra(self.graph, self.nodes_coords)
         return d.existShortestPath(s, t)
 
+    def lmExactDist(self, v, landmark, lm_est):
+        """
+        => mini A* algorithm to compute shortest path between a node v and a landmark
+        Speedup by using precomputed euclidean distances between nodes and landmarks
+        """
+        lm_dists = lm_est[landmark]
+        pred = {v: 0}  # source = v
+        closed_set = set()
+        unseen = [(0, v)]
+        while unseen:
+            _, w = heappop(unseen)
+            if w in closed_set:
+                continue
+            elif w == landmark:
+                return pred[w]
+            closed_set.add(w)
+            for neighbour, arc_weight in self.graph[w]:
+                if neighbour not in closed_set:
+                    new_dist = (pred[w] + arc_weight)
+                    if neighbour not in pred or new_dist < pred[neighbour]:
+                        pred[neighbour] = new_dist
+                        est = new_dist + lm_dists[neighbour]
+                        heappush(unseen, (new_dist + est, neighbour))
+        return None # if no vvalid path found
+
     def getLandmarksDistances(self, landmarks):
         """
         compute the shortest path from all nodes in the graph to all landmarks using
         A* => heuristic = euclidean distance between node and landmark
         """
+        # landmark heuristic estimation (speedup)
+        lm_est = {}
+        for lm_id, lm_coord in landmarks:
+            lm_est[lm_id] = {}
+            x, y = lm_coord
+            for pid, coord in self.nodes_coords.items():
+                lm_est[lm_id][pid] = haversine(x, y, coord[0], coord[1])
+
+        # compute all distances from each node to every landmark
         lm_dists = defaultdict(list)
         l = len(self.nodes_coords)
+        # astar = Astar(self.graph, self.nodes_coords)
         for i, pid in enumerate(self.nodes_coords):
             # print(i, '/', l, ':', pid)
             for landmark, _ in landmarks:
                 try:
-                    astar = Astar(self.graph, self.nodes_coords)
-                    d = astar.findShortestPath(pid, landmark)
+                    d = self.lmExactDist(pid, landmark, lm_est)
                 except KeyError:
                     d = None
                 lm_dists[pid].append(d)

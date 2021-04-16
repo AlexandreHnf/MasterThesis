@@ -22,9 +22,10 @@ class ALT(Astar):
         # elif landmark_selection == "random":
         #     pass
         landmarks = list(zip([p.findClosestNode(l) for l in landmarks], landmarks))
-        print(landmarks)
+        # print(landmarks)
         self.lm_dists = p.getLandmarksDistances(landmarks)
-        return landmarks # temporaire
+        print(self.lm_dists)
+        return landmarks  # temporaire
 
     def ALTHeuristic(self, ID1, ID2):
         max_dist = 0
@@ -35,6 +36,7 @@ class ALT(Astar):
                     max_dist = d
             except TypeError:
                 pass  # some nodes couldn't reach a landmark
+        # print(max_dist)
         return max_dist
 
     def findShortestPath(self, source, dest):

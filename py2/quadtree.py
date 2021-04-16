@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+from collections import defaultdict
 
 class Quadtree(object):
     """
@@ -33,6 +34,7 @@ class Quadtree(object):
         self.max_y = float(max_y)
         self.elements = {}
         self.is_node = False
+        self.origin = self.min_x / 2, self.min_y / 2
 
     def drawBoundary(self, ax, c='k', lw=1, **kwargs):
         # x1, y1 = west_edge, north_edge
@@ -142,7 +144,7 @@ class Quadtree(object):
         return self.nw, self.ne, self.sw, self.se
 
 
-from collections import defaultdict
+
 
 class MultiQuadtree(Quadtree):
     """ Allows multiple insertions at a point by appending data to a list. """
@@ -206,23 +208,14 @@ def point_dict_to_quadtree(point_dict, bucket_size=40, multiquadtree=False):
         b = qtree.insert(coord, pid)
     return qtree
 
-def showQtree(qtree, nodes_coords, landmarks):
+def showQtree(qtree, nodes_coords, landmarks, showBoundaries=True):
     DPI = 72
-    width, height = 600, 400
-
-    # np.random.seed(60)
-    # N = 500
-    # coords = np.random.randn(N, 2) * height / 3 + (width / 2, height / 2)
-    # pids = [i for i in range(N)]
-    # nodes_coords = dict(zip(pids, list(coords)))
-    # qtree = point_dict_to_quadtree(nodes_coords, 5, True)
-
-    # show boundaries
     fig = plt.figure(figsize=(700/DPI, 500/DPI), dpi=DPI)
     ax = plt.subplot()
-    # ax.set_xlim(0, width)
-    # ax.set_ylim(0, height)
-    qtree.draw(ax)
+
+    # show boundaries
+    if showBoundaries:
+        qtree.draw(ax)
 
     # ===========================================================
     # show points

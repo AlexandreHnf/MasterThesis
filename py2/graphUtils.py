@@ -16,7 +16,10 @@ class GraphUtil(object):
         # create a quadtree that can store multiple data per (lat, lon)
         self.qtree = point_dict_to_quadtree(vertex_coords, multiquadtree=True)
 
-    def _find_closest_vertex(self, target, rng=.01):
+    def findCenterNode(self):
+        return self.findClosestNode(self.qtree.origin)
+
+    def findClosestNode(self, target, rng=.01):
         """
         Using the query_range function of the given quadtree, locate a vertex
         in the graph that is closest to the given point.

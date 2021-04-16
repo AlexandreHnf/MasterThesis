@@ -119,7 +119,7 @@ def main():
 
     testDijkstra(graph, graph_coords)
     testAstar(graph, graph_coords)
-    # testALT(graph, graph_coords)
-#
+    testALT(graph, graph_coords)
+
 if __name__ == "__main__":
     main()

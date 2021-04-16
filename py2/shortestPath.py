@@ -10,8 +10,8 @@ class ShortestPath(object):
         self.util = GraphUtil(nodes_coords)
 
     def findSourceDest(self, source, dest):
-        s = self.util._find_closest_vertex(self.nodes_coords[source])
-        t = self.util._find_closest_vertex(self.nodes_coords[dest])
+        s = self.util.findClosestNode(self.nodes_coords[source])
+        t = self.util.findClosestNode(self.nodes_coords[dest])
         return s, t
 
     def processSearchResult(self, path, pred, dest):
