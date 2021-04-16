@@ -14,6 +14,20 @@ class ShortestPath(object):
         t = self.util.findClosestNode(self.nodes_coords[dest])
         return s, t
 
+    def isAdjacent(self, id2, id1_adjacents):
+        for adj in id1_adjacents:
+            if id2 == adj[0]:
+                return True
+        return False
+
+    def isValidPath(self, path):
+        ids = list(path.keys())
+        for i in range(len(ids)-1):
+            # print("{0}, {1} ({2})".format(ids[i], ids[i+1], self.graph[ids[i]]))
+            if not self.isAdjacent(ids[i+1], self.graph[ids[i]]):
+                return False
+        return True
+
     def processSearchResult(self, path, pred, dest):
         if path == {} and pred == []:
             return None
@@ -23,8 +37,8 @@ class ShortestPath(object):
 
     def getPathCoords(self, path):
         """
-        get a dictionary of all the nodes in the shortest path found
-        along with their coordinates
+        get a dictionary of all the nodes in the search space of the
+        algorithm
         """
         needed = {}
         coords = self.util.coords

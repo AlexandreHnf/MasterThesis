@@ -32,10 +32,15 @@ class Astar(Dijkstra):
         Relax all arcs coming from vertex v
         """
         for neighbour, arc_weight in self.graph[v]:
+            # print("neighbour : ", neighbour)
             if neighbour in closed_set:
                 continue
             new_dist = pred[v]["dist"] + arc_weight
+            # print("=> new dist : ", new_dist)
+            # print("=> pre dist : ", pred.get(neighbour, None))
             if neighbour not in pred or new_dist < pred[neighbour]["dist"]:
+                # if neighbour not in pred:
+                    # print("v has been here")
                 pred[neighbour] = {"pred": v, "dist": new_dist}
                 estimation = new_dist + self.h(neighbour)  # heuristic estimation
                 heappush(unvisited, (estimation, neighbour) )

@@ -99,20 +99,27 @@ class Dijkstra:
         current.setDistFromStart(0)
         it = 0
 
+        relaxed_nodes = []
+        nb_relaxed_edges = 0
         while (current.getID() != self.t):
             # print("========== it = ", it)
-            # current.show()
+            current.show()
+            relaxed_nodes.append(current.getID()+1)
             adjacent_nodes = self.adjacentRemainingNodes(current)
             # print("nb adjacents : ", len(adjacent_nodes))
 
             for i in range(len(adjacent_nodes)):
                 adjacent = adjacent_nodes[i]
+                print("neighbour : ", adjacent)
                 dist = self.distance(current, adjacent) + current.getDistFromStart()
+                print("=> new dist : ", dist)
+                print("=> pre dist : ", adjacent.getDistFromStart())
 
                 if (dist < adjacent.getDistFromStart()):
                     # print("ok")
                     adjacent.setDistFromStart(dist)
                     adjacent.setPrevious(current)
+                    nb_relaxed_edges+=1
                     # print("node {0} : new dist : {1}".format(adjacent.getID(), dist))
 
             self.G.visited(current.getID()) # visited
@@ -121,6 +128,8 @@ class Dijkstra:
             it += 1
             # if (it > 100) : break
 
-        self.printShortestRouteTo() 
+        self.printShortestRouteTo()
+        print("relaxed nodes : ", relaxed_nodes, len(relaxed_nodes))
+        print("nb relaxed edges : ", nb_relaxed_edges)
 
     

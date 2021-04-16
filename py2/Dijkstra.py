@@ -32,6 +32,7 @@ class Dijkstra(ShortestPath):
         unvisited = [(0, s)]  # TODO : datastructure : heap, fibonacci heap, or simple list
         while unvisited:
             _, v = heappop(unvisited)
+            # print("current : {0}, dist to t : {1}".format(v, pred[v]["dist"]))
             sequence.append( (pred[v]["pred"], [v]) )
             if v in closed_set:
                 continue
@@ -47,9 +48,14 @@ class Dijkstra(ShortestPath):
         Relax all arcs coming from vertex v
         """
         for neighbour, arc_weight in self.graph[v]:
+            # print("neighbour : ", neighbour)
             if neighbour in closed_set:
                 continue
             new_dist = pred[v]["dist"] + arc_weight
+            # print("=> new dist : ", new_dist)
+            # print("=> pre dist : ", pred.get(neighbour, None))
             if neighbour not in pred or new_dist < pred[neighbour]["dist"]:
+                # if neighbour not in pred:
+                    # print("v has been here")
                 pred[neighbour] = {"pred": v, "dist": new_dist}
                 heappush(unvisited, (new_dist, neighbour) )

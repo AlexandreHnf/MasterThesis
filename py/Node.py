@@ -55,8 +55,8 @@ class Node:
         return len(self.adjacents)
 
     def show(self):
-        print("node {0}, marked = {1}".format(self.ID, self.marked))
+        print("node {0}, marked = {1}, dist to t : {2}".format(self.ID+1, self.marked, self.dist_from_start))
 
     def __repr__(self):
-        a = [node.getID() for node in self.adjacents]
-        return "Node {0}, adj : {1}, marked : {2})".format(self.ID, a, self.marked)
+        a = [node.getID()+1 for node in self.adjacents]
+        return "Node {0}, adj : {1}, marked : {2})".format(self.ID+1, a, self.marked)
