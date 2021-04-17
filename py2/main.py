@@ -76,26 +76,24 @@ def testDijkstra(graph, graph_coords):
 
     d = Dijkstra(graph, graph_coords)
     start = time()
-    path, path_coords, shortest_path = d.findShortestPath("7", "1335")
+    search_space, shortest_path = d.findShortestPath("7", "1335")
     print("dijkstra done in : ", time() - start, " seconds.")
-    path_length = d.getPathLength(path_coords)
-    print("nb nodes : {0}, path length : {1} : {2}".format(len(path_coords), path_length, list(path_coords.keys())))
-    print("path : ", path, len(path))
-    print("shortest_path : ", shortest_path, len(shortest_path))
-    print("vald path ? ", d.isValidPath(path_coords))
+    path_length = d.getPathLength(search_space)
+    print("nb nodes : {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
+    print("shortest_path search space : ", shortest_path, len(shortest_path))
+    print("vald path ? ", d.isValidPath(search_space))
     print("============================")
 
 def testAstar(graph, graph_coords):
 
     a = Astar(graph, graph_coords)
     start = time()
-    path, path_coords, shortest_path = a.findShortestPath("7", "1335")
+    search_space, shortest_path = a.findShortestPath("7", "1335")
     print("A* done in : ", time() - start, " seconds.")
-    path_length = a.getPathLength(path_coords)
-    print("nb nodes : {0}, path length : {1} : {2}".format(len(path_coords), path_length, list(path_coords.keys())))
-    print("path : ", path, len(path))
+    path_length = a.getPathLength(search_space)
+    print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
     print("shortest_path : ", shortest_path, len(shortest_path))
-    print("vald path ? ", a.isValidPath(path_coords))
+    print("vald path ? ", a.isValidPath(search_space))
     print("============================")
 
 def testALT(graph, graph_coords):
@@ -106,13 +104,12 @@ def testALT(graph, graph_coords):
     alt.preprocessing()
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
     start = time()
-    path, path_coords, shortest_path = alt.findShortestPath("7", "1335")
+    search_space, shortest_path = alt.findShortestPath("7", "1335")
     print("ALT done in : ", time() - start, " seconds.")
-    path_length = alt.getPathLength(path_coords)
-    print("nb nodes : {0}, path length : {1} : {2}".format(len(path_coords), path_length, list(path_coords.keys())))
-    print("path : ", path, len(path))
+    path_length = alt.getPathLength(search_space)
+    print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
     print("shortest_path : ", shortest_path, len(shortest_path))
-    print("vald path ? ", alt.isValidPath(path_coords))
+    print("vald path ? ", alt.isValidPath(search_space))
     print("============================")
 
 

@@ -28,21 +28,21 @@ class ShortestPath(object):
                 return False
         return True
 
-    def processSearchResult(self, path, pred, dest):
-        if path == {} and pred == []:
+    def processSearchResult(self, search_space, pred, dest):
+        if search_space == {} and pred == []:
             return None
-        path_coords = self.getPathCoords(path)
+        search_space_coords = self.getSearchSpaceCoords(search_space)
         shortest_path = self.constructShortestPath(pred, dest)
-        return path, path_coords, shortest_path
+        return search_space_coords, shortest_path
 
-    def getPathCoords(self, path):
+    def getSearchSpaceCoords(self, search_space):
         """
         get a dictionary of all the nodes in the search space of the
-        algorithm
+        algorithm with geometric coordinates
         """
         needed = {}
         coords = self.util.coords
-        for vertex, neighbours in path:
+        for vertex, neighbours in search_space:
             needed[vertex] = coords[vertex]
             for arc in neighbours:
                 needed[arc] = coords[arc]
@@ -60,13 +60,13 @@ class ShortestPath(object):
         destination node's ID, returns the shortest path containing all these
         nodes. => will give the actual shortest path computed by the algorithm.
         """
-        path = []
+        sp = []
         v = dest
         while pred[v]["pred"]:  # is not None
-            path.append(v)
+            sp.append(v)
             v = pred[v]["pred"]
-        path.reverse()  # to have the path from source to dest and not t to s
-        return [self.util.coords[v] for v in path]
+        sp.reverse()  # to have the path from source to dest and not t to s
+        return [self.util.coords[v] for v in sp]
 
     def getPathLength(self, path):
         """

@@ -45,5 +45,5 @@ class ALT(Astar):
         self.h = lambda v: self.ALTHeuristic(v, dest)
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices
-        path, pred = self.dijkstra(s, t)
-        return self.processSearchResult(path, pred, t)
+        search_space, pred = self.dijkstra(s, t)
+        return self.processSearchResult(search_space, pred, t)

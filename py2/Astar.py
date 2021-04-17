@@ -23,8 +23,8 @@ class Astar(Dijkstra):
         self.h = lambda v: self.h_fun(v, t)
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices
-        path, pred = self.dijkstra(s, t)
-        return self.processSearchResult(path, pred, t)
+        search_space, pred = self.dijkstra(s, t)
+        return self.processSearchResult(search_space, pred, t)
 
     def relaxVertex(self, v, t, pred, unvisited, closed_set):
         """

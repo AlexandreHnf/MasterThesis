@@ -8,8 +8,8 @@ class Dijkstra(ShortestPath):
 
     def findShortestPath(self, source, dest):
         s, t = self.findSourceDest(source, dest)
-        path, pred = self.dijkstra(s, t)
-        return self.processSearchResult(path, pred, t)
+        search_space, pred = self.dijkstra(s, t)
+        return self.processSearchResult(search_space, pred, t)
 
     def existShortestPath(self, source, dest):
         """
@@ -26,18 +26,18 @@ class Dijkstra(ShortestPath):
         """
         if not s or not t:
             return {}, []
-        sequence = []
+        search_space = []
         pred = {s : {"dist": 0, "pred": None}}
         closed_set = set()
         unvisited = [(0, s)]  # TODO : datastructure : heap, fibonacci heap, or simple list
         while unvisited:
             _, v = heappop(unvisited)
             # print("current : {0}, dist to t : {1}".format(v, pred[v]["dist"]))
-            sequence.append( (pred[v]["pred"], [v]) )
+            search_space.append( (pred[v]["pred"], [v]) )
             if v in closed_set:
                 continue
             elif v == t:
-                return sequence[1:], pred
+                return search_space[1:], pred
             closed_set.add(v)
             self.relaxVertex(v, t, pred, unvisited, closed_set)
         return {}, []  # if no valid path has been found (some node inaccessible before t
