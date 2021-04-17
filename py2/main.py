@@ -7,6 +7,7 @@ import json
 import csv
 from landmarkTest import *
 from time import time
+from quadtree import showQtree
 
 W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\Datasets_graphs\\"
 
@@ -101,7 +102,7 @@ def testALT(graph, graph_coords):
     origin = 50.8460, 4.3496
     alt = ALT(graph, graph_coords, "planar", 16, origin)
     prepro_start = time()
-    alt.preprocessing()
+    lm = alt.preprocessing()
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
     start = time()
     search_space, shortest_path = alt.findShortestPath("7", "1335")
@@ -111,6 +112,8 @@ def testALT(graph, graph_coords):
     print("shortest_path : ", shortest_path, len(shortest_path))
     print("vald path ? ", alt.isValidPath(search_space))
     print("============================")
+
+    showQtree(alt.util.qtree, graph_coords, search_space, shortest_path, lm)
 
 
 def main():
@@ -126,6 +129,7 @@ def main():
     testDijkstra(graph, graph_coords)
     testAstar(graph, graph_coords)
     testALT(graph, graph_coords)
+
 
 if __name__ == "__main__":
     main()

@@ -10,7 +10,6 @@ Landmark computation on a graph network
 
 import json
 from heapq import heappush, heappop
-from quadtree import point_dict_to_quadtree, showQtree
 from collections import defaultdict
 from utils import haversine, bearing
 from Dijkstra import Dijkstra
@@ -25,9 +24,6 @@ class ALTpreprocessing:
         self.graph = graph
         self.nodes_coords = nodes_coords
         self.qtree = qtree
-
-    def initQuadTree(self, bucket_size):
-        self.qtree = point_dict_to_quadtree(self.nodes_coords, bucket_size, multiquadtree=True)
 
     def findClosestNode(self, target, rng=.01):
         """

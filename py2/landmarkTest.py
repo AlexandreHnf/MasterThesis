@@ -198,20 +198,20 @@ def main():
     origin = 50.8460, 4.3496
 
     # farthest landmark selection
-    landmarks = farthest_landmark_selection(k, origin, graph_coords)
+    # landmarks = farthest_landmark_selection(k, origin, graph_coords)
 
     # planar landmark selection
-    # landmarks = planar_landmark_selection(k, origin, graph_coords, graph, qtree)
+    landmarks = planar_landmark_selection(k, origin, graph_coords, graph, qtree)
 
     landmarks = list(zip([find_closest_node(l, qtree) for l in landmarks], landmarks))
     print("landmarks : ", landmarks)
 
-    showQtree(qtree, graph_coords, landmarks)
+    showQtree(qtree, graph_coords, None, None, landmarks)
 
     # compute all shortest paths from any node to each landmark
-    start = time()
-    lm_dists = landmark_distances(landmarks, graph, graph_coords)
-    print("time landmark distances : ", time() - start, " seconds.")
+    # start = time()
+    # lm_dists = landmark_distances(landmarks, graph, graph_coords)
+    # print("time landmark distances : ", time() - start, " seconds.")
     # with open(W + 'small_graph\\test_bxl_square_Flm_dists.json', 'w') as fp:
     #     fp.write(json.dumps(lm_dists))
 

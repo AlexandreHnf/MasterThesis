@@ -3,13 +3,13 @@ from shortestPath import ShortestPath
 
 class Dijkstra(ShortestPath):
 
-    def __init__(self, graph, nodes_coords):
-        ShortestPath.__init__(self, graph, nodes_coords)
+    def __init__(self, graph, nodes_coords, bucket_size=40):
+        ShortestPath.__init__(self, graph, nodes_coords, bucket_size)
 
     def findShortestPath(self, source, dest):
         s, t = self.findSourceDest(source, dest)
         search_space, pred = self.dijkstra(s, t)
-        return self.processSearchResult(search_space, pred, t)
+        return self.processSearchResult(search_space, pred, s, t)
 
     def existShortestPath(self, source, dest):
         """

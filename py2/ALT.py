@@ -4,8 +4,8 @@ from ALTpreprocessing import ALTpreprocessing
 
 class ALT(Astar):
 
-    def __init__(self, graph, nodes_coords, landmark_selection, nb_lm, origin, heuristic=""):
-        Astar.__init__(self, graph, nodes_coords, heuristic)
+    def __init__(self, graph, nodes_coords, landmark_selection, nb_lm, origin, bucket_size=40, heuristic=""):
+        Astar.__init__(self, graph, nodes_coords, bucket_size, heuristic)
 
         self.landmark_selection = landmark_selection
         self.nb_landmarks = nb_lm
@@ -46,4 +46,4 @@ class ALT(Astar):
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices
         search_space, pred = self.dijkstra(s, t)
-        return self.processSearchResult(search_space, pred, t)
+        return self.processSearchResult(search_space, pred, s, t)

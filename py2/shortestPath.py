@@ -4,10 +4,10 @@ from graphUtils import GraphUtil
 
 class ShortestPath(object):
 
-    def __init__(self, graph, nodes_coords):
+    def __init__(self, graph, nodes_coords, bucket_size=40):
         self.graph = graph
         self.nodes_coords = nodes_coords
-        self.util = GraphUtil(nodes_coords)
+        self.util = GraphUtil(nodes_coords, bucket_size)
 
     def findSourceDest(self, source, dest):
         s = self.util.findClosestNode(self.nodes_coords[source])
@@ -28,11 +28,11 @@ class ShortestPath(object):
                 return False
         return True
 
-    def processSearchResult(self, search_space, pred, dest):
+    def processSearchResult(self, search_space, pred, source, dest):
         if search_space == {} and pred == []:
             return None
         search_space_coords = self.getSearchSpaceCoords(search_space)
-        shortest_path = self.constructShortestPath(pred, dest)
+        shortest_path = self.constructShortestPath(pred, source, dest)
         return search_space_coords, shortest_path
 
     def getSearchSpaceCoords(self, search_space):
@@ -54,7 +54,7 @@ class ShortestPath(object):
         """
         pass
 
-    def constructShortestPath(self, pred, dest):
+    def constructShortestPath(self, pred, source, dest):
         """
         Given a pred (predecessor) list created by the shortest path algorithm, and the
         destination node's ID, returns the shortest path containing all these
@@ -65,8 +65,9 @@ class ShortestPath(object):
         while pred[v]["pred"]:  # is not None
             sp.append(v)
             v = pred[v]["pred"]
+        sp.append(source)
         sp.reverse()  # to have the path from source to dest and not t to s
-        return [self.util.coords[v] for v in sp]
+        return {v: self.util.coords[v] for v in sp}
 
     def getPathLength(self, path):
         """

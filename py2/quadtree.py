@@ -208,7 +208,29 @@ def point_dict_to_quadtree(point_dict, bucket_size=40, multiquadtree=False):
         b = qtree.insert(coord, pid)
     return qtree
 
-def showQtree(qtree, nodes_coords, landmarks, showBoundaries=True):
+def showGraphPoints(ax, nodes_coords):
+    coords_x = [point[1] for _, point in nodes_coords.items()]
+    coords_y = [point[0] for _, point in nodes_coords.items()]
+    ax.scatter(coords_x, coords_y, s=4)
+
+def showLandmarks(ax, landmarks, color):
+    # show landmarks
+    lm_x = [point[1] for _, point in landmarks]
+    lm_y = [point[0] for _, point in landmarks]
+    ax.scatter(lm_x, lm_y, s=15, marker="D", c=color)
+
+def showShortestPath(ax, nodes_coords, shortest_path, color):
+    pass
+
+def showPoints(ax, coords_pairs, color, dotsize):
+    coords_x = [point[1] for _, point in coords_pairs]
+    coords_y = [point[0] for _, point in coords_pairs]
+    if color == "":
+        ax.scatter(coords_x, coords_y, s=dotsize, marker="D")
+    else:
+        ax.scatter(coords_x, coords_y, s=dotsize, marker="D", c=color)
+
+def showQtree(qtree, nodes_coords, SPsearch_space, shortest_path, landmarks, showBoundaries=True):
     DPI = 72
     fig = plt.figure(figsize=(700/DPI, 500/DPI), dpi=DPI)
     ax = plt.subplot()
@@ -219,14 +241,17 @@ def showQtree(qtree, nodes_coords, landmarks, showBoundaries=True):
 
     # ===========================================================
     # show points
-    coords_x = [point[1] for _, point in nodes_coords.items()]
-    coords_y = [point[0] for _, point in nodes_coords.items()]
-    ax.scatter(coords_x, coords_y, s=4)
+    showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
 
     # show landmarks
-    lm_x = [point[1] for _, point in landmarks]
-    lm_y = [point[0] for _, point in landmarks]
-    ax.scatter(lm_x, lm_y, s=4, marker="D", c="r")
+    showPoints(ax, landmarks, "r", 15)
+
+    # show search space
+    showPoints(ax, list(SPsearch_space.items()), "orange", 4)
+
+    # show shortest path
+    showPoints(ax, list(shortest_path.items()), "blue", 4)
+
 
     # ===========================================================
     # ax.invert_yaxis()

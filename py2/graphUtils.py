@@ -1,20 +1,20 @@
 
 from utils import haversine
-from quadtree import point_dict_to_quadtree
+from quadtree import Quadtree, MultiQuadtree, point_dict_to_quadtree
 
 class GraphUtil(object):
     """
     A class providing basic functionality over a { id : (lat, lon) } dict.
     """
 
-    def __init__(self, vertex_coords):
+    def __init__(self, vertex_coords, bucket_size):
         """
         Arguments:
         vertex_coords -- dict of the form: { id : (lat, lon) }
         """
         self.coords = vertex_coords
         # create a quadtree that can store multiple data per (lat, lon)
-        self.qtree = point_dict_to_quadtree(vertex_coords, multiquadtree=True)
+        self.qtree = point_dict_to_quadtree(vertex_coords, bucket_size, multiquadtree=True)
 
     def findCenterNode(self):
         return self.findClosestNode(self.qtree.origin)
