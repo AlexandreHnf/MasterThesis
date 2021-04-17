@@ -244,13 +244,16 @@ def showQtree(qtree, nodes_coords, SPsearch_space, shortest_path, landmarks, sho
     showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
 
     # show landmarks
-    showPoints(ax, landmarks, "r", 15)
+    if landmarks:
+        showPoints(ax, landmarks, "r", 15)
 
     # show search space
-    showPoints(ax, list(SPsearch_space.items()), "orange", 4)
+    if SPsearch_space:
+        showPoints(ax, list(SPsearch_space.items()), "orange", 4)
 
     # show shortest path
-    showPoints(ax, list(shortest_path.items()), "blue", 4)
+    if shortest_path:
+        showPoints(ax, list(shortest_path.items()), "blue", 4)
 
 
     # ===========================================================

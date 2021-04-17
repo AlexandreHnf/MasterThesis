@@ -73,7 +73,7 @@ def testLandmarks2(graph, graph_coords):
     showQtree(alt.util.qtree, graph_coords, landmarks)
     print("============================")
 
-def testDijkstra(graph, graph_coords):
+def testDijkstra(graph, graph_coords, show=False):
 
     d = Dijkstra(graph, graph_coords)
     start = time()
@@ -82,10 +82,13 @@ def testDijkstra(graph, graph_coords):
     path_length = d.getPathLength(search_space)
     print("nb nodes : {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
     print("shortest_path search space : ", shortest_path, len(shortest_path))
-    print("vald path ? ", d.isValidPath(search_space))
+    print("vald path ? ", d.isValidPath(shortest_path))
     print("============================")
 
-def testAstar(graph, graph_coords):
+    if show:
+        showQtree(d.util.qtree, graph_coords, search_space, shortest_path, None)
+
+def testAstar(graph, graph_coords, show=False):
 
     a = Astar(graph, graph_coords)
     start = time()
@@ -94,10 +97,13 @@ def testAstar(graph, graph_coords):
     path_length = a.getPathLength(search_space)
     print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
     print("shortest_path : ", shortest_path, len(shortest_path))
-    print("vald path ? ", a.isValidPath(search_space))
+    print("vald path ? ", a.isValidPath(shortest_path))
     print("============================")
 
-def testALT(graph, graph_coords):
+    if show:
+        showQtree(a.util.qtree, graph_coords, search_space, shortest_path, None)
+
+def testALT(graph, graph_coords, show=False):
 
     origin = 50.8460, 4.3496
     alt = ALT(graph, graph_coords, "planar", 16, origin)
@@ -110,10 +116,11 @@ def testALT(graph, graph_coords):
     path_length = alt.getPathLength(search_space)
     print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
     print("shortest_path : ", shortest_path, len(shortest_path))
-    print("vald path ? ", alt.isValidPath(search_space))
+    print("valid path ? ", alt.isValidPath(shortest_path))
     print("============================")
 
-    showQtree(alt.util.qtree, graph_coords, search_space, shortest_path, lm)
+    if show:
+        showQtree(alt.util.qtree, graph_coords, search_space, shortest_path, lm)
 
 
 def main():
