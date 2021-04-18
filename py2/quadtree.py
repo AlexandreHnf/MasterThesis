@@ -1,6 +1,5 @@
 # from https://github.com/ryanpon/pathfinding-animator
 
-import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from collections import defaultdict
@@ -249,7 +248,8 @@ def showQtree(qtree, nodes_coords, SPsearch_space, shortest_path, landmarks, sho
 
     # show search space
     if SPsearch_space:
-        showPoints(ax, list(SPsearch_space.items()), "orange", 4)
+        brown = (0.69411766529083252, 0.3490196168422699, 0.15686275064945221, 1.0)
+        showPoints(ax, list(SPsearch_space.items()), brown, 4)
 
     # show shortest path
     if shortest_path:

@@ -3,8 +3,8 @@ from Dijkstra import Dijkstra
 
 class Astar(Dijkstra):
 
-    def __init__(self, graph, nodes_coords, bucket_size=40, heuristic=""):
-        Dijkstra.__init__(self, graph, nodes_coords, bucket_size)
+    def __init__(self, graph, nodes, priority="bin", bucket_size=40, heuristic=""):
+        Dijkstra.__init__(self, graph, nodes, priority, bucket_size)
         self.heuristic = heuristic  # string : euclidean, manhattan, octile
         self.h_fun = self.heuristicSelector(heuristic)  # heuristic function, by default, euclidean distance (haversine)
         # function that, given a node, gives the heuristic value with h_fun
@@ -43,4 +43,5 @@ class Astar(Dijkstra):
                     # print("v has been here")
                 pred[neighbour] = {"pred": v, "dist": new_dist}
                 estimation = new_dist + self.h(neighbour)  # heuristic estimation
-                heappush(unvisited, (estimation, neighbour) )
+                # heappush(unvisited, (estimation, neighbour) )
+                self.pushPriorityQueue(unvisited, (estimation, neighbour))

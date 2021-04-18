@@ -4,10 +4,10 @@ from ALTpreprocessing import ALTpreprocessing
 
 class ALT(Astar):
 
-    def __init__(self, graph, nodes_coords, landmark_selection, nb_lm, origin, bucket_size=40, heuristic=""):
-        Astar.__init__(self, graph, nodes_coords, bucket_size, heuristic)
+    def __init__(self, graph, nodes, lm_selection, nb_lm, origin, priority="bin", bucket_size=40, heuristic=""):
+        Astar.__init__(self, graph, nodes, priority, bucket_size, heuristic)
 
-        self.landmark_selection = landmark_selection
+        self.landmark_selection = lm_selection  # (str) landmark selection strategy
         self.nb_landmarks = nb_lm
         self.origin = origin
         self.lm_dists = None  # distance from all nodes to all landmarks

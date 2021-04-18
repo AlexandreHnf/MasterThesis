@@ -1,10 +1,12 @@
 from heapq import heappush, heappop
+from fibheap import *
 from shortestPath import ShortestPath
 
 class Dijkstra(ShortestPath):
 
-    def __init__(self, graph, nodes_coords, bucket_size=40):
-        ShortestPath.__init__(self, graph, nodes_coords, bucket_size)
+    def __init__(self, graph, nodes, priority="bin", bucket_size=40):
+        ShortestPath.__init__(self, graph, nodes, bucket_size)
+        self.priority = priority  # the type of priority set data structure (str)
 
     def findShortestPath(self, source, dest):
         s, t = self.findSourceDest(source, dest)
@@ -19,6 +21,50 @@ class Dijkstra(ShortestPath):
         path, pred = self.dijkstra(source, dest)
         return not (path == {} and pred == [])
 
+    def getPriorityList(self, s):
+        """
+        Creates a priority queue depending on the required data structure
+        - list : a simple list
+        - bin : a binary heap
+        - fib : a fibonacci heap
+        """
+        simple_list = [(0, s)]
+        if self.priority == "fib":
+            fib_heap = makefheap()
+            fheappush(fib_heap, simple_list[0])
+            return fib_heap
+        return simple_list
+
+    def getHighestPriorityNode(self, priority_queue):
+        if self.priority == "bin":
+            return heappop(priority_queue)
+        elif self.priority == "fib":
+            return fheappop(priority_queue)
+        else:  # list
+            # simply take the unvisited node with smallest dist to far
+            # assumes the priority queue is never empty
+            if len(priority_queue) == 0:
+                print("Aie")
+            smallest = priority_queue[0][0]  # distance from start
+            id_smallest = 0
+            for i, (d, v) in enumerate(priority_queue):
+                if d < smallest:
+                    smallest = d
+                    id_smallest = i
+            return priority_queue.pop(id_smallest)
+
+    def pushPriorityQueue(self, priority_queue, node):
+        """
+        Push new node to priority queue
+        """
+        if self.priority == "bin":
+            heappush(priority_queue, node)
+        elif self.priority == "fib":
+            fheappush(priority_queue, node)
+        else:  # list
+            priority_queue.append(node)
+
+
     def dijkstra(self, s, t):
         """
         Find the shortest path from s to t.
@@ -29,10 +75,11 @@ class Dijkstra(ShortestPath):
         search_space = []
         pred = {s : {"dist": 0, "pred": None}}
         closed_set = set()
-        unvisited = [(0, s)]  # TODO : datastructure : heap, fibonacci heap, or simple list
+        # unvisited = [(0, s)]  # TODO : datastructure : heap, fibonacci heap, or simple list
+        unvisited = self.getPriorityList(s)
         while unvisited:
-            _, v = heappop(unvisited)
-            # print("current : {0}, dist to t : {1}".format(v, pred[v]["dist"]))
+            # _, v = heappop(unvisited)
+            _, v = self.getHighestPriorityNode(unvisited)
             search_space.append( (pred[v]["pred"], [v]) )
             if v in closed_set:
                 continue
@@ -48,14 +95,10 @@ class Dijkstra(ShortestPath):
         Relax all arcs coming from vertex v
         """
         for neighbour, arc_weight in self.graph[v]:
-            # print("neighbour : ", neighbour)
             if neighbour in closed_set:
                 continue
             new_dist = pred[v]["dist"] + arc_weight
-            # print("=> new dist : ", new_dist)
-            # print("=> pre dist : ", pred.get(neighbour, None))
             if neighbour not in pred or new_dist < pred[neighbour]["dist"]:
-                # if neighbour not in pred:
-                    # print("v has been here")
                 pred[neighbour] = {"pred": v, "dist": new_dist}
-                heappush(unvisited, (new_dist, neighbour) )
+                # heappush(unvisited, (new_dist, neighbour) )
+                self.pushPriorityQueue(unvisited, (new_dist, neighbour) )

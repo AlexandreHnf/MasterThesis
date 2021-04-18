@@ -75,7 +75,7 @@ def testLandmarks2(graph, graph_coords):
 
 def testDijkstra(graph, graph_coords, show=False):
 
-    d = Dijkstra(graph, graph_coords)
+    d = Dijkstra(graph, graph_coords, "list")
     start = time()
     search_space, shortest_path = d.findShortestPath("7", "1335")
     print("dijkstra done in : ", time() - start, " seconds.")
@@ -90,7 +90,7 @@ def testDijkstra(graph, graph_coords, show=False):
 
 def testAstar(graph, graph_coords, show=False):
 
-    a = Astar(graph, graph_coords)
+    a = Astar(graph, graph_coords, "list")
     start = time()
     search_space, shortest_path = a.findShortestPath("7", "1335")
     print("A* done in : ", time() - start, " seconds.")
@@ -106,7 +106,7 @@ def testAstar(graph, graph_coords, show=False):
 def testALT(graph, graph_coords, show=False):
 
     origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, "planar", 16, origin)
+    alt = ALT(graph, graph_coords, "planar", 16, origin, "list")
     prepro_start = time()
     lm = alt.preprocessing()
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
@@ -133,7 +133,7 @@ def main():
     # testLandmarks1(graph, graph_coords)
     # testLandmarks2(graph, graph_coords)
 
-    testDijkstra(graph, graph_coords)
+    testDijkstra(graph, graph_coords, True)
     testAstar(graph, graph_coords)
     testALT(graph, graph_coords)
 

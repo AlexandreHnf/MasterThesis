@@ -4,10 +4,10 @@ from graphUtils import GraphUtil
 
 class ShortestPath(object):
 
-    def __init__(self, graph, nodes_coords, bucket_size=40):
+    def __init__(self, graph, nodes, bucket_size=40):
         self.graph = graph
-        self.nodes_coords = nodes_coords
-        self.util = GraphUtil(nodes_coords, bucket_size)
+        self.nodes_coords = nodes
+        self.util = GraphUtil(nodes, bucket_size)
 
     def findSourceDest(self, source, dest):
         s = self.util.findClosestNode(self.nodes_coords[source])
