@@ -8,8 +8,7 @@ import csv
 from landmarkTest import *
 from time import time
 from quadtree import showQtree
-
-W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\Datasets_graphs\\"
+from Constants import *
 
 def load_graph(filename_adj, filename_nodes):
 
@@ -124,8 +123,8 @@ def testALT(graph, graph_coords, show=False):
 
 
 def main():
-    bxl_square_graph_nodes = W + "small_graph\\test_bxl_square_nodes.json"
-    bxl_square_graph_adj = W + "small_graph\\test_bxl_square_adj.json"
+    bxl_square_graph_nodes = GRAPH_BXL_CTR_TEST_N
+    bxl_square_graph_adj = GRAPH_BXL_CTR_TEST_A
     graph, graph_coords = load_graph(bxl_square_graph_adj, bxl_square_graph_nodes)
     graph = computeBaseDistances(graph, graph_coords)
 
