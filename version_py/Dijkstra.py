@@ -1,6 +1,9 @@
+# https://docs.python.org/3/library/heapq.html
 from heapq import heappush, heappop
+# https://pypi.org/project/fibheap/
 from fibheap import *
 from shortestPath import ShortestPath
+
 
 class Dijkstra(ShortestPath):
 
@@ -75,10 +78,8 @@ class Dijkstra(ShortestPath):
         search_space = []
         pred = {s : {"dist": 0, "pred": None}}
         closed_set = set()
-        # unvisited = [(0, s)]  # TODO : datastructure : heap, fibonacci heap, or simple list
         unvisited = self.getPriorityList(s)
         while unvisited:
-            # _, v = heappop(unvisited)
             _, v = self.getHighestPriorityNode(unvisited)
             search_space.append( (pred[v]["pred"], [v]) )
             if v in closed_set:
@@ -100,5 +101,4 @@ class Dijkstra(ShortestPath):
             new_dist = pred[v]["dist"] + arc_weight
             if neighbour not in pred or new_dist < pred[neighbour]["dist"]:
                 pred[neighbour] = {"pred": v, "dist": new_dist}
-                # heappush(unvisited, (new_dist, neighbour) )
                 self.pushPriorityQueue(unvisited, (new_dist, neighbour) )

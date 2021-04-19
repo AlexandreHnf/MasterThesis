@@ -2,6 +2,8 @@
 # Licensed under the MIT license.
 # => https://github.com/ryanpon/pathfinding-animator
 
+# Modified by Alexandre Heneffe.
+
 """
 Landmark computation on a graph network
     - planar landmarks selection
