@@ -13,7 +13,7 @@ class ALT(Astar):
         self.lm_dists = None  # distance from all nodes to all landmarks
 
     def preprocessing(self):
-        p = ALTpreprocessing(self.graph, self.nodes_coords, self.util.qtree)
+        p = ALTpreprocessing(self.graph, self.util.coords, self.util.qtree)
         landmarks = []
         if self.landmark_selection == "farthest":
             landmarks = p.farthestLandmarkSelection(self.nb_landmarks, self.origin)
@@ -39,11 +39,14 @@ class ALT(Astar):
         # print(max_dist)
         return max_dist
 
-    def findShortestPath(self, source, dest):
-        s, t = self.findSourceDest(source, dest)
+    def findShortestPath(self):
+        # s, t = self.findSourceDest(source, dest)
         # self.preprocessing()
-        self.h = lambda v: self.ALTHeuristic(v, dest)
+        self.h = lambda v: self.ALTHeuristic(v, self.t)
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices
-        search_space, pred = self.dijkstra(s, t)
-        return self.processSearchResult(search_space, pred, s, t)
+
+        exist_sol = self.dijkstra()
+        if not exist_sol:
+            return None
+        return self.processSearchResult()

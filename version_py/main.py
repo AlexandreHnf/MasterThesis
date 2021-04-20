@@ -74,9 +74,9 @@ def testLandmarks2(graph, graph_coords):
 
 def testDijkstra(graph, graph_coords, show=False):
 
-    d = Dijkstra(graph, graph_coords, "list")
+    d = Dijkstra(graph, graph_coords, "7", "1335", "list")
     start = time()
-    search_space, shortest_path = d.findShortestPath("7", "1335")
+    search_space, shortest_path = d.findShortestPath()
     print("dijkstra done in : ", time() - start, " seconds.")
     path_length = d.getPathLength(search_space)
     print("nb nodes : {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
@@ -89,9 +89,9 @@ def testDijkstra(graph, graph_coords, show=False):
 
 def testAstar(graph, graph_coords, show=False):
 
-    a = Astar(graph, graph_coords, "list")
+    a = Astar(graph, graph_coords, "7", "1335", "list")
     start = time()
-    search_space, shortest_path = a.findShortestPath("7", "1335")
+    search_space, shortest_path = a.findShortestPath()
     print("A* done in : ", time() - start, " seconds.")
     path_length = a.getPathLength(search_space)
     print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
@@ -134,7 +134,7 @@ def main():
 
     testDijkstra(graph, graph_coords, True)
     testAstar(graph, graph_coords)
-    testALT(graph, graph_coords)
+    # testALT(graph, graph_coords)
 
 
 if __name__ == "__main__":

@@ -7,14 +7,70 @@ from shortestPath import ShortestPath
 
 class Dijkstra(ShortestPath):
 
-    def __init__(self, graph, nodes, priority="bin", bucket_size=40):
-        ShortestPath.__init__(self, graph, nodes, bucket_size)
+    def __init__(self, graph, nodes, s, t, priority="bin", bucket_size=40):
+        ShortestPath.__init__(self, graph, nodes, s, t, bucket_size)
+        self.dist_so_far = []
+        self.search_space = []
+        self.search_space_size = 0
+        self.nb_relax_edges = 0
+        self.pred = {self.s: {"dist": 0, "pred": None}}
+        self.closed_set = set()
         self.priority = priority  # the type of priority set data structure (str)
+        self.unvisited = self.getPriorityList()
 
-    def findShortestPath(self, source, dest):
-        s, t = self.findSourceDest(source, dest)
-        search_space, pred = self.dijkstra(s, t)
-        return self.processSearchResult(search_space, pred, s, t)
+    def getDistSoFar(self):
+        return self.dist_so_far
+
+    def getSearchSpace(self):
+        return self.search_space
+
+    def getSearchSpaceSize(self):
+        return self.search_space_size
+
+    def getNbRelaxedEdges(self):
+        return self.nb_relax_edges
+
+    def getPred(self):
+        return self.pred
+
+    def getSearchSpaceCoords(self):
+        """
+        get a dictionary of all the nodes in the search space of the
+        algorithm with geometric coordinates
+        """
+        needed = {}
+        coords = self.util.coords
+        for vertex, neighbours in self.search_space[1:]:
+            needed[vertex] = coords[vertex]
+            for arc in neighbours:
+                needed[arc] = coords[arc]
+        return needed
+
+    def constructShortestPath(self):
+        """
+        Given a pred (predecessor) list created by the shortest path algorithm, and the
+        destination node's ID, returns the shortest path containing all these
+        nodes. => will give the actual shortest path computed by the algorithm.
+        """
+        sp = []
+        v = self.t
+        while self.pred[v]["pred"]:  # is not None
+            sp.append(v)
+            v = self.pred[v]["pred"]
+        sp.append(self.s)  # source
+        sp.reverse()  # to have the path from source to dest and not t to s
+        return {v: self.util.coords[v] for v in sp}
+
+    def processSearchResult(self):
+        search_space_coords = self.getSearchSpaceCoords()
+        shortest_path = self.constructShortestPath()
+        return search_space_coords, shortest_path
+
+    def findShortestPath(self):
+        exist_sol = self.dijkstra()
+        if not exist_sol:
+            return None
+        return self.processSearchResult()
 
     def existShortestPath(self, source, dest):
         """
@@ -24,81 +80,79 @@ class Dijkstra(ShortestPath):
         path, pred = self.dijkstra(source, dest)
         return not (path == {} and pred == [])
 
-    def getPriorityList(self, s):
+    def getPriorityList(self):
         """
         Creates a priority queue depending on the required data structure
         - list : a simple list
         - bin : a binary heap
         - fib : a fibonacci heap
         """
-        simple_list = [(0, s)]
+        simple_list = [(0, self.s)]
         if self.priority == "fib":
             fib_heap = makefheap()
             fheappush(fib_heap, simple_list[0])
             return fib_heap
         return simple_list
 
-    def getHighestPriorityNode(self, priority_queue):
+    def getHighestPriorityNode(self):
         if self.priority == "bin":
-            return heappop(priority_queue)
+            return heappop(self.unvisited)
         elif self.priority == "fib":
-            return fheappop(priority_queue)
+            return fheappop(self.unvisited)
         else:  # list
             # simply take the unvisited node with smallest dist to far
             # assumes the priority queue is never empty
-            if len(priority_queue) == 0:
-                print("Aie")
-            smallest = priority_queue[0][0]  # distance from start
+            if len(self.unvisited) == 0:
+                print("Aie (in getHighestPriorityNode of Dijkstra.py)")
+            smallest = self.unvisited[0][0]  # distance from start
             id_smallest = 0
-            for i, (d, v) in enumerate(priority_queue):
+            for i, (d, v) in enumerate(self.unvisited):
                 if d < smallest:
                     smallest = d
                     id_smallest = i
-            return priority_queue.pop(id_smallest)
+            return self.unvisited.pop(id_smallest)
 
-    def pushPriorityQueue(self, priority_queue, node):
+    def pushPriorityQueue(self, node):
         """
         Push new node to priority queue
         """
         if self.priority == "bin":
-            heappush(priority_queue, node)
+            heappush(self.unvisited, node)
         elif self.priority == "fib":
-            fheappush(priority_queue, node)
+            fheappush(self.unvisited, node)
         else:  # list
-            priority_queue.append(node)
+            self.unvisited.append(node)
 
 
-    def dijkstra(self, s, t):
+    def dijkstra(self):
         """
         Find the shortest path from s to t.
         Result = a sequence of nodes belonging to the shortest path
         """
-        if not s or not t:
-            return {}, []
-        search_space = []
-        pred = {s : {"dist": 0, "pred": None}}
-        closed_set = set()
-        unvisited = self.getPriorityList(s)
-        while unvisited:
-            _, v = self.getHighestPriorityNode(unvisited)
-            search_space.append( (pred[v]["pred"], [v]) )
-            if v in closed_set:
+        if not self.s or not self.t:
+            return False
+        while self.unvisited:  # not empty
+            self.search_space_size += 1
+            _, v = self.getHighestPriorityNode()
+            self.search_space.append( (self.pred[v]["pred"], [v]) )
+            if v in self.closed_set:
                 continue
-            elif v == t:
-                return search_space[1:], pred
-            closed_set.add(v)
-            self.relaxVertex(v, t, pred, unvisited, closed_set)
-        return {}, []  # if no valid path has been found (some node inaccessible before t
+            elif v == self.t:
+                # return self.search_space[1:], self.pred
+                return True
+            self.closed_set.add(v)
+            self.relaxVertex(v)
+        return False  # if no valid path has been found (some node inaccessible before t
 
-    def relaxVertex(self, v, t, pred, unvisited, closed_set):
+    def relaxVertex(self, v):
         """
         # v = the current vertex, t = destination node
         Relax all arcs coming from vertex v
         """
         for neighbour, arc_weight in self.graph[v]:
-            if neighbour in closed_set:
+            if neighbour in self.closed_set:
                 continue
-            new_dist = pred[v]["dist"] + arc_weight
-            if neighbour not in pred or new_dist < pred[neighbour]["dist"]:
-                pred[neighbour] = {"pred": v, "dist": new_dist}
-                self.pushPriorityQueue(unvisited, (new_dist, neighbour) )
+            new_dist = self.pred[v]["dist"] + arc_weight
+            if neighbour not in self.pred or new_dist < self.pred[neighbour]["dist"]:
+                self.pred[neighbour] = {"pred": v, "dist": new_dist}
+                self.pushPriorityQueue( (new_dist, neighbour) )

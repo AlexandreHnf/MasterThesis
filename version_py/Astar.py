@@ -18,30 +18,28 @@ class Astar(Dijkstra):
             h_fun = self.util._octile
         return h_fun
 
-    def findShortestPath(self, s, t):
+    def findShortestPath(self):
         # s, t = self.findSourceDest(source, dest)
-        self.h = lambda v: self.h_fun(v, t)
+        self.h = lambda v: self.h_fun(v, self.t)
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices
-        search_space, pred = self.dijkstra(s, t)
-        return self.processSearchResult(search_space, pred, s, t)
 
-    def relaxVertex(self, v, t, pred, unvisited, closed_set):
+        exist_sol = self.dijkstra()
+        if not exist_sol:
+            return None
+        return self.processSearchResult()
+
+    def relaxVertex(self, v):
         """
         # v = the current vertex, t = destination node
         Relax all arcs coming from vertex v
         """
         for neighbour, arc_weight in self.graph[v]:
-            # print("neighbour : ", neighbour)
-            if neighbour in closed_set:
+            if neighbour in self.closed_set:
                 continue
-            new_dist = pred[v]["dist"] + arc_weight
-            # print("=> new dist : ", new_dist)
-            # print("=> pre dist : ", pred.get(neighbour, None))
-            if neighbour not in pred or new_dist < pred[neighbour]["dist"]:
-                # if neighbour not in pred:
-                    # print("v has been here")
-                pred[neighbour] = {"pred": v, "dist": new_dist}
+            new_dist = self.pred[v]["dist"] + arc_weight
+            if neighbour not in self.pred or new_dist < self.pred[neighbour]["dist"]:
+                self.pred[neighbour] = {"pred": v, "dist": new_dist}
                 estimation = new_dist + self.h(neighbour)  # heuristic estimation
                 # heappush(unvisited, (estimation, neighbour) )
-                self.pushPriorityQueue(unvisited, (estimation, neighbour))
+                self.pushPriorityQueue( (estimation, neighbour))
