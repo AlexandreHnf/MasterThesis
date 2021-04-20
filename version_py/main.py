@@ -9,6 +9,7 @@ from landmarkTest import *
 from time import time
 from quadtree import showQtree
 from Constants import *
+from parseOSMgraph import OSMgraphParser
 
 def load_graph(filename_adj, filename_nodes):
 
@@ -72,50 +73,59 @@ def testLandmarks2(graph, graph_coords):
     showQtree(alt.util.qtree, graph_coords, landmarks)
     print("============================")
 
-def testDijkstra(graph, graph_coords, show=False):
+def testDijkstra(graph, graph_coords, s, t, show=False):
 
-    d = Dijkstra(graph, graph_coords, "7", "1335", "list")
+    d = Dijkstra(graph, graph_coords, s, t, "list")
     start = time()
     search_space, shortest_path = d.findShortestPath()
     print("dijkstra done in : ", time() - start, " seconds.")
-    path_length = d.getPathLength(search_space)
-    print("nb nodes : {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
-    print("shortest_path search space : ", shortest_path, len(shortest_path))
-    print("vald path ? ", d.isValidPath(shortest_path))
+    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
+    print("shortest_path : ", shortest_path, len(shortest_path))
+    path_length = d.getPathLength(shortest_path)
+    if path_length:
+        print("valid shortest path of length : ", path_length)
+    else:
+        print("Invalid path !")
     print("============================")
 
     if show:
         showQtree(d.util.qtree, graph_coords, search_space, shortest_path, None)
 
-def testAstar(graph, graph_coords, show=False):
+def testAstar(graph, graph_coords, s, t, show=False):
 
-    a = Astar(graph, graph_coords, "7", "1335", "list")
+    a = Astar(graph, graph_coords, s, t, "list")
     start = time()
     search_space, shortest_path = a.findShortestPath()
     print("A* done in : ", time() - start, " seconds.")
-    path_length = a.getPathLength(search_space)
-    print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
+    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
     print("shortest_path : ", shortest_path, len(shortest_path))
-    print("vald path ? ", a.isValidPath(shortest_path))
+    path_length = a.getPathLength(shortest_path)
+    if path_length:
+        print("valid shortest path of length : ", path_length)
+    else:
+        print("Invalid path !")
     print("============================")
 
     if show:
         showQtree(a.util.qtree, graph_coords, search_space, shortest_path, None)
 
-def testALT(graph, graph_coords, show=False):
+def testALT(graph, graph_coords, s, t, show=False):
 
     origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, "7", "1335", "planar", 16, origin, "list")
+    alt = ALT(graph, graph_coords, s, t, "planar", 16, origin, "list")
     prepro_start = time()
     lm = alt.preprocessing()
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
     start = time()
     search_space, shortest_path = alt.findShortestPath()
     print("ALT done in : ", time() - start, " seconds.")
-    path_length = alt.getPathLength(search_space)
-    print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
+    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
     print("shortest_path : ", shortest_path, len(shortest_path))
-    print("valid path ? ", alt.isValidPath(shortest_path))
+    path_length = alt.getPathLength(shortest_path)
+    if path_length:
+        print("valid shortest path of length : ", path_length)
+    else:
+        print("Invalid path !")
     print("============================")
 
     if show:
@@ -123,18 +133,23 @@ def testALT(graph, graph_coords, show=False):
 
 
 def main():
-    bxl_square_graph_nodes = GRAPH_BXL_CTR_TEST_N
-    bxl_square_graph_adj = GRAPH_BXL_CTR_TEST_A
-    graph, graph_coords = load_graph(bxl_square_graph_adj, bxl_square_graph_nodes)
-    graph = computeBaseDistances(graph, graph_coords)
+    # bxl_square_graph_nodes = GRAPH_BXL_CTR_TEST_N
+    # bxl_square_graph_adj = GRAPH_BXL_CTR_TEST_A
+    # graph, graph_coords = load_graph(bxl_square_graph_adj, bxl_square_graph_nodes)
+    # graph = computeBaseDistances(graph, graph_coords)
+    p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
+    graph = p.parse()
+    graph_coords = p.getNodes()
 
     # =========================================
     # testLandmarks1(graph, graph_coords)
     # testLandmarks2(graph, graph_coords)
 
-    testDijkstra(graph, graph_coords, True)
-    testAstar(graph, graph_coords)
-    testALT(graph, graph_coords)
+    s = 7
+    t = 1335
+    testDijkstra(graph, graph_coords, s, t, True)
+    testAstar(graph, graph_coords, s, t)
+    testALT(graph, graph_coords, s, t)
 
 
 if __name__ == "__main__":

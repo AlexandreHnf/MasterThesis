@@ -34,10 +34,11 @@ class Astar(Dijkstra):
         # v = the current vertex, t = destination node
         Relax all arcs coming from vertex v
         """
-        for neighbour, arc_weight in self.graph[v]:
+        for arc in self.graph[v]:
+            neighbour = arc.getExtremityNode()
             if neighbour in self.closed_set:
                 continue
-            new_dist = self.pred[v]["dist"] + arc_weight
+            new_dist = self.pred[v]["dist"] + arc.getWeight()
             if neighbour not in self.pred or new_dist < self.pred[neighbour]["dist"]:
                 self.pred[neighbour] = {"pred": v, "dist": new_dist}
                 estimation = new_dist + self.h(neighbour)  # heuristic estimation

@@ -8,7 +8,7 @@ from Dijkstra import Dijkstra
 class OSMgraphParser:
     def __init__(self, filename):
         self.graph_filename = filename
-        self.nodes_coordinates = []  # index = node ID - 1, value = (lat, lon)
+        self.nodes_coordinates = {}  # key = node ID, value = (lat, lon)
         self.original_nb_nodes = 0
         self.original_nb_edges = 0
         self.tot_nb_nodes = 0
@@ -80,7 +80,7 @@ class OSMgraphParser:
         Get the geographic coordinates (lat, lon) of all "villo" stations
         in Brussels
         """
-        stations_coordinates = []  # index = node ID - 1, value = (lat, lon)
+        stations_coordinates = []  # value = (lat, lon)
         features = self.getJsonData(GRAPH_VILLO)["features"]
         for f in features:
             stations_coordinates.append((f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0]))
@@ -95,13 +95,17 @@ class OSMgraphParser:
             data = myfile.read()
         return json.loads(data)
 
-    def getNodesCoordinates(self, features):
+    def getNodesCoordinates(self, features, adjlist):
         for f in features:
             if f["geometry"]["type"] == "Point":
                 self.original_nb_nodes += 1
                 # (lat, lon)
                 point = [f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0]]
-                self.nodes_coordinates.append(point)
+                self.nodes_coordinates[f["id"]] = point
+                adjlist[f["id"]] = []
+
+    def getNodes(self):
+        return self.nodes_coordinates
 
     def computeEdgeWeight(self, feature):
         """
@@ -175,8 +179,8 @@ class OSMgraphParser:
         """
 
         features = self.getJsonData(self.graph_filename)["features"]
-        self.getNodesCoordinates(features)
-        adjlist = [[] for _ in range(len(self.nodes_coordinates))]
+        adjlist = {}  # key = ID, value = list of adjacent Edge (object)
+        self.getNodesCoordinates(features, adjlist)
 
         for f in features:
             if f["geometry"]["type"] == "LineString":  # if edges
@@ -192,7 +196,7 @@ class OSMgraphParser:
                 edge_weight = length_km
                 # edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds
 
-                self.createEdge(f, adjlist, srcID-1, tgtID-1, edge_weight)  # -1 bc it starts at 1
+                self.createEdge(f, adjlist, srcID, tgtID, edge_weight)
 
         # return self.getConnectedGraph(adjlist)
         return adjlist
@@ -220,15 +224,16 @@ class OSMgraphParser:
         """
         TODO : mettre ca ailleurs (graph utils)
         """
-        for v, adj in enumerate(graph):
+        for v, adj in graph.items():
             print("{0} : ".format(v), end="")
             for e in adj:
                 print("--{0}, ".format(e.getExtremityNode()), end=" ")
             print()
 
 
-
 def main():
+    # graph = {"id": [Edge, Edge, ...], ...}
+    # nodes = {"id": [lat, lon], ...}
     p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
     adjlist = p.parse()
     p.showStats()

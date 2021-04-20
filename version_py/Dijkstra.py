@@ -137,7 +137,6 @@ class Dijkstra(ShortestPath):
             if v in self.closed_set:
                 continue
             elif v == self.t:
-                # return self.search_space[1:], self.pred
                 return True
             self.closed_set.add(v)
             self.relaxVertex(v)
@@ -145,13 +144,15 @@ class Dijkstra(ShortestPath):
 
     def relaxVertex(self, v):
         """
-        # v = the current vertex, t = destination node
+        # v = the current vertex
         Relax all arcs coming from vertex v
         """
-        for neighbour, arc_weight in self.graph[v]:
+        for arc in self.graph[v]:
+            neighbour = arc.getExtremityNode()
+            self.nb_relax_edges += 1
             if neighbour in self.closed_set:
                 continue
-            new_dist = self.pred[v]["dist"] + arc_weight
+            new_dist = self.pred[v]["dist"] + arc.getWeight()
             if neighbour not in self.pred or new_dist < self.pred[neighbour]["dist"]:
                 self.pred[neighbour] = {"pred": v, "dist": new_dist}
                 self.pushPriorityQueue( (new_dist, neighbour) )

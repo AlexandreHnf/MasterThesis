@@ -11,29 +11,22 @@ class ShortestPath(object):
         self.s = s
         self.t = t
 
-    def isAdjacent(self, id2, id1_adjacents):
-        for adj in id1_adjacents:
-            if id2 == adj[0]:
-                return True
-        return False
-
-    def isValidPath(self, path):
-        ids = list(path.keys())
-        for i in range(len(ids)-1):
-            # print("{0}, {1} ({2})".format(ids[i], ids[i+1], self.graph[ids[i]]))
-            if not self.isAdjacent(ids[i+1], self.graph[ids[i]]):
-                return False
-        return True
 
     def getPathLength(self, path):
         """
         Get the total length of the path in km (from first node of the path
         to the last one)
         """
-        c = list(path.values()) # coordinates
-        total_length = 0  # in km
-        for i in range(1, len(c)):
-            total_length += haversine(c[i][0], c[i][1], c[i-1][0], c[i-1][1])
+        path_nodes = list(path.keys())
+        total_length = 0  # km
+        for i in range(len(path_nodes)-1):
+            next_edge = None
+            for edge in self.graph[path_nodes[i]]:
+                if edge.getExtremityNode() == path_nodes[i+1]:
+                    next_edge = edge
+            if next_edge is None:  # it means the path is invalid
+                return None
+            total_length += next_edge.getWeight()
         return total_length
 
     def processSearchResult(self):

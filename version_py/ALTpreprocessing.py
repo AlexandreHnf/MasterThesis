@@ -76,9 +76,10 @@ class ALTpreprocessing:
             elif w == landmark:
                 return pred[w]
             closed_set.add(w)
-            for neighbour, arc_weight in self.graph[w]:
+            for arc in self.graph[w]:
+                neighbour = arc.getExtremityNode()
                 if neighbour not in closed_set:
-                    new_dist = (pred[w] + arc_weight)
+                    new_dist = (pred[w] + arc.getWeight())
                     if neighbour not in pred or new_dist < pred[neighbour]:
                         pred[neighbour] = new_dist
                         est = new_dist + lm_dists[neighbour]
@@ -101,7 +102,6 @@ class ALTpreprocessing:
         # compute all distances from each node to every landmark
         lm_dists = defaultdict(list)
         l = len(self.nodes_coords)
-        # astar = Astar(self.graph, self.nodes_coords)
         for i, pid in enumerate(self.nodes_coords):
             # print(i, '/', l, ':', pid)
             for landmark, _ in landmarks:
