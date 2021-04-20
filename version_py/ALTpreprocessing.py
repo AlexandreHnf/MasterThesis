@@ -57,8 +57,8 @@ class ALTpreprocessing:
         """
         Check whether there exists a shortest path from s to t
         """
-        d = Dijkstra(self.graph, self.nodes_coords)
-        return d.existShortestPath(s, t)
+        d = Dijkstra(self.graph, self.nodes_coords, s, t)
+        return d.existShortestPath()
 
     def lmExactDist(self, v, landmark, lm_est):
         """

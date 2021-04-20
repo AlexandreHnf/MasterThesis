@@ -105,12 +105,12 @@ def testAstar(graph, graph_coords, show=False):
 def testALT(graph, graph_coords, show=False):
 
     origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, "planar", 16, origin, "list")
+    alt = ALT(graph, graph_coords, "7", "1335", "planar", 16, origin, "list")
     prepro_start = time()
     lm = alt.preprocessing()
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
     start = time()
-    search_space, shortest_path = alt.findShortestPath("7", "1335")
+    search_space, shortest_path = alt.findShortestPath()
     print("ALT done in : ", time() - start, " seconds.")
     path_length = alt.getPathLength(search_space)
     print("nb nodes search space: {0}, path length : {1} : {2}".format(len(search_space), path_length, list(search_space.keys())))
@@ -134,7 +134,7 @@ def main():
 
     testDijkstra(graph, graph_coords, True)
     testAstar(graph, graph_coords)
-    # testALT(graph, graph_coords)
+    testALT(graph, graph_coords)
 
 
 if __name__ == "__main__":

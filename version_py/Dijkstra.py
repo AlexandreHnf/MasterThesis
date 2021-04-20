@@ -13,7 +13,7 @@ class Dijkstra(ShortestPath):
         self.search_space = []
         self.search_space_size = 0
         self.nb_relax_edges = 0
-        self.pred = {self.s: {"dist": 0, "pred": None}}
+        self.pred = {self.s: {"dist": 0, "pred": None}}  # TODO : maybe split in two lists
         self.closed_set = set()
         self.priority = priority  # the type of priority set data structure (str)
         self.unvisited = self.getPriorityList()
@@ -72,13 +72,12 @@ class Dijkstra(ShortestPath):
             return None
         return self.processSearchResult()
 
-    def existShortestPath(self, source, dest):
+    def existShortestPath(self):
         """
         Check whether there exists a shortest path from s to t
         """
         # s, t = self.findSourceDest(source, dest)
-        path, pred = self.dijkstra(source, dest)
-        return not (path == {} and pred == [])
+        return self.dijkstra()
 
     def getPriorityList(self):
         """
