@@ -2,6 +2,7 @@ import shortestPath
 from Dijkstra import Dijkstra
 from Astar import Astar
 from ALT import ALT
+from bidirectionalDijkstra import BidirectionalDijkstra
 from ALTpreprocessing import ALTpreprocessing
 import json
 import csv
@@ -75,7 +76,7 @@ def testLandmarks2(graph, graph_coords):
 
 def testDijkstra(graph, graph_coords, s, t, show=False):
 
-    d = Dijkstra(graph, graph_coords, s, t, "list")
+    d = Dijkstra(graph, graph_coords, s, t, "bin")
     start = time()
     search_space, shortest_path = d.findShortestPath()
     print("dijkstra done in : ", time() - start, " seconds.")
@@ -93,7 +94,7 @@ def testDijkstra(graph, graph_coords, s, t, show=False):
 
 def testAstar(graph, graph_coords, s, t, show=False):
 
-    a = Astar(graph, graph_coords, s, t, "list")
+    a = Astar(graph, graph_coords, s, t, "bin")
     start = time()
     search_space, shortest_path = a.findShortestPath()
     print("A* done in : ", time() - start, " seconds.")
@@ -112,7 +113,7 @@ def testAstar(graph, graph_coords, s, t, show=False):
 def testALT(graph, graph_coords, s, t, show=False):
 
     origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, s, t, "planar", 16, origin, "list")
+    alt = ALT(graph, graph_coords, s, t, "planar", 16, origin, "bin")
     prepro_start = time()
     lm = alt.preprocessing()
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
@@ -131,6 +132,22 @@ def testALT(graph, graph_coords, s, t, show=False):
     if show:
         showQtree(alt.util.qtree, graph_coords, search_space, shortest_path, lm)
 
+def testBidiDijkstra(graph, graph_coords, s, t, show=False):
+    bd = BidirectionalDijkstra(graph, graph_coords, s, t, "bin")
+    start = time()
+    search_space, shortest_path = bd.findShortestPath()
+    print("bidirectional dijkstra done in : ", time() - start, " seconds.")
+    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
+    print("shortest_path : ", shortest_path, len(shortest_path))
+    path_length = bd.getPathLength(shortest_path)
+    if path_length:
+        print("valid shortest path of length : ", path_length)
+    else:
+        print("Invalid path !")
+    print("============================")
+
+    if show:
+        showQtree(bd.util.qtree, graph_coords, search_space, shortest_path, None)
 
 def main():
     # bxl_square_graph_nodes = GRAPH_BXL_CTR_TEST_N
@@ -148,8 +165,10 @@ def main():
     s = 7
     t = 1335
     testDijkstra(graph, graph_coords, s, t, True)
-    testAstar(graph, graph_coords, s, t)
-    testALT(graph, graph_coords, s, t)
+    # testAstar(graph, graph_coords, s, t)
+    # testALT(graph, graph_coords, s, t)
+
+    testBidiDijkstra(graph, graph_coords, s, t)
 
 
 if __name__ == "__main__":

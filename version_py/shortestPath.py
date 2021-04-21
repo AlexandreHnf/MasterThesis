@@ -42,7 +42,7 @@ class ShortestPath(object):
         Implemented by inherited objects
         """
 
-    def findShortestPath(self, source, dest):
+    def findShortestPath(self):
         """
         Implemented by inherited objects
         """
