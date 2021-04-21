@@ -80,7 +80,7 @@ class Dijkstra(ShortestPath):
         returns the set of shortest distances to those nodes
         """
         self.dijkstra()
-        return
+        return self.dists_so_far
 
     def existShortestPath(self):
         """

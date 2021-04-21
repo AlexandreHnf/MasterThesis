@@ -131,8 +131,8 @@ class OSMgraphParser:
         TODO : mettre cette fonction autre part (graph Utils par exemple)
         """
         nb_edges = 0
-        for v in graph:
-            nb_edges += len(v)
+        for _, adj in graph.items():
+            nb_edges += len(adj)
         return nb_edges
 
     def getReverseGraph(self, graph):
@@ -146,13 +146,36 @@ class OSMgraphParser:
                 reverse_graph[edge.getExtremityNode()].append(Edge(v, edge.getWeight()))
         return reverse_graph
 
+    def updateNodesCoordinates(self, new_graph):
+        new_coords = {}
+        for v in new_graph:
+            new_coords[v] = self.nodes_coordinates[v]
+        self.nodes_coordinates = new_coords
+
     def getStronglyConnectedGraph(self, graph, s):
-        connected_graph = []
+        connected_graph = {}
         # forward Dijkstra with destination node = -1 = from s to all nodes
         forward = Dijkstra(graph, self.nodes_coordinates, s, -1)
+        forward_dists = forward.getDistsSourceToNodes()  # all shortest distances from s
 
+        rev_graph = self.getReverseGraph(graph)
+        backward = Dijkstra(rev_graph, self.nodes_coordinates, s, -1)
+        backward_dists = backward.getDistsSourceToNodes()  # all shortest distances toward s
 
+        removed_nodes = {v: False for v in graph}
+        for v in graph:
+            if v not in forward_dists or v not in backward_dists:
+                removed_nodes[v] = True
 
+        print("{0} nodes removed.".format(list(removed_nodes.values()).count(True)))
+
+        for v in graph:
+            if not removed_nodes[v]:  # update kept nodes's edges
+                edges = []
+                for e in graph[v]:
+                    if not removed_nodes[e.getExtremityNode()]:
+                        edges.append(Edge(e.getExtremityNode(), e.getWeight()))
+                connected_graph[v] = edges
 
         return connected_graph
 
@@ -170,6 +193,7 @@ class OSMgraphParser:
         self.tot_nb_nodes = len(connected_graph)
         self.tot_nb_edges = self.getNbEdges(connected_graph)
 
+        self.updateNodesCoordinates(connected_graph)
         return connected_graph
 
     def parse(self, travel_type="car"):
@@ -204,8 +228,8 @@ class OSMgraphParser:
 
                 self.createEdge(f, adjlist, srcID, tgtID, edge_weight)
 
-        # return self.getConnectedGraph(adjlist)
-        return adjlist
+        return self.getConnectedGraph(adjlist)
+        # return adjlist
 
     def getAvgDegree(self, graph):
         """
@@ -224,6 +248,7 @@ class OSMgraphParser:
         print("nb self loop edges : {0} = {1} %".format(self.nb_self_loops, 100*(self.nb_self_loops/self.original_nb_edges)))
         print("nb edges with no speed limit defined : {0} = {1} %".format(self.nb_edges_no_speed, 100*(self.nb_edges_no_speed/self.original_nb_edges)))
         print("Final graph : {0} nodes, {1} edges".format(self.tot_nb_nodes, self.tot_nb_edges))
+        # print("ah : ", len(self.nodes_coordinates))
         print("Connected graph connection ratio : {0} % of vertices left".format(100*self.connection_ratio))
 
     def showGraph(self, graph):
@@ -242,8 +267,8 @@ def main():
     # nodes = {"id": [lat, lon], ...}
     p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
     adjlist = p.parse()
-    p.showStats()
     p.showGraph(adjlist)
+    p.showStats()
 
 if __name__ == "__main__":
     main()
