@@ -6,7 +6,8 @@ class Astar(Dijkstra):
     def __init__(self, graph, nodes, s, t, priority="bin", bucket_size=40, heuristic=""):
         Dijkstra.__init__(self, graph, nodes, s, t, priority, bucket_size)
         self.heuristic = heuristic  # string : euclidean, manhattan, octile
-        self.h_fun = self.heuristicSelector(heuristic)  # heuristic function, by default, euclidean distance (haversine)
+        # heuristic function, by default, euclidean distance (haversine)
+        self.h_fun = self.heuristicSelector(heuristic)
         # function that, given a node, gives the heuristic value with h_fun
         self.h = None
 
@@ -19,7 +20,6 @@ class Astar(Dijkstra):
         return h_fun
 
     def findShortestPath(self):
-        # s, t = self.findSourceDest(source, dest)
         self.h = lambda v: self.h_fun(v, self.t)
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices

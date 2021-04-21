@@ -3,6 +3,7 @@ from Dijkstra import Dijkstra
 from Astar import Astar
 from ALT import ALT
 from bidirectionalDijkstra import BidirectionalDijkstra
+from bidirectionalAstar import BidirectionalAstar
 from ALTpreprocessing import ALTpreprocessing
 import json
 import csv
@@ -149,6 +150,23 @@ def testBidiDijkstra(graph, rev_graph, graph_coords, s, t, show=False):
     if show:
         showQtree(bd.util.qtree, graph_coords, search_space, shortest_path, None)
 
+def testBidiAstar(graph, rev_graph, graph_coords, s, t, show=False):
+    ba = BidirectionalAstar(graph, rev_graph, graph_coords, s, t, "bin")
+    start = time()
+    search_space, shortest_path = ba.findShortestPath()
+    print("bidirectional A* done in : ", time() - start, " seconds.")
+    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
+    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
+    path_length = ba.getPathLength(shortest_path)
+    if path_length:
+        print("valid shortest path of length : ", path_length)
+    else:
+        print("Invalid path !")
+    print("============================")
+
+    if show:
+        showQtree(ba.util.qtree, graph_coords, search_space, shortest_path, None)
+
 def main():
     # bxl_square_graph_nodes = GRAPH_BXL_CTR_TEST_N
     # bxl_square_graph_adj = GRAPH_BXL_CTR_TEST_A
@@ -169,7 +187,8 @@ def main():
     # testALT(graph, graph_coords, s, t)
 
     rev_graph = p.getReverseGraph(graph)
-    testBidiDijkstra(graph, rev_graph, graph_coords, s, t, True)
+    testBidiDijkstra(graph, rev_graph, graph_coords, s, t, False)
+    testBidiAstar(graph, rev_graph, graph_coords, s, t, True)
 
 
 if __name__ == "__main__":
