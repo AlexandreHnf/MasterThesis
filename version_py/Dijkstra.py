@@ -9,17 +9,19 @@ class Dijkstra(ShortestPath):
 
     def __init__(self, graph, nodes, s, t, priority="bin", bucket_size=40):
         ShortestPath.__init__(self, graph, nodes, s, t, bucket_size)
-        self.dist_so_far = []
+
         self.search_space = []
         self.search_space_size = 0
         self.nb_relax_edges = 0
-        self.pred = {self.s: {"dist": 0, "pred": None}}  # TODO : maybe split in two lists
+        self.dists_so_far = {self.s: 0}  # shortest distance so far from source node
+        self.preds = {self.s: None}
+        # self.pred = {self.s: {"dist": 0, "pred": None}}  # TODO : maybe split in two lists
         self.closed_set = set()
         self.priority = priority  # the type of priority set data structure (str)
         self.unvisited = self.getPriorityList()
 
     def getDistSoFar(self):
-        return self.dist_so_far
+        return self.dists_so_far
 
     def getSearchSpace(self):
         return self.search_space
@@ -30,8 +32,8 @@ class Dijkstra(ShortestPath):
     def getNbRelaxedEdges(self):
         return self.nb_relax_edges
 
-    def getPred(self):
-        return self.pred
+    def getPredecessors(self):
+        return self.preds
 
     def getSearchSpaceCoords(self):
         """
@@ -54,9 +56,9 @@ class Dijkstra(ShortestPath):
         """
         sp = []
         v = self.t
-        while self.pred[v]["pred"]:  # is not None
+        while self.preds[v]:  # is not None
             sp.append(v)
-            v = self.pred[v]["pred"]
+            v = self.preds[v]
         sp.append(self.s)  # source
         sp.reverse()  # to have the path from source to dest and not t to s
         return {v: self.util.coords[v] for v in sp}
@@ -71,6 +73,14 @@ class Dijkstra(ShortestPath):
         if not exist_sol:
             return None
         return self.processSearchResult()
+
+    def getDistsSourceToNodes(self):
+        """
+        Compute Dijkstra from a node s to all other nodes in the graph
+        returns the set of shortest distances to those nodes
+        """
+        self.dijkstra()
+        return
 
     def existShortestPath(self):
         """
@@ -133,7 +143,7 @@ class Dijkstra(ShortestPath):
         while self.unvisited:  # not empty
             self.search_space_size += 1
             _, v = self.getHighestPriorityNode()
-            self.search_space.append( (self.pred[v]["pred"], [v]) )
+            self.search_space.append( (self.preds[v], [v]) )
             if v in self.closed_set:
                 continue
             elif v == self.t:
@@ -152,7 +162,8 @@ class Dijkstra(ShortestPath):
             self.nb_relax_edges += 1
             if neighbour in self.closed_set:
                 continue
-            new_dist = self.pred[v]["dist"] + arc.getWeight()
-            if neighbour not in self.pred or new_dist < self.pred[neighbour]["dist"]:
-                self.pred[neighbour] = {"pred": v, "dist": new_dist}
+            new_dist = self.dists_so_far[v] + arc.getWeight()
+            if neighbour not in self.preds or new_dist < self.dists_so_far[neighbour]:
+                self.preds[neighbour] = v
+                self.dists_so_far[neighbour] = new_dist
                 self.pushPriorityQueue( (new_dist, neighbour) )

@@ -38,9 +38,10 @@ class Astar(Dijkstra):
             neighbour = arc.getExtremityNode()
             if neighbour in self.closed_set:
                 continue
-            new_dist = self.pred[v]["dist"] + arc.getWeight()
-            if neighbour not in self.pred or new_dist < self.pred[neighbour]["dist"]:
-                self.pred[neighbour] = {"pred": v, "dist": new_dist}
+            new_dist = self.dists_so_far[v] + arc.getWeight()
+            if neighbour not in self.preds or new_dist < self.dists_so_far[neighbour]:
+                self.preds[neighbour] = v
+                self.dists_so_far[neighbour] = new_dist
                 estimation = new_dist + self.h(neighbour)  # heuristic estimation
                 # heappush(unvisited, (estimation, neighbour) )
                 self.pushPriorityQueue( (estimation, neighbour))

@@ -148,7 +148,9 @@ class OSMgraphParser:
 
     def getStronglyConnectedGraph(self, graph, s):
         connected_graph = []
-        forward = Dijkstra(graph) # TODO : change
+        # forward Dijkstra with destination node = -1 = from s to all nodes
+        forward = Dijkstra(graph, self.nodes_coordinates, s, -1)
+
 
 
 
@@ -162,7 +164,7 @@ class OSMgraphParser:
         """
         connected_graph = []
         while self.connection_ratio < 0.5:
-            s = random.randint(0, len(adjlist))  # random starting node
+            s = random.choice(list(adjlist.keys()))  # random starting node
             connected_graph = self.getStronglyConnectedGraph(adjlist, s)
             self.connection_ratio = len(connected_graph) / len(adjlist)
         self.tot_nb_nodes = len(connected_graph)
