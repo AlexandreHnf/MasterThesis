@@ -4,6 +4,7 @@ from Astar import Astar
 from ALT import ALT
 from bidirectionalDijkstra import BidirectionalDijkstra
 from bidirectionalAstar import BidirectionalAstar
+from bidirectionalALT import BidirectionalALT
 from ALTpreprocessing import ALTpreprocessing
 import json
 import csv
@@ -35,6 +36,19 @@ def computeBaseDistances(graph, nodes):
             adjs.append((str(a), dist))
         graph[pid] = adjs
     return graph
+
+def showResult(graph_coords, search_space, shortest_path, spObj, show):
+    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
+    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
+    path_length = spObj.getPathLength(shortest_path)
+    if path_length:
+        print("valid shortest path of length : ", path_length)
+    else:
+        print("Invalid path !")
+    print("============================")
+
+    if show:
+        showQtree(spObj.util.qtree, graph_coords, search_space, shortest_path, None)
 
 #=================================================================================
 
@@ -81,17 +95,7 @@ def testDijkstra(graph, graph_coords, s, t, show=False):
     start = time()
     search_space, shortest_path = d.findShortestPath()
     print("dijkstra done in : ", time() - start, " seconds.")
-    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
-    path_length = d.getPathLength(shortest_path)
-    if path_length:
-        print("valid shortest path of length : ", path_length)
-    else:
-        print("Invalid path !")
-    print("============================")
-
-    if show:
-        showQtree(d.util.qtree, graph_coords, search_space, shortest_path, None)
+    showResult(graph_coords, search_space, shortest_path, d, show)
 
 def testAstar(graph, graph_coords, s, t, show=False):
 
@@ -99,17 +103,7 @@ def testAstar(graph, graph_coords, s, t, show=False):
     start = time()
     search_space, shortest_path = a.findShortestPath()
     print("A* done in : ", time() - start, " seconds.")
-    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
-    path_length = a.getPathLength(shortest_path)
-    if path_length:
-        print("valid shortest path of length : ", path_length)
-    else:
-        print("Invalid path !")
-    print("============================")
-
-    if show:
-        showQtree(a.util.qtree, graph_coords, search_space, shortest_path, None)
+    showResult(graph_coords, search_space, shortest_path, a, show)
 
 def testALT(graph, graph_coords, s, t, show=False):
 
@@ -121,51 +115,32 @@ def testALT(graph, graph_coords, s, t, show=False):
     start = time()
     search_space, shortest_path = alt.findShortestPath()
     print("ALT done in : ", time() - start, " seconds.")
-    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
-    path_length = alt.getPathLength(shortest_path)
-    if path_length:
-        print("valid shortest path of length : ", path_length)
-    else:
-        print("Invalid path !")
-    print("============================")
-
-    if show:
-        showQtree(alt.util.qtree, graph_coords, search_space, shortest_path, lm)
+    showResult(graph_coords, search_space, shortest_path, alt, show)
 
 def testBidiDijkstra(graph, rev_graph, graph_coords, s, t, show=False):
     bd = BidirectionalDijkstra(graph, rev_graph, graph_coords, s, t, "bin")
     start = time()
     search_space, shortest_path = bd.findShortestPath()
     print("bidirectional dijkstra done in : ", time() - start, " seconds.")
-    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
-    path_length = bd.getPathLength(shortest_path)
-    if path_length:
-        print("valid shortest path of length : ", path_length)
-    else:
-        print("Invalid path !")
-    print("============================")
-
-    if show:
-        showQtree(bd.util.qtree, graph_coords, search_space, shortest_path, None)
+    showResult(graph_coords, search_space, shortest_path, bd, show)
 
 def testBidiAstar(graph, rev_graph, graph_coords, s, t, show=False):
     ba = BidirectionalAstar(graph, rev_graph, graph_coords, s, t, "bin")
     start = time()
     search_space, shortest_path = ba.findShortestPath()
     print("bidirectional A* done in : ", time() - start, " seconds.")
-    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
-    path_length = ba.getPathLength(shortest_path)
-    if path_length:
-        print("valid shortest path of length : ", path_length)
-    else:
-        print("Invalid path !")
-    print("============================")
+    showResult(graph_coords, search_space, shortest_path, ba, show)
 
-    if show:
-        showQtree(ba.util.qtree, graph_coords, search_space, shortest_path, None)
+def testBidiALT(graph, rev_graph, graph_coords, s, t, show=False):
+    origin = 50.8460, 4.3496
+    balt = BidirectionalALT(graph, rev_graph, graph_coords, s, t, "planar", 16, origin, "bin")
+    prepro_start = time()
+    lm = balt.preprocessing()
+    print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
+    start = time()
+    search_space, shortest_path = balt.findShortestPath()
+    print("Bidirectional ALT done in : ", time() - start, " seconds.")
+    showResult(graph_coords, search_space, shortest_path, balt, show)
 
 def main():
     # bxl_square_graph_nodes = GRAPH_BXL_CTR_TEST_N
@@ -183,12 +158,13 @@ def main():
     s = 7
     t = 1335
     testDijkstra(graph, graph_coords, s, t)
-    # testAstar(graph, graph_coords, s, t)
-    # testALT(graph, graph_coords, s, t)
+    testAstar(graph, graph_coords, s, t)
+    testALT(graph, graph_coords, s, t)
 
     rev_graph = p.getReverseGraph(graph)
     testBidiDijkstra(graph, rev_graph, graph_coords, s, t, False)
-    testBidiAstar(graph, rev_graph, graph_coords, s, t, True)
+    testBidiAstar(graph, rev_graph, graph_coords, s, t, False)
+    testBidiALT(graph, rev_graph, graph_coords, s, t, True)
 
 
 if __name__ == "__main__":
