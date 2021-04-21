@@ -6,8 +6,10 @@ from shortestPath import ShortestPath
 
 class BidirectionalDijkstra(ShortestPath):
 
-    def __init__(self, graph, nodes, s, t, priority="bin", bucket_size = 40):
+    def __init__(self, graph, rev_graph, nodes, s, t, priority="bin", bucket_size = 40):
         ShortestPath.__init__(self, graph, nodes, s, t, bucket_size)
+
+        self.rev_graph = rev_graph
 
         self.dist_so_far = []
         self.search_space = []
@@ -38,20 +40,21 @@ class BidirectionalDijkstra(ShortestPath):
         """
         s ----- midpoint ----- t
         """
-        fwd_path = []
+        fwd_sp = []
         v = self.midpoint
         while self.fwd_pred[v]["pred"] is not None:
-            fwd_path.append(v)
+            fwd_sp.append(v)
             v = self.fwd_pred[v]["pred"]
-        fwd_path.reverse()
+        fwd_sp.reverse()
 
-        bwd_path = []
+        bwd_sp = []
         v = self.midpoint
         while self.bwd_pred[v]["pred"] is not None:
-            bwd_path.append(v)
+            bwd_sp.append(v)
             v = self.bwd_pred[v]["pred"]
-        bwd_path.reverse()
-        return {v: self.util.coords[v] for v in (fwd_path + bwd_path + [self.t])}
+
+        sp = [self.s] + fwd_sp + bwd_sp + [self.t]
+        return {v: self.util.coords[v] for v in sp}
 
     def processSearchResult(self):
         search_space_coords = self.getSearchSpaceCoords()
@@ -63,8 +66,7 @@ class BidirectionalDijkstra(ShortestPath):
         if not exist_sol:
             return None
 
-        # print("forward pred : ", self.fwd_pred)
-        # print("backward pred : ", self.bwd_pred)
+        print("midpoint : ", self.midpoint)
         return self.processSearchResult()
 
     def getPriorityList(self, simple_list):
@@ -109,28 +111,9 @@ class BidirectionalDijkstra(ShortestPath):
         else:  # list
             unvisited_set.append(node)
 
-    def relaxEdgeForward(self, unvisited_set, v, neighbour, arc_weight):
+    def relaxVertexForward(self, v, closed_set, unvisited_set):
         """
-        # v = the current vertex
-        neighbour = at the extremity of the edge to be relaxed
-        """
-        new_dist = self.fwd_pred[v]["dist"] + arc_weight
-        if neighbour not in self.fwd_pred or new_dist < self.fwd_pred[neighbour]["dist"]:
-            self.fwd_pred[neighbour] = {"pred": v, "dist": new_dist}
-            self.pushPriorityQueue(unvisited_set, (new_dist, neighbour))
-
-    def relaxEdgeBackward(self, unvisited_set, v, neighbour, arc_weight):
-        """
-        # v = the current vertex
-        neighbour = at the extremity of the edge to be relaxed
-        """
-        new_dist = self.bwd_pred[v]["dist"] + arc_weight
-        if neighbour not in self.bwd_pred or new_dist < self.bwd_pred[neighbour]["dist"]:
-            self.bwd_pred[neighbour] = {"pred": v, "dist": new_dist}
-            self.pushPriorityQueue(unvisited_set, (new_dist, neighbour))
-
-    def relaxVertex(self, v, closed_set, unvisited_set, direction):
-        """
+        FORWARD
         # v = the current vertex
         Relax all arcs coming from vertex v
         """
@@ -139,15 +122,34 @@ class BidirectionalDijkstra(ShortestPath):
             # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
-            if direction == "F":
-                self.relaxEdgeForward(unvisited_set, v, neighbour, arc.getWeight())
-            elif direction == "B":
-                self.relaxEdgeBackward(unvisited_set, v, neighbour, arc.getWeight())
+            new_dist = self.fwd_pred[v]["dist"] + arc.getWeight()
+            if neighbour not in self.fwd_pred or new_dist < self.fwd_pred[neighbour]["dist"]:
+                self.fwd_pred[neighbour] = {"pred": v, "dist": new_dist}
+                self.pushPriorityQueue(unvisited_set, (new_dist, neighbour))
+
+    def relaxVertexBackward(self, v, closed_set, unvisited_set):
+        """
+        BACKWARD
+        # v = the current vertex
+        Relax all arcs coming from vertex v
+        """
+        for arc in self.rev_graph[v]:  # REVERSE GRAPH
+            neighbour = arc.getExtremityNode()
+            # self.nb_relax_edges += 1
+            if neighbour in closed_set:
+                continue
+            new_dist = self.bwd_pred[v]["dist"] + arc.getWeight()
+            if neighbour not in self.bwd_pred or new_dist < self.bwd_pred[neighbour]["dist"]:
+                self.bwd_pred[neighbour] = {"pred": v, "dist": new_dist}
+                self.pushPriorityQueue(unvisited_set, (new_dist, neighbour))
 
     def scan(self, unvisited_set, closed_set, direction):
         _, v = self.getHighestPriorityNode(unvisited_set)
         closed_set.add(v)
-        self.relaxVertex(v, closed_set, unvisited_set, direction)
+        if direction == "F":
+            self.relaxVertexForward(v, closed_set, unvisited_set)
+        elif direction == "B":
+            self.relaxVertexBackward(v, closed_set, unvisited_set)
         return v
 
     def bidirectionalCheckForward(self, v):
@@ -189,8 +191,6 @@ class BidirectionalDijkstra(ShortestPath):
             shortest_path_length = bwd_path_length
             self.midpoint = bwd_scanned_v
 
-        # print("forward pred : ", self.fwd_pred)
-        # print("backward pred : ", self.bwd_pred)
         return False  # no valid solution has been found
 
 

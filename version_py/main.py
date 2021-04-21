@@ -81,7 +81,7 @@ def testDijkstra(graph, graph_coords, s, t, show=False):
     search_space, shortest_path = d.findShortestPath()
     print("dijkstra done in : ", time() - start, " seconds.")
     print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", shortest_path, len(shortest_path))
+    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
     path_length = d.getPathLength(shortest_path)
     if path_length:
         print("valid shortest path of length : ", path_length)
@@ -99,7 +99,7 @@ def testAstar(graph, graph_coords, s, t, show=False):
     search_space, shortest_path = a.findShortestPath()
     print("A* done in : ", time() - start, " seconds.")
     print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", shortest_path, len(shortest_path))
+    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
     path_length = a.getPathLength(shortest_path)
     if path_length:
         print("valid shortest path of length : ", path_length)
@@ -121,7 +121,7 @@ def testALT(graph, graph_coords, s, t, show=False):
     search_space, shortest_path = alt.findShortestPath()
     print("ALT done in : ", time() - start, " seconds.")
     print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", shortest_path, len(shortest_path))
+    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
     path_length = alt.getPathLength(shortest_path)
     if path_length:
         print("valid shortest path of length : ", path_length)
@@ -132,13 +132,13 @@ def testALT(graph, graph_coords, s, t, show=False):
     if show:
         showQtree(alt.util.qtree, graph_coords, search_space, shortest_path, lm)
 
-def testBidiDijkstra(graph, graph_coords, s, t, show=False):
-    bd = BidirectionalDijkstra(graph, graph_coords, s, t, "bin")
+def testBidiDijkstra(graph, rev_graph, graph_coords, s, t, show=False):
+    bd = BidirectionalDijkstra(graph, rev_graph, graph_coords, s, t, "bin")
     start = time()
     search_space, shortest_path = bd.findShortestPath()
     print("bidirectional dijkstra done in : ", time() - start, " seconds.")
     print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", shortest_path, len(shortest_path))
+    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
     path_length = bd.getPathLength(shortest_path)
     if path_length:
         print("valid shortest path of length : ", path_length)
@@ -164,11 +164,12 @@ def main():
 
     s = 7
     t = 1335
-    testDijkstra(graph, graph_coords, s, t, True)
+    testDijkstra(graph, graph_coords, s, t)
     # testAstar(graph, graph_coords, s, t)
     # testALT(graph, graph_coords, s, t)
 
-    testBidiDijkstra(graph, graph_coords, s, t)
+    rev_graph = p.getReverseGraph(graph)
+    testBidiDijkstra(graph, rev_graph, graph_coords, s, t, True)
 
 
 if __name__ == "__main__":

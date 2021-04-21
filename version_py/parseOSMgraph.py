@@ -136,10 +136,14 @@ class OSMgraphParser:
         return nb_edges
 
     def getReverseGraph(self, graph):
-        reverse_graph = [[] for _ in range(len(graph))]
-        for s in range(len(graph)):
-            for edge in graph[s]:
-                reverse_graph[edge.getExtremityNode()].append(Edge(s, edge.getWeight()))
+        """
+        TODO : mettre cette fonction autre part (graph Utils par exemple)
+        """
+        # reverse_graph = [[] for _ in range(len(graph))]
+        reverse_graph = {v: [] for v in graph}
+        for v in graph:
+            for edge in graph[v]:
+                reverse_graph[edge.getExtremityNode()].append(Edge(v, edge.getWeight()))
         return reverse_graph
 
     def getStronglyConnectedGraph(self, graph, s):
