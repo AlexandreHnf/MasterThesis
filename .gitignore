@@ -15,6 +15,7 @@
 
 version_py/.idea/*
 version_py/__pycache__/*
+__pychache__/*
 
 # Generated files
 .idea/**/contentModel.xml
@@ -109,3 +110,7 @@ fabric.properties
 .idea/codestream.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm
+
+version_py/big_graphs/
+version_py/small_graph/
+version_py/*.pyc

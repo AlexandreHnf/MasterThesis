@@ -17,7 +17,9 @@ class ShortestPath(object):
         Get the total length of the path in km (from first node of the path
         to the last one)
         """
-        path_nodes = list(path.keys())
+        # path_nodes = list(path.keys())
+        path_nodes = path
+        print(path_nodes)
         total_length = 0  # km
         for i in range(len(path_nodes)-1):
             next_edge = None

@@ -1,8 +1,10 @@
+# coding=utf-8
 import json
 from utils import *
 from Edge import Edge
 from Constants import *
 import random
+import time
 from Dijkstra import Dijkstra
 
 class OSMgraphParser:
@@ -18,6 +20,7 @@ class OSMgraphParser:
         self.connection_ratio = 0
         self.nb_two_way_edges = 0
         self.nb_duplicate_edges = 0
+        self.timing = 0
 
     def isDuplicateEdge(self, adjList, v, w, weight):
         """
@@ -167,7 +170,7 @@ class OSMgraphParser:
             if v not in forward_dists or v not in backward_dists:
                 removed_nodes[v] = True
 
-        print("{0} nodes removed.".format(list(removed_nodes.values()).count(True)))
+        # print("{0} nodes removed.".format(list(removed_nodes.values()).count(True)))
 
         for v in graph:
             if not removed_nodes[v]:  # update kept nodes's edges
@@ -207,7 +210,7 @@ class OSMgraphParser:
             runner: 12 à 15 km/h
 
         """
-
+        start_time = time.time()
         features = self.getJsonData(self.graph_filename)["features"]
         adjlist = {}  # key = ID, value = list of adjacent Edge (object)
         self.getNodesCoordinates(features, adjlist)
@@ -224,11 +227,13 @@ class OSMgraphParser:
                 speed_limit = self.getSpeedLimit(f, travel_type)
                 length_km = self.computeEdgeWeight(f)
                 edge_weight = length_km
-                # edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds
+                # edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds TODO
 
                 self.createEdge(f, adjlist, srcID, tgtID, edge_weight)
 
-        return self.getConnectedGraph(adjlist)
+        connected_graph = self.getConnectedGraph(adjlist)
+        self.timing = time.time() - start_time
+        return connected_graph
         # return adjlist
 
     def getAvgDegree(self, graph):
@@ -242,14 +247,15 @@ class OSMgraphParser:
         Show all stats related to the parsing of the OSM graph data
         """
         print("======= Stats graph OSM ======== ")
-        print("Raw graph : {0} nodes, {1} edges".format(self.original_nb_nodes, self.original_nb_nodes))
-        print("nb two way edges : {0} = {1} % ".format(self.nb_two_way_edges, 100*(self.nb_two_way_edges / self.original_nb_edges)))
-        print("nb duplicate edges : {0} = {1} %".format(self.nb_duplicate_edges, 100*(self.nb_duplicate_edges/self.original_nb_edges)))
-        print("nb self loop edges : {0} = {1} %".format(self.nb_self_loops, 100*(self.nb_self_loops/self.original_nb_edges)))
-        print("nb edges with no speed limit defined : {0} = {1} %".format(self.nb_edges_no_speed, 100*(self.nb_edges_no_speed/self.original_nb_edges)))
-        print("Final graph : {0} nodes, {1} edges".format(self.tot_nb_nodes, self.tot_nb_edges))
-        # print("ah : ", len(self.nodes_coordinates))
-        print("Connected graph connection ratio : {0} % of vertices left".format(100*self.connection_ratio))
+        print("Raw graph :               {0} nodes, {1} edges".format(self.original_nb_nodes, self.original_nb_nodes))
+        print("Nb two way edges :        {0} = {1} % ".format(self.nb_two_way_edges, 100*(self.nb_two_way_edges / self.original_nb_edges)))
+        print("Nb duplicate edges :      {0} = {1} %".format(self.nb_duplicate_edges, 100*(self.nb_duplicate_edges/self.original_nb_edges)))
+        print("Nb self loop edges :      {0} = {1} %".format(self.nb_self_loops, 100*(self.nb_self_loops/self.original_nb_edges)))
+        print("Nb edges no speed limit : {0} = {1} %".format(self.nb_edges_no_speed, 100*(self.nb_edges_no_speed/self.original_nb_edges)))
+        print("Final graph :             {0} nodes, {1} edges".format(self.tot_nb_nodes, self.tot_nb_edges))
+        print("Graph connection ratio :  {0} % of vertices left".format(100*self.connection_ratio))
+        print("Parsing done in {0} seconds".format(self.timing))
+        print("====================================")
 
     def showGraph(self, graph):
         """

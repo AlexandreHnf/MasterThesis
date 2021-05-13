@@ -46,6 +46,7 @@ class BidirectionalDijkstra(ShortestPath):
             fwd_sp.append(v)
             v = self.fwd_pred[v]["pred"]
         fwd_sp.reverse()
+        fwd_sp.pop() # remove duplicate midpoint
 
         bwd_sp = []
         v = self.midpoint
@@ -54,12 +55,12 @@ class BidirectionalDijkstra(ShortestPath):
             v = self.bwd_pred[v]["pred"]
 
         sp = [self.s] + fwd_sp + bwd_sp + [self.t]
-        return {v: self.util.coords[v] for v in sp}
+        return sp, {v: self.util.coords[v] for v in sp}
 
     def processSearchResult(self):
         search_space_coords = self.getSearchSpaceCoords()
-        shortest_path = self.constructShortestPath()
-        return search_space_coords, shortest_path
+        shortest_path, sp_coords = self.constructShortestPath()
+        return search_space_coords, shortest_path, sp_coords
 
     def findShortestPath(self):
         exist_sol = self.bidiDijkstra()

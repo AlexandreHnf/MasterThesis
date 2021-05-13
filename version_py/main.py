@@ -1,170 +1,76 @@
-import shortestPath
-from Dijkstra import Dijkstra
-from Astar import Astar
-from ALT import ALT
-from bidirectionalDijkstra import BidirectionalDijkstra
-from bidirectionalAstar import BidirectionalAstar
-from bidirectionalALT import BidirectionalALT
-from ALTpreprocessing import ALTpreprocessing
-import json
-import csv
-from landmarkTest import *
-from time import time
-from quadtree import showQtree
 from Constants import *
 from parseOSMgraph import OSMgraphParser
+from testSPalgos import *
 
-def load_graph(filename_adj, filename_nodes):
-
-    with open(filename_adj, 'r') as fp:
-        graph = json.loads(fp.read())
-    with open(filename_nodes, 'r') as fp:
-        graph_coords = json.loads(fp.read())
-    return graph, graph_coords
+import json
+import csv
+import sys
 
 
-def computeBaseDistances(graph, nodes):
+##############################################################################################
+
+def processArgs():
     """
-    Compute distances between all nodes with an edge in between
-    returns the same adjacency lists but with distances
-    distance = haversine distance between 2 geographic coordinates
+    main.py <Dijkstra, BidiDijkstra, Astar, BidiAstar> <graph file> <start> <dest>  <priority queue> <show>
+    main.py <ALT/BidiALT> <priority queue> <start> <dest> <graph file>
+    <show> : S or NS (show or not show)
     """
-    for pid, adjacents in graph.items():
-        adjs = []
-        for a in adjacents:
-            dist = haversine(nodes[pid][0], nodes[pid][1], nodes[str(a)][0], nodes[str(a)][1])
-            adjs.append((str(a), dist))
-        graph[pid] = adjs
-    return graph
+    print(sys.argv[0])
 
-def showResult(graph_coords, search_space, shortest_path, spObj, show):
-    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
-    print("shortest_path : ", list(shortest_path.keys()), len(shortest_path))
-    path_length = spObj.getPathLength(shortest_path)
-    if path_length:
-        print("valid shortest path of length : ", path_length)
+    if len(sys.argv) > 1:
+        p = OSMgraphParser(sys.argv[2])
+        graph = p.parse()
+        rev_graph = p.getReverseGraph(graph)
+        graph_coords = p.getNodes()
+        p.showStats()
+
+        if sys.argv[1] == "Dijkstra":  # 1: Dijkstra, 2: graph, 3:s, 4:t, 5: queue_type 6:show
+            print(int(sys.argv[3]), int(sys.argv[4]))
+            testDijkstra(graph, graph_coords, int(sys.argv[3]), int(sys.argv[4]), sys.argv[5], sys.argv[6])
+        elif sys.argv[1] == "BidiDijkstra":  # 1: Dijkstra, 2: graph, 3:s, 4:t, 5: queue_type 6:show
+            testBidiDijkstra(graph, rev_graph, graph_coords, int(sys.argv[3]), int(sys.argv[4]), sys.argv[5],
+                             sys.argv[6])
+        elif sys.argv[1] == "Astar":  # 1: Astar, 2: graph, 3:s, 4:t, 5: queue_type, 6:heuristic, 7:show
+            testAstar(graph, graph_coords, int(sys.argv[3]), int(sys.argv[4]), sys.argv[5], sys.argv[6], sys.argv[7])
+        elif sys.argv[1] == "BidiAstar":  # 1: BidiAstar, 2:graph, 3:s, 4:t, 5: queue_type, 6:heuristic, 7:show
+            testBidiAstar(graph, rev_graph, graph_coords, int(sys.argv[3]), int(sys.argv[4]), sys.argv[5],
+                          sys.argv[6], sys.argv[7])
+        elif sys.argv[1] == "ALT":  # 1: ALT, 2:graph, 3:s, 4:t, 5:lm_select, 6:queue_type, 7: heuristic, 8:show
+            testALT(graph, graph_coords, int(sys.argv[3]), int(sys.argv[4]), sys.argv[5], sys.argv[6],
+                    sys.argv[7], sys.argv[8])
+        elif sys.argv[1] == "BidiALT":  #1: BidiALT, 2:graph, 3:s, 4:t, 5:lm_select, 6:queue_type, 7:heuristic, 8:show
+            testBidiALT(graph, rev_graph, graph_coords, int(sys.argv[3]), int(sys.argv[4]), sys.argv[5],
+                        sys.argv[6], sys.argv[7], sys.argv[8])
     else:
-        print("Invalid path !")
-    print("============================")
+        print("not enough arguments")
+        runAllSP(7, 1335)
 
-    if show:
-        showQtree(spObj.util.qtree, graph_coords, search_space, shortest_path, None)
-
-#=================================================================================
-
-def testLandmarks1(graph, graph_coords):
-    # print(graph)
-
-    print("nb nodes : ", len(graph_coords))
-    qtree = point_dict_to_quadtree(graph_coords, multiquadtree=True)
-    k = 16
-    origin = 50.8460, 4.3496
-
-    # farthest landmark selection
-    # landmarks = farthest_landmark_selection(k, origin, graph_coords)
-
-    # planar landmark selection
-    landmarks = planar_landmark_selection(k, origin, graph_coords, graph, qtree)
-
-    landmarks = list(zip([find_closest_node(l, qtree) for l in landmarks], landmarks))
-    print("landmarks : ", landmarks)
-
-    showQtree(qtree, graph_coords, landmarks)
-
-    # compute all shortest paths from any node to each landmark
-    start = time()
-    lm_dists = landmark_distances(landmarks, graph, graph_coords)
-    print("time landmark distances : ", time() - start, " seconds.")
-    print("============================")
-
-def testLandmarks2(graph, graph_coords):
-
-    print("nb nodes : ", len(graph_coords))
-    k=16
-    origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, "planar", k, origin)
-    start = time()
-    landmarks = alt.preprocessing()
-    print("time landmark distances : ", time() - start, " seconds.")
-    showQtree(alt.util.qtree, graph_coords, landmarks)
-    print("============================")
-
-def testDijkstra(graph, graph_coords, s, t, show=False):
-
-    d = Dijkstra(graph, graph_coords, s, t, "bin")
-    start = time()
-    search_space, shortest_path = d.findShortestPath()
-    print("dijkstra done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, d, show)
-
-def testAstar(graph, graph_coords, s, t, show=False):
-
-    a = Astar(graph, graph_coords, s, t, "bin")
-    start = time()
-    search_space, shortest_path = a.findShortestPath()
-    print("A* done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, a, show)
-
-def testALT(graph, graph_coords, s, t, show=False):
-
-    origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, s, t, "planar", 16, origin, "bin")
-    prepro_start = time()
-    lm = alt.preprocessing()
-    print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
-    start = time()
-    search_space, shortest_path = alt.findShortestPath()
-    print("ALT done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, alt, show)
-
-def testBidiDijkstra(graph, rev_graph, graph_coords, s, t, show=False):
-    bd = BidirectionalDijkstra(graph, rev_graph, graph_coords, s, t, "bin")
-    start = time()
-    search_space, shortest_path = bd.findShortestPath()
-    print("bidirectional dijkstra done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, bd, show)
-
-def testBidiAstar(graph, rev_graph, graph_coords, s, t, show=False):
-    ba = BidirectionalAstar(graph, rev_graph, graph_coords, s, t, "bin")
-    start = time()
-    search_space, shortest_path = ba.findShortestPath()
-    print("bidirectional A* done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, ba, show)
-
-def testBidiALT(graph, rev_graph, graph_coords, s, t, show=False):
-    origin = 50.8460, 4.3496
-    balt = BidirectionalALT(graph, rev_graph, graph_coords, s, t, "planar", 16, origin, "bin")
-    prepro_start = time()
-    lm = balt.preprocessing()
-    print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
-    start = time()
-    search_space, shortest_path = balt.findShortestPath()
-    print("Bidirectional ALT done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, balt, show)
-
-def main():
-    # bxl_square_graph_nodes = GRAPH_BXL_CTR_TEST_N
-    # bxl_square_graph_adj = GRAPH_BXL_CTR_TEST_A
-    # graph, graph_coords = load_graph(bxl_square_graph_adj, bxl_square_graph_nodes)
-    # graph = computeBaseDistances(graph, graph_coords)
+def runAllSP(s, t):
     p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
     graph = p.parse()
     graph_coords = p.getNodes()
+    p.showStats()
 
-    # =========================================
-    # testLandmarks1(graph, graph_coords)
-    # testLandmarks2(graph, graph_coords)
-
-    s = 7
-    t = 1335
     testDijkstra(graph, graph_coords, s, t)
     testAstar(graph, graph_coords, s, t)
     testALT(graph, graph_coords, s, t)
 
     rev_graph = p.getReverseGraph(graph)
-    testBidiDijkstra(graph, rev_graph, graph_coords, s, t, False)
-    testBidiAstar(graph, rev_graph, graph_coords, s, t, False)
-    testBidiALT(graph, rev_graph, graph_coords, s, t, True)
+    testBidiDijkstra(graph, rev_graph, graph_coords, s, t)
+    testBidiAstar(graph, rev_graph, graph_coords, s, t)
+    testBidiALT(graph, rev_graph, graph_coords, s, t, "planar", "bin", "euclidean", True)
+
+
+# ==================================================================
+def main():
+
+    # runAllSP(7, 1335)
+    # =========================================
+    # testLandmarks1(graph, graph_coords)
+    # testLandmarks2(graph, graph_coords)
+    # =========================================
+    processArgs()
+
 
 
 if __name__ == "__main__":

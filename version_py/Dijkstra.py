@@ -61,12 +61,12 @@ class Dijkstra(ShortestPath):
             v = self.preds[v]
         sp.append(self.s)  # source
         sp.reverse()  # to have the path from source to dest and not t to s
-        return {v: self.util.coords[v] for v in sp}
+        return sp, {v: self.util.coords[v] for v in sp}
 
     def processSearchResult(self):
         search_space_coords = self.getSearchSpaceCoords()
-        shortest_path = self.constructShortestPath()
-        return search_space_coords, shortest_path
+        shortest_path, sp_coords = self.constructShortestPath()
+        return search_space_coords, shortest_path, sp_coords
 
     def findShortestPath(self):
         exist_sol = self.dijkstra()
