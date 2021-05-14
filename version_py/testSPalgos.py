@@ -10,7 +10,7 @@ from landmarkTest import *
 from time import time
 from quadtree import showQtree
 
-def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, show):
+def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, landmarks, show):
     print("Search space : ", list(search_space.keys()))
     print("shortest_path : ", shortest_path, len(shortest_path))
     print("Search space size : ", sp_obj.getSearchSpaceSize())
@@ -24,7 +24,7 @@ def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, sho
 
     if show == "True" or show is True:
         print("show !!", show)
-        showQtree(sp_obj.util.qtree, graph_coords, search_space, sp_coords, None)
+        showQtree(sp_obj.util.qtree, graph_coords, search_space, sp_coords, landmarks)
 
 #=================================================================================
 
@@ -47,7 +47,7 @@ def testDijkstra(graph, graph_coords, s, t, queue_type="bin", show=False):
     start = time()
     search_space, shortest_path, sp_coords = d.findShortestPath()
     print("dijkstra done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, d, show)
+    showResult(graph_coords, search_space, shortest_path, sp_coords, d, None, show)
 
 def testAstar(graph, graph_coords, s, t, queue_type="bin", heuristic="euclidean", show=False):
 
@@ -55,34 +55,34 @@ def testAstar(graph, graph_coords, s, t, queue_type="bin", heuristic="euclidean"
     start = time()
     search_space, shortest_path, sp_coords = a.findShortestPath()
     print("A* done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, a, show)
+    showResult(graph_coords, search_space, shortest_path, sp_coords, a, None, show)
 
 def testALT(graph, graph_coords, s, t, lm_selection="planar", queue_type="bin", heuristic="euclidean", show=False):
 
     origin = 50.8460, 4.3496
+    print(lm_selection)
     alt = ALT(graph, graph_coords, s, t, lm_selection, 16, origin, queue_type, 40, heuristic)
     prepro_start = time()
     lm = alt.preprocessing()
-    print(lm)
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
     start = time()
     search_space, shortest_path, sp_coords = alt.findShortestPath()
     print("ALT done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, alt, show)
+    showResult(graph_coords, search_space, shortest_path, sp_coords, alt, lm, show)
 
 def testBidiDijkstra(graph, rev_graph, graph_coords, s, t, queue_type="bin", show=False):
     bd = BidirectionalDijkstra(graph, rev_graph, graph_coords, s, t, queue_type)
     start = time()
     search_space, shortest_path, sp_coords = bd.findShortestPath()
     print("bidirectional dijkstra done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, bd, show)
+    showResult(graph_coords, search_space, shortest_path, sp_coords, bd, None, show)
 
 def testBidiAstar(graph, rev_graph, graph_coords, s, t, queue_type="bin", heuristic="euclidean", show=False):
     ba = BidirectionalAstar(graph, rev_graph, graph_coords, s, t, queue_type, 40, heuristic)
     start = time()
     search_space, shortest_path, sp_coords = ba.findShortestPath()
     print("bidirectional A* done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, ba, show)
+    showResult(graph_coords, search_space, shortest_path, sp_coords, ba, None, show)
 
 def testBidiALT(graph, rev_graph, graph_coords, s, t, lm_selection="planar", queue_type="bin", heuristic="euclidean", show=False):
     origin = 50.8460, 4.3496
@@ -93,4 +93,4 @@ def testBidiALT(graph, rev_graph, graph_coords, s, t, lm_selection="planar", que
     start = time()
     search_space, shortest_path, sp_coords = balt.findShortestPath()
     print("Bidirectional ALT done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, balt, show)
+    showResult(graph_coords, search_space, shortest_path, sp_coords, balt, lm, show)

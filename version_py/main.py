@@ -53,12 +53,12 @@ def runAllSP(s, t):
 
     testDijkstra(graph, graph_coords, s, t)
     testAstar(graph, graph_coords, s, t)
-    testALT(graph, graph_coords, s, t)
+    testALT(graph, graph_coords, s, t, "random", "bin", "euclidean", True)
 
     rev_graph = p.getReverseGraph(graph)
     testBidiDijkstra(graph, rev_graph, graph_coords, s, t)
     testBidiAstar(graph, rev_graph, graph_coords, s, t)
-    testBidiALT(graph, rev_graph, graph_coords, s, t, "planar", "bin", "euclidean", True)
+    testBidiALT(graph, rev_graph, graph_coords, s, t, "planar", "bin", "euclidean")
 
 def testLandmark():
     p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
@@ -70,8 +70,8 @@ def testLandmark():
 # ==================================================================
 def main():
 
-    # runAllSP(7, 1335)
-    testLandmark()
+    runAllSP(7, 1335)
+    # testLandmark()
     # =========================================
     # processArgs()
 
