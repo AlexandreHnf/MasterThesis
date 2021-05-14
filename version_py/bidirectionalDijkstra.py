@@ -23,6 +23,11 @@ class BidirectionalDijkstra(ShortestPath):
 
         self.midpoint = None
 
+    def getSearchSpaceSize(self):
+        return self.search_space_size
+
+    def getNbRelaxedEdges(self):
+        return self.nb_relax_edges
 
     def getSearchSpaceCoords(self):
         """
@@ -123,6 +128,7 @@ class BidirectionalDijkstra(ShortestPath):
             # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
+            self.nb_relax_edges += 1
             new_dist = self.fwd_pred[v]["dist"] + arc.getWeight()
             if neighbour not in self.fwd_pred or new_dist < self.fwd_pred[neighbour]["dist"]:
                 self.fwd_pred[neighbour] = {"pred": v, "dist": new_dist}
@@ -139,6 +145,7 @@ class BidirectionalDijkstra(ShortestPath):
             # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
+            self.nb_relax_edges += 1
             new_dist = self.bwd_pred[v]["dist"] + arc.getWeight()
             if neighbour not in self.bwd_pred or new_dist < self.bwd_pred[neighbour]["dist"]:
                 self.bwd_pred[neighbour] = {"pred": v, "dist": new_dist}
@@ -175,6 +182,7 @@ class BidirectionalDijkstra(ShortestPath):
         bwd_closed = set()
 
         while fwd_unvisited and bwd_unvisited:  # while not empty
+            self.search_space_size += 2  # forward and backward node chosen
 
             # forward search
             fwd_scanned_v = self.scan(fwd_unvisited, fwd_closed_set, "F")

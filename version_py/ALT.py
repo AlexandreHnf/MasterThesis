@@ -19,8 +19,8 @@ class ALT(Astar):
             landmarks = p.farthestLandmarkSelection(self.nb_landmarks, self.origin)
         elif self.landmark_selection == "planar":
             landmarks = p.planarLandmarkSelection(self.nb_landmarks, self.origin)
-        # elif landmark_selection == "random":
-        #     pass
+        elif self.landmark_selection == "random":
+            landmarks = p.randomLandmarkSelection(self.nb_landmarks)
         landmarks = list(zip([p.findClosestNode(l) for l in landmarks], landmarks))
         # print(landmarks)
         self.lm_dists = p.getLandmarksDistances(landmarks)

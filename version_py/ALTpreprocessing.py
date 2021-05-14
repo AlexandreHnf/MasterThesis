@@ -11,6 +11,7 @@ Landmark computation on a graph network
 """
 
 import json
+import random
 from heapq import heappush, heappop
 from collections import defaultdict
 from utils import haversine, bearing
@@ -112,6 +113,15 @@ class ALTpreprocessing:
                 lm_dists[pid].append(d)
         return lm_dists
 
+    def divideInRegions(self, k, origin):
+        regions = [[] for _ in range(k)]
+        region_size = 360.0 / k # angle
+        for pid, coord in self.nodes_coords.items():
+            b = bearing(origin[0], origin[1], coord[0], coord[1], True)
+            s = int(b / region_size)
+            regions[s].append((pid, coord))
+        return regions
+
     def planarLandmarkSelection(self, k, origin):
         """
         Find k landmarks using the "planar landmark selection" method :
@@ -133,17 +143,11 @@ class ALTpreprocessing:
             landmarks.append(best_candidate)
         return landmarks
 
-
-    def divideInRegions(self, k, origin):
-        regions = [[] for _ in range(k)]
-        region_size = 360.0 / k # angle
-        for pid, coord in self.nodes_coords.items():
-            b = bearing(origin[0], origin[1], coord[0], coord[1], True)
-            s = int(b / region_size)
-            regions[s].append((pid, coord))
-        return regions
-
     def farthestLandmarkSelection(self, k, origin):
+        """
+        Select the set of k vertices so that the minimum distance between a pair of selected
+        vertices is maximized.
+        """
         landmarks = [origin] # TODO change to findClosestNode
         for _ in range(k):
             max_dist = float("-inf")
@@ -158,4 +162,17 @@ class ALTpreprocessing:
             landmarks.append(best_candidate)
             if len(landmarks) > k:
                 landmarks.pop(0)
+        return landmarks
+
+    def randomLandmarkSelection(self, k):
+        """
+        Pick k landmarks randomly
+        """
+        landmarks = []
+        for _ in range(k):
+            candidate = random.choice(list(self.nodes_coords.keys()))
+            while (self.nodes_coords[candidate] in landmarks):
+                candidate = random.choice(list(self.nodes_coords.keys()))
+            landmarks.append(self.nodes_coords[candidate])  # coord
+
         return landmarks

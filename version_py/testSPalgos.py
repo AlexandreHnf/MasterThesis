@@ -10,10 +10,12 @@ from landmarkTest import *
 from time import time
 from quadtree import showQtree
 
-def showResult(graph_coords, search_space, shortest_path, sp_coords, spObj, show):
-    print("nb nodes search space : {0}, nodes : {1}".format(len(search_space), list(search_space.keys())))
+def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, show):
+    print("Search space : ", list(search_space.keys()))
     print("shortest_path : ", shortest_path, len(shortest_path))
-    path_length = spObj.getPathLength(shortest_path)
+    print("Search space size : ", sp_obj.getSearchSpaceSize())
+    print("Nb relaxed vertex : ", sp_obj.getNbRelaxedEdges())
+    path_length = sp_obj.getPathLength(shortest_path)
     if path_length:
         print("valid shortest path of length : ", path_length)
     else:
@@ -22,45 +24,21 @@ def showResult(graph_coords, search_space, shortest_path, sp_coords, spObj, show
 
     if show == "True" or show is True:
         print("show !!", show)
-        showQtree(spObj.util.qtree, graph_coords, search_space, sp_coords, None)
+        showQtree(sp_obj.util.qtree, graph_coords, search_space, sp_coords, None)
 
 #=================================================================================
 
-def testLandmarks1(graph, graph_coords):
-    # print(graph)
-
-    print("nb nodes : ", len(graph_coords))
-    qtree = point_dict_to_quadtree(graph_coords, multiquadtree=True)
-    k = 16
-    origin = 50.8460, 4.3496
-
-    # farthest landmark selection
-    # landmarks = farthest_landmark_selection(k, origin, graph_coords)
-
-    # planar landmark selection
-    landmarks = planar_landmark_selection(k, origin, graph_coords, graph, qtree)
-
-    landmarks = list(zip([find_closest_node(l, qtree) for l in landmarks], landmarks))
-    print("landmarks : ", landmarks)
-
-    showQtree(qtree, graph_coords, landmarks)
-
-    # compute all shortest paths from any node to each landmark
-    start = time()
-    lm_dists = landmark_distances(landmarks, graph, graph_coords)
-    print("time landmark distances : ", time() - start, " seconds.")
-    print("============================")
-
-def testLandmarks2(graph, graph_coords):
+def testLandmarks(graph, graph_coords, lm_selection):
 
     print("nb nodes : ", len(graph_coords))
     k=16
     origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, "planar", k, origin)
+    alt = ALT(graph, graph_coords, -1, -1, lm_selection, k, origin)
     start = time()
     landmarks = alt.preprocessing()
+    print(landmarks)
     print("time landmark distances : ", time() - start, " seconds.")
-    showQtree(alt.util.qtree, graph_coords, landmarks)
+    showQtree(alt.util.qtree, graph_coords, None, None, landmarks)
     print("============================")
 
 def testDijkstra(graph, graph_coords, s, t, queue_type="bin", show=False):
@@ -85,6 +63,7 @@ def testALT(graph, graph_coords, s, t, lm_selection="planar", queue_type="bin", 
     alt = ALT(graph, graph_coords, s, t, lm_selection, 16, origin, queue_type, 40, heuristic)
     prepro_start = time()
     lm = alt.preprocessing()
+    print(lm)
     print("ALT preprocessing done in : ", time() - prepro_start, " seconds.")
     start = time()
     search_space, shortest_path, sp_coords = alt.findShortestPath()

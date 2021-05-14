@@ -60,16 +60,20 @@ def runAllSP(s, t):
     testBidiAstar(graph, rev_graph, graph_coords, s, t)
     testBidiALT(graph, rev_graph, graph_coords, s, t, "planar", "bin", "euclidean", True)
 
+def testLandmark():
+    p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
+    graph = p.parse()
+    graph_coords = p.getNodes()
+    # =========================================
+    testLandmarks(graph, graph_coords, "random")
 
 # ==================================================================
 def main():
 
     # runAllSP(7, 1335)
+    testLandmark()
     # =========================================
-    # testLandmarks1(graph, graph_coords)
-    # testLandmarks2(graph, graph_coords)
-    # =========================================
-    processArgs()
+    # processArgs()
 
 
 

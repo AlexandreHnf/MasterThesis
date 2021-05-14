@@ -38,6 +38,7 @@ class Astar(Dijkstra):
             neighbour = arc.getExtremityNode()
             if neighbour in self.closed_set:
                 continue
+            self.nb_relax_edges += 1
             new_dist = self.dists_so_far[v] + arc.getWeight()
             if neighbour not in self.preds or new_dist < self.dists_so_far[neighbour]:
                 self.preds[neighbour] = v

@@ -159,9 +159,9 @@ class Dijkstra(ShortestPath):
         """
         for arc in self.graph[v]:
             neighbour = arc.getExtremityNode()
-            self.nb_relax_edges += 1
             if neighbour in self.closed_set:
                 continue
+            self.nb_relax_edges += 1
             new_dist = self.dists_so_far[v] + arc.getWeight()
             if neighbour not in self.preds or new_dist < self.dists_so_far[neighbour]:
                 self.preds[neighbour] = v

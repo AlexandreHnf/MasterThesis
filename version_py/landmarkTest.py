@@ -8,6 +8,7 @@ Landmark computation on a graph network
 """
 
 import json
+import random
 from heapq import heappush, heappop
 from quadtree import point_dict_to_quadtree, showQtree
 from collections import defaultdict
@@ -140,6 +141,19 @@ def farthest_landmark_selection(k, origin, coords):
         landmarks.append(best_candidate)
         if len(landmarks) > k:
             landmarks.pop(0)
+    return landmarks
+
+def randomLandmarkSelection(k, coords):
+    """
+    Pick k landmarks randomly
+    """
+    landmarks = []
+    for _ in range(k):
+        candidate = random.choice(list(coords.keys()))
+        while (coords[candidate] in landmarks):
+            candidate = random.choice(list(coords.keys()))
+        landmarks.append(coords[candidate])  # coord
+
     return landmarks
 
 # ======================================================

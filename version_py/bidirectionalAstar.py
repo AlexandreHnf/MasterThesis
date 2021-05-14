@@ -43,6 +43,7 @@ class BidirectionalAstar(BidirectionalDijkstra):
             # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
+            self.nb_relax_edges += 1
             new_dist = self.fwd_pred[v]["dist"] + arc.getWeight()
             if neighbour not in self.fwd_pred or new_dist < self.fwd_pred[neighbour]["dist"]:
                 self.fwd_pred[neighbour] = {"pred": v, "dist": new_dist}
@@ -61,6 +62,7 @@ class BidirectionalAstar(BidirectionalDijkstra):
             # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
+            self.nb_relax_edges += 1
             new_dist = self.bwd_pred[v]["dist"] + arc.getWeight()
             if neighbour not in self.bwd_pred or new_dist < self.bwd_pred[neighbour]["dist"]:
                 self.bwd_pred[neighbour] = {"pred": v, "dist": new_dist}
