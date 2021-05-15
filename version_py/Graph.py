@@ -1,23 +1,36 @@
-
 from utils import haversine
+from Edge import Edge
 from quadtree import Quadtree, MultiQuadtree, PointDictToQuadtree
 
-class GraphUtil(object):
-    """
-    A class providing basic functionality over a { id : (lat, lon) } dict.
-    """
+class Graph:
+    def __init__(self, nodes_coords, adj_list, bucket_size=40):
+        self.nodes_coords = nodes_coords
+        self.adj_list = adj_list
+        self.qtree = PointDictToQuadtree(nodes_coords, bucket_size, multiquadtree=True)
 
-    def __init__(self, vertex_coords, bucket_size):
-        """
-        Arguments:
-        vertex_coords -- dict of the form: { id : (lat, lon) }
-        """
-        self.coords = vertex_coords
-        # create a quadtree that can store multiple data per (lat, lon)
-        self.qtree = PointDictToQuadtree(vertex_coords, bucket_size, multiquadtree=True)
+    def getNbEdges(self):
+        nb_edges = 0
+        for _, adj in self.adj_list.items():
+            nb_edges += len(adj)
+        return nb_edges
 
-    def findCenterNode(self):
-        return self.findClosestNode(self.qtree.origin)
+    def getReverseGraph(self, graph):
+        reverse_graph = {v: [] for v in graph}
+        for v in graph:
+            for edge in graph[v]:
+                reverse_graph[edge.getExtremityNode()].append(Edge(v, edge.getWeight()))
+        return reverse_graph
+
+    def getAvgDegree(self):
+        # TODO
+        pass
+
+    def showGraph(self):
+        for v, adj in self.adj_list.items():
+            print("{0} : ".format(v), end="")
+            for e in adj:
+                print("--{0}, ".format(e.getExtremityNode()), end=" ")
+            print()
 
     def findClosestNode(self, target, rng=.01):
         """
@@ -40,6 +53,9 @@ class GraphUtil(object):
                 best_dist = dist
                 best_vertex = vertices[0]
         return best_vertex
+
+    def findCenterNode(self):
+        return self.findClosestNode(self.qtree.origin)
 
     def _euclidean(self, id1, id2):
         """

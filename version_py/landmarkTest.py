@@ -10,7 +10,7 @@ Landmark computation on a graph network
 import json
 import random
 from heapq import heappush, heappop
-from quadtree import point_dict_to_quadtree, showQtree
+from quadtree import PointDictToQuadtree, showQtree
 from collections import defaultdict
 from utils import haversine, bearing
 from time import time
@@ -204,7 +204,7 @@ def main():
     print("nb nodes : ", len(graph_coords))
     # origin = 37.772614, -122.423798
 
-    qtree = point_dict_to_quadtree(graph_coords, 40, multiquadtree=True)
+    qtree = PointDictToQuadtree(graph_coords, 40, multiquadtree=True)
     rect = qtree.query_range(4.33, 4.34, 50.845, 50.850)
     # print(rect)
 
