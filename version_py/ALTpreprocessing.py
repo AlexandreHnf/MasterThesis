@@ -87,6 +87,30 @@ class ALTpreprocessing:
                         heappush(unseen, (new_dist + est, neighbour))
         return None # if no vvalid path found
 
+    def distsFromLM(self, landmark, lm_est):
+        """
+        Find shortest distances from landmark to all other nodes (single source SP)
+        """
+        lm_dists = lm_est[landmark]
+        pred = {landmark: 0}  # source = landmark
+        closed_set = set()
+        unvisited = [(0, landmark)]
+        while unvisited:  # not empty
+            _, v = heappop(unvisited)
+            if v in closed_set:
+                continue
+            closed_set.add(v)
+            for arc in self.graph[v]:
+                neighbour = arc.getExtremityNode()
+                if neighbour not in closed_set:
+                    new_dist = (pred[v] + arc.getWeight())
+                    if neighbour not in pred or new_dist < pred[neighbour]:
+                        pred[neighbour] = new_dist
+                        est = new_dist + lm_dists[neighbour]
+                        heappush(unvisited, (new_dist + est, neighbour))
+
+        return pred  # if no valid path has been found (some node inaccessible before t)
+
     def getLandmarksDistances(self, landmarks):
         """
         compute the shortest path from all nodes in the graph to all landmarks using
@@ -102,15 +126,21 @@ class ALTpreprocessing:
 
         # compute all distances from each node to every landmark
         lm_dists = defaultdict(list)
-        l = len(self.nodes_coords)
         for i, pid in enumerate(self.nodes_coords):
-            # print(i, '/', l, ':', pid)
             for landmark, _ in landmarks:
                 try:
                     d = self.lmExactDist(pid, landmark, lm_est)
                 except KeyError:
                     d = None
                 lm_dists[pid].append(d)
+
+        # lm_dists2 = {pid : [0 for _ in range(len(landmarks))] for pid in self.nodes_coords}
+        # for l, landmark in enumerate(landmarks):
+        #     dists = self.distsFromLM(landmark[0], lm_est)
+        #     for pid, d in dists.items():
+        #         lm_dists2[pid][l] = d
+        # print("new landmarks: ", lm_dists2)
+
         return lm_dists
 
     def divideInRegions(self, k, origin):

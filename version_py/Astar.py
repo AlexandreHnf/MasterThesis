@@ -44,5 +44,4 @@ class Astar(Dijkstra):
                 self.preds[neighbour] = v
                 self.dists_so_far[neighbour] = new_dist
                 estimation = new_dist + self.h(neighbour)  # heuristic estimation
-                # heappush(unvisited, (estimation, neighbour) )
                 self.pushPriorityQueue( (estimation, neighbour))
