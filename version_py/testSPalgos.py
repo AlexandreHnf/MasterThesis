@@ -25,72 +25,72 @@ def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, lan
 
     if show == "True" or show is True:
         print("show !!", show)
-        showQtree(sp_obj.util.qtree, graph_coords, search_space, sp_coords, landmarks)
+        showQtree(sp_obj.graph.getQtree(), graph_coords, search_space, sp_coords, landmarks)
 
 #=================================================================================
 
-def testLandmarks(graph, graph_coords, lm_selection):
+def testLandmarks(graph, lm_selection):
 
-    print("nb nodes : ", len(graph_coords))
+    print("nb nodes : ", len(graph.getNbNodes()))
     k=16
     origin = 50.8460, 4.3496
-    alt = ALT(graph, graph_coords, -1, -1, lm_selection, k, origin)
+    alt = ALT(graph, -1, -1, lm_selection, k, origin)
     start = time()
     landmarks = alt.preprocessing()
     print(landmarks)
     print("time landmark distances : ", time() - start, " seconds.")
-    showQtree(alt.util.qtree, graph_coords, None, None, landmarks)
+    showQtree(alt.util.qtree, None, None, landmarks)
     print("============================")
 
 #=================================================================================
 
-def testDijkstra(graph, graph_coords, s, t, queue_type="bin", show=False):
+def testDijkstra(graph, s, t, queue_type="bin", show=False):
 
-    d = Dijkstra(graph, graph_coords, s, t, queue_type)
+    d = Dijkstra(graph, s, t, queue_type)
     start = time()
     search_space, shortest_path, sp_coords = d.findShortestPath()
     print("[DIJKSTRA] done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, d, None, show)
+    showResult(graph.getNodes(), search_space, shortest_path, sp_coords, d, None, show)
 
-def testAstar(graph, graph_coords, s, t, queue_type="bin", heuristic="euclidean", show=False):
+def testAstar(graph, s, t, queue_type="bin", heuristic="euclidean", show=False):
 
-    a = Astar(graph, graph_coords, s, t, queue_type, 40, heuristic)
+    a = Astar(graph, s, t, queue_type, 40, heuristic)
     start = time()
     search_space, shortest_path, sp_coords = a.findShortestPath()
     print("[A*] done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, a, None, show)
+    showResult(graph.getNodes(), search_space, shortest_path, sp_coords, a, None, show)
 
-def testALT(graph, graph_coords, s, t, lm_selection="planar", queue_type="bin", heuristic="euclidean", show=False):
+def testALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic="euclidean", show=False):
 
-    alt = ALT(graph, graph_coords, s, t, lm_selection, 16, None, queue_type, 40, heuristic)
+    alt = ALT(graph, s, t, lm_selection, 16, None, queue_type, 40, heuristic)
     prepro_start = time()
     lm = alt.preprocessing()
     print("[ALT PREPROCESSING] done in : ", time() - prepro_start, " seconds.")
     start = time()
     search_space, shortest_path, sp_coords = alt.findShortestPath()
     print("[ALT] done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, alt, lm, show)
+    showResult(graph.getNodes(), search_space, shortest_path, sp_coords, alt, lm, show)
 
-def testBidiDijkstra(graph, rev_graph, graph_coords, s, t, queue_type="bin", show=False):
-    bd = BidirectionalDijkstra(graph, rev_graph, graph_coords, s, t, queue_type)
+def testBidiDijkstra(graph, s, t, queue_type="bin", show=False):
+    bd = BidirectionalDijkstra(graph, s, t, queue_type)
     start = time()
     search_space, shortest_path, sp_coords = bd.findShortestPath()
     print("[BIDI DIJKSTRA] done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, bd, None, show)
+    showResult(graph.getNodes(), search_space, shortest_path, sp_coords, bd, None, show)
 
-def testBidiAstar(graph, rev_graph, graph_coords, s, t, queue_type="bin", heuristic="euclidean", show=False):
-    ba = BidirectionalAstar(graph, rev_graph, graph_coords, s, t, queue_type, 40, heuristic)
+def testBidiAstar(graph, s, t, queue_type="bin", heuristic="euclidean", show=False):
+    ba = BidirectionalAstar(graph, s, t, queue_type, 40, heuristic)
     start = time()
     search_space, shortest_path, sp_coords = ba.findShortestPath()
     print("[BIDI A*] done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, ba, None, show)
+    showResult(graph.getNodes(), search_space, shortest_path, sp_coords, ba, None, show)
 
-def testBidiALT(graph, rev_graph, graph_coords, s, t, lm_selection="planar", queue_type="bin", heuristic="euclidean", show=False):
-    balt = BidirectionalALT(graph, rev_graph, graph_coords, s, t, lm_selection, 16, None, queue_type, 40, heuristic)
+def testBidiALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic="euclidean", show=False):
+    balt = BidirectionalALT(graph, s, t, lm_selection, 16, None, queue_type, 40, heuristic)
     prepro_start = time()
     lm = balt.preprocessing()
     print("[ALT PREPROCESSING] done in : ", time() - prepro_start, " seconds.")
     start = time()
     search_space, shortest_path, sp_coords = balt.findShortestPath()
     print("[BIDI ALT] done in : ", time() - start, " seconds.")
-    showResult(graph_coords, search_space, shortest_path, sp_coords, balt, lm, show)
+    showResult(graph.getNodes(), search_space, shortest_path, sp_coords, balt, lm, show)

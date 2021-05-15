@@ -4,8 +4,8 @@ from ALTpreprocessing import ALTpreprocessing
 
 class ALT(Astar):
 
-    def __init__(self, graph, nodes, s, t, lm_selection, nb_lm, origin, priority="bin", bucket_size=40, heuristic=""):
-        Astar.__init__(self, graph, nodes, s, t, priority, bucket_size, heuristic)
+    def __init__(self, graph, s, t, lm_selection, nb_lm, origin, priority="bin", bucket_size=40, heuristic=""):
+        Astar.__init__(self, graph, s, t, priority, bucket_size, heuristic)
 
         self.landmark_selection = lm_selection  # (str) landmark selection strategy
         self.nb_landmarks = nb_lm
@@ -13,7 +13,7 @@ class ALT(Astar):
         self.lm_dists = None  # distance from all nodes to all landmarks
 
     def preprocessing(self):
-        p = ALTpreprocessing(self.graph, self.util.coords, self.util.qtree)
+        p = ALTpreprocessing(self.graph)
         landmarks = []
         if self.landmark_selection == "farthest":
             landmarks = p.farthestLandmarkSelection(self.nb_landmarks, self.origin)

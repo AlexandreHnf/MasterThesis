@@ -6,7 +6,26 @@ class Graph:
     def __init__(self, nodes_coords, adj_list, bucket_size=40):
         self.nodes_coords = nodes_coords
         self.adj_list = adj_list
+        self.rev_adj_list = self.setReverseGraph(self.adj_list)
         self.qtree = PointDictToQuadtree(nodes_coords, bucket_size, multiquadtree=True)
+
+    def getNbNodes(self):
+        return len(self.nodes_coords)
+
+    def getNodes(self):
+        return self.nodes_coords
+
+    def getAdj(self, node):
+        return self.adj_list[node]
+
+    def getRevAdj(self, node):
+        return self.rev_adj_list[node]
+
+    def getCoords(self, path):
+        return {v: self.nodes_coords[v] for v in path}
+
+    def getQtree(self):
+        return self.qtree
 
     def getNbEdges(self):
         nb_edges = 0
@@ -14,16 +33,22 @@ class Graph:
             nb_edges += len(adj)
         return nb_edges
 
-    def getReverseGraph(self, graph):
+    def setReverseGraph(self, graph):
         reverse_graph = {v: [] for v in graph}
         for v in graph:
             for edge in graph[v]:
                 reverse_graph[edge.getExtremityNode()].append(Edge(v, edge.getWeight()))
         return reverse_graph
 
+    def getReverseGraph(self):
+        return self.rev_adj_list
+
     def getAvgDegree(self):
-        # TODO
-        pass
+        avg_deg = 0
+        for v, adj in self.adj_list.items():
+            avg_deg += len(adj)
+
+        return avg_deg / len(self.adj_list)
 
     def showGraph(self):
         for v, adj in self.adj_list.items():
@@ -64,8 +89,8 @@ class Graph:
         Arguments:
         id1, id2 -- IDs matching vertices in self.coords
         """
-        x1, y1 = self.coords[id1]
-        x2, y2 = self.coords[id2]
+        x1, y1 = self.nodes_coords[id1]
+        x2, y2 = self.nodes_coords[id2]
         return haversine(x1, y1, x2, y2)
 
     def _manhattan(self, id1, id2):
@@ -83,8 +108,8 @@ class Graph:
 
         returns dist(1, 3) + dist(2, 3)
         """
-        x1, y1 = self.coords[id1]
-        x2, y2 = self.coords[id2]
+        x1, y1 = self.nodes_coords[id1]
+        x2, y2 = self.nodes_coords[id2]
         x3, y3 = x1, y2
         return haversine(x3, y3, x2, y2) + haversine(x3, y3, x1, y1)
 
@@ -108,8 +133,8 @@ class Graph:
 
         returns dist(1, 3) + dist(2, 3)
         """
-        x1, y1 = self.coords[id1]
-        x2, y2 = self.coords[id2]
+        x1, y1 = self.nodes_coords[id1]
+        x2, y2 = self.nodes_coords[id2]
         dx, dy = abs(x2 - x1), abs(y2 - y1)
         if dx > dy:
             x3 = max(x1, x2) - dy

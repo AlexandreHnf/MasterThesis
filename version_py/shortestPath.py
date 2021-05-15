@@ -1,16 +1,17 @@
 from heapq import heappush, heappop
 from utils import haversine
 from graphUtils import GraphUtil
+from Graph import Graph
 
 class ShortestPath(object):
 
-    def __init__(self, graph, nodes, s, t, bucket_size=40):
-        self.graph = graph
+    def __init__(self, graph, s, t, bucket_size=40):
+        # self.graph = graph
         # self.nodes_coords = nodes
-        self.util = GraphUtil(nodes, bucket_size)
+        # self.util = GraphUtil(nodes, bucket_size)
+        self.graph = graph
         self.s = s
         self.t = t
-
 
     def getPathLength(self, path):
         """
@@ -23,7 +24,8 @@ class ShortestPath(object):
         total_length = 0  # km
         for i in range(len(path_nodes)-1):
             next_edge = None
-            for edge in self.graph[path_nodes[i]]:
+            # for edge in self.graph[path_nodes[i]]:
+            for edge in self.graph.getAdj(path_nodes[i]):
                 if edge.getExtremityNode() == path_nodes[i+1]:
                     next_edge = edge
             if next_edge is None:  # it means the path is invalid

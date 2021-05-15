@@ -7,8 +7,8 @@ from shortestPath import ShortestPath
 
 class Dijkstra(ShortestPath):
 
-    def __init__(self, graph, nodes, s, t, priority="bin", bucket_size=40):
-        ShortestPath.__init__(self, graph, nodes, s, t, bucket_size)
+    def __init__(self, graph, s, t, priority="bin", bucket_size=40):
+        ShortestPath.__init__(self, graph, s, t, bucket_size)
 
         self.search_space = []
         self.search_space_size = 0
@@ -41,7 +41,7 @@ class Dijkstra(ShortestPath):
         algorithm with geometric coordinates
         """
         needed = {}
-        coords = self.util.coords
+        coords = self.graph.getNodes()
         for vertex, neighbours in self.search_space[1:]:
             needed[vertex] = coords[vertex]
             for arc in neighbours:
@@ -61,7 +61,7 @@ class Dijkstra(ShortestPath):
             v = self.preds[v]
         sp.append(self.s)  # source
         sp.reverse()  # to have the path from source to dest and not t to s
-        return sp, {v: self.util.coords[v] for v in sp}
+        return sp, self.graph.getCoords(sp)
 
     def processSearchResult(self):
         search_space_coords = self.getSearchSpaceCoords()
@@ -157,7 +157,7 @@ class Dijkstra(ShortestPath):
         # v = the current vertex
         Relax all arcs coming from vertex v
         """
-        for arc in self.graph[v]:
+        for arc in self.graph.getAdj(v):
             neighbour = arc.getExtremityNode()
             if neighbour in self.closed_set:
                 continue

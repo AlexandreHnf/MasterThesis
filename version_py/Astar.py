@@ -3,8 +3,8 @@ from Dijkstra import Dijkstra
 
 class Astar(Dijkstra):
 
-    def __init__(self, graph, nodes, s, t, priority="bin", bucket_size=40, heuristic=""):
-        Dijkstra.__init__(self, graph, nodes, s, t, priority, bucket_size)
+    def __init__(self, graph, s, t, priority="bin", bucket_size=40, heuristic=""):
+        Dijkstra.__init__(self, graph, s, t, priority, bucket_size)
         self.heuristic = heuristic  # string : euclidean, manhattan, octile
         # heuristic function, by default, euclidean distance (haversine)
         self.h_fun = self.heuristicSelector(heuristic)
@@ -12,11 +12,11 @@ class Astar(Dijkstra):
         self.h = None
 
     def heuristicSelector(self, heuristic):
-        h_fun = self.util._euclidean
+        h_fun = self.graph._euclidean
         if heuristic == "manhattan":
-            h_fun = self.util._manhattan
+            h_fun = self.graph._manhattan
         elif heuristic == "octile":
-            h_fun = self.util._octile
+            h_fun = self.graph._octile
         return h_fun
 
     def findShortestPath(self):
@@ -34,7 +34,7 @@ class Astar(Dijkstra):
         # v = the current vertex, t = destination node
         Relax all arcs coming from vertex v
         """
-        for arc in self.graph[v]:
+        for arc in self.graph.getAdj(v):
             neighbour = arc.getExtremityNode()
             if neighbour in self.closed_set:
                 continue

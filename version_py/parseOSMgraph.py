@@ -5,6 +5,7 @@ from Edge import Edge
 from Constants import *
 import random
 import time
+from Graph import Graph
 from Dijkstra import Dijkstra
 
 class OSMgraphParser:
@@ -158,11 +159,12 @@ class OSMgraphParser:
     def getStronglyConnectedGraph(self, graph, s):
         connected_graph = {}
         # forward Dijkstra with destination node = -1 = from s to all nodes
-        forward = Dijkstra(graph, self.nodes_coordinates, s, -1)
+        fwd_graph = Graph(self.nodes_coordinates, graph)
+        forward = Dijkstra(fwd_graph, s, -1)
         forward_dists = forward.getDistsSourceToNodes()  # all shortest distances from s
 
-        rev_graph = self.getReverseGraph(graph)
-        backward = Dijkstra(rev_graph, self.nodes_coordinates, s, -1)
+        rev_graph = Graph(self.nodes_coordinates, fwd_graph.getReverseGraph())
+        backward = Dijkstra(rev_graph, s, -1)
         backward_dists = backward.getDistsSourceToNodes()  # all shortest distances toward s
 
         removed_nodes = {v: False for v in graph}
@@ -233,7 +235,7 @@ class OSMgraphParser:
 
         connected_graph = self.getConnectedGraph(adjlist)
         self.timing = time.time() - start_time
-        return connected_graph
+        return Graph(self.nodes_coordinates, connected_graph)
         # return adjlist
 
     def getAvgDegree(self, graph):

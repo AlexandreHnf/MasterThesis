@@ -6,10 +6,8 @@ from shortestPath import ShortestPath
 
 class BidirectionalDijkstra(ShortestPath):
 
-    def __init__(self, graph, rev_graph, nodes, s, t, priority="bin", bucket_size = 40):
-        ShortestPath.__init__(self, graph, nodes, s, t, bucket_size)
-
-        self.rev_graph = rev_graph
+    def __init__(self, graph, s, t, priority="bin", bucket_size = 40):
+        ShortestPath.__init__(self, graph, s, t, bucket_size)
 
         self.dist_so_far = []
         self.search_space = []
@@ -36,9 +34,9 @@ class BidirectionalDijkstra(ShortestPath):
         """
         needed = {}
         for vertex, neighbours in self.search_space[2:]:
-            needed[vertex] = self.util.coords[vertex]
+            needed[vertex] = self.graph.getNodes()[vertex]
             for arc in neighbours:
-                needed[arc] = self.util.coords[arc]
+                needed[arc] = self.graph.getNodes()[arc]
         return needed
 
     def constructShortestPath(self):
@@ -60,7 +58,7 @@ class BidirectionalDijkstra(ShortestPath):
             v = self.bwd_pred[v]["pred"]
 
         sp = [self.s] + fwd_sp + bwd_sp + [self.t]
-        return sp, {v: self.util.coords[v] for v in sp}
+        return sp, self.graph.getCoords(sp)
 
     def processSearchResult(self):
         search_space_coords = self.getSearchSpaceCoords()
@@ -123,7 +121,7 @@ class BidirectionalDijkstra(ShortestPath):
         # v = the current vertex
         Relax all arcs coming from vertex v
         """
-        for arc in self.graph[v]:
+        for arc in self.graph.getAdj(v):
             neighbour = arc.getExtremityNode()
             # self.nb_relax_edges += 1
             if neighbour in closed_set:
@@ -140,7 +138,7 @@ class BidirectionalDijkstra(ShortestPath):
         # v = the current vertex
         Relax all arcs coming from vertex v
         """
-        for arc in self.rev_graph[v]:  # REVERSE GRAPH
+        for arc in self.graph.getRevAdj(v):  # REVERSE GRAPH
             neighbour = arc.getExtremityNode()
             # self.nb_relax_edges += 1
             if neighbour in closed_set:

@@ -2,8 +2,8 @@ from bidirectionalDijkstra import BidirectionalDijkstra
 
 class BidirectionalAstar(BidirectionalDijkstra):
 
-    def __init__(self, graph, rev_graph, nodes, s, t, priority="bin", bucket_size=40, heuristic=""):
-        BidirectionalDijkstra.__init__(self, graph, rev_graph, nodes, s, t, priority, bucket_size)
+    def __init__(self, graph, s, t, priority="bin", bucket_size=40, heuristic=""):
+        BidirectionalDijkstra.__init__(self, graph, s, t, priority, bucket_size)
 
         self.heuristic = heuristic # string : euclidean, manhattan, octile
         # heuristic function, by default, euclidean distance (haversine)
@@ -12,11 +12,11 @@ class BidirectionalAstar(BidirectionalDijkstra):
         self.h = None
 
     def heuristicSelector(self, heuristic):
-        h_fun = self.util._euclidean
+        h_fun = self.graph._euclidean
         if heuristic == "manhattan":
-            h_fun = self.util._manhattan
+            h_fun = self.graph._manhattan
         elif heuristic == "octile":
-            h_fun = self.util._octile
+            h_fun = self.graph._octile
         return h_fun
 
     def findShortestPath(self):
@@ -38,7 +38,7 @@ class BidirectionalAstar(BidirectionalDijkstra):
         # v = the current vertex
         Relax all arcs coming from vertex v
         """
-        for arc in self.graph[v]:
+        for arc in self.graph.getAdj(v):
             neighbour = arc.getExtremityNode()
             # self.nb_relax_edges += 1
             if neighbour in closed_set:
@@ -57,7 +57,7 @@ class BidirectionalAstar(BidirectionalDijkstra):
         # v = the current vertex
         Relax all arcs coming from vertex v
         """
-        for arc in self.rev_graph[v]:  # REVERSE GRAPH
+        for arc in self.graph.getRevAdj(v):  # REVERSE GRAPH
             neighbour = arc.getExtremityNode()
             # self.nb_relax_edges += 1
             if neighbour in closed_set:

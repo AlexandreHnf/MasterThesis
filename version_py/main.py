@@ -48,25 +48,23 @@ def processArgs():
 def runAllSP(s, t):
     p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
     graph = p.parse()
-    graph_coords = p.getNodes()
     p.showStats()
 
-    # testDijkstra(graph, graph_coords, s, t)
-    # testAstar(graph, graph_coords, s, t)
-    testALT(graph, graph_coords, s, t, "planar", "bin", "euclidean", True)
+    testDijkstra(graph, s, t)
+    testAstar(graph, s, t)
+    testALT(graph, s, t, "planar", "bin", "euclidean", True)
 
     # bidirectional
     # rev_graph = p.getReverseGraph(graph)
-    # testBidiDijkstra(graph, rev_graph, graph_coords, s, t)
-    # testBidiAstar(graph, rev_graph, graph_coords, s, t)
-    # testBidiALT(graph, rev_graph, graph_coords, s, t, "planar", "bin", "euclidean")
+    testBidiDijkstra(graph, s, t)
+    testBidiAstar(graph, s, t)
+    testBidiALT(graph, s, t, "planar", "bin", "euclidean")
 
 def testLandmark():
     p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
     graph = p.parse()
-    graph_coords = p.getNodes()
     # =========================================
-    testLandmarks(graph, graph_coords, "random")
+    testLandmarks(graph, "random")
 
 # ==================================================================
 def main():
