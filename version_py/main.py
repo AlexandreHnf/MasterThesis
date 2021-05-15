@@ -53,8 +53,9 @@ def runAllSP(s, t):
 
     testDijkstra(graph, graph_coords, s, t)
     testAstar(graph, graph_coords, s, t)
-    testALT(graph, graph_coords, s, t, "random", "bin", "euclidean", True)
+    testALT(graph, graph_coords, s, t, "planar", "bin", "euclidean", True)
 
+    # bidirectional
     rev_graph = p.getReverseGraph(graph)
     testBidiDijkstra(graph, rev_graph, graph_coords, s, t)
     testBidiAstar(graph, rev_graph, graph_coords, s, t)

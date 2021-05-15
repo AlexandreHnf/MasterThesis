@@ -35,7 +35,10 @@ class Quadtree(object):
         self.max_y = float(max_y)
         self.elements = {}
         self.is_node = False
-        self.origin = self.min_x / 2, self.min_y / 2
+        self.origin = (self.min_x + self.max_x) / 2, (self.min_y + self.max_y) / 2
+
+    def getOrigin(self):
+        return self.origin
 
     def drawBoundary(self, ax, c='k', lw=1, **kwargs):
         # x1, y1 = west_edge, north_edge

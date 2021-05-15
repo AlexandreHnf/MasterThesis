@@ -128,6 +128,8 @@ class ALTpreprocessing:
         divide the graph plane in k regions and for each region based on a central
         point, find a landmark that is the farthest from center in each region
         """
+        if not origin:
+            origin = self.qtree.getOrigin()
         origin_id = self.findClosestNode(origin)
         origin = self.nodes_coords[origin_id]
         regions = self.divideInRegions(k, origin)
@@ -148,7 +150,10 @@ class ALTpreprocessing:
         Select the set of k vertices so that the minimum distance between a pair of selected
         vertices is maximized.
         """
-        landmarks = [origin] # TODO change to findClosestNode
+        if not origin:
+            origin = self.qtree.getOrigin()
+        landmarks = [self.nodes_coords[self.findClosestNode(origin)]]
+        print(landmarks)
         for _ in range(k):
             max_dist = float("-inf")
             best_candidate = None

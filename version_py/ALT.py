@@ -22,9 +22,8 @@ class ALT(Astar):
         elif self.landmark_selection == "random":
             landmarks = p.randomLandmarkSelection(self.nb_landmarks)
         landmarks = list(zip([p.findClosestNode(l) for l in landmarks], landmarks))
-        # print(landmarks)
         self.lm_dists = p.getLandmarksDistances(landmarks)
-        # print(self.lm_dists)
+
         return landmarks  # temporaire
 
     def ALTHeuristic(self, ID1, ID2):
