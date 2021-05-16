@@ -82,7 +82,7 @@ class Graph:
     def findCenterNode(self):
         return self.findClosestNode(self.qtree.origin)
 
-    def _euclidean(self, id1, id2):
+    def euclidean(self, id1, id2):
         """
         Returns the distance in KM between the two ID'd vertices.
 
@@ -93,7 +93,7 @@ class Graph:
         x2, y2 = self.nodes_coords[id2]
         return haversine(x1, y1, x2, y2)
 
-    def _manhattan(self, id1, id2):
+    def manhattan(self, id1, id2):
         """
         Returns the Manhattan distance in KM between the two ID'd vertices.
 
@@ -113,7 +113,7 @@ class Graph:
         x3, y3 = x1, y2
         return haversine(x3, y3, x2, y2) + haversine(x3, y3, x1, y1)
 
-    def _octile(self, id1, id2):
+    def octile(self, id1, id2):
         """
         Returns the octile distance in KM between the two ID'd vertices.
 

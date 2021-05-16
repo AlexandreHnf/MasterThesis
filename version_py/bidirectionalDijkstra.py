@@ -4,6 +4,7 @@ from heapq import heappush, heappop
 from fibheap import *
 from shortestPath import ShortestPath
 
+
 class BidirectionalDijkstra(ShortestPath):
 
     def __init__(self, graph, s, t, priority="bin", bucket_size = 40):
@@ -16,8 +17,8 @@ class BidirectionalDijkstra(ShortestPath):
 
         self.priority = priority  # the type of priority set data structure (str)
 
-        self.fwd_pred = {self.s: {"dist": 0, "pred": None}}  # TODO : maybe split in two lists
-        self.bwd_pred = {self.t: {"dist": 0, "pred": None}}  # TODO : maybe split in two lists
+        self.fwd_pred = {self.s: {"dist": 0, "pred": None}}
+        self.bwd_pred = {self.t: {"dist": 0, "pred": None}}
 
         self.midpoint = None
 
@@ -123,7 +124,6 @@ class BidirectionalDijkstra(ShortestPath):
         """
         for arc in self.graph.getAdj(v):
             neighbour = arc.getExtremityNode()
-            # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
             self.nb_relax_edges += 1
@@ -140,7 +140,6 @@ class BidirectionalDijkstra(ShortestPath):
         """
         for arc in self.graph.getRevAdj(v):  # REVERSE GRAPH
             neighbour = arc.getExtremityNode()
-            # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
             self.nb_relax_edges += 1

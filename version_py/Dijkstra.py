@@ -15,7 +15,6 @@ class Dijkstra(ShortestPath):
         self.nb_relax_edges = 0
         self.dists_so_far = {self.s: 0}  # shortest distance so far from source node
         self.preds = {self.s: None}
-        # self.pred = {self.s: {"dist": 0, "pred": None}}  # TODO : maybe split in two lists
         self.closed_set = set()
         self.priority = priority  # the type of priority set data structure (str)
         self.unvisited = self.getPriorityList()

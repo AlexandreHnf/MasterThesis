@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from collections import defaultdict
 
+
 class Quadtree(object):
     """
     "The point quadtree is an adaptation of a binary tree used to

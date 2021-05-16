@@ -1,4 +1,3 @@
-import shortestPath
 from Dijkstra import Dijkstra
 from Astar import Astar
 from ALT import ALT
@@ -6,7 +5,6 @@ from bidirectionalDijkstra import BidirectionalDijkstra
 from bidirectionalAstar import BidirectionalAstar
 from bidirectionalALT import BidirectionalALT
 from ALTpreprocessing import ALTpreprocessing
-from landmarkTest import *
 from time import time
 from quadtree import showQtree
 
@@ -39,7 +37,7 @@ def testLandmarks(graph, lm_selection):
     landmarks = alt.preprocessing()
     print(landmarks)
     print("time landmark distances : ", time() - start, " seconds.")
-    showQtree(alt.util.qtree, None, None, landmarks)
+    showQtree(alt.graph.getQtree(), graph.getNodes(), None, None, landmarks)
     print("============================")
 
 #=================================================================================

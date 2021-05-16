@@ -1,4 +1,3 @@
-from heapq import heappush, heappop
 from Dijkstra import Dijkstra
 
 class Astar(Dijkstra):
@@ -12,11 +11,11 @@ class Astar(Dijkstra):
         self.h = None
 
     def heuristicSelector(self, heuristic):
-        h_fun = self.graph._euclidean
+        h_fun = self.graph.euclidean
         if heuristic == "manhattan":
-            h_fun = self.graph._manhattan
+            h_fun = self.graph.manhattan
         elif heuristic == "octile":
-            h_fun = self.graph._octile
+            h_fun = self.graph.octile
         return h_fun
 
     def findShortestPath(self):

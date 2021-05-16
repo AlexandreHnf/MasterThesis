@@ -1,4 +1,3 @@
-from heapq import heappush, heappop
 from Astar import Astar
 from ALTpreprocessing import ALTpreprocessing
 
@@ -35,7 +34,6 @@ class ALT(Astar):
                     max_dist = d
             except TypeError:
                 pass  # some nodes couldn't reach a landmark
-        # print(max_dist)
         return max_dist
 
     def findShortestPath(self):

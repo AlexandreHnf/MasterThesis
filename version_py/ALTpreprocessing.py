@@ -10,13 +10,11 @@ Landmark computation on a graph network
     - farthest landmarks selection
 """
 
-import json
 import random
 from heapq import heappush, heappop
 from collections import defaultdict
 from utils import haversine, bearing
 from Dijkstra import Dijkstra
-from Astar import Astar
 
 class ALTpreprocessing:
     """

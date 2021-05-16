@@ -1,5 +1,6 @@
 from bidirectionalDijkstra import BidirectionalDijkstra
 
+
 class BidirectionalAstar(BidirectionalDijkstra):
 
     def __init__(self, graph, s, t, priority="bin", bucket_size=40, heuristic=""):
@@ -12,11 +13,11 @@ class BidirectionalAstar(BidirectionalDijkstra):
         self.h = None
 
     def heuristicSelector(self, heuristic):
-        h_fun = self.graph._euclidean
+        h_fun = self.graph.euclidean
         if heuristic == "manhattan":
-            h_fun = self.graph._manhattan
+            h_fun = self.graph.manhattan
         elif heuristic == "octile":
-            h_fun = self.graph._octile
+            h_fun = self.graph.octile
         return h_fun
 
     def findShortestPath(self):
@@ -40,7 +41,6 @@ class BidirectionalAstar(BidirectionalDijkstra):
         """
         for arc in self.graph.getAdj(v):
             neighbour = arc.getExtremityNode()
-            # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
             self.nb_relax_edges += 1
@@ -59,7 +59,6 @@ class BidirectionalAstar(BidirectionalDijkstra):
         """
         for arc in self.graph.getRevAdj(v):  # REVERSE GRAPH
             neighbour = arc.getExtremityNode()
-            # self.nb_relax_edges += 1
             if neighbour in closed_set:
                 continue
             self.nb_relax_edges += 1

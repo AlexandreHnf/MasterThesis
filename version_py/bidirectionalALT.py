@@ -1,6 +1,7 @@
 from bidirectionalAstar import BidirectionalAstar
 from ALTpreprocessing import ALTpreprocessing
 
+
 class BidirectionalALT(BidirectionalAstar):
 
     def __init__(self, graph, s, t, lm_selection, nb_lm, origin, priority="bin", bucket_size=40, heuristic=""):
@@ -34,7 +35,6 @@ class BidirectionalALT(BidirectionalAstar):
                     max_dist = d
             except TypeError:
                 pass  # some nodes couldn't reach a landmark
-        # print(max_dist)
         return max_dist
 
     def findShortestPath(self):

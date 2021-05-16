@@ -23,11 +23,11 @@ class OSMgraphParser:
         self.nb_duplicate_edges = 0
         self.timing = 0
 
-    def isDuplicateEdge(self, adjList, v, w, weight):
+    def isDuplicateEdge(self, adj_list, v, w, weight):
         """
         if a duplicate edge exists, we keep the smallest weight edge
         """
-        for edge in adjList[v]:  # all edges adjacent to v
+        for edge in adj_list[v]:  # all edges adjacent to v
 
             if edge.getExtremityNode() == w:  # same extremities (nodes)
                 if weight < edge.getWeight():
@@ -36,18 +36,18 @@ class OSMgraphParser:
                 return True
         return False
 
-    def createEdge(self, feature, adjList, v, w, weight):
+    def createEdge(self, feature, adj_list, v, w, weight):
         """
         Given 2 nodes and a new edge weight, creates a new edge
         [v] --- weight --- [w] and add it to the adjacency list
         """
-        if not self.isDuplicateEdge(adjList, v, w, weight):
-            adjList[v].append(Edge(w, weight))  # new edge forward
+        if not self.isDuplicateEdge(adj_list, v, w, weight):
+            adj_list[v].append(Edge(w, weight))  # new edge forward
 
             oneway_tag = feature["properties"]["tags"].get("oneway", None)
             if oneway_tag is None or oneway_tag == "no":  # if backward edge must exist
-                if not self.isDuplicateEdge(adjList, w, v, weight):
-                    adjList[w].append(Edge(v, weight))  # new edge backward
+                if not self.isDuplicateEdge(adj_list, w, v, weight):
+                    adj_list[w].append(Edge(v, weight))  # new edge backward
                     self.nb_two_way_edges += 1
 
     def estimateSpeedLimit(self, highway_tag):
