@@ -1,6 +1,6 @@
-from utils import haversine
+from Utils import haversine
 from Edge import Edge
-from quadtree import Quadtree, MultiQuadtree, PointDictToQuadtree
+from Quadtree import Quadtree, MultiQuadtree, PointDictToQuadtree
 
 class Graph:
     def __init__(self, nodes_coords, adj_list, bucket_size=40):
@@ -12,8 +12,11 @@ class Graph:
     def getNbNodes(self):
         return len(self.nodes_coords)
 
-    def getNodes(self):
+    def getNodesCoords(self):
         return self.nodes_coords
+
+    def getNodesIDs(self):
+        return list(self.nodes_coords.keys())
 
     def getAdj(self, node):
         return self.adj_list[node]

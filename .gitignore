@@ -16,6 +16,7 @@
 version_py/.idea/*
 version_py/__pycache__/*
 __pychache__/*
+*.pyc
 
 # Generated files
 .idea/**/contentModel.xml
@@ -48,6 +49,7 @@ __pychache__/*
 
 # CMake
 cmake-build-*/
+cmake-build-debug
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml

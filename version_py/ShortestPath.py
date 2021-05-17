@@ -11,7 +11,7 @@ class ShortestPath(object):
         to the last one)
         """
         path_nodes = path
-        print(path_nodes)
+        # print(path_nodes)
         total_length = 0  # km
         for i in range(len(path_nodes)-1):
             next_edge = None
@@ -55,3 +55,4 @@ class ShortestPath(object):
 
         implemented by inherited objects
         """
+

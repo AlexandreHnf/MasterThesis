@@ -13,7 +13,7 @@ Landmark computation on a graph network
 import random
 from heapq import heappush, heappop
 from collections import defaultdict
-from utils import haversine, bearing
+from Utils import haversine, bearing
 from Dijkstra import Dijkstra
 
 class ALTpreprocessing:
@@ -21,8 +21,25 @@ class ALTpreprocessing:
     Class that contains functions to find landmarks in a graph network
     """
 
-    def __init__(self, graph):
+    def __init__(self, graph, lm_selection, origin, nb_lm):
         self.graph = graph
+        self.origin = origin
+        self.nb_landmarks = nb_lm
+        self.landmark_selection = lm_selection
+        self.landmarks = []
+
+    def getLmDistances(self):
+        if self.landmark_selection == "farthest":
+            self.landmarks = self.farthestLandmarkSelection(self.nb_landmarks, self.origin)
+        elif self.landmark_selection == "planar":
+            self.landmarks = self.planarLandmarkSelection(self.nb_landmarks, self.origin)
+        elif self.landmark_selection == "random":
+            self.landmarks = self.randomLandmarkSelection(self.nb_landmarks)
+        self.landmarks = list(zip([self.findClosestNode(l) for l in self.landmarks], self.landmarks))
+        return self.getLandmarksDistances(self.landmarks)
+
+    def getLandmarks(self):
+        return self.landmarks
 
     def findClosestNode(self, target, rng=.01):
         """
@@ -93,12 +110,12 @@ class ALTpreprocessing:
         for lm_id, lm_coord in landmarks:
             lm_est[lm_id] = {}
             x, y = lm_coord
-            for pid, coord in self.graph.getNodes().items():
+            for pid, coord in self.graph.getNodesCoords().items():
                 lm_est[lm_id][pid] = haversine(x, y, coord[0], coord[1])
 
         # compute all distances from each node to every landmark
         lm_dists = defaultdict(list)
-        for i, pid in enumerate(self.graph.getNodes()):
+        for i, pid in enumerate(self.graph.getNodesCoords()):
             for landmark, _ in landmarks:
                 try:
                     d = self.lmExactDist(pid, landmark, lm_est)
@@ -111,7 +128,7 @@ class ALTpreprocessing:
     def divideInRegions(self, k, origin):
         regions = [[] for _ in range(k)]
         region_size = 360.0 / k # angle
-        for pid, coord in self.graph.getNodes().items():
+        for pid, coord in self.graph.getNodesCoords().items():
             b = bearing(origin[0], origin[1], coord[0], coord[1], True)
             s = int(b / region_size)
             regions[s].append((pid, coord))
@@ -126,7 +143,7 @@ class ALTpreprocessing:
         if not origin:
             origin = self.graph.getQtree().getOrigin()
         origin_id = self.findClosestNode(origin)
-        origin = self.graph.getNodes()[origin_id]
+        origin = self.graph.getNodesCoords()[origin_id]
         regions = self.divideInRegions(k, origin)
         landmarks = []
         for region in regions:
@@ -147,12 +164,12 @@ class ALTpreprocessing:
         """
         if not origin:
             origin = self.graph.getQtree().getOrigin()
-        landmarks = [self.graph.getNodes()[self.findClosestNode(origin)]]
+        landmarks = [self.graph.getNodesCoords()[self.findClosestNode(origin)]]
         print(landmarks)
         for _ in range(k):
             max_dist = float("-inf")
             best_candidate = None
-            for pid, coord in self.graph.getNodes().items():
+            for pid, coord in self.graph.getNodesCoords().items():
                 cur_dist = 0
                 for lm in landmarks:
                     cur_dist += haversine(lm[0], lm[1], coord[0], coord[1])
@@ -170,9 +187,9 @@ class ALTpreprocessing:
         """
         landmarks = []
         for _ in range(k):
-            candidate = random.choice(list(self.graph.getNodes().keys()))
-            while self.graph.getNodes()[candidate] in landmarks:
-                candidate = random.choice(list(self.graph.getNodes().keys()))
-            landmarks.append(self.graph.getNodes()[candidate])  # coord
+            candidate = random.choice(list(self.graph.getNodesCoords().keys()))
+            while self.graph.getNodesCoords()[candidate] in landmarks:
+                candidate = random.choice(list(self.graph.getNodesCoords().keys()))
+            landmarks.append(self.graph.getNodesCoords()[candidate])  # coord
 
         return landmarks

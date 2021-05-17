@@ -1,6 +1,6 @@
 from Constants import *
-from parseOSMgraph import OSMgraphParser
-from testSPalgos import *
+from ParseOSMgraph import OSMgraphParser
+from ShortestPathExperiments import *
 
 import sys
 

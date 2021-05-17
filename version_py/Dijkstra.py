@@ -2,7 +2,7 @@
 from heapq import heappush, heappop
 # https://pypi.org/project/fibheap/
 from fibheap import *
-from shortestPath import ShortestPath
+from ShortestPath import ShortestPath
 
 
 class Dijkstra(ShortestPath):
@@ -40,7 +40,7 @@ class Dijkstra(ShortestPath):
         algorithm with geometric coordinates
         """
         needed = {}
-        coords = self.graph.getNodes()
+        coords = self.graph.getNodesCoords()
         for vertex, neighbours in self.search_space[1:]:
             needed[vertex] = coords[vertex]
             for arc in neighbours:
@@ -68,17 +68,21 @@ class Dijkstra(ShortestPath):
         return search_space_coords, shortest_path, sp_coords
 
     def findShortestPath(self):
-        exist_sol = self.dijkstra()
+        exist_sol = self.run()
         if not exist_sol:
             return None
         return self.processSearchResult()
+
+    def getSPweight(self):
+        sp, sp_coords = self.constructShortestPath()
+        return self.getPathLength(sp)
 
     def getDistsSourceToNodes(self):
         """
         Compute Dijkstra from a node s to all other nodes in the graph
         returns the set of shortest distances to those nodes
         """
-        self.dijkstra()
+        self.run()
         return self.dists_so_far
 
     def existShortestPath(self):
@@ -86,7 +90,7 @@ class Dijkstra(ShortestPath):
         Check whether there exists a shortest path from s to t
         """
         # s, t = self.findSourceDest(source, dest)
-        return self.dijkstra()
+        return self.run()
 
     def getPriorityList(self):
         """
@@ -132,7 +136,7 @@ class Dijkstra(ShortestPath):
             self.unvisited.append(node)
 
 
-    def dijkstra(self):
+    def run(self):
         """
         Find the shortest path from s to t.
         Result = a sequence of nodes belonging to the shortest path

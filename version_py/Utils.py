@@ -2,6 +2,7 @@ from math import pi, sin, cos, asin, sqrt, radians
 
 earthRadiusKm = 6371
 
+
 def deg2rad(deg):
     return (deg * pi / 180)
 

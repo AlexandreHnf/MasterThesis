@@ -2,7 +2,7 @@
 from heapq import heappush, heappop
 # https://pypi.org/project/fibheap/
 from fibheap import *
-from shortestPath import ShortestPath
+from ShortestPath import ShortestPath
 
 
 class BidirectionalDijkstra(ShortestPath):
@@ -28,6 +28,9 @@ class BidirectionalDijkstra(ShortestPath):
     def getNbRelaxedEdges(self):
         return self.nb_relax_edges
 
+    def getMidpoint(self):
+        return self.midpoint
+
     def getSearchSpaceCoords(self):
         """
         get a dictionary of all the nodes in the search space of the
@@ -35,9 +38,9 @@ class BidirectionalDijkstra(ShortestPath):
         """
         needed = {}
         for vertex, neighbours in self.search_space[2:]:
-            needed[vertex] = self.graph.getNodes()[vertex]
+            needed[vertex] = self.graph.getNodesCoords()[vertex]
             for arc in neighbours:
-                needed[arc] = self.graph.getNodes()[arc]
+                needed[arc] = self.graph.getNodesCoords()[arc]
         return needed
 
     def constructShortestPath(self):
@@ -67,12 +70,16 @@ class BidirectionalDijkstra(ShortestPath):
         return search_space_coords, shortest_path, sp_coords
 
     def findShortestPath(self):
-        exist_sol = self.bidiDijkstra()
+        exist_sol = self.run()
         if not exist_sol:
             return None
 
         print("midpoint : ", self.midpoint)
         return self.processSearchResult()
+
+    def getSPweight(self):
+        sp, sp_coords = self.constructShortestPath()
+        return self.getPathLength(sp)
 
     def getPriorityList(self, simple_list):
         """
@@ -169,7 +176,7 @@ class BidirectionalDijkstra(ShortestPath):
             return self.fwd_pred[v]["dist"] + self.bwd_pred[v]["dist"]
         return float("inf")
 
-    def bidiDijkstra(self):
+    def run(self):
         if not self.s or not self.t:
             return False
         shortest_path_length = float("inf")

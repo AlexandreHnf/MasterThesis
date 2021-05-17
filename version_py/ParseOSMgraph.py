@@ -1,6 +1,6 @@
 # coding=utf-8
 import json
-from utils import *
+from Utils import *
 from Edge import Edge
 from Constants import *
 import random
@@ -131,24 +131,10 @@ class OSMgraphParser:
         return length_km
 
     def getNbEdges(self, graph):
-        """
-        TODO : mettre cette fonction autre part (graph Utils par exemple)
-        """
         nb_edges = 0
         for _, adj in graph.items():
             nb_edges += len(adj)
         return nb_edges
-
-    def getReverseGraph(self, graph):
-        """
-        TODO : mettre cette fonction autre part (graph Utils par exemple)
-        """
-        # reverse_graph = [[] for _ in range(len(graph))]
-        reverse_graph = {v: [] for v in graph}
-        for v in graph:
-            for edge in graph[v]:
-                reverse_graph[edge.getExtremityNode()].append(Edge(v, edge.getWeight()))
-        return reverse_graph
 
     def updateNodesCoordinates(self, new_graph):
         new_coords = {}
@@ -236,13 +222,6 @@ class OSMgraphParser:
         connected_graph = self.getConnectedGraph(adjlist)
         self.timing = time.time() - start_time
         return Graph(self.nodes_coordinates, connected_graph)
-        # return adjlist
-
-    def getAvgDegree(self, graph):
-        """
-        Get the average node degree of the graph
-        TODO : mettre ca ailleurs (graph utils)
-        """
 
     def showStats(self):
         """
@@ -259,23 +238,13 @@ class OSMgraphParser:
         print("Parsing done in {0} seconds".format(self.timing))
         print("====================================")
 
-    def showGraph(self, graph):
-        """
-        TODO : mettre ca ailleurs (graph utils)
-        """
-        for v, adj in graph.items():
-            print("{0} : ".format(v), end="")
-            for e in adj:
-                print("--{0}, ".format(e.getExtremityNode()), end=" ")
-            print()
-
 
 def main():
     # graph = {"id": [Edge, Edge, ...], ...}
     # nodes = {"id": [lat, lon], ...}
     p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
-    adjlist = p.parse()
-    p.showGraph(adjlist)
+    graph = p.parse()
+    graph.showGraph()
     p.showStats()
 
 if __name__ == "__main__":

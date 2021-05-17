@@ -8,7 +8,9 @@ class Astar(Dijkstra):
         # heuristic function, by default, euclidean distance (haversine)
         self.h_fun = self.heuristicSelector(heuristic)
         # function that, given a node, gives the heuristic value with h_fun
-        self.h = None
+        self.h = lambda v: self.h_fun(v, self.t)
+        # here, for A*, we call dijkstra but heuristic will be used when
+        # relaxing vertices
 
     def heuristicSelector(self, heuristic):
         h_fun = self.graph.euclidean
@@ -19,11 +21,7 @@ class Astar(Dijkstra):
         return h_fun
 
     def findShortestPath(self):
-        self.h = lambda v: self.h_fun(v, self.t)
-        # here, for A*, we call dijkstra but heuristic will be used when
-        # relaxing vertices
-
-        exist_sol = self.dijkstra()
+        exist_sol = self.run()
         if not exist_sol:
             return None
         return self.processSearchResult()

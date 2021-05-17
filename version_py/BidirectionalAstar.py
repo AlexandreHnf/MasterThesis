@@ -1,4 +1,4 @@
-from bidirectionalDijkstra import BidirectionalDijkstra
+from BidirectionalDijkstra import BidirectionalDijkstra
 
 
 class BidirectionalAstar(BidirectionalDijkstra):
@@ -10,7 +10,10 @@ class BidirectionalAstar(BidirectionalDijkstra):
         # heuristic function, by default, euclidean distance (haversine)
         self.h_fun = self.heuristicSelector(heuristic)
         # function that, given a node, gives the heuristic value with h_fun
-        self.h = None
+        # here, for A*, we call dijkstra but heuristic will be used when
+        # relaxing vertices /!\ bidirectional, so we must specify v and w
+        # instead of w being simply destination node t
+        self.h = lambda v, w: self.h_fun(v, w)
 
     def heuristicSelector(self, heuristic):
         h_fun = self.graph.euclidean
@@ -26,7 +29,7 @@ class BidirectionalAstar(BidirectionalDijkstra):
         # relaxing vertices /!\ bidirectional, so we must specify v and w
         # instead of w being simply destination node t
 
-        exist_sol = self.bidiDijkstra()
+        exist_sol = self.run()
         if not exist_sol:
             return None
 

@@ -1,15 +1,15 @@
-from Astar import Astar
+from BidirectionalAstar import BidirectionalAstar
 from ALTpreprocessing import ALTpreprocessing
 
 
-class ALT(Astar):
+class BidirectionalALT(BidirectionalAstar):
 
     def __init__(self, graph, s, t, lm_dists, priority="bin", bucket_size=40, heuristic=""):
-        Astar.__init__(self, graph, s, t, priority, bucket_size, heuristic)
+        BidirectionalAstar.__init__(self, graph, s, t, priority, bucket_size, heuristic)
 
         self.lm_dists = lm_dists  # distance from all nodes to all landmarks
 
-        self.h = lambda v: self.ALTHeuristic(v, self.t)
+        self.h = lambda v, w: self.ALTHeuristic(v, w)
 
     def ALTHeuristic(self, ID1, ID2):
         max_dist = 0
@@ -25,7 +25,7 @@ class ALT(Astar):
     def findShortestPath(self):
         # s, t = self.findSourceDest(source, dest)
         # self.preprocessing()
-        self.h = lambda v: self.ALTHeuristic(v, self.t)
+        self.h = lambda v, w: self.ALTHeuristic(v, w)
         # here, for A*, we call dijkstra but heuristic will be used when
         # relaxing vertices
 
