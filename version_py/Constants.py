@@ -1,17 +1,18 @@
-W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\Datasets_graphs\\"
-GRAPH_BXL_CTR = W + "big_graphs\\graphes_victor\\graph_2_bxl_ctr"
-GRAPH_BXL = W + "big_graphs\\graphes_victor\\graph_3_bxl"
-GRAPH_BE_CTR = W + "big_graphs\\graphes_victor\\graph_4_be_ctr"
-GRAPH_BE = W + "big_graphs\\graphes_victor\\graph_5_be"
+W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\version_py\\Graphs\\"
 
-GRAPH_BXL_CTR_TEST = W + "small_graph\\test_bxl_square.json"
-GRAPH_BXL_CTR_TEST_N = W + "small_graph\\test_bxl_square_nodes.json"
-GRAPH_BXL_CTR_TEST_A = W + "small_graph\\test_bxl_square_adj.json"
+# Graphs
+GRAPH_ULB =         W + "1_ULB.json"
+GRAPH_BXL =         W + "2_Bruxelles.json"
+GRAPH_BXL_CAP_CTR = W + "3_Bruxelles_Capitale_centre.json"
+GRAPH_BXL_CAP =     W + "4_Bruxelles_Capitale.json"
+GRAPH_BE_CTR =      W + "5_Belgique_centre.json"
+GRAPH_BE =          W + "6_Belgique.json"
 
-GRAPH_VILLO = W + "villo\\villo.json"
+GRAPH_VILLO =       W + "villo.json"
 SPEED_LIMIT_FOOT = 5
 
-GRAPH_DATASET = GRAPH_BXL_CTR_TEST
+# Benchmarks parameters
+GRAPH_DATASET = GRAPH_BXL
 SEED = -1
 ENCODING = 'utf-8'
 SHOW = False

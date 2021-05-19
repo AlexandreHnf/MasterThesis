@@ -242,7 +242,7 @@ class OSMgraphParser:
 def main():
     # graph = {"id": [Edge, Edge, ...], ...}
     # nodes = {"id": [lat, lon], ...}
-    p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
+    p = OSMgraphParser(GRAPH_BXL)
     graph = p.parse()
     graph.showGraph()
     p.showStats()

@@ -22,26 +22,26 @@ def processArgs():
 
         a = sys.argv
 
-        if a[1] == "Dijkstra":  # 1: Dijkstra, 2: graph, 3:s, 4:t, 5: queue_type 6:show
+        if a[1] == "Dijkstra":      # 1: Dijkstra, 2: graph, 3:s, 4:t, 5: queue_type 6:show
             print(int(a[3]), int(a[4]))
-            testDijkstra(graph, int(a[3]), int(a[4]), a[5], a[6])
-        elif a[1] == "BidiDijkstra":  # 1: Dijkstra, 2: graph, 3:s, 4:t, 5: queue_type 6:show
-            testBidiDijkstra(graph, int(a[3]), int(a[4]), a[5], a[6])
-        elif a[1] == "Astar":  # 1: Astar, 2: graph, 3:s, 4:t, 5: queue_type, 6:heuristic, 7:show
-            testAstar(graph, int(a[3]), int(a[4]), a[5], a[6], a[7])
-        elif a[1] == "BidiAstar":  # 1: BidiAstar, 2:graph, 3:s, 4:t, 5: queue_type, 6:heuristic, 7:show
-            testBidiAstar(graph, int(a[3]), int(a[4]), a[5], a[6], a[7])
-        elif a[1] == "ALT":  # 1: ALT, 2:graph, 3:s, 4:t, 5:lm_select, 6:queue_type, 7: heuristic, 8:show
-            testALT(graph, int(a[3]), int(a[4]), a[5], a[6], a[7], a[8])
-        elif a[1] == "BidiALT":  # 1: BidiALT, 2:graph, 3:s, 4:t, 5:lm_select, 6:queue_type, 7:heuristic, 8:show
-            testBidiALT(graph, int(a[3]), int(a[4]), a[5], a[6], a[7], a[8])
+            testDijkstra(graph,      int(a[3]), int(a[4]), a[5], a[6])
+        elif a[1] == "BidiDijkstra": # 1:Dijkstra, 2:graph, 3:s, 4:t, 5:queue_type 6:show
+            testBidiDijkstra(graph,  int(a[3]), int(a[4]), a[5], a[6])
+        elif a[1] == "Astar":        # 1:Astar, 2:graph, 3:s, 4:t, 5: queue_type, 6:heuristic, 7:show
+            testAstar(graph,         int(a[3]), int(a[4]), a[5], a[6], a[7])
+        elif a[1] == "BidiAstar":    # 1: BidiAstar, 2:graph, 3:s, 4:t, 5: queue_type, 6:heuristic, 7:show
+            testBidiAstar(graph,     int(a[3]), int(a[4]), a[5], a[6], a[7])
+        elif a[1] == "ALT":          # 1: ALT, 2:graph, 3:s, 4:t, 5:lm_select, 6:queue_type, 7:heuristic, 8:show
+            testALT(graph,           int(a[3]), int(a[4]), a[5], a[6], a[7], a[8])
+        elif a[1] == "BidiALT":      # 1: BidiALT, 2:graph, 3:s, 4:t, 5:lm_select, 6:queue_type, 7:heuristic, 8:show
+            testBidiALT(graph,       int(a[3]), int(a[4]), a[5], a[6], a[7], a[8])
     else:
         print("not enough arguments")
         runAllSP(7, 1335)
 
 
 def runAllSP(s, t):
-    p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
+    p = OSMgraphParser(GRAPH_BXL)
     graph = p.parse()
     p.showStats()
 
@@ -56,7 +56,7 @@ def runAllSP(s, t):
 
 
 def testLandmark():
-    p = OSMgraphParser(GRAPH_BXL_CTR_TEST)
+    p = OSMgraphParser(GRAPH_BXL)
     graph = p.parse()
     # =========================================
     testLandmarks(graph, "random")

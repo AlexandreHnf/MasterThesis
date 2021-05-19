@@ -5,6 +5,12 @@ class ShortestPath(object):
         self.s = s
         self.t = t
 
+    def setSource(self, s):
+        self.s = s
+
+    def setDest(self, t):
+        self.t = t
+
     def getPathLength(self, path):
         """
         Get the total length of the path in km (from first node of the path
