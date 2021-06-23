@@ -17,7 +17,7 @@ class OSMgraphParser:
         self.tot_nb_nodes = 0
         self.tot_nb_edges = 0
         self.nb_edges_no_speed = 0
-        self.nb_self_loops = 0  # loop edges (edge coming from a node v and going to the same node
+        self.nb_self_loops = 0  # loop edges (edge coming from a node v and going to the same node v)
         self.connection_ratio = 0
         self.nb_two_way_edges = 0
         self.nb_duplicate_edges = 0
@@ -28,7 +28,6 @@ class OSMgraphParser:
         if a duplicate edge exists, we keep the smallest weight edge
         """
         for edge in adj_list[v]:  # all edges adjacent to v
-
             if edge.getExtremityNode() == w:  # same extremities (nodes)
                 if weight < edge.getWeight():
                     edge.setWeight(weight)
@@ -39,7 +38,7 @@ class OSMgraphParser:
     def createEdge(self, feature, adj_list, v, w, weight):
         """
         Given 2 nodes and a new edge weight, creates a new edge
-        [v] --- weight --- [w] and add it to the adjacency list
+        [v] --- weight ---> [w] and add it to the adjacency list
         """
         if not self.isDuplicateEdge(adj_list, v, w, weight):
             adj_list[v].append(Edge(w, weight))  # new edge forward
@@ -74,30 +73,21 @@ class OSMgraphParser:
         elif travel_type == "car":
             maxspeed = feature["properties"]["tags"].get("maxspeed", None)
             if maxspeed:  # not None
-                return maxspeed
+                return int(maxspeed)
             else:
                 return self.estimateSpeedLimit(feature["properties"]["tags"]["highway"])
 
-
-    def getVilloNodes(self):
+    @staticmethod
+    def getVilloNodes():
         """
         Get the geographic coordinates (lat, lon) of all "villo" stations
         in Brussels
         """
         stations_coordinates = []  # value = (lat, lon)
-        features = self.getJsonData(GRAPH_VILLO)["features"]
+        features = getJsonData(GRAPH_VILLO)["features"]
         for f in features:
             stations_coordinates.append((f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0]))
         return stations_coordinates
-
-    def getJsonData(self, filename):
-        """
-        parse json file and return all data in json format
-        """
-        # read file
-        with open(filename, 'r', encoding=ENCODING) as myfile:
-            data = myfile.read()
-        return json.loads(data)
 
     def getNodesCoordinates(self, features, adjlist):
         for f in features:
@@ -199,7 +189,7 @@ class OSMgraphParser:
 
         """
         start_time = time.time()
-        features = self.getJsonData(self.graph_filename)["features"]
+        features = getJsonData(self.graph_filename)["features"]
         adjlist = {}  # key = ID, value = list of adjacent Edge (object)
         self.getNodesCoordinates(features, adjlist)
 
@@ -214,8 +204,8 @@ class OSMgraphParser:
 
                 speed_limit = self.getSpeedLimit(f, travel_type)
                 length_km = self.computeEdgeWeight(f)
-                edge_weight = length_km
-                # edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds TODO
+                #edge_weight = length_km
+                edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds TODO
 
                 self.createEdge(f, adjlist, srcID, tgtID, edge_weight)
 

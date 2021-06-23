@@ -59,7 +59,7 @@ def testAstar(graph, s, t, queue_type="bin", heuristic="euclidean", show=False):
     a = Astar(graph, s, t, queue_type, 40, heuristic)
     timer = Timer()
     search_space, shortest_path, sp_coords = a.findShortestPath()
-    timer.printTimeElapsedSec("[A]")
+    timer.printTimeElapsedSec("[A*]")
     showResult(graph.getNodesCoords(), search_space, shortest_path, sp_coords, a, None, show)
 
 
@@ -69,7 +69,7 @@ def testALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic="euc
     prepro_timer = Timer()
     lm_dists = alt_pre.getLmDistances()
     landmarks = alt_pre.getLandmarks()
-    prepro_timer.printTimeElapsedSec("[ALT] PREPROCESSING")
+    prepro_timer.printTimeElapsedSec("[ALT PREPROCESSING]")
 
     alt = ALT(graph, s, t, lm_dists, queue_type, 40, heuristic)
     timer = Timer()
@@ -99,7 +99,7 @@ def testBidiALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic=
     prepro_timer = Timer()
     lm_dists = balt_pre.getLmDistances()
     landmarks = balt_pre.getLandmarks()
-    prepro_timer.printTimeElapsedSec("[ALT] PREPROCESSING")
+    prepro_timer.printTimeElapsedSec("[BIDI ALT PREPROCESSING]")
 
     balt = BidirectionalALT(graph, s, t, lm_dists, queue_type, 40, heuristic)
     timer = Timer()

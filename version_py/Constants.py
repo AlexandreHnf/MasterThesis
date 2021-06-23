@@ -12,7 +12,7 @@ GRAPH_VILLO =       W + "villo.json"
 SPEED_LIMIT_FOOT = 5
 
 # Benchmarks parameters
-GRAPH_DATASET = GRAPH_BXL
+GRAPH = GRAPH_BXL
 SEED = -1
 ENCODING = 'utf-8'
 SHOW = False

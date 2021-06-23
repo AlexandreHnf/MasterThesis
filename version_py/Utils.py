@@ -1,4 +1,6 @@
 from math import pi, sin, cos, asin, sqrt, radians
+from Constants import *
+import json
 
 earthRadiusKm = 6371
 
@@ -99,6 +101,16 @@ def path_len(coords_list):
         length += haversine(prev_lat, prev_lng, lat, lng)
         prev_lat, prev_lng = lat, lng
     return length
+
+def getJsonData(filename):
+    """
+    parse json file and return all data in json format
+    """
+    # read file
+    with open(filename, 'r', encoding=ENCODING) as myfile:
+        data = myfile.read()
+    return json.loads(data)
+
 
 if __name__== "__main__":
     point1 = 50.846, 4.3496

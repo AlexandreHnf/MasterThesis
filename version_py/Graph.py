@@ -27,6 +27,9 @@ class Graph:
     def getCoords(self, path):
         return {v: self.nodes_coords[v] for v in path}
 
+    def getGeoCoords(self, node_id):
+        return self.nodes_coords[node_id]
+
     def getQtree(self):
         return self.qtree
 
@@ -35,6 +38,12 @@ class Graph:
         for _, adj in self.adj_list.items():
             nb_edges += len(adj)
         return nb_edges
+
+    def addEdge(self, start_node, edge):
+        self.adj_list[start_node] = edge
+
+    def addNode(self, node_id, edges):
+        self.adj_list[node_id] = edges
 
     def setReverseGraph(self, graph):
         reverse_graph = {v: [] for v in graph}
