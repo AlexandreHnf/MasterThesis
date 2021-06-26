@@ -13,6 +13,11 @@ SPEED_LIMIT_FOOT = 5
 
 # Benchmarks parameters
 GRAPH = GRAPH_BXL
+PRIORITY = "bin"
+HEURISTIC = "euclidean"
+LANDMARK_SELECTION = "planar"
+NB_LANDMARKS = 16
+BUCKET_SIZE = 40
 SEED = -1
 ENCODING = 'utf-8'
 SHOW = False

@@ -17,8 +17,8 @@ class BidirectionalDijkstra(ShortestPath):
 
         self.priority = priority  # the type of priority set data structure (str)
 
-        self.fwd_pred = {self.s: {"dist": 0, "pred": None}}
-        self.bwd_pred = {self.t: {"dist": 0, "pred": None}}
+        self.fwd_pred = {self.s : {"dist": 0, "pred": None}}
+        self.bwd_pred = {self.t : {"dist": 0, "pred": None}}
 
         self.midpoint = None
 
