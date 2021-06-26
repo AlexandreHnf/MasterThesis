@@ -1,0 +1,173 @@
+from Benchmark import *
+from MultiModalGraph import *
+from ParseOSMgraph import OSMgraphParser
+
+def experiment1():
+    """
+    Experiment 1 : test which queue type gives fastest Dijkstra
+    - List
+    - Binary Heap
+    - Fibonacci Heap
+    """
+    pass
+    # TODO TOTEST
+
+
+def experiment2():
+    """
+    Experiment 2 : test which heuristic gives fastest A*
+    - Euclidean
+    - Manhattan
+    - Octile
+    """
+    pass
+    # TODO TOTEST
+
+
+def experiment3():
+    """
+    Experiment 3 : test which landmark selection gives fastest ALT
+    - Random
+    - Farthest
+    - Planar
+    """
+    pass
+    # TODO TOTEST
+
+
+def experiment4():
+    """
+    Experiment 4 : test which nb of landmarks (k) gives fastest ALT
+    """
+    pass
+    # TODO TOTEST
+
+
+def experiment5():
+    """
+    Experiment 5 : Single modal car network
+    query benchmarks for a given graph
+    TODO ; enlever le hardcodage
+    TODO TOTEST
+    """
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse()
+
+    b = Benchmark(graph)
+    algos = {}
+    # algos["Dijkstra"] = Dijkstra(graph, -1, -1, "bin")
+    # algos["A*"] = Astar(graph, -1, -1, "bin", BUCKET_SIZE, "euclidean")
+    alt_pre = ALTpreprocessing(graph, "planar", None, 16)
+    lm_dists = alt_pre.getLmDistances()
+    # algos["ALT"] = ALT(graph, -1, -1, lm_dists, "bin")
+    # algos["BidiDijkstra"] = BidirectionalDijkstra(graph, -1, -1, "bin")
+    # algos["BidiAstar"] = BidirectionalAstar(graph, -1, -1, "bin", BUCKET_SIZE, "euclidean")
+    # algos["BidiALT"] = BidirectionalALT(graph, -1, -1, lm_dists, "bin")
+    print("ready (preprocessing done)")
+
+    # algos = {"Dijkstra": {"priority": "bin", "bucket_size": BUCKET_SIZE},
+    #          "A*": {"priority": "bin", "bucket_size": BUCKET_SIZE, "heuristic": "euclidean"},
+    #          "ALT": {"lm_dists": lm_dists, "priority" : "bin"},
+    #          "BidiDijkstra": {"priority": "bin"},
+    #          "BidiAstar": {"priority": "bin", "bucket_size": BUCKET_SIZE, "heuristic": "euclidean"},
+    #          "BidiALT": {"lm_dists": lm_dists, "priority" : "bin"}}
+
+    algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
+
+    stats = b.testMultipleQueries(10, graph, algos, lm_dists)
+    # TODO : write to file
+    print(stats)
+
+
+def experiment6():
+    """
+    Experiment 6 : Single modal car network
+    Preprocessing benchmarks
+    TODO ; enlever le hardcodage
+    TODO TOTEST
+    """
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse()
+
+    b = Benchmark(graph)
+    stats = b.testPreprocessing("planar", 16)
+
+    # TODO : write to file
+
+
+def experiment7():
+    """
+    Experiment 7 : Multi-modal public transport network
+    TODO TOTEST
+    """
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse("foot")
+
+    nb_added_edges = [0, 10, 50, 100, 200] # TODO : change nb to be 1.1% of the graph size
+    speed_limits = [0.1, 15, 30, 90, 120, 1e10]
+
+    for s in speed_limits:
+        for n in nb_added_edges:
+            multi_graph = MultiModalGraph(graph)
+            multi_graph.addPublicTransportEdges(n, s)
+
+            b = Benchmark(multi_graph)
+            alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
+            lm_dists = alt_pre.getLmDistances()
+            algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
+            stats = b.testMultipleQueries(10, algos)
+
+
+def experiment8():
+    """
+    Experiment 8 : Multi-modal station-based network
+    TODO TOTEST
+    """
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse("foot")
+
+    villo_coords = OSMgraphParser.getVilloNodes()
+
+    # get Villo stations nodes in the graph
+    villo_closests = []
+    for coord in villo_coords:
+        villo_closests.append(graph.findClosestNode(coord))
+
+    # transform the graph into a multi-modal foot-villo graph
+    multi_graph = MultiModalGraph(graph)
+    multi_graph.toStationBased(villo_closests)
+
+    b = Benchmark(multi_graph)
+    alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
+    lm_dists = alt_pre.getLmDistances()
+    algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
+    stats = b.testMultipleQueries(10, algos)
+
+
+def experiment9():
+    """
+    Experiment 9 :
+    Multi modal with : personal car and personal bike ? => pb of coherence mmmh
+    TODO TOTEST
+    """
+    pass
+
+
+def experiment10():
+    """
+    Experiment 10 :
+    Multi-Labelling algorithm pareto optimal
+    TODO TOTEST
+    """
+
+
+# =====================================================
+
+
+
+def main():
+    experiment5()
+
+
+if __name__ == "__main__":
+    main()
