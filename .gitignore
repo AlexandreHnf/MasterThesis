@@ -18,6 +18,9 @@ version_py/__pycache__/*
 __pychache__/*
 *.pyc
 
+version_py/Graphs
+version_py/Graphs/*
+
 # Generated files
 .idea/**/contentModel.xml
 
