@@ -114,6 +114,7 @@ class Benchmark:
         prepro_timer = Timer()
         lm_dists = alt_pre.getLmDistances()
         # landmarks = alt_pre.getLandmarks()
+        prepro_timer.end_timer()
         prepro_time = prepro_timer.getTimeElapsedSec()
 
         return {"lm_dists": lm_dists, "Prepro_time": prepro_time}

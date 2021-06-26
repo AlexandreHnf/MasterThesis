@@ -47,30 +47,16 @@ def experiment5():
     """
     Experiment 5 : Single modal car network
     query benchmarks for a given graph
-    TODO ; enlever le hardcodage
-    TODO TOTEST
+    TODO check if the results are coherent (with the graphs)
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
     b = Benchmark(graph)
-    algos = {}
-    # algos["Dijkstra"] = Dijkstra(graph, -1, -1, "bin")
-    # algos["A*"] = Astar(graph, -1, -1, "bin", BUCKET_SIZE, "euclidean")
-    alt_pre = ALTpreprocessing(graph, "planar", None, 16)
-    lm_dists = alt_pre.getLmDistances()
-    # algos["ALT"] = ALT(graph, -1, -1, lm_dists, "bin")
-    # algos["BidiDijkstra"] = BidirectionalDijkstra(graph, -1, -1, "bin")
-    # algos["BidiAstar"] = BidirectionalAstar(graph, -1, -1, "bin", BUCKET_SIZE, "euclidean")
-    # algos["BidiALT"] = BidirectionalALT(graph, -1, -1, lm_dists, "bin")
-    print("ready (preprocessing done)")
 
-    # algos = {"Dijkstra": {"priority": "bin", "bucket_size": BUCKET_SIZE},
-    #          "A*": {"priority": "bin", "bucket_size": BUCKET_SIZE, "heuristic": "euclidean"},
-    #          "ALT": {"lm_dists": lm_dists, "priority" : "bin"},
-    #          "BidiDijkstra": {"priority": "bin"},
-    #          "BidiAstar": {"priority": "bin", "bucket_size": BUCKET_SIZE, "heuristic": "euclidean"},
-    #          "BidiALT": {"lm_dists": lm_dists, "priority" : "bin"}}
+    alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
+    lm_dists = alt_pre.getLmDistances()
+    print("ready (preprocessing done)")
 
     algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
@@ -83,15 +69,15 @@ def experiment6():
     """
     Experiment 6 : Single modal car network
     Preprocessing benchmarks
-    TODO ; enlever le hardcodage
     TODO TOTEST
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
     b = Benchmark(graph)
-    stats = b.testPreprocessing("planar", 16)
+    stats = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
 
+    print(stats["Prepro_time"], " seconds")
     # TODO : write to file
 
 
@@ -166,7 +152,9 @@ def experiment10():
 
 
 def main():
-    experiment5()
+    #experiment5()
+
+    experiment6()
 
 
 if __name__ == "__main__":
