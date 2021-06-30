@@ -2,6 +2,7 @@ from Benchmark import *
 from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
+from Quadtree import showVilloStations
 
 def experiment1():
     """
@@ -85,7 +86,7 @@ def experiment6():
 def experiment7():
     """
     Experiment 7 : Multi-modal public transport network
-    TODO TOTEST
+    TODO check if the results are coherent (with plots)
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
@@ -120,6 +121,9 @@ def experiment8():
     graph = p.parse("foot")
 
     villo_coords = OSMgraphParser.getVilloNodes()
+    #print(villo_coords)
+
+    showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, True)
 
     # get Villo stations nodes in the graph
     villo_closests = []
@@ -127,14 +131,17 @@ def experiment8():
         villo_closests.append(graph.findClosestNode(coord))
 
     # transform the graph into a multi-modal foot-villo graph
-    multi_graph = MultiModalGraph(graph)
+    nodes_coords = deepcopy(graph.getNodesCoords())
+    adjlist = deepcopy(graph.getAdjList())
+    multi_graph = MultiModalGraph(nodes_coords, adjlist)
+    print(villo_closests)
     multi_graph.toStationBased(villo_closests)
 
     b = Benchmark(multi_graph)
     alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
     lm_dists = alt_pre.getLmDistances()
     algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
-    stats = b.testMultipleQueries(10, algos)
+    stats = b.testMultipleQueries(10, algos, lm_dists)
 
 
 def experiment9():
@@ -163,8 +170,9 @@ def main():
 
     #experiment6()
 
-    experiment7()
+    # experiment7()
 
+    experiment8()
 
 if __name__ == "__main__":
     main()

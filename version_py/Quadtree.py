@@ -224,12 +224,17 @@ def showLandmarks(ax, landmarks, color):
     lm_y = [point[0] for _, point in landmarks]
     ax.scatter(lm_x, lm_y, s=15, marker="D", c=color)
 
-def showShortestPath(ax, nodes_coords, shortest_path, color):
-    pass
-
 def showPoints(ax, coords_pairs, color, dotsize):
     coords_x = [point[1] for _, point in coords_pairs]
     coords_y = [point[0] for _, point in coords_pairs]
+    if color == "":
+        ax.scatter(coords_x, coords_y, s=dotsize, marker="D")
+    else:
+        ax.scatter(coords_x, coords_y, s=dotsize, marker="D", c=color)
+
+def showVilloPoints(ax, villo_coords, color, dotsize):
+    coords_x = [point[1] for point in villo_coords]
+    coords_y = [point[0] for point in villo_coords]
     if color == "":
         ax.scatter(coords_x, coords_y, s=dotsize, marker="D")
     else:
@@ -266,6 +271,25 @@ def showQtree(qtree, nodes_coords, SPsearch_space, shortest_path, landmarks, sho
     # ax.invert_yaxis()
     plt.tight_layout()
     plt.show()
+
+def showVilloStations(qtree, nodes_coords, villo_coords, showBoundaries=True):
+    DPI = 72
+    fig = plt.figure(figsize=(700/DPI, 500/DPI), dpi=DPI)
+    ax = plt.subplot()
+
+    # show boundaries
+    if showBoundaries:
+        qtree.draw(ax)
+
+    # show graph coords :
+    showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
+
+    #show villo coords:
+    showVilloPoints(ax, villo_coords, "green", 4)
+
+    plt.tight_layout()
+    plt.show()
+
 
 if __name__ == "__main__":
     showQtree()
