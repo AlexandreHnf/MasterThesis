@@ -101,7 +101,6 @@ def experiment7():
             adjlist = deepcopy(graph.getAdjList())
             multi_graph = MultiModalGraph(nodes_coords, adjlist)
             multi_graph.addPublicTransportEdges(n, s)
-            #print(multi_graph.getAdjList())
             print("nb edges after added lines = ", multi_graph.getNbEdges())
 
             b = Benchmark(multi_graph)
@@ -111,7 +110,6 @@ def experiment7():
             stats = b.testMultipleQueries(10, multi_graph, algos, lm_dists)
 
             print("Stats : ", stats)
-
 
 def experiment8():
     """
