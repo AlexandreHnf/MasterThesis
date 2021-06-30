@@ -1,6 +1,7 @@
 from Benchmark import *
 from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
+from copy import deepcopy
 
 def experiment1():
     """
@@ -47,7 +48,7 @@ def experiment5():
     """
     Experiment 5 : Single modal car network
     query benchmarks for a given graph
-    TODO check if the results are coherent (with the graphs)
+    TODO check if the results are coherent (with the plots)
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
@@ -69,7 +70,7 @@ def experiment6():
     """
     Experiment 6 : Single modal car network
     Preprocessing benchmarks
-    TODO TOTEST
+    TODO check if the results are coherent (plot the qtree ?)
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
@@ -88,20 +89,28 @@ def experiment7():
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
+    print("nb edges before experiments : ", graph.getNbEdges())
 
-    nb_added_edges = [0, 10, 50, 100, 200] # TODO : change nb to be 1.1% of the graph size
+    nb_added_edges = [0, 10, 50, 100, 200]  # TODO : change nb (200) to be 1.1% of the graph size
     speed_limits = [0.1, 15, 30, 90, 120, 1e10]
 
     for s in speed_limits:
         for n in nb_added_edges:
-            multi_graph = MultiModalGraph(graph)
+            print("==> nb added edges : {0}, speed limit : {1}".format(n, s))
+            nodes_coords = deepcopy(graph.getNodesCoords())
+            adjlist = deepcopy(graph.getAdjList())
+            multi_graph = MultiModalGraph(nodes_coords, adjlist)
             multi_graph.addPublicTransportEdges(n, s)
+            #print(multi_graph.getAdjList())
+            print("nb edges after added lines = ", multi_graph.getNbEdges())
 
             b = Benchmark(multi_graph)
             alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
             lm_dists = alt_pre.getLmDistances()
             algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
-            stats = b.testMultipleQueries(10, algos)
+            stats = b.testMultipleQueries(10, multi_graph, algos, lm_dists)
+
+            print("Stats : ", stats)
 
 
 def experiment8():
@@ -154,7 +163,9 @@ def experiment10():
 def main():
     #experiment5()
 
-    experiment6()
+    #experiment6()
+
+    experiment7()
 
 
 if __name__ == "__main__":

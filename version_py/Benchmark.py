@@ -80,10 +80,10 @@ class Benchmark:
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            print(f"run: {r}, s: {s} t: {t}")
+            #print(f"run: {r}, s: {s} t: {t}")
             success = True
             for algo_name in algos:
-                print("algo : ", algo_name)
+                #print("algo : ", algo_name)
                 algo = self.getSPalgoObject(graph, algo_name, s, t, lm_dists)
                 timer = Timer()
                 f = algo.run()

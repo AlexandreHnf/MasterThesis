@@ -21,8 +21,14 @@ class Graph:
     def getAdj(self, node):
         return self.adj_list[node]
 
+    def getAdjList(self):
+        return self.adj_list
+
     def getRevAdj(self, node):
         return self.rev_adj_list[node]
+
+    def getRevAdjList(self):
+        return self.rev_adj_list
 
     def getCoords(self, path):
         return {v: self.nodes_coords[v] for v in path}
@@ -40,7 +46,7 @@ class Graph:
         return nb_edges
 
     def addEdge(self, start_node, edge):
-        self.adj_list[start_node] = edge
+        self.adj_list[start_node].append(edge)
 
     def addNode(self, node_id, edges):
         self.adj_list[node_id] = edges

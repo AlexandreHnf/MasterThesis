@@ -6,6 +6,7 @@ from Constants import *
 import random
 import time
 from Graph import Graph
+from MultiModalGraph import MultiModalGraph
 from Dijkstra import Dijkstra
 
 class OSMgraphParser:
@@ -211,6 +212,7 @@ class OSMgraphParser:
 
         connected_graph = self.getConnectedGraph(adjlist)
         self.timing = time.time() - start_time
+
         return Graph(self.nodes_coordinates, connected_graph)
 
     def showStats(self):

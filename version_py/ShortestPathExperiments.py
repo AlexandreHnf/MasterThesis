@@ -11,6 +11,7 @@ from Timer import Timer
 
 
 def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, landmarks, show):
+    # TODO put it in a "SHOW" class along with the matplotlib plots
     print("Search space : ", list(search_space.keys()))
     print("shortest_path : ", shortest_path, len(shortest_path))
     print("Search space size : ", sp_obj.getSearchSpaceSize())
