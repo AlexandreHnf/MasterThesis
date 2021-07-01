@@ -48,8 +48,11 @@ class Graph:
     def addEdge(self, start_node, edge):
         self.adj_list[start_node].append(edge)
 
-    def addNode(self, node_id, edges):
+    def addNode(self, node_id, edges, reference_node_id):
+        if node_id in list(self.adj_list.keys()):
+            print("node already in graph : ", node_id)
         self.adj_list[node_id] = edges
+        self.nodes_coords[node_id] = self.nodes_coords[reference_node_id]
 
     def setReverseGraph(self, graph):
         reverse_graph = {v: [] for v in graph}

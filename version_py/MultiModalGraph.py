@@ -37,14 +37,17 @@ class MultiModalGraph(Graph):
         """
 
         # duplicate the base graph and change the duplicated edges weights
-        n = self.getNbNodes()
+        max_id = max(self.getNodesIDs())
+        print("max id in the graph : ", max_id)
         for v in self.getNodesIDs():
-            station_edges = []
+            bike_edges = []
             for edge in self.getAdj(v):
-                station_edges.append(Edge(edge.getExtremityNode() + n, edge.getWeight() / 3))
-            self.addNode(v+n, station_edges)
+                # match bike speed (edge weight walk / 3)
+                bike_edges.append(Edge(edge.getExtremityNode() + max_id, edge.getWeight() / 3))
+            self.addNode(v+max_id, bike_edges, v)
+            # TODO : update nb nodes (nodes list of Graph)
 
         # add links between the two layers
         for sn in stations_nodes:
-            self.addEdge(sn, Edge(sn+n, 60))  # node to station
-            self.addEdge(sn+n, Edge(sn, 60))  # station to node
+            self.addEdge(sn, Edge(sn+max_id, 60))  # node to station
+            self.addEdge(sn+max_id, Edge(sn, 60))  # station to node

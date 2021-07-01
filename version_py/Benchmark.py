@@ -44,7 +44,7 @@ class Benchmark:
             return BidirectionalALT(graph, s, t, lm_dists, PRIORITY, BUCKET_SIZE, HEURISTIC)
 
     def testSingleQuery(self, nb_runs):
-        # TODO TOTEST
+        # TODO check if the results are coherent
         stats = {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0}
 
         queries_timer = Timer()
@@ -73,7 +73,7 @@ class Benchmark:
         return stats
 
     def testMultipleQueries(self, nb_runs, graph, algos, lm_dists=None):
-        # TODO TOTEST
+        # TODO check if the results are coherent
         stats = {algo_name : {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0} for algo_name in algos}
 
         queries_timer = Timer()

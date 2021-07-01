@@ -123,26 +123,34 @@ def experiment8():
     villo_coords = OSMgraphParser.getVilloNodes()
     #print(villo_coords)
 
-    showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, True)
+    showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
 
     # get Villo stations nodes in the graph
     villo_closests = []
     for coord in villo_coords:
-        villo_closests.append(graph.findClosestNode(coord))
+        closest = graph.findClosestNode(coord)
+        if closest:
+            villo_closests.append(closest)
 
     # transform the graph into a multi-modal foot-villo graph
     nodes_coords = deepcopy(graph.getNodesCoords())
     adjlist = deepcopy(graph.getAdjList())
     multi_graph = MultiModalGraph(nodes_coords, adjlist)
     print(villo_closests)
+    print("BEFORE : {0} nodes, {1} edges".format(graph.getNbNodes(), graph.getNbEdges()))
     multi_graph.toStationBased(villo_closests)
+    print("AFTER : {0} nodes, {1} edges".format(multi_graph.getNbNodes(), multi_graph.getNbEdges()))
 
     b = Benchmark(multi_graph)
+    pre_timer = Timer()
     alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
     lm_dists = alt_pre.getLmDistances()
+    pre_timer.end_timer()
+    pre_timer.printTimeElapsedMin("lm dists ")
     algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
-    stats = b.testMultipleQueries(10, algos, lm_dists)
+    stats = b.testMultipleQueries(10, multi_graph, algos, lm_dists)
 
+    print(stats)
 
 def experiment9():
     """
