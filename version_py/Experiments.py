@@ -13,6 +13,7 @@ def experiment1():
     - Fibonacci Heap (fib)
     # TODO : change nb experiments to 1000
     """
+    print("EXPERIMENT 1 : which priority queue Dijkstra")
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
@@ -35,6 +36,7 @@ def experiment2():
     # TODO : change nb experiments to 1000
     """
     # TODO check if the results are coherent
+    print("EXPERIMENT 2 : which heuristic A*")
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
@@ -57,6 +59,7 @@ def experiment3():
     # TODO : change nb experiments to 1000
     """
     # TODO check if the results are coherent
+    print("EXPERIMENT 3 : which landmark selection ALT")
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
@@ -84,6 +87,7 @@ def experiment4():
     pass
     # maybe to difficult => NP-hard problem
     # TODO TOTEST
+    print("EXPERIMENT 4 : how many landmarks ALT")
 
 
 def experiment5():
@@ -93,6 +97,7 @@ def experiment5():
     TODO check if the results are coherent (with the plots)
     # TODO : change nb experiments to 1000
     """
+    print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
@@ -116,6 +121,7 @@ def experiment6():
     TODO check if the results are coherent (plot the qtree ?)
     # TODO : change nb experiments to 1000
     """
+    print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
@@ -132,6 +138,7 @@ def experiment7():
     TODO check if the results are coherent (with plots)
     # TODO : change nb experiments to 1000
     """
+    print("EXPERIMENT 7 : Multi-modal public transport network")
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
     print("nb edges before experiments : ", graph.getNbEdges())
@@ -163,6 +170,7 @@ def experiment8():
     TODO TOTEST
     # TODO : change nb experiments to 1000
     """
+    print("EXPERIMENT 8 : Multi-modal station-based network")
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
 
@@ -206,6 +214,7 @@ def experiment9():
     TODO TOTEST
     # TODO : change nb experiments to 1000
     """
+    print("EXPERIMENT 9 : Multi-modal with personal car and personal bike")
     pass
 
 
@@ -216,25 +225,35 @@ def experiment10():
     TODO TOTEST
     # TODO : change nb experiments to 1000
     """
+    print("EXPERIMENT 10 : Multi-Labelling algorithm pareto optimal multi-modal network")
 
 
 # =====================================================
 
+def launchExperiment():
+    if EXPERIMENT == 1:
+        experiment1()
+    elif EXPERIMENT == 2:
+        experiment2()
+    elif EXPERIMENT == 3:
+        experiment3()
+    elif EXPERIMENT == 4:
+        experiment4()
+    elif EXPERIMENT == 5:
+        experiment5()
+    elif EXPERIMENT == 6:
+        experiment6()
+    elif EXPERIMENT == 7:
+        experiment7()
+    elif EXPERIMENT == 8:
+        experiment8()
+    elif EXPERIMENT == 9:
+        experiment9()
+    elif EXPERIMENT == 10:
+        experiment10()
 
 def main():
-    # experiment1()
-
-    # experiment2()
-
-    experiment3()
-
-    # experiment5()
-
-    # experiment6()
-
-    # experiment7()
-
-    # experiment8()
+    launchExperiment()
 
 
 if __name__ == "__main__":
