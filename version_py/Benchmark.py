@@ -24,26 +24,26 @@ class Benchmark:
 
         return pairs
 
-    def getSPalgoObject(self, graph, algo_name, s, t, lm_dists):
+    def getSPalgoObject(self, graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists):
         """
         From the algorithm name, provide the shortest path object instance with the given
         parameters
         ex:  algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
         """
         if algo_name == "Dijkstra":
-            return Dijkstra(graph, s, t, PRIORITY, BUCKET_SIZE)
+            return Dijkstra(graph, s, t, priority, bucket_size)
         elif algo_name == "A*":
-            return Astar(graph, s, t, PRIORITY, BUCKET_SIZE, HEURISTIC)
+            return Astar(graph, s, t, priority, bucket_size, heuristic)
         elif algo_name == "ALT":
-            return ALT(graph, s, t, lm_dists, PRIORITY, BUCKET_SIZE, HEURISTIC)
+            return ALT(graph, s, t, lm_dists, priority, bucket_size, heuristic)
         elif algo_name == "BidiDijkstra":
-            return BidirectionalDijkstra(graph, s, t, PRIORITY, BUCKET_SIZE)
+            return BidirectionalDijkstra(graph, s, t, priority, bucket_size)
         elif algo_name == "BidiAstar":
-            return BidirectionalAstar(graph, s, t, PRIORITY, BUCKET_SIZE, HEURISTIC)
+            return BidirectionalAstar(graph, s, t, priority, bucket_size, heuristic)
         elif algo_name == "BidiALT":
-            return BidirectionalALT(graph, s, t, lm_dists, PRIORITY, BUCKET_SIZE, HEURISTIC)
+            return BidirectionalALT(graph, s, t, lm_dists, priority, bucket_size, heuristic)
 
-    def testSingleQuery(self, nb_runs, priority):
+    def testSingleQuery(self, nb_runs, algo_name, priority, bucket_size, heuristic, lm_dists):
         # TODO check if the results are coherent
         stats = {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0}
 
@@ -51,7 +51,7 @@ class Benchmark:
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            d = Dijkstra(self.graph, s, t, priority) # TODO mettre tous les algos ?
+            d = self.getSPalgoObject(self.graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists)
             timer = Timer()
             f = d.run()
             timer.end_timer()
@@ -84,7 +84,7 @@ class Benchmark:
             success = True
             for algo_name in algos:
                 #print("algo : ", algo_name)
-                algo = self.getSPalgoObject(graph, algo_name, s, t, lm_dists)
+                algo = self.getSPalgoObject(graph, algo_name, s, t, PRIORITY, BUCKET_SIZE, HEURISTIC, lm_dists)
                 timer = Timer()
                 f = algo.run()
                 timer.end_timer()

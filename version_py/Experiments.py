@@ -21,7 +21,7 @@ def experiment1():
     priorities = ["bin", "fib", "list"]
     for p in priorities:
         print("Priority : ", p)
-        stats = b.testSingleQuery(10, p)
+        stats = b.testSingleQuery(10, "Dijkstra", p, BUCKET_SIZE, None, None)
         print(stats)
     # TODO : write to file
 
@@ -34,8 +34,18 @@ def experiment2():
     - Octile
     # TODO : change nb experiments to 1000
     """
-    pass
     # TODO TOTEST
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse()
+
+    b = Benchmark(graph)
+
+    heuristics = ["euclidean", "manhattan", "octile"]
+    for h in heuristics:
+        print("Heuristic : ", h)
+        stats = b.testSingleQuery(10, "A*", "bin", BUCKET_SIZE, h, None)
+        print(stats)
+    # TODO : write to file
 
 
 def experiment3():
@@ -196,7 +206,9 @@ def experiment10():
 
 
 def main():
-    experiment1()
+    # experiment1()
+
+    experiment2()
 
     # experiment5()
 
