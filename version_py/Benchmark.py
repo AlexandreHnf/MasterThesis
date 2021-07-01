@@ -43,7 +43,7 @@ class Benchmark:
         elif algo_name == "BidiALT":
             return BidirectionalALT(graph, s, t, lm_dists, PRIORITY, BUCKET_SIZE, HEURISTIC)
 
-    def testSingleQuery(self, nb_runs):
+    def testSingleQuery(self, nb_runs, priority):
         # TODO check if the results are coherent
         stats = {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0}
 
@@ -51,7 +51,7 @@ class Benchmark:
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            d = Dijkstra(self.graph, s, t, "bin") # TODO mettre tous les algos
+            d = Dijkstra(self.graph, s, t, priority) # TODO mettre tous les algos ?
             timer = Timer()
             f = d.run()
             timer.end_timer()
@@ -66,7 +66,7 @@ class Benchmark:
             stats["avg_SS"] += ss / nb_runs
             stats["avg_rel"] += rel / nb_runs
 
-            print(f"s: {s} t: {t} : SP len: {round(path_len, 2)} time: {round(timing, 4)} ss: {ss} rel: {rel}")
+            #print(f"s: {s} t: {t} : SP len: {round(path_len, 2)} time: {round(timing, 4)} ss: {ss} rel: {rel}")
             r += 1
 
         queries_timer.printTimeElapsedSec("Queries")

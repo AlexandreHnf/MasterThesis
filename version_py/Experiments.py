@@ -4,15 +4,26 @@ from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
 from Quadtree import showVilloStations
 
+
 def experiment1():
     """
     Experiment 1 : test which queue type gives fastest Dijkstra
-    - List
-    - Binary Heap
-    - Fibonacci Heap
+    - List (list)
+    - Binary Heap (bin)
+    - Fibonacci Heap (fib)
+    # TODO : change nb experiments to 1000
     """
-    pass
-    # TODO TOTEST
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse()
+
+    b = Benchmark(graph)
+
+    priorities = ["bin", "fib", "list"]
+    for p in priorities:
+        print("Priority : ", p)
+        stats = b.testSingleQuery(10, p)
+        print(stats)
+    # TODO : write to file
 
 
 def experiment2():
@@ -21,6 +32,7 @@ def experiment2():
     - Euclidean
     - Manhattan
     - Octile
+    # TODO : change nb experiments to 1000
     """
     pass
     # TODO TOTEST
@@ -32,6 +44,7 @@ def experiment3():
     - Random
     - Farthest
     - Planar
+    # TODO : change nb experiments to 1000
     """
     pass
     # TODO TOTEST
@@ -40,16 +53,19 @@ def experiment3():
 def experiment4():
     """
     Experiment 4 : test which nb of landmarks (k) gives fastest ALT
+    # TODO : change nb experiments to 1000
     """
     pass
+    # maybe to difficult => NP-hard problem
     # TODO TOTEST
 
 
 def experiment5():
     """
     Experiment 5 : Single modal car network
-    query benchmarks for a given graph
+    query benchmarks for a given graph for multiple algorithms
     TODO check if the results are coherent (with the plots)
+    # TODO : change nb experiments to 1000
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
@@ -72,6 +88,7 @@ def experiment6():
     Experiment 6 : Single modal car network
     Preprocessing benchmarks
     TODO check if the results are coherent (plot the qtree ?)
+    # TODO : change nb experiments to 1000
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
@@ -87,6 +104,7 @@ def experiment7():
     """
     Experiment 7 : Multi-modal public transport network
     TODO check if the results are coherent (with plots)
+    # TODO : change nb experiments to 1000
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
@@ -112,16 +130,18 @@ def experiment7():
 
             print("Stats : ", stats)
 
+
 def experiment8():
     """
     Experiment 8 : Multi-modal station-based network
     TODO TOTEST
+    # TODO : change nb experiments to 1000
     """
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
 
     villo_coords = OSMgraphParser.getVilloNodes()
-    #print(villo_coords)
+    # print(villo_coords)
 
     showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
 
@@ -152,11 +172,13 @@ def experiment8():
 
     print(stats)
 
+
 def experiment9():
     """
     Experiment 9 :
     Multi modal with : personal car and personal bike ? => pb of coherence mmmh
     TODO TOTEST
+    # TODO : change nb experiments to 1000
     """
     pass
 
@@ -166,21 +188,24 @@ def experiment10():
     Experiment 10 :
     Multi-Labelling algorithm pareto optimal
     TODO TOTEST
+    # TODO : change nb experiments to 1000
     """
 
 
 # =====================================================
 
 
-
 def main():
-    #experiment5()
+    experiment1()
 
-    #experiment6()
+    # experiment5()
+
+    # experiment6()
 
     # experiment7()
 
-    experiment8()
+    # experiment8()
+
 
 if __name__ == "__main__":
     main()
