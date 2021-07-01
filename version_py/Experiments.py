@@ -34,7 +34,7 @@ def experiment2():
     - Octile
     # TODO : change nb experiments to 1000
     """
-    # TODO TOTEST
+    # TODO check if the results are coherent
     p = OSMgraphParser(GRAPH)
     graph = p.parse()
 
@@ -56,8 +56,24 @@ def experiment3():
     - Planar
     # TODO : change nb experiments to 1000
     """
-    pass
-    # TODO TOTEST
+    # TODO check if the results are coherent
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse()
+
+    b = Benchmark(graph)
+
+    lm_selections = ["random", "farthest", "planar"]
+    for ls in lm_selections:
+        print("Landmark selection : ", ls)
+        pre_timer = Timer()
+        alt_pre = ALTpreprocessing(graph, ls, None, NB_LANDMARKS)
+        lm_dists = alt_pre.getLmDistances()
+        pre_timer.end_timer()
+        pre_timer.printTimeElapsedMin("lm dists")
+
+        stats = b.testSingleQuery(10, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+        print(stats)
+    # TODO : write to file
 
 
 def experiment4():
@@ -176,7 +192,7 @@ def experiment8():
     alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
     lm_dists = alt_pre.getLmDistances()
     pre_timer.end_timer()
-    pre_timer.printTimeElapsedMin("lm dists ")
+    pre_timer.printTimeElapsedMin("lm dists")
     algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
     stats = b.testMultipleQueries(10, multi_graph, algos, lm_dists)
 
@@ -208,7 +224,9 @@ def experiment10():
 def main():
     # experiment1()
 
-    experiment2()
+    # experiment2()
+
+    experiment3()
 
     # experiment5()
 
