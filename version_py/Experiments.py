@@ -11,7 +11,7 @@ def experiment1():
     - List (list)
     - Binary Heap (bin)
     - Fibonacci Heap (fib)
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 1 : which priority queue Dijkstra")
     p = OSMgraphParser(GRAPH)
@@ -22,7 +22,7 @@ def experiment1():
     priorities = ["bin", "fib", "list"]
     for p in priorities:
         print("Priority : ", p)
-        stats = b.testSingleQuery(10, "Dijkstra", p, BUCKET_SIZE, None, None)
+        stats = b.testSingleQuery(NB_RUNS, "Dijkstra", p, BUCKET_SIZE, None, None)
         print(stats)
     # TODO : write to file
 
@@ -33,7 +33,7 @@ def experiment2():
     - Euclidean
     - Manhattan
     - Octile
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
     # TODO check if the results are coherent
     print("EXPERIMENT 2 : which heuristic A*")
@@ -45,7 +45,7 @@ def experiment2():
     heuristics = ["euclidean", "manhattan", "octile"]
     for h in heuristics:
         print("Heuristic : ", h)
-        stats = b.testSingleQuery(10, "A*", "bin", BUCKET_SIZE, h, None)
+        stats = b.testSingleQuery(NB_RUNS, "A*", "bin", BUCKET_SIZE, h, None)
         print(stats)
     # TODO : write to file
 
@@ -56,7 +56,7 @@ def experiment3():
     - Random
     - Farthest
     - Planar
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
     # TODO check if the results are coherent
     print("EXPERIMENT 3 : which landmark selection ALT")
@@ -74,7 +74,7 @@ def experiment3():
         pre_timer.end_timer()
         pre_timer.printTimeElapsedMin("lm dists")
 
-        stats = b.testSingleQuery(10, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+        stats = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
         print(stats)
     # TODO : write to file
 
@@ -82,12 +82,30 @@ def experiment3():
 def experiment4():
     """
     Experiment 4 : test which nb of landmarks (k) gives fastest ALT
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
     pass
     # maybe to difficult => NP-hard problem
-    # TODO TOTEST
+    # TODO check if the results are coherent with plots
     print("EXPERIMENT 4 : how many landmarks ALT")
+    # test with 1, 2, 4, 8, 16 and 21 landmarks
+    p = OSMgraphParser(GRAPH)
+    graph = p.parse()
+
+    b = Benchmark(graph)
+
+    nb_landmarks = [1, 2, 4, 8, 16, 32]
+    for nl in nb_landmarks:
+        print("Number of Landmarks : ", nl)
+        pre_timer = Timer()
+        alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, nl)
+        lm_dists = alt_pre.getLmDistances()
+        pre_timer.end_timer()
+        pre_timer.printTimeElapsedMin("lm dists")
+
+        stats = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+        print(stats)
+    # TODO : write to file
 
 
 def experiment5():
@@ -95,7 +113,7 @@ def experiment5():
     Experiment 5 : Single modal car network
     query benchmarks for a given graph for multiple algorithms
     TODO check if the results are coherent (with the plots)
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
     p = OSMgraphParser(GRAPH)
@@ -109,7 +127,7 @@ def experiment5():
 
     algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
-    stats = b.testMultipleQueries(10, graph, algos, lm_dists)
+    stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists)
     # TODO : write to file
     print(stats)
 
@@ -119,7 +137,7 @@ def experiment6():
     Experiment 6 : Single modal car network
     Preprocessing benchmarks
     TODO check if the results are coherent (plot the qtree ?)
-    # TODO : change nb experiments to 1000
+    # TODO : change nb experiments to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
     p = OSMgraphParser(GRAPH)
@@ -136,9 +154,9 @@ def experiment7():
     """
     Experiment 7 : Multi-modal public transport network
     TODO check if the results are coherent (with plots)
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
-    print("EXPERIMENT 7 : Multi-modal public transport network")
+    print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
     print("nb edges before experiments : ", graph.getNbEdges())
@@ -159,7 +177,7 @@ def experiment7():
             alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
             lm_dists = alt_pre.getLmDistances()
             algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
-            stats = b.testMultipleQueries(10, multi_graph, algos, lm_dists)
+            stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists)
 
             print("Stats : ", stats)
 
@@ -168,9 +186,9 @@ def experiment8():
     """
     Experiment 8 : Multi-modal station-based network
     TODO TOTEST
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
-    print("EXPERIMENT 8 : Multi-modal station-based network")
+    print("EXPERIMENT 8 : Multi-modal station-based network : Dijkstra & ALT")
     p = OSMgraphParser(GRAPH)
     graph = p.parse("foot")
 
@@ -202,7 +220,7 @@ def experiment8():
     pre_timer.end_timer()
     pre_timer.printTimeElapsedMin("lm dists")
     algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
-    stats = b.testMultipleQueries(10, multi_graph, algos, lm_dists)
+    stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists)
 
     print(stats)
 
@@ -212,9 +230,9 @@ def experiment9():
     Experiment 9 :
     Multi modal with : personal car and personal bike ? => pb of coherence mmmh
     TODO TOTEST
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
-    print("EXPERIMENT 9 : Multi-modal with personal car and personal bike")
+    print("EXPERIMENT 9 : Multi-modal with personal car and personal bike : Dijkstra & ALT")
     pass
 
 
@@ -223,7 +241,7 @@ def experiment10():
     Experiment 10 :
     Multi-Labelling algorithm pareto optimal
     TODO TOTEST
-    # TODO : change nb experiments to 1000
+    # TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 10 : Multi-Labelling algorithm pareto optimal multi-modal network")
 

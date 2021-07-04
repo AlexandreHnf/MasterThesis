@@ -12,6 +12,7 @@ GRAPH_VILLO =           W + "villo.json"
 SPEED_LIMIT_FOOT =      5
 
 # Benchmarks parameters
+# TODO : faire un graph artificial (comme dans goldberg et al. when Astar meets grpah theory)
 GRAPH =                 GRAPH_BXL
 PRIORITY =              "bin"
 HEURISTIC =             "euclidean"
@@ -23,3 +24,4 @@ ENCODING =              'utf-8'
 SHOW =                  False
 
 EXPERIMENT =            4
+NB_RUNS =               10  # TODO : change it to 1000
