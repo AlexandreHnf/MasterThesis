@@ -51,7 +51,7 @@ def experiment2():
         stats = b.testSingleQuery(NB_RUNS, "A*", "bin", BUCKET_SIZE, h, None)
         all_stats[h] = stats
         print(stats)
-    # TODO : write to file
+
     header = ["heuristic", "avg_CT", "avg_SS", "avg_rel"]
     Writer.writeExp1StatsToCsv(all_stats, header, FILENAME_EXP2)
 
@@ -70,8 +70,8 @@ def experiment3():
 
     b = Benchmark(graph)
 
-    lm_selections = ["random", "farthest", "planar"]
-    for ls in lm_selections:
+    all_stats = {"random": None, "farthest": None, "planar": None}
+    for ls in all_stats.keys():
         print("Landmark selection : ", ls)
         pre_timer = Timer()
         alt_pre = ALTpreprocessing(graph, ls, None, NB_LANDMARKS)
@@ -80,8 +80,12 @@ def experiment3():
         pre_timer.printTimeElapsedMin("lm dists")
 
         stats = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+        stats["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
+        all_stats[ls] = stats
         print(stats)
-    # TODO : write to file
+
+    header = ["landmark_selection", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
+    Writer.writeExp1StatsToCsv(all_stats, header, FILENAME_EXP3)
 
 
 def experiment4():
