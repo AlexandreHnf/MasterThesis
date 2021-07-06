@@ -104,7 +104,8 @@ def experiment4():
     b = Benchmark(graph)
 
     nb_landmarks = [1, 2, 4, 8, 16, 32]
-    for nl in nb_landmarks:
+    all_stats = {1: None, 2: None, 4: None, 8: None, 16: None, 32: None}
+    for nl in all_stats.keys():
         print("Number of Landmarks : ", nl)
         pre_timer = Timer()
         alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, nl)
@@ -113,9 +114,12 @@ def experiment4():
         pre_timer.printTimeElapsedMin("lm dists")
 
         stats = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+        stats["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
+        all_stats[nl] = stats
         print(stats)
-    # TODO : write to file
 
+    header = ["nb_landmark", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
+    Writer.writeExp1StatsToCsv(all_stats, header, FILENAME_EXP4)
 
 def experiment5():
     """
