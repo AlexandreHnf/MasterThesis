@@ -3,7 +3,7 @@ from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
 from Quadtree import showVilloStations
-
+import Writer
 
 def experiment1():
     """
@@ -25,8 +25,9 @@ def experiment1():
         stats = b.testSingleQuery(NB_RUNS, "Dijkstra", p, BUCKET_SIZE, None, None)
         all_stats[p] = stats
         print(stats)
-    # TODO : write to file : 3x single query = avg_CT, avg_SS, avg_rel
 
+    header = ["priority", "avg_CT", "avg_SS", "avg_rel"]
+    Writer.writeExp1StatsToCsv(all_stats, header, FILENAME_EXP1)
 
 
 def experiment2():

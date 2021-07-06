@@ -63,13 +63,16 @@ class Benchmark:
             ss = d.getSearchSpaceSize()
             rel = d.getNbRelaxedEdges()
 
-            stats["avg_CT"] += timing / nb_runs
-            stats["avg_SS"] += ss / nb_runs
-            stats["avg_rel"] += rel / nb_runs
+            stats["avg_CT"] += timing
+            stats["avg_SS"] += ss
+            stats["avg_rel"] += rel
 
             #print(f"s: {s} t: {t} : SP len: {round(path_len, 2)} time: {round(timing, 4)} ss: {ss} rel: {rel}")
             r += 1
 
+        stats["avg_CT"] = round(stats["avg_CT"] / nb_runs, 6)
+        stats["avg_SS"] = round(stats["avg_SS"] / nb_runs)
+        stats["avg_rel"] = round(stats["avg_rel"] / nb_runs)
         queries_timer.printTimeElapsedSec("Queries")
         return stats
 
@@ -95,9 +98,9 @@ class Benchmark:
                     break
                 path_len = algo.getSPweight()
 
-                stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
-                stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs
-                stats[algo_name]["avg_rel"] += algo.getNbRelaxedEdges() / nb_runs
+                stats[algo_name]["avg_CT"] += round(timer.getTimeElapsedSec() / nb_runs, 6)
+                stats[algo_name]["avg_SS"] += round(algo.getSearchSpaceSize() / nb_runs, 2)
+                stats[algo_name]["avg_rel"] += round(algo.getNbRelaxedEdges() / nb_runs, 2)
             if not success:
                 continue
             r += 1

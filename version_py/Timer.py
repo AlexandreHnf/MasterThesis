@@ -19,7 +19,7 @@ class Timer:
         """
         End the timer, and compute time elapsed in seconds and in minutes
         """
-        self.end_time = time.time() - self.start_time
+        self.end_time = round(time.time() - self.start_time, 6)
         self.timing_sec = self.end_time
         self.elapsed_time_sec = f"{self.end_time} sec"
 

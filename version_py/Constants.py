@@ -1,12 +1,12 @@
-W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\version_py\\Graphs\\"
+W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\version_py\\"
 
 # Graphs
-GRAPH_ULB =             W + "1_ULB.json"
-GRAPH_BXL =             W + "2_Bruxelles.json"
-GRAPH_BXL_CAP_CTR =     W + "3_Bruxelles_Capitale_centre.json"
-GRAPH_BXL_CAP =         W + "4_Bruxelles_Capitale.json"
-GRAPH_BE_CTR =          W + "5_Belgique_centre.json"
-GRAPH_BE =              W + "6_Belgique.json"
+GRAPH_ULB =             W + "Graphs\\" + "1_ULB.json"
+GRAPH_BXL =             W + "Graphs\\" + "2_Bruxelles.json"
+GRAPH_BXL_CAP_CTR =     W + "Graphs\\" + "3_Bruxelles_Capitale_centre.json"
+GRAPH_BXL_CAP =         W + "Graphs\\" + "4_Bruxelles_Capitale.json"
+GRAPH_BE_CTR =          W + "Graphs\\" + "5_Belgique_centre.json"
+GRAPH_BE =              W + "Graphs\\" + "6_Belgique.json"
 
 GRAPH_VILLO =           W + "villo.json"
 SPEED_LIMIT_FOOT =      5
@@ -23,5 +23,8 @@ SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
 
-EXPERIMENT =            2
+EXPERIMENT =            1
 NB_RUNS =               10  # TODO : change it to 1000
+
+# experiments stats filenames
+FILENAME_EXP1 = W + "Benchmarks\\Exp1\\" + "2_Bruxelles_exp1.csv"  # tentative
