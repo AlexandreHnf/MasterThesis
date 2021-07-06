@@ -19,12 +19,14 @@ def experiment1():
 
     b = Benchmark(graph)
 
-    priorities = ["bin", "fib", "list"]
-    for p in priorities:
+    all_stats = {"bin": None, "fib": None, "list": None}
+    for p in all_stats.keys():
         print("Priority : ", p)
         stats = b.testSingleQuery(NB_RUNS, "Dijkstra", p, BUCKET_SIZE, None, None)
+        all_stats[p] = stats
         print(stats)
-    # TODO : write to file
+    # TODO : write to file : 3x single query = avg_CT, avg_SS, avg_rel
+
 
 
 def experiment2():
@@ -218,7 +220,7 @@ def experiment8():
     alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
     lm_dists = alt_pre.getLmDistances()
     pre_timer.end_timer()
-    pre_timer.printTimeElapsedMin("lm dists")
+    pre_timer.printTimeElapsedMin("lm dists")  #TODO : save this time in the csv
     algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
     stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists)
 
@@ -272,6 +274,7 @@ def launchExperiment():
 
 def main():
     launchExperiment()
+    #TODO : faire une fonction qui lance tous les experiments a la suite
 
 
 if __name__ == "__main__":

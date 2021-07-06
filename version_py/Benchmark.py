@@ -43,6 +43,7 @@ class Benchmark:
         elif algo_name == "BidiALT":
             return BidirectionalALT(graph, s, t, lm_dists, priority, bucket_size, heuristic)
 
+
     def testSingleQuery(self, nb_runs, algo_name, priority, bucket_size, heuristic, lm_dists):
         # TODO check if the results are coherent
         stats = {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0}
@@ -71,6 +72,7 @@ class Benchmark:
 
         queries_timer.printTimeElapsedSec("Queries")
         return stats
+
 
     def testMultipleQueries(self, nb_runs, graph, algos, lm_dists=None):
         # TODO check if the results are coherent
@@ -124,7 +126,7 @@ class Benchmark:
     # basic experiments
 
     def testDijkstraQueue(self):
-
+        # TODO : not used
         algos = {}
         name = "Dijkstra_"
         for q in ["list", "bin", "fib"]:
@@ -133,7 +135,7 @@ class Benchmark:
         # TODO : ne pas prendre l'average
 
     def testAstarHeuristic(self):
-
+        # TODO : not used
         algos = {}
         name = "Astar_"
         for h in ["euclidean", "manhattan", "octile"]:
@@ -142,7 +144,7 @@ class Benchmark:
         # TODO : ne pas prendre l'average
 
     def testLmSelection(self):
-
+        # TODO : not used
         for ls in ["random", "farthest", "planar"]:
             alt_pre = ALTpreprocessing(self.graph, ls, None, 16)
             lm_dists = alt_pre.getLmDistances()

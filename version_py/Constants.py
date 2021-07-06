@@ -23,5 +23,5 @@ SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
 
-EXPERIMENT =            4
+EXPERIMENT =            2
 NB_RUNS =               10  # TODO : change it to 1000
