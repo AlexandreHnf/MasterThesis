@@ -23,8 +23,9 @@ SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
 
-EXPERIMENT =            1
+EXPERIMENT =            2
 NB_RUNS =               10  # TODO : change it to 1000
 
 # experiments stats filenames
 FILENAME_EXP1 = W + "Benchmarks\\Exp1\\" + "2_Bruxelles_exp1.csv"  # tentative
+FILENAME_EXP2 = W + "Benchmarks\\Exp2\\" + "2_Bruxelles_exp2.csv"

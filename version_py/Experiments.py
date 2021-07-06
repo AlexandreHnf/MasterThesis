@@ -45,13 +45,15 @@ def experiment2():
 
     b = Benchmark(graph)
 
-    heuristics = ["euclidean", "manhattan", "octile"]
-    for h in heuristics:
+    all_stats = {"euclidean": None, "manhattan": None, "octile": None}
+    for h in all_stats.keys():
         print("Heuristic : ", h)
         stats = b.testSingleQuery(NB_RUNS, "A*", "bin", BUCKET_SIZE, h, None)
+        all_stats[h] = stats
         print(stats)
     # TODO : write to file
-
+    header = ["heuristic", "avg_CT", "avg_SS", "avg_rel"]
+    Writer.writeExp1StatsToCsv(all_stats, header, FILENAME_EXP2)
 
 def experiment3():
     """
