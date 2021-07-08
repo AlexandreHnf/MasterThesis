@@ -156,6 +156,7 @@ def experiment6():
     Preprocessing benchmarks
     TODO check if the results are coherent (plot the qtree ?)
     # TODO : change nb experiments to 1000 + use the 6 graphs
+    # TODO : change this experiment, with different parameters for preprocessing
     """
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
     p = OSMgraphParser(GRAPH)
@@ -165,7 +166,9 @@ def experiment6():
     stats = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
 
     print(stats["Prepro_time"], " seconds")
-    # TODO : write to file
+    header = ["landmark_selection", "nb_landmarks", "prepro_CT"]
+    all_stats = [LANDMARK_SELECTION, NB_LANDMARKS, stats["Prepro_time"]]
+    Writer.writePreprocessingStatsToCsv(all_stats, header, FILENAME_EXP6)
 
 
 def experiment7():
