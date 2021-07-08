@@ -176,6 +176,7 @@ def experiment7():
     Experiment 7 : Multi-modal public transport network
     TODO check if the results are coherent (with plots)
     # TODO : change nb runs to 1000 + use the 6 graphs
+    TODO : add the stats : nb_edges after added lines
     """
     print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
     p = OSMgraphParser(GRAPH)
@@ -185,6 +186,9 @@ def experiment7():
     nb_added_edges = [0, 10, 50, 100, 200]  # TODO : change nb (200) to be 1.1% of the graph size
     speed_limits = [0.1, 15, 30, 90, 120, 1e10]
 
+    all_stats = {}
+
+    nb_exp = 0
     for s in speed_limits:
         for n in nb_added_edges:
             print("==> nb added edges : {0}, speed limit : {1}".format(n, s))
@@ -195,12 +199,21 @@ def experiment7():
             print("nb edges after added lines = ", multi_graph.getNbEdges())
 
             b = Benchmark(multi_graph)
+            pre_timer = Timer()
             alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
             lm_dists = alt_pre.getLmDistances()
+            pre_timer.end_timer()
+            prepro_time = pre_timer.getTimeElapsedSec()
             algos = ["Dijkstra", "ALT"]
-            stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists)
+            stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
-            print("Stats : ", stats)
+            all_stats[nb_exp] = [s, n] + list(stats["Dijkstra"].values()) + list(stats["ALT"].values())
+            print("Stats : ", all_stats[nb_exp])
+            nb_exp += 1
+
+    header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_rel",
+              "ALT_avg_CT", "ALT_avg_SS", "ALT_avg_rel", "lm_dists_CT"]
+    Writer.writeExp7StatsToCsv(all_stats, header, FILENAME_EXP7)
 
 
 def experiment8():

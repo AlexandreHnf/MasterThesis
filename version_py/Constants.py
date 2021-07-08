@@ -23,7 +23,7 @@ SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
 
-EXPERIMENT =            6
+EXPERIMENT =            7
 NB_RUNS =               10  # TODO : change it to 1000
 
 # experiments stats filenames /!\ TENTATIVE => change it to be generic
@@ -33,3 +33,4 @@ FILENAME_EXP3 = W + "Benchmarks\\Exp3\\" + "2_Bruxelles_exp3.csv"
 FILENAME_EXP4 = W + "Benchmarks\\Exp4\\" + "2_Bruxelles_exp4.csv"
 FILENAME_EXP5 = W + "Benchmarks\\Exp5\\" + "2_Bruxelles_exp5.csv"
 FILENAME_EXP6 = W + "Benchmarks\\Exp6\\" + "2_Bruxelles_exp6.csv"
+FILENAME_EXP7 = W + "Benchmarks\\Exp7\\" + "2_Bruxelles_exp7.csv"
