@@ -242,7 +242,7 @@ def experiment8():
     nodes_coords = deepcopy(graph.getNodesCoords())
     adjlist = deepcopy(graph.getAdjList())
     multi_graph = MultiModalGraph(nodes_coords, adjlist)
-    print(villo_closests)
+    print("villo closests : ", villo_closests)
     print("BEFORE : {0} nodes, {1} edges".format(graph.getNbNodes(), graph.getNbEdges()))
     multi_graph.toStationBased(villo_closests)
     print("AFTER : {0} nodes, {1} edges".format(multi_graph.getNbNodes(), multi_graph.getNbEdges()))
@@ -252,11 +252,16 @@ def experiment8():
     alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
     lm_dists = alt_pre.getLmDistances()
     pre_timer.end_timer()
-    pre_timer.printTimeElapsedMin("lm dists")  #TODO : save this time in the csv
+    pre_timer.printTimeElapsedMin("lm dists")
+    prepro_time = pre_timer.getTimeElapsedSec()
     algos = ["Dijkstra", "ALT"]
-    stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists)
+    stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
     print(stats)
+    header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
+    stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
+    stats["ALT"]["nb_villo_stations"] = len(villo_closests)
+    Writer.writeExp1StatsToCsv(stats, header, FILENAME_EXP8)
 
 
 def experiment9():
