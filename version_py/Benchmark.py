@@ -52,20 +52,17 @@ class Benchmark:
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            d = self.getSPalgoObject(self.graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists)
+            algo = self.getSPalgoObject(self.graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists)
             timer = Timer()
-            f = d.run()
+            f = algo.run()
             timer.end_timer()
             if not f:
                 continue
-            path_len = d.getSPweight()
-            timing = timer.getTimeElapsedSec()
-            ss = d.getSearchSpaceSize()
-            rel = d.getNbRelaxedEdges()
+            path_len = algo.getSPweight()
 
-            stats["avg_CT"] += timing
-            stats["avg_SS"] += ss
-            stats["avg_rel"] += rel
+            stats["avg_CT"] += timer.getTimeElapsedSec()
+            stats["avg_SS"] += algo.getSearchSpaceSize()
+            stats["avg_rel"] += algo.getNbRelaxedEdges()
 
             #print(f"s: {s} t: {t} : SP len: {round(path_len, 2)} time: {round(timing, 4)} ss: {ss} rel: {rel}")
             r += 1
@@ -77,7 +74,7 @@ class Benchmark:
         return stats
 
 
-    def testMultipleQueries(self, nb_runs, graph, algos, lm_dists=None):
+    def testMultipleQueries(self, nb_runs, graph, algos, lm_dists=None, prepro_time=0):
         # TODO check if the results are coherent
         stats = {algo_name : {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0} for algo_name in algos}
 
@@ -85,7 +82,7 @@ class Benchmark:
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            #print(f"run: {r}, s: {s} t: {t}")
+            # print(f"run: {r}, s: {s} t: {t}")
             success = True
             for algo_name in algos:
                 #print("algo : ", algo_name)
@@ -96,14 +93,23 @@ class Benchmark:
                 if not f:
                     success = False
                     break
-                path_len = algo.getSPweight()
+                #path_len = algo.getSPweight()
 
-                stats[algo_name]["avg_CT"] += round(timer.getTimeElapsedSec() / nb_runs, 6)
-                stats[algo_name]["avg_SS"] += round(algo.getSearchSpaceSize() / nb_runs, 2)
-                stats[algo_name]["avg_rel"] += round(algo.getNbRelaxedEdges() / nb_runs, 2)
+                stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
+                stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs
+                stats[algo_name]["avg_rel"] += algo.getNbRelaxedEdges() / nb_runs
             if not success:
                 continue
             r += 1
+        # round
+        for algo_name in algos:
+            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"], 6)
+            stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"], 2)
+            stats[algo_name]["avg_rel"] = round(stats[algo_name]["avg_rel"], 2)
+            if algo_name in ["ALT", "BidiALT"]:
+                stats[algo_name]["lm_dists_CT"] = prepro_time
+            else:
+                stats[algo_name]["lm_dists_CT"] = 0
 
         queries_timer.printTimeElapsedSec("Queries")
         return stats

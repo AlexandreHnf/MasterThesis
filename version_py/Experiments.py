@@ -134,15 +134,20 @@ def experiment5():
 
     b = Benchmark(graph)
 
+    pre_timer = Timer()
     alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
     lm_dists = alt_pre.getLmDistances()
-    print("ready (preprocessing done)")
+    pre_timer.end_timer()
+    pre_timer.printTimeElapsedMin("lm dists")
 
     algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
-    stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists)
-    # TODO : write to file
+    prepro_time = pre_timer.getTimeElapsedSec()
+    stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists, prepro_time)
     print(stats)
+
+    header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
+    Writer.writeExp1StatsToCsv(stats, header, FILENAME_EXP5)
 
 
 def experiment6():
@@ -189,7 +194,7 @@ def experiment7():
             b = Benchmark(multi_graph)
             alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
             lm_dists = alt_pre.getLmDistances()
-            algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
+            algos = ["Dijkstra", "ALT"]
             stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists)
 
             print("Stats : ", stats)
@@ -232,7 +237,7 @@ def experiment8():
     lm_dists = alt_pre.getLmDistances()
     pre_timer.end_timer()
     pre_timer.printTimeElapsedMin("lm dists")  #TODO : save this time in the csv
-    algos = {"Dijkstra": Dijkstra(multi_graph, -1, -1, "bin"), "ALT": ALT(multi_graph, -1, -1, lm_dists, "bin")}
+    algos = ["Dijkstra", "ALT"]
     stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists)
 
     print(stats)
