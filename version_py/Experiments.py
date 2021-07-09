@@ -218,7 +218,7 @@ def experiment6(graphs_names):
 
         all_stats[graph_name]["stats"] = stats
         filename = FILE_EXP6 + graph_name + "_exp6.csv"
-        Writer.writeSingleRowStatsToCsv(all_stats, header, filename)
+        Writer.writeSingleRowStatsToCsv(stats, header, filename)
 
     Writer.dicToJson(all_stats, FILE_EXP6_ALL)
 
@@ -284,12 +284,15 @@ def experiment8(graphs_names):
     """
     Experiment 8 : Multi-modal station-based network
     TODO TOTEST
-    # TODO : change nb runs to 1000 + use the 6 graphs
+    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 8 : Multi-modal station-based network : Dijkstra & ALT")
+    all_stats = {}
     for graph_name in graphs_names:
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse("foot")
+
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
 
         villo_coords = OSMgraphParser.getVilloNodes()
         # print(villo_coords)
@@ -312,6 +315,9 @@ def experiment8(graphs_names):
         multi_graph.toStationBased(villo_closests)
         print("AFTER : {0} nodes, {1} edges".format(multi_graph.getNbNodes(), multi_graph.getNbEdges()))
 
+        all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()
+        all_stats[graph_name]["nb_edges_after"] = multi_graph.getNbEdges()
+
         b = Benchmark(multi_graph)
         pre_timer = Timer()
         alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
@@ -326,8 +332,12 @@ def experiment8(graphs_names):
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
         stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
+
+        all_stats[graph_name]["stats"] = stats
         filename = FILE_EXP8 + graph_name + "_exp8.csv"
         Writer.writeDictDictStatsToCsv(stats, header, filename)
+
+    Writer.dicToJson(all_stats, FILE_EXP8_ALL)
 
 
 def experiment9():
