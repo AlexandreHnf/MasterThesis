@@ -154,7 +154,8 @@ class ALTpreprocessing:
                 if cur_dist > max_dist and self.existShortestPath(pid, origin_id):
                     max_dist = cur_dist
                     best_candidate = coord
-            landmarks.append(best_candidate)
+            if best_candidate:
+                landmarks.append(best_candidate)
         return landmarks
 
     def farthestLandmarkSelection(self, k, origin):

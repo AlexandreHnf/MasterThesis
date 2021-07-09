@@ -125,29 +125,35 @@ def experiment4(graphs_names):
     TODO check if the results are coherent with plots
     """
     print("EXPERIMENT 4 : how many landmarks ALT")
+    all_stats = {}
     for graph_name in graphs_names:
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+
         b = Benchmark(graph)
 
-        all_stats = {1: None, 2: None, 4: None, 8: None, 16: None, 32: None}
-        for nl in all_stats.keys():
-            print("Number of Landmarks : ", nl)
+        stats = {1: None, 2: None, 4: None, 8: None, 16: None, 32: None}
+        for nl in stats.keys():
+            print(f"Number of Landmarks : {nl}, selection : {LANDMARK_SELECTION}")
             pre_timer = Timer()
             alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, nl)
             lm_dists = alt_pre.getLmDistances()
             pre_timer.end_timer()
             pre_timer.printTimeElapsedMin("lm dists")
 
-            stats = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
-            stats["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
-            all_stats[nl] = stats
-            print(stats)
+            stat = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+            stat["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
+            stats[nl] = stat
+            print(stat)
+        all_stats[graph_name]["stats"] = stats
 
         header = ["nb_landmark", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
         filename = FILE_EXP4 + graph_name + "_exp4.csv"
-        Writer.writeDictDictStatsToCsv(all_stats, header, filename)
+        Writer.writeDictDictStatsToCsv(stats, header, filename)
+
+    Writer.dicToJson(all_stats, FILE_EXP4_ALL)
 
 
 def experiment5(graphs_names):
