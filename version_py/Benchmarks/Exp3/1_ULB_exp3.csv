@@ -1,4 +1,4 @@
 landmark_selection,avg_CT,avg_SS,avg_rel,lm_dists_CT
-random,0.001273,105,132,32.766005
-farthest,0.004124,182,213,47.755026
-planar,0.003075,156,190,42.325187
+random,0.000225,13,22,0.550518
+farthest,0.00015,10,17,0.878201
+planar,0.000225,13,22,0.863291
