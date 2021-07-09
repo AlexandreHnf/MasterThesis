@@ -4,7 +4,7 @@ import json
 # all functions that will be used to write shortest path experiments stats to csv files
 
 
-def writeExp1StatsToCsv(stats, header, filename):
+def writeDictDictStatsToCsv(stats, header, filename):
     """
     Takes a dictionary of statistics and write rows in csv file
     => keys = title for 1 row, values = 1 row data
@@ -24,7 +24,7 @@ def writeExp1StatsToCsv(stats, header, filename):
             # write the data
             writer.writerow(data)
 
-def writePreprocessingStatsToCsv(stats, header, filename):
+def writeSingleRowStatsToCsv(stats, header, filename):
     with open(filename, 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
 
@@ -34,7 +34,7 @@ def writePreprocessingStatsToCsv(stats, header, filename):
         # write the data
         writer.writerow(stats)
 
-def writeExp7StatsToCsv(stats, header, filename):
+def writeDictStatsToCsv(stats, header, filename):
     with open(filename, 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
 
