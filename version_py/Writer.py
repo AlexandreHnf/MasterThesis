@@ -46,3 +46,9 @@ def writeDictStatsToCsv(stats, header, filename):
 
             # write the data
             writer.writerow(data)
+
+def dicToJson(stats, filename):
+    # Serializing json
+
+    with open(filename, "w") as outfile:
+        json.dump(stats, outfile, indent = 4)

@@ -14,24 +14,31 @@ def experiment1(graphs_names):
     TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 1 : which priority queue Dijkstra")
+    all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
 
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+
         b = Benchmark(graph)
 
-        all_stats = {"bin": None, "fib": None, "list": None}
-        for p in all_stats.keys():
+        stats = {"bin": None, "fib": None, "list": None}
+        for p in stats.keys():
             print("Priority : ", p)
-            stats = b.testSingleQuery(NB_RUNS, "Dijkstra", p, BUCKET_SIZE, None, None)
-            all_stats[p] = stats
-            print(stats)
+            stat = b.testSingleQuery(NB_RUNS, "Dijkstra", p, BUCKET_SIZE, None, None)
+            stats[p] = stat
+            print(stat)
+        all_stats[graph_name]["stats"] = stats
 
         header = ["priority", "avg_CT", "avg_SS", "avg_rel"]
         filename = FILE_EXP1 + graph_name + "_exp1.csv"
-        Writer.writeDictDictStatsToCsv(all_stats, header, filename)
+        Writer.writeDictDictStatsToCsv(stats, header, filename)
 
+    print(FILE_EXP1_ALL)
+    Writer.dicToJson(all_stats, FILE_EXP1_ALL)
 
 def experiment2(graphs_names):
     """
@@ -302,49 +309,56 @@ def experiment10():
 
 # =====================================================
 
-def launchExperiment():
-    if EXPERIMENT == 1:
+def launchExperiment(exp):
+    # TODO : put all the necessary graphs instead of just 1
+    if exp == 1:
         graphs_names = [GRAPH_1_NAME]
         experiment1(graphs_names)
 
-    elif EXPERIMENT == 2:
+    elif exp == 2:
         graphs_names = [GRAPH_1_NAME]
         experiment2(graphs_names)
 
-    elif EXPERIMENT == 3:
+    elif exp == 3:
         graphs_names = [GRAPH_1_NAME]
         experiment3(graphs_names)
 
-    elif EXPERIMENT == 4:
+    elif exp == 4:
         graphs_names = [GRAPH_1_NAME]
         experiment4(graphs_names)
 
-    elif EXPERIMENT == 5:
+    elif exp == 5:
         graphs_names = [GRAPH_1_NAME]
         experiment5(graphs_names)
 
-    elif EXPERIMENT == 6:
+    elif exp == 6:
         graphs_names = [GRAPH_1_NAME]
         experiment6(graphs_names)
 
-    elif EXPERIMENT == 7:
+    elif exp == 7:
         graphs_names = [GRAPH_1_NAME]
         experiment7(graphs_names)
 
-    elif EXPERIMENT == 8:
+    elif exp == 8:
         graphs_names = [GRAPH_1_NAME]
         experiment8(graphs_names)
 
-    elif EXPERIMENT == 9:
+    elif exp == 9:
         experiment9()
 
-    elif EXPERIMENT == 10:
+    elif exp == 10:
         experiment10()
 
 
+def launchAllExperiments():
+    for e in range(1, 11):
+        launchExperiment(e)
+
+
 def main():
-    launchExperiment()
-    #TODO : faire une fonction qui lance tous les experiments a la suite
+    launchExperiment(EXPERIMENT)
+
+    # launchAllExperiments()
 
 
 if __name__ == "__main__":
