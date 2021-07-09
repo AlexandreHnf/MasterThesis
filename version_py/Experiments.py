@@ -227,19 +227,21 @@ def experiment7(graphs_names):
     """
     Experiment 7 : Multi-modal public transport network
     TODO check if the results are coherent (with plots)
-    # TODO : change nb runs to 1000 + use the 6 graphs
-    TODO : add the stats : nb_edges after added lines
+    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
+    all_stats = {}
     for graph_name in graphs_names:
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse("foot")
         print("nb edges before experiments : ", graph.getNbEdges())
 
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+
         nb_added_edges = [0, 10, 50, 100, 200]  # TODO : change nb (200) to be 1.1% of the graph size
         speed_limits = [0.1, 15, 30, 90, 120, 1e10]
 
-        all_stats = {}
+        stats = {}
 
         nb_exp = 0
         for s in speed_limits:
@@ -258,16 +260,24 @@ def experiment7(graphs_names):
                 pre_timer.end_timer()
                 prepro_time = pre_timer.getTimeElapsedSec()
                 algos = ["Dijkstra", "ALT"]
-                stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+                stat = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
-                all_stats[nb_exp] = [s, n] + list(stats["Dijkstra"].values()) + list(stats["ALT"].values())
-                print("Stats : ", all_stats[nb_exp])
+                stats[nb_exp] = [s, n] + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
+                print("Stats : ", stats[nb_exp])
+
+                all_stats[graph_name][nb_exp] = {"nb_edges_after": multi_graph.getNbEdges(),
+                                                  "speed_limit": s,
+                                                  "nb_added_edges": n,
+                                                  "Dijkstra": stat["Dijkstra"],
+                                                  "ALT": stat["ALT"]}
                 nb_exp += 1
 
         header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_rel",
                   "ALT_avg_CT", "ALT_avg_SS", "ALT_avg_rel", "lm_dists_CT"]
         filename = FILE_EXP7 + graph_name + "_exp7.csv"
-        Writer.writeDictStatsToCsv(all_stats, header, filename)
+        Writer.writeDictStatsToCsv(stats, header, filename)
+
+    Writer.dicToJson(all_stats, FILE_EXP7_ALL)
 
 
 def experiment8(graphs_names):

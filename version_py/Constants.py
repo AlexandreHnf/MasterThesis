@@ -37,7 +37,7 @@ SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
 
-EXPERIMENT =            6
+EXPERIMENT =            7
 NB_RUNS =               10  # TODO : change it to 1000
 
 # experiments stats filenames /!\ TENTATIVE => change it to be generic
@@ -57,3 +57,5 @@ FILE_EXP3_ALL =     W + "Benchmarks\\Exp3\\exp3_all_stats.json"
 FILE_EXP4_ALL =     W + "Benchmarks\\Exp4\\exp4_all_stats.json"
 FILE_EXP5_ALL =     W + "Benchmarks\\Exp5\\exp5_all_stats.json"
 FILE_EXP6_ALL =     W + "Benchmarks\\Exp6\\exp6_all_stats.json"
+FILE_EXP7_ALL =     W + "Benchmarks\\Exp7\\exp7_all_stats.json"
+FILE_EXP8_ALL =     W + "Benchmarks\\Exp8\\exp8_all_stats.json"
