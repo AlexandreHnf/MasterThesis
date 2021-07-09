@@ -164,9 +164,12 @@ def experiment5(graphs_names):
     TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
+    all_stats = {}
     for graph_name in graphs_names:
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
+
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
 
         b = Benchmark(graph)
 
@@ -182,10 +185,13 @@ def experiment5(graphs_names):
         stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists, prepro_time)
         print(stats)
 
+        all_stats[graph_name]["stats"] = stats
+
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
         filename = FILE_EXP5 + graph_name + "_exp5.csv"
         Writer.writeDictDictStatsToCsv(stats, header, filename)
 
+    Writer.dicToJson(all_stats, FILE_EXP5_ALL)
 
 def experiment6(graphs_names):
     """

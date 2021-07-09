@@ -37,7 +37,7 @@ SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
 
-EXPERIMENT =            4
+EXPERIMENT =            5
 NB_RUNS =               10  # TODO : change it to 1000
 
 # experiments stats filenames /!\ TENTATIVE => change it to be generic
