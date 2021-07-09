@@ -5,6 +5,7 @@ from copy import deepcopy
 from Quadtree import showVilloStations
 import Writer
 
+
 def experiment1(graphs_names):
     """
     Experiment 1 : test which queue type gives fastest Dijkstra
@@ -37,8 +38,8 @@ def experiment1(graphs_names):
         filename = FILE_EXP1 + graph_name + "_exp1.csv"
         Writer.writeDictDictStatsToCsv(stats, header, filename)
 
-    print(FILE_EXP1_ALL)
     Writer.dicToJson(all_stats, FILE_EXP1_ALL)
+
 
 def experiment2(graphs_names):
     """
@@ -50,22 +51,29 @@ def experiment2(graphs_names):
     TODO check if the results are coherent
     """
     print("EXPERIMENT 2 : which heuristic A*")
+    all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH)
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
+
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
 
         b = Benchmark(graph)
 
-        all_stats = {"euclidean": None, "manhattan": None, "octile": None}
-        for h in all_stats.keys():
+        stats = {"euclidean": None, "manhattan": None, "octile": None}
+        for h in stats.keys():
             print("Heuristic : ", h)
-            stats = b.testSingleQuery(NB_RUNS, "A*", "bin", BUCKET_SIZE, h, None)
-            all_stats[h] = stats
-            print(stats)
+            stat = b.testSingleQuery(NB_RUNS, "A*", "bin", BUCKET_SIZE, h, None)
+            stats[h] = stat
+            print(stat)
+        all_stats[graph_name]["stats"] = stats
 
         header = ["heuristic", "avg_CT", "avg_SS", "avg_rel"]
         filename = FILE_EXP2 + graph_name + "_exp2.csv"
-        Writer.writeDictDictStatsToCsv(all_stats, header, filename)
+        Writer.writeDictDictStatsToCsv(stats, header, filename)
+
+    Writer.dicToJson(all_stats, FILE_EXP2_ALL)
+
 
 def experiment3(graphs_names):
     """
@@ -78,7 +86,7 @@ def experiment3(graphs_names):
     """
     print("EXPERIMENT 3 : which landmark selection ALT")
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH)
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
         b = Benchmark(graph)
@@ -112,7 +120,7 @@ def experiment4(graphs_names):
     """
     print("EXPERIMENT 4 : how many landmarks ALT")
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH)
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
         b = Benchmark(graph)
@@ -135,6 +143,7 @@ def experiment4(graphs_names):
         filename = FILE_EXP4 + graph_name + "_exp4.csv"
         Writer.writeDictDictStatsToCsv(all_stats, header, filename)
 
+
 def experiment5(graphs_names):
     """
     Experiment 5 : Single modal car network
@@ -144,7 +153,7 @@ def experiment5(graphs_names):
     """
     print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH)
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
         b = Benchmark(graph)
@@ -176,7 +185,7 @@ def experiment6(graphs_names):
     """
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH)
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
         b = Benchmark(graph)
@@ -198,7 +207,7 @@ def experiment7(graphs_names):
     """
     print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH)
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse("foot")
         print("nb edges before experiments : ", graph.getNbEdges())
 
@@ -244,7 +253,7 @@ def experiment8(graphs_names):
     """
     print("EXPERIMENT 8 : Multi-modal station-based network : Dijkstra & ALT")
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH)
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse("foot")
 
         villo_coords = OSMgraphParser.getVilloNodes()
