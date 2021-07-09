@@ -1,0 +1,23 @@
+{
+    "1_ULB": {
+        "nb_nodes": 149,
+        "nb_edges": 349,
+        "stats": {
+            "bin": {
+                "avg_CT": 0.000375,
+                "avg_SS": 72,
+                "avg_rel": 87
+            },
+            "fib": {
+                "avg_CT": 0.001875,
+                "avg_SS": 56,
+                "avg_rel": 74
+            },
+            "list": {
+                "avg_CT": 0.001204,
+                "avg_SS": 84,
+                "avg_rel": 103
+            }
+        }
+    }
+}

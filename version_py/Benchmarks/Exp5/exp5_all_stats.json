@@ -1,0 +1,44 @@
+{
+    "1_ULB": {
+        "nb_nodes": 149,
+        "nb_edges": 349,
+        "stats": {
+            "Dijkstra": {
+                "avg_CT": 0.000603,
+                "avg_SS": 109.2,
+                "avg_rel": 129.8,
+                "lm_dists_CT": 0
+            },
+            "A*": {
+                "avg_CT": 0.000898,
+                "avg_SS": 108.9,
+                "avg_rel": 129.6,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00015,
+                "avg_SS": 12.7,
+                "avg_rel": 21.4,
+                "lm_dists_CT": 0.84045
+            },
+            "BidiDijkstra": {
+                "avg_CT": 0.000299,
+                "avg_SS": 59.2,
+                "avg_rel": 87.0,
+                "lm_dists_CT": 0
+            },
+            "BidiAstar": {
+                "avg_CT": 0.000602,
+                "avg_SS": 58.4,
+                "avg_rel": 86.0,
+                "lm_dists_CT": 0
+            },
+            "BidiALT": {
+                "avg_CT": 0.000375,
+                "avg_SS": 19.8,
+                "avg_rel": 35.5,
+                "lm_dists_CT": 0.84045
+            }
+        }
+    }
+}

@@ -1,0 +1,516 @@
+{
+    "1_ULB": {
+        "nb_nodes": 149,
+        "nb_edges": 349,
+        "0": {
+            "nb_edges_after": 349,
+            "speed_limit": 0.1,
+            "nb_added_edges": 0,
+            "Dijkstra": {
+                "avg_CT": 0.000675,
+                "avg_SS": 90.3,
+                "avg_rel": 110.7,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00015,
+                "avg_SS": 19.2,
+                "avg_rel": 28.4,
+                "lm_dists_CT": 1.034815
+            }
+        },
+        "1": {
+            "nb_edges_after": 359,
+            "speed_limit": 0.1,
+            "nb_added_edges": 10,
+            "Dijkstra": {
+                "avg_CT": 0.000225,
+                "avg_SS": 71.4,
+                "avg_rel": 92.1,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00015,
+                "avg_SS": 11.9,
+                "avg_rel": 20.2,
+                "lm_dists_CT": 0.915804
+            }
+        },
+        "2": {
+            "nb_edges_after": 399,
+            "speed_limit": 0.1,
+            "nb_added_edges": 50,
+            "Dijkstra": {
+                "avg_CT": 0.0003,
+                "avg_SS": 68.6,
+                "avg_rel": 97.1,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000525,
+                "avg_SS": 17.9,
+                "avg_rel": 30.8,
+                "lm_dists_CT": 0.854548
+            }
+        },
+        "3": {
+            "nb_edges_after": 449,
+            "speed_limit": 0.1,
+            "nb_added_edges": 100,
+            "Dijkstra": {
+                "avg_CT": 0.000525,
+                "avg_SS": 88.1,
+                "avg_rel": 145.5,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000375,
+                "avg_SS": 13.2,
+                "avg_rel": 28.9,
+                "lm_dists_CT": 1.027561
+            }
+        },
+        "4": {
+            "nb_edges_after": 549,
+            "speed_limit": 0.1,
+            "nb_added_edges": 200,
+            "Dijkstra": {
+                "avg_CT": 0.00075,
+                "avg_SS": 95.1,
+                "avg_rel": 195.9,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000225,
+                "avg_SS": 15.7,
+                "avg_rel": 42.6,
+                "lm_dists_CT": 1.234854
+            }
+        },
+        "5": {
+            "nb_edges_after": 349,
+            "speed_limit": 15,
+            "nb_added_edges": 0,
+            "Dijkstra": {
+                "avg_CT": 0.0006,
+                "avg_SS": 120.2,
+                "avg_rel": 143.9,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00045,
+                "avg_SS": 33.3,
+                "avg_rel": 47.9,
+                "lm_dists_CT": 0.833562
+            }
+        },
+        "6": {
+            "nb_edges_after": 359,
+            "speed_limit": 15,
+            "nb_added_edges": 10,
+            "Dijkstra": {
+                "avg_CT": 0.000375,
+                "avg_SS": 55.7,
+                "avg_rel": 75.4,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00015,
+                "avg_SS": 11.6,
+                "avg_rel": 18.2,
+                "lm_dists_CT": 0.77881
+            }
+        },
+        "7": {
+            "nb_edges_after": 399,
+            "speed_limit": 15,
+            "nb_added_edges": 50,
+            "Dijkstra": {
+                "avg_CT": 0.00015,
+                "avg_SS": 84.9,
+                "avg_rel": 120.4,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000527,
+                "avg_SS": 24.4,
+                "avg_rel": 38.8,
+                "lm_dists_CT": 1.017109
+            }
+        },
+        "8": {
+            "nb_edges_after": 449,
+            "speed_limit": 15,
+            "nb_added_edges": 100,
+            "Dijkstra": {
+                "avg_CT": 0.000375,
+                "avg_SS": 88.3,
+                "avg_rel": 142.5,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000297,
+                "avg_SS": 21.0,
+                "avg_rel": 44.5,
+                "lm_dists_CT": 1.021053
+            }
+        },
+        "9": {
+            "nb_edges_after": 549,
+            "speed_limit": 15,
+            "nb_added_edges": 200,
+            "Dijkstra": {
+                "avg_CT": 0.000749,
+                "avg_SS": 85.2,
+                "avg_rel": 179.2,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000451,
+                "avg_SS": 14.6,
+                "avg_rel": 41.6,
+                "lm_dists_CT": 1.185655
+            }
+        },
+        "10": {
+            "nb_edges_after": 349,
+            "speed_limit": 30,
+            "nb_added_edges": 0,
+            "Dijkstra": {
+                "avg_CT": 0.000302,
+                "avg_SS": 83.6,
+                "avg_rel": 103.6,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000225,
+                "avg_SS": 14.7,
+                "avg_rel": 23.1,
+                "lm_dists_CT": 0.749207
+            }
+        },
+        "11": {
+            "nb_edges_after": 359,
+            "speed_limit": 30,
+            "nb_added_edges": 10,
+            "Dijkstra": {
+                "avg_CT": 0.000375,
+                "avg_SS": 62.4,
+                "avg_rel": 81.4,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.0,
+                "avg_SS": 15.1,
+                "avg_rel": 23.6,
+                "lm_dists_CT": 0.911323
+            }
+        },
+        "12": {
+            "nb_edges_after": 399,
+            "speed_limit": 30,
+            "nb_added_edges": 50,
+            "Dijkstra": {
+                "avg_CT": 0.000524,
+                "avg_SS": 85.0,
+                "avg_rel": 124.4,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000378,
+                "avg_SS": 15.2,
+                "avg_rel": 30.9,
+                "lm_dists_CT": 1.039684
+            }
+        },
+        "13": {
+            "nb_edges_after": 449,
+            "speed_limit": 30,
+            "nb_added_edges": 100,
+            "Dijkstra": {
+                "avg_CT": 0.000375,
+                "avg_SS": 101.4,
+                "avg_rel": 161.6,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000525,
+                "avg_SS": 25.4,
+                "avg_rel": 51.0,
+                "lm_dists_CT": 0.925032
+            }
+        },
+        "14": {
+            "nb_edges_after": 549,
+            "speed_limit": 30,
+            "nb_added_edges": 200,
+            "Dijkstra": {
+                "avg_CT": 0.000721,
+                "avg_SS": 98.4,
+                "avg_rel": 182.8,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00045,
+                "avg_SS": 10.7,
+                "avg_rel": 31.6,
+                "lm_dists_CT": 1.134588
+            }
+        },
+        "15": {
+            "nb_edges_after": 349,
+            "speed_limit": 90,
+            "nb_added_edges": 0,
+            "Dijkstra": {
+                "avg_CT": 0.000375,
+                "avg_SS": 60.3,
+                "avg_rel": 75.2,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 7.5e-05,
+                "avg_SS": 12.4,
+                "avg_rel": 19.4,
+                "lm_dists_CT": 0.837555
+            }
+        },
+        "16": {
+            "nb_edges_after": 359,
+            "speed_limit": 90,
+            "nb_added_edges": 10,
+            "Dijkstra": {
+                "avg_CT": 0.00075,
+                "avg_SS": 115.2,
+                "avg_rel": 139.8,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.0003,
+                "avg_SS": 29.0,
+                "avg_rel": 42.8,
+                "lm_dists_CT": 0.840289
+            }
+        },
+        "17": {
+            "nb_edges_after": 399,
+            "speed_limit": 90,
+            "nb_added_edges": 50,
+            "Dijkstra": {
+                "avg_CT": 0.0006,
+                "avg_SS": 78.5,
+                "avg_rel": 120.2,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00045,
+                "avg_SS": 32.8,
+                "avg_rel": 51.2,
+                "lm_dists_CT": 0.823812
+            }
+        },
+        "18": {
+            "nb_edges_after": 449,
+            "speed_limit": 90,
+            "nb_added_edges": 100,
+            "Dijkstra": {
+                "avg_CT": 0.000226,
+                "avg_SS": 66.4,
+                "avg_rel": 113.8,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000374,
+                "avg_SS": 15.2,
+                "avg_rel": 34.9,
+                "lm_dists_CT": 1.021664
+            }
+        },
+        "19": {
+            "nb_edges_after": 549,
+            "speed_limit": 90,
+            "nb_added_edges": 200,
+            "Dijkstra": {
+                "avg_CT": 0.000525,
+                "avg_SS": 92.1,
+                "avg_rel": 191.6,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000373,
+                "avg_SS": 22.5,
+                "avg_rel": 52.7,
+                "lm_dists_CT": 1.531655
+            }
+        },
+        "20": {
+            "nb_edges_after": 349,
+            "speed_limit": 120,
+            "nb_added_edges": 0,
+            "Dijkstra": {
+                "avg_CT": 0.000226,
+                "avg_SS": 71.0,
+                "avg_rel": 91.2,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000299,
+                "avg_SS": 16.1,
+                "avg_rel": 24.4,
+                "lm_dists_CT": 0.858324
+            }
+        },
+        "21": {
+            "nb_edges_after": 359,
+            "speed_limit": 120,
+            "nb_added_edges": 10,
+            "Dijkstra": {
+                "avg_CT": 0.000525,
+                "avg_SS": 114.7,
+                "avg_rel": 143.9,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 7.5e-05,
+                "avg_SS": 12.7,
+                "avg_rel": 21.9,
+                "lm_dists_CT": 0.829096
+            }
+        },
+        "22": {
+            "nb_edges_after": 399,
+            "speed_limit": 120,
+            "nb_added_edges": 50,
+            "Dijkstra": {
+                "avg_CT": 0.000225,
+                "avg_SS": 75.6,
+                "avg_rel": 104.7,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000223,
+                "avg_SS": 24.6,
+                "avg_rel": 39.2,
+                "lm_dists_CT": 1.064836
+            }
+        },
+        "23": {
+            "nb_edges_after": 449,
+            "speed_limit": 120,
+            "nb_added_edges": 100,
+            "Dijkstra": {
+                "avg_CT": 0.006677,
+                "avg_SS": 100.6,
+                "avg_rel": 170.7,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.00195,
+                "avg_SS": 18.0,
+                "avg_rel": 42.0,
+                "lm_dists_CT": 1.018403
+            }
+        },
+        "24": {
+            "nb_edges_after": 549,
+            "speed_limit": 120,
+            "nb_added_edges": 200,
+            "Dijkstra": {
+                "avg_CT": 0.000451,
+                "avg_SS": 59.0,
+                "avg_rel": 145.0,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000525,
+                "avg_SS": 27.2,
+                "avg_rel": 71.1,
+                "lm_dists_CT": 1.130293
+            }
+        },
+        "25": {
+            "nb_edges_after": 349,
+            "speed_limit": 10000000000.0,
+            "nb_added_edges": 0,
+            "Dijkstra": {
+                "avg_CT": 0.000751,
+                "avg_SS": 71.5,
+                "avg_rel": 91.4,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000674,
+                "avg_SS": 18.2,
+                "avg_rel": 27.4,
+                "lm_dists_CT": 0.92362
+            }
+        },
+        "26": {
+            "nb_edges_after": 359,
+            "speed_limit": 10000000000.0,
+            "nb_added_edges": 10,
+            "Dijkstra": {
+                "avg_CT": 0.000375,
+                "avg_SS": 91.3,
+                "avg_rel": 118.2,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000225,
+                "avg_SS": 22.8,
+                "avg_rel": 36.1,
+                "lm_dists_CT": 0.912766
+            }
+        },
+        "27": {
+            "nb_edges_after": 399,
+            "speed_limit": 10000000000.0,
+            "nb_added_edges": 50,
+            "Dijkstra": {
+                "avg_CT": 0.000675,
+                "avg_SS": 83.4,
+                "avg_rel": 130.6,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000673,
+                "avg_SS": 45.4,
+                "avg_rel": 76.5,
+                "lm_dists_CT": 1.040357
+            }
+        },
+        "28": {
+            "nb_edges_after": 449,
+            "speed_limit": 10000000000.0,
+            "nb_added_edges": 100,
+            "Dijkstra": {
+                "avg_CT": 0.000602,
+                "avg_SS": 102.2,
+                "avg_rel": 155.8,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.000675,
+                "avg_SS": 33.2,
+                "avg_rel": 65.0,
+                "lm_dists_CT": 1.074603
+            }
+        },
+        "29": {
+            "nb_edges_after": 549,
+            "speed_limit": 10000000000.0,
+            "nb_added_edges": 200,
+            "Dijkstra": {
+                "avg_CT": 0.000449,
+                "avg_SS": 90.9,
+                "avg_rel": 180.8,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.001501,
+                "avg_SS": 73.3,
+                "avg_rel": 170.9,
+                "lm_dists_CT": 1.021375
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "1_ULB": {
+        "nb_nodes": 149,
+        "nb_edges": 349,
+        "stats": {
+            "random": {
+                "avg_CT": 0.000225,
+                "avg_SS": 13,
+                "avg_rel": 22,
+                "lm_dists_CT": 0.550518
+            },
+            "farthest": {
+                "avg_CT": 0.00015,
+                "avg_SS": 10,
+                "avg_rel": 17,
+                "lm_dists_CT": 0.878201
+            },
+            "planar": {
+                "avg_CT": 0.000225,
+                "avg_SS": 13,
+                "avg_rel": 22,
+                "lm_dists_CT": 0.863291
+            }
+        }
+    }
+}

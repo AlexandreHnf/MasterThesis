@@ -1,0 +1,23 @@
+{
+    "1_ULB": {
+        "nb_nodes": 149,
+        "nb_edges": 349,
+        "stats": {
+            "euclidean": {
+                "avg_CT": 0.00045,
+                "avg_SS": 59,
+                "avg_rel": 74
+            },
+            "manhattan": {
+                "avg_CT": 0.000899,
+                "avg_SS": 71,
+                "avg_rel": 89
+            },
+            "octile": {
+                "avg_CT": 0.0012,
+                "avg_SS": 88,
+                "avg_rel": 106
+            }
+        }
+    }
+}
