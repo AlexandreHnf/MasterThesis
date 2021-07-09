@@ -202,18 +202,25 @@ def experiment6(graphs_names):
     TODO : change this experiment, with different parameters for preprocessing
     """
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
+    all_stats = {}
     for graph_name in graphs_names:
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
-        b = Benchmark(graph)
-        stats = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
 
-        print(stats["Prepro_time"], " seconds")
+        b = Benchmark(graph)
+        stat = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
+
+        print(stat["Prepro_time"], " seconds")
         header = ["landmark_selection", "nb_landmarks", "prepro_CT"]
-        all_stats = [LANDMARK_SELECTION, NB_LANDMARKS, stats["Prepro_time"]]
+        stats = [LANDMARK_SELECTION, NB_LANDMARKS, stat["Prepro_time"]]
+
+        all_stats[graph_name]["stats"] = stats
         filename = FILE_EXP6 + graph_name + "_exp6.csv"
         Writer.writeSingleRowStatsToCsv(all_stats, header, filename)
+
+    Writer.dicToJson(all_stats, FILE_EXP6_ALL)
 
 
 def experiment7(graphs_names):
