@@ -2,21 +2,23 @@
     "1_ULB": {
         "nb_nodes": 149,
         "nb_edges": 349,
+        "avg_deg": 2.34,
         "nb_nodes_after": 298,
         "nb_edges_after": 762,
+        "avg_deg_after": 2.56,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.000974,
-                "avg_SS": 187.4,
-                "avg_rel": 242.7,
+                "avg_CT": 0.001202,
+                "avg_SS": 152.9,
+                "avg_rel": 196.7,
                 "lm_dists_CT": 0,
                 "nb_villo_stations": 32
             },
             "ALT": {
-                "avg_CT": 0.000301,
-                "avg_SS": 33.1,
-                "avg_rel": 50.2,
-                "lm_dists_CT": 3.42434,
+                "avg_CT": 0.000375,
+                "avg_SS": 24.0,
+                "avg_rel": 39.0,
+                "lm_dists_CT": 3.465352,
                 "nb_villo_stations": 32
             }
         }

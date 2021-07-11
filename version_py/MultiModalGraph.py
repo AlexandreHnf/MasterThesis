@@ -2,6 +2,9 @@ from Graph import Graph
 from Random import *
 from Utils import haversine
 from Edge import Edge
+from Quadtree import showVilloStations
+from ParseOSMgraph import OSMgraphParser
+from copy import deepcopy
 
 
 class MultiModalGraph(Graph):
@@ -30,7 +33,6 @@ class MultiModalGraph(Graph):
 
             nb_added += 1
 
-
     def toStationBased(self, stations_nodes):
         """
         Transform the uni-modal graph into a multi-modal station-based graph
@@ -44,10 +46,37 @@ class MultiModalGraph(Graph):
             for edge in self.getAdj(v):
                 # match bike speed (edge weight walk / 3)
                 bike_edges.append(Edge(edge.getExtremityNode() + max_id, edge.getWeight() / 3))
-            self.addNode(v+max_id, bike_edges, v)
+            self.addNode(v + max_id, bike_edges, v)
             # TODO : update nb nodes (nodes list of Graph)
 
         # add links between the two layers
         for sn in stations_nodes:
-            self.addEdge(sn, Edge(sn+max_id, 60))  # node to station
-            self.addEdge(sn+max_id, Edge(sn, 60))  # station to node
+            self.addEdge(sn, Edge(sn + max_id, 60))  # node to station
+            self.addEdge(sn + max_id, Edge(sn, 60))  # station to node
+
+
+# =====================================================================
+
+def addVilloStations(graph):
+    villo_coords = OSMgraphParser.getVilloNodes()
+    # print(villo_coords)
+
+    showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
+
+    # get Villo stations nodes in the graph
+    villo_closests = []
+    for coord in villo_coords:
+        closest = graph.findClosestNode(coord)
+        if closest:
+            villo_closests.append(closest)
+
+    # transform the graph into a multi-modal foot-villo graph
+    nodes_coords = deepcopy(graph.getNodesCoords())
+    adjlist = deepcopy(graph.getAdjList())
+    multi_graph = MultiModalGraph(nodes_coords, adjlist)
+    print("villo closests : ", villo_closests)
+    print("BEFORE : {0} nodes, {1} edges".format(graph.getNbNodes(), graph.getNbEdges()))
+    multi_graph.toStationBased(villo_closests)
+    print("AFTER : {0} nodes, {1} edges".format(multi_graph.getNbNodes(), multi_graph.getNbEdges()))
+
+    return multi_graph, villo_closests

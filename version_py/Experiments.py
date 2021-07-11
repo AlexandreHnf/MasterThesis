@@ -2,7 +2,6 @@ from Benchmark import *
 from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
-from Quadtree import showVilloStations
 import Writer
 
 
@@ -26,6 +25,7 @@ def experiment1(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+        # Benchmark
         b = Benchmark(graph)
 
         stats = {"bin": None, "fib": None, "list": None}
@@ -62,6 +62,7 @@ def experiment2(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+        # Benchmark
         b = Benchmark(graph)
 
         stats = {"euclidean": None, "manhattan": None, "octile": None}
@@ -98,6 +99,7 @@ def experiment3(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+        # Benchmark
         b = Benchmark(graph)
 
         stats = {"random": None, "farthest": None, "planar": None}
@@ -140,6 +142,7 @@ def experiment4(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+        # Benchmark
         b = Benchmark(graph)
 
         stats = {1: None, 2: None, 4: None, 8: None, 16: None, 32: None}
@@ -181,8 +184,8 @@ def experiment5(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+        # Benchmark
         b = Benchmark(graph)
-
         pre_timer = Timer()
         alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
         lm_dists = alt_pre.getLmDistances()
@@ -221,6 +224,7 @@ def experiment6(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+        # Benchmark
         b = Benchmark(graph)
         stat = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
 
@@ -267,6 +271,7 @@ def experiment7(graphs_names):
                 multi_graph.addPublicTransportEdges(n, s)
                 print("nb edges after added lines = ", multi_graph.getNbEdges())
 
+                # Benchmark
                 b = Benchmark(multi_graph)
                 pre_timer = Timer()
                 alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
@@ -297,12 +302,11 @@ def experiment7(graphs_names):
 
 def experiment8(graphs_names):
     """
-    Experiment 8 : Multi-modal station-based network
+    Experiment 8 : Multi-modal villo-station-based network
     TODO TOTEST
     TODO : change nb runs to 1000 + use the 6 graphs
-    TODO : réduire la taille de la fonction
     """
-    print("EXPERIMENT 8 : Multi-modal station-based network : Dijkstra & ALT")
+    print("EXPERIMENT 8 : Multi-modal villo-station-based network : Dijkstra & ALT")
     all_stats = {}
     for graph_name in graphs_names:
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
@@ -312,31 +316,13 @@ def experiment8(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
-        villo_coords = OSMgraphParser.getVilloNodes()
-        # print(villo_coords)
-
-        showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
-
-        # get Villo stations nodes in the graph
-        villo_closests = []
-        for coord in villo_coords:
-            closest = graph.findClosestNode(coord)
-            if closest:
-                villo_closests.append(closest)
-
-        # transform the graph into a multi-modal foot-villo graph
-        nodes_coords = deepcopy(graph.getNodesCoords())
-        adjlist = deepcopy(graph.getAdjList())
-        multi_graph = MultiModalGraph(nodes_coords, adjlist)
-        print("villo closests : ", villo_closests)
-        print("BEFORE : {0} nodes, {1} edges".format(graph.getNbNodes(), graph.getNbEdges()))
-        multi_graph.toStationBased(villo_closests)
-        print("AFTER : {0} nodes, {1} edges".format(multi_graph.getNbNodes(), multi_graph.getNbEdges()))
+        multi_graph, villo_closests = addVilloStations(graph)
 
         all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()
         all_stats[graph_name]["nb_edges_after"] = multi_graph.getNbEdges()
         all_stats[graph_name]["avg_deg_after"] = multi_graph.getAvgDegree()
 
+        # Benchmark
         b = Benchmark(multi_graph)
         pre_timer = Timer()
         alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
