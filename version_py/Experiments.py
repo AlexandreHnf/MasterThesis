@@ -348,11 +348,11 @@ def experiment8(graphs_names):
 def experiment9():
     """
     Experiment 9 :
-    Multi modal with : personal car and personal bike ? => pb of coherence mmmh
+    Multi modal station-based graph with : personal car and villo bike ?
     TODO TOTEST
     # TODO : change nb runs to 1000 + use the 6 graphs
     """
-    print("EXPERIMENT 9 : Multi-modal with personal car and personal bike : Dijkstra & ALT")
+    print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
     pass
 
 

@@ -6,7 +6,6 @@ from Constants import *
 import random
 import time
 from Graph import Graph
-from MultiModalGraph import MultiModalGraph
 from Dijkstra import Dijkstra
 
 class OSMgraphParser:
@@ -36,18 +35,18 @@ class OSMgraphParser:
                 return True
         return False
 
-    def createEdge(self, feature, adj_list, v, w, weight):
+    def createEdge(self, feature, adj_list, v, w, weight, speed_limit, length_km, travel_type):
         """
         Given 2 nodes and a new edge weight, creates a new edge
         [v] --- weight ---> [w] and add it to the adjacency list
         """
         if not self.isDuplicateEdge(adj_list, v, w, weight):
-            adj_list[v].append(Edge(w, weight))  # new edge forward
+            adj_list[v].append(Edge(w, travel_type, weight, speed_limit, length_km))  # new edge forward
 
             oneway_tag = feature["properties"]["tags"].get("oneway", None)
             if oneway_tag is None or oneway_tag == "no":  # if backward edge must exist
                 if not self.isDuplicateEdge(adj_list, w, v, weight):
-                    adj_list[w].append(Edge(v, weight))  # new edge backward
+                    adj_list[w].append(Edge(v, travel_type, weight, speed_limit, length_km))  # new edge backward
                     self.nb_two_way_edges += 1
 
     def estimateSpeedLimit(self, highway_tag):
@@ -156,7 +155,11 @@ class OSMgraphParser:
                 edges = []
                 for e in graph[v]:
                     if not removed_nodes[e.getExtremityNode()]:
-                        edges.append(Edge(e.getExtremityNode(), e.getWeight()))
+                        edges.append(Edge(e.getExtremityNode(),
+                                          e.getTravelType(),
+                                          e.getWeight(),
+                                          e.getLengthKm(),
+                                          e.getSpeedLimit()))
                 connected_graph[v] = edges
 
         return connected_graph
@@ -208,7 +211,8 @@ class OSMgraphParser:
                 #edge_weight = length_km
                 edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds TODO
 
-                self.createEdge(f, adjlist, srcID, tgtID, edge_weight)
+                self.createEdge(f, adjlist, srcID, tgtID, edge_weight, speed_limit, length_km, travel_type)
+                #TODO : add speed_limit & length_km to attribute of Edge
 
         connected_graph = self.getConnectedGraph(adjlist)
         self.timing = time.time() - start_time

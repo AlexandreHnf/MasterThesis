@@ -57,8 +57,12 @@ class Graph:
     def setReverseGraph(self, graph):
         reverse_graph = {v: [] for v in graph}
         for v in graph:
-            for edge in graph[v]:
-                reverse_graph[edge.getExtremityNode()].append(Edge(v, edge.getWeight()))
+            for e in graph[v]:
+                reverse_graph[e.getExtremityNode()].append(Edge(v,
+                                                                e.getTravelType(),
+                                                                e.getWeight(),
+                                                                e.getLengthKm(),
+                                                                e.getSpeedLimit()))
         return reverse_graph
 
     def getReverseGraph(self):
