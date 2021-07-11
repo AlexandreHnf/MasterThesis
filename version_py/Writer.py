@@ -52,3 +52,10 @@ def dicToJson(stats, filename):
 
     with open(filename, "w") as outfile:
         json.dump(stats, outfile, indent = 4)
+
+def jsonToDic(filename):
+    # Opening JSON file as a dictionary
+    with open(filename) as json_file:
+        data = json.load(json_file)
+
+    return data

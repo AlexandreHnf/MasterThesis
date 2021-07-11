@@ -69,7 +69,13 @@ class Graph:
         for v, adj in self.adj_list.items():
             avg_deg += len(adj)
 
-        return avg_deg / len(self.adj_list)
+        return round(avg_deg / len(self.adj_list), 2)
+
+    def getAvgDegreeTheoric(self):
+        """
+        For each edge, we have 2 vertices associated to it. Thus, the total degree is nb_edges*2
+        """
+        return round(2*self.getNbNodes()/self.getNbEdges(), 3)
 
     def showGraph(self):
         for v, adj in self.adj_list.items():

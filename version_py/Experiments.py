@@ -22,7 +22,9 @@ def experiment1(graphs_names):
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         b = Benchmark(graph)
 
@@ -56,7 +58,9 @@ def experiment2(graphs_names):
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         b = Benchmark(graph)
 
@@ -90,7 +94,9 @@ def experiment3(graphs_names):
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         b = Benchmark(graph)
 
@@ -130,7 +136,9 @@ def experiment4(graphs_names):
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         b = Benchmark(graph)
 
@@ -169,7 +177,9 @@ def experiment5(graphs_names):
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         b = Benchmark(graph)
 
@@ -207,7 +217,9 @@ def experiment6(graphs_names):
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         b = Benchmark(graph)
         stat = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
@@ -236,7 +248,9 @@ def experiment7(graphs_names):
         graph = p.parse("foot")
         print("nb edges before experiments : ", graph.getNbEdges())
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         nb_added_edges = [0, 10, 50, 100, 200]  # TODO : change nb (200) to be 1.1% of the graph size
         speed_limits = [0.1, 15, 30, 90, 120, 1e10]
@@ -266,6 +280,7 @@ def experiment7(graphs_names):
                 print("Stats : ", stats[nb_exp])
 
                 all_stats[graph_name][nb_exp] = {"nb_edges_after": multi_graph.getNbEdges(),
+                                                 "avg_degree_after": multi_graph.getAvgDegree(),
                                                   "speed_limit": s,
                                                   "nb_added_edges": n,
                                                   "Dijkstra": stat["Dijkstra"],
@@ -285,6 +300,7 @@ def experiment8(graphs_names):
     Experiment 8 : Multi-modal station-based network
     TODO TOTEST
     TODO : change nb runs to 1000 + use the 6 graphs
+    TODO : réduire la taille de la fonction
     """
     print("EXPERIMENT 8 : Multi-modal station-based network : Dijkstra & ALT")
     all_stats = {}
@@ -292,7 +308,9 @@ def experiment8(graphs_names):
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse("foot")
 
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(), "nb_edges": graph.getNbEdges()}
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
 
         villo_coords = OSMgraphParser.getVilloNodes()
         # print(villo_coords)
@@ -317,6 +335,7 @@ def experiment8(graphs_names):
 
         all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()
         all_stats[graph_name]["nb_edges_after"] = multi_graph.getNbEdges()
+        all_stats[graph_name]["avg_deg_after"] = multi_graph.getAvgDegree()
 
         b = Benchmark(multi_graph)
         pre_timer = Timer()

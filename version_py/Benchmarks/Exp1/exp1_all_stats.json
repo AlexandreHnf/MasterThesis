@@ -2,21 +2,22 @@
     "1_ULB": {
         "nb_nodes": 149,
         "nb_edges": 349,
+        "avg_deg": 2.34,
         "stats": {
             "bin": {
-                "avg_CT": 0.000375,
-                "avg_SS": 72,
-                "avg_rel": 87
+                "avg_CT": 0.00075,
+                "avg_SS": 88,
+                "avg_rel": 107
             },
             "fib": {
-                "avg_CT": 0.001875,
-                "avg_SS": 56,
-                "avg_rel": 74
+                "avg_CT": 0.002356,
+                "avg_SS": 70,
+                "avg_rel": 86
             },
             "list": {
-                "avg_CT": 0.001204,
-                "avg_SS": 84,
-                "avg_rel": 103
+                "avg_CT": 0.00105,
+                "avg_SS": 83,
+                "avg_rel": 98
             }
         }
     }
