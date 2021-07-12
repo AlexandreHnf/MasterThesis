@@ -7,6 +7,7 @@ import random
 import time
 from Graph import Graph
 from Dijkstra import Dijkstra
+import IO
 
 class OSMgraphParser:
     def __init__(self, filename):
@@ -84,7 +85,7 @@ class OSMgraphParser:
         in Brussels
         """
         stations_coordinates = []  # value = (lat, lon)
-        features = getJsonData(GRAPH_VILLO)["features"]
+        features = IO.getJsonData(GRAPH_VILLO)["features"]
         for f in features:
             stations_coordinates.append((f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0]))
         return stations_coordinates
@@ -193,7 +194,7 @@ class OSMgraphParser:
 
         """
         start_time = time.time()
-        features = getJsonData(self.graph_filename)["features"]
+        features = IO.getJsonData(self.graph_filename)["features"]
         adjlist = {}  # key = ID, value = list of adjacent Edge (object)
         self.getNodesCoordinates(features, adjlist)
 

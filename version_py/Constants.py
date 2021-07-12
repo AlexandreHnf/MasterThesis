@@ -23,19 +23,24 @@ GRAPH_FILENAMES =      {GRAPH_1_NAME : GRAPH_ULB,
                         GRAPH_6_NAME : GRAPH_BE}
 
 GRAPH_VILLO =           W + "Graphs\\" + "villo.json"
-SPEED_LIMIT_FOOT =      5
+SPEED_LIMIT_FOOT =      5  # km/h
 
 # Benchmarks parameters
 # TODO : faire un graph artificial (comme dans goldberg et al. when Astar meets grpah theory)
 GRAPH =                 GRAPH_BXL
+
 PRIORITY =              "bin"
 HEURISTIC =             "euclidean"
 LANDMARK_SELECTION =    "planar"
 NB_LANDMARKS =          16
 BUCKET_SIZE =           40
+
 SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
+
+GAS_PRICE_KM =          1.4  # € / L
+CAR_CONSUMPTION =       7    # L / 100km
 
 EXPERIMENT =            8
 NB_RUNS =               10  # TODO : change it to 1000

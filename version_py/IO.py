@@ -1,5 +1,7 @@
 import csv
 import json
+from Constants import *
+
 
 # all functions that will be used to write shortest path experiments stats to csv files
 
@@ -24,6 +26,7 @@ def writeDictDictStatsToCsv(stats, header, filename):
             # write the data
             writer.writerow(data)
 
+
 def writeSingleRowStatsToCsv(stats, header, filename):
     with open(filename, 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
@@ -33,6 +36,7 @@ def writeSingleRowStatsToCsv(stats, header, filename):
 
         # write the data
         writer.writerow(stats)
+
 
 def writeDictStatsToCsv(stats, header, filename):
     with open(filename, 'w', encoding='UTF8', newline='') as f:
@@ -47,11 +51,13 @@ def writeDictStatsToCsv(stats, header, filename):
             # write the data
             writer.writerow(data)
 
+
 def dicToJson(stats, filename):
     # Serializing json
 
     with open(filename, "w") as outfile:
-        json.dump(stats, outfile, indent = 4)
+        json.dump(stats, outfile, indent=4)
+
 
 def jsonToDic(filename):
     # Opening JSON file as a dictionary
@@ -59,3 +65,13 @@ def jsonToDic(filename):
         data = json.load(json_file)
 
     return data
+
+
+def getJsonData(filename):
+    """
+    parse json file and return all data in json format
+    """
+    # read file
+    with open(filename, 'r', encoding=ENCODING) as myfile:
+        data = myfile.read()
+    return json.loads(data)

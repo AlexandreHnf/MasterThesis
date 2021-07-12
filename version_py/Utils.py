@@ -8,8 +8,10 @@ earthRadiusKm = 6371
 def deg2rad(deg):
     return (deg * pi / 180)
 
+
 def rad2deg(rad):
     return (rad * 180 / pi)
+
 
 def haversine(lat1d, lon1d, lat2d, lon2d):
     """
@@ -33,6 +35,7 @@ def haversine(lat1d, lon1d, lat2d, lon2d):
     v = sin((lon2r - lon1r) / 2)
     return 2 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v))
 
+
 def haversine2(lat1, lon1, lat2, lon2):
     """
     Calculate the great circle distance between two points
@@ -48,22 +51,27 @@ def haversine2(lat1, lon1, lat2, lon2):
     km = earthRadiusKm * c
     return km
 
-def minkowski(x1, y1, x2, y2, p=2**.5):
+
+def minkowski(x1, y1, x2, y2, p=2 ** .5):
     """ Compute the minkowski distance between two geographic points """
-    return (abs(x2 - x1) ** p + abs(y2 - y1) ** p) ** (1/p)
+    return (abs(x2 - x1) ** p + abs(y2 - y1) ** p) ** (1 / p)
+
 
 def euclidean(x1, y1, x2, y2):
     """ Compute the euclidean distance between two geographic points """
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** .5
 
+
 def manhattan(x1, y1, x2, y2):
     """ Compute the manhattan distance between two geographic points """
     return abs(x2 - x1) + abs(y2 - y1)
 
+
 def octile(x1, y1, x2, y2):
     """ Compute the octile distance between two geographic points """
     dx, dy = abs(x2 - x1), abs(y2 - y1)
-    return max(dx, dy) + (2**.5 - 1) * min(dx, dy)
+    return max(dx, dy) + (2 ** .5 - 1) * min(dx, dy)
+
 
 def bearing(lat1, lon1, lat2, lon2, positive):
     """Given latitudes and longitudes coordinates of 2 points,
@@ -78,6 +86,7 @@ def bearing(lat1, lon1, lat2, lon2, positive):
         bearing = 360 + bearing
     return bearing
 
+
 def bearing_angle(brng1, brng2):
     """Returns the smallest angle between two bearings."""
     if (brng1 >= 0 and brng2 >= 0 or brng1 <= 0 and brng2 <= 0):
@@ -91,29 +100,33 @@ def bearing_angle(brng1, brng2):
             result = abs(result - 360)
         return result
 
+
 def path_len(coords_list):
     """Given a list of (lat,lon) tuples, returns the length in km"""
     if not len(coords_list):
         return 0
     length = 0
     prev_lat, prev_lng = coords_list[0]
-    for lat,lng in coords_list:
+    for lat, lng in coords_list:
         length += haversine(prev_lat, prev_lng, lat, lng)
         prev_lat, prev_lng = lat, lng
     return length
 
-def getJsonData(filename):
+
+def getCarGasPrice(length_km):
     """
-    parse json file and return all data in json format
+    if the car consumption is X L/100km and the gas price is Y € / L of fuel then
+    for Z km traveled, the price is Z / 100 * X * Y
     """
-    # read file
-    with open(filename, 'r', encoding=ENCODING) as myfile:
-        data = myfile.read()
-    return json.loads(data)
+    price = length_km / 100 * CAR_CONSUMPTION * GAS_PRICE_KM
+
+    return round(price, 2)
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     point1 = 50.846, 4.3496
     point2 = 50.860, 4.37
     print(haversine(point1[0], point1[1], point2[0], point2[1]))
     print(haversine2(point1[0], point1[1], point2[0], point2[1]))
+
+    print(getCarGasPrice(47))
