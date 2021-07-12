@@ -1,6 +1,6 @@
 from Graph import Graph
 from Random import *
-from Utils import haversine
+from Utils import haversine, getCarGasPrice
 from Edge import Edge
 from Quadtree import showVilloStations
 from ParseOSMgraph import OSMgraphParser
@@ -38,25 +38,41 @@ class MultiModalGraph(Graph):
         Transform the uni-modal graph into a multi-modal station-based graph
         """
 
-        # duplicate the base graph and change the duplicated edges weights
+        # duplicate the base graph and change the duplicated edges weights (~3x faster)
         max_id = max(self.getNodesIDs())
         print("max id in the graph : ", max_id)
         for v in self.getNodesIDs():
             bike_edges = []
             for edge in self.getAdj(v):
-                # match bike speed (edge weight walk / 3)
+                # match bike speed (edge weight walk / 3  => ~3x faster)
                 bike_edges.append(Edge(edge.getExtremityNode() + max_id,
                                        "Bike",
                                        edge.getWeight() / 3,
-                                        edge.getLengthKm() / 3,
-                                        edge.getSpeedLimit() / 3))
+                                       edge.getLengthKm() / 3,
+                                       edge.getSpeedLimit() / 3))
             self.addNode(v + max_id, bike_edges, v)
-            # TODO : update nb nodes (nodes list of Graph)
 
         # add links between the two layers
         for sn in stations_nodes:
             self.addEdge(sn, Edge(sn + max_id, "Node to station", 60, None, None))  # node to station
             self.addEdge(sn + max_id, Edge(sn, "Node to station", 60, None, None))  # station to node
+
+    def getWeightedSum(self, edge, prefs):
+        """
+        weighted sum = c1.x1 + c2.x2
+        c1, c2 = preferences
+        x1, x2 = metrics : travel time and gas price
+        """
+        if edge.getTravelType() == "car":
+            return prefs[0] * edge.getWeight() + prefs[1] * getCarGasPrice(edge.getLengthKm())
+        else:  # bike or foot
+            return prefs[0] * edge.getWeight() + prefs[1] * 0  # 0€
+
+    def toWeightedSum(self, prefs):
+        for v in self.getNodesIDs():
+            for edge in self.getAdj(v):
+                weighted_sum = self.getWeightedSum(edge, prefs)
+                edge.setWeight(weighted_sum)
 
 
 # =====================================================================

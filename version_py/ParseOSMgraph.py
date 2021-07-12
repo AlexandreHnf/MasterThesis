@@ -210,8 +210,7 @@ class OSMgraphParser:
                 speed_limit = self.getSpeedLimit(f, travel_type)
                 length_km = self.computeEdgeWeight(f)
                 #edge_weight = length_km
-                edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds TODO
-
+                edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds
                 self.createEdge(f, adjlist, srcID, tgtID, edge_weight, speed_limit, length_km, travel_type)
                 #TODO : add speed_limit & length_km to attribute of Edge
 

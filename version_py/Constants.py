@@ -42,7 +42,7 @@ SHOW =                  False
 GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
-EXPERIMENT =            8
+EXPERIMENT =            9
 NB_RUNS =               10  # TODO : change it to 1000
 
 # experiments stats filenames /!\ TENTATIVE => change it to be generic
@@ -55,6 +55,8 @@ FILE_EXP5 =         W + "Benchmarks\\Exp5\\"
 FILE_EXP6 =         W + "Benchmarks\\Exp6\\"
 FILE_EXP7 =         W + "Benchmarks\\Exp7\\"
 FILE_EXP8 =         W + "Benchmarks\\Exp8\\"
+FILE_EXP9 =         W + "Benchmarks\\Exp9\\"
+FILE_EXP10 =         W + "Benchmarks\\Exp10\\"
 
 FILE_EXP1_ALL =     W + "Benchmarks\\Exp1\\exp1_all_stats.json"
 FILE_EXP2_ALL =     W + "Benchmarks\\Exp2\\exp2_all_stats.json"
@@ -64,3 +66,5 @@ FILE_EXP5_ALL =     W + "Benchmarks\\Exp5\\exp5_all_stats.json"
 FILE_EXP6_ALL =     W + "Benchmarks\\Exp6\\exp6_all_stats.json"
 FILE_EXP7_ALL =     W + "Benchmarks\\Exp7\\exp7_all_stats.json"
 FILE_EXP8_ALL =     W + "Benchmarks\\Exp8\\exp8_all_stats.json"
+FILE_EXP9_ALL =     W + "Benchmarks\\Exp9\\exp9_all_stats.json"
+FILE_EXP10_ALL =     W + "Benchmarks\\Exp10\\exp10_all_stats.json"

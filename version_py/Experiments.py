@@ -303,7 +303,7 @@ def experiment7(graphs_names):
 def experiment8(graphs_names):
     """
     Experiment 8 : Multi-modal villo-station-based network
-    TODO TOTEST
+    TODO check if the results are coherent (with graph)
     TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 8 : Multi-modal villo-station-based network : Dijkstra & ALT")
@@ -345,15 +345,55 @@ def experiment8(graphs_names):
     IO.dicToJson(all_stats, FILE_EXP8_ALL)
 
 
-def experiment9():
+def experiment9(graphs_names):
     """
     Experiment 9 :
-    Multi modal station-based graph with : personal car and villo bike ?
+    Multi modal station-based graph with : car & villo
+    Simple queries with weighted summed edge weights (2 metrics)
     TODO TOTEST
     # TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
-    pass
+    all_stats = {}
+    for graph_name in graphs_names:
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        graph = p.parse("car")
+
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
+
+        multi_graph, villo_closests = addVilloStations(graph)
+        prefs = [1,1]
+        multi_graph.toWeightedSum(prefs)
+
+        all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()
+        all_stats[graph_name]["nb_edges_after"] = multi_graph.getNbEdges()
+        all_stats[graph_name]["avg_deg_after"] = multi_graph.getAvgDegree()
+
+        # Benchmark
+        b = Benchmark(multi_graph)
+        pre_timer = Timer()
+        alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
+        lm_dists = alt_pre.getLmDistances()
+        pre_timer.end_timer()
+        pre_timer.printTimeElapsedMin("lm dists")
+        prepro_time = pre_timer.getTimeElapsedSec()
+        algos = ["Dijkstra", "ALT"]
+        stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+
+        print(stats)
+        header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
+        stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
+        stats["ALT"]["nb_villo_stations"] = len(villo_closests)
+
+        #TODO : add the stats : avg nb of bike edges & car edges in the shortest paths
+
+        all_stats[graph_name]["stats"] = stats
+        filename = FILE_EXP9 + graph_name + "_exp9.csv"
+        IO.writeDictDictStatsToCsv(stats, header, filename)
+
+    IO.dicToJson(all_stats, FILE_EXP9_ALL)
 
 
 def experiment10():
@@ -403,7 +443,8 @@ def launchExperiment(exp):
         experiment8(graphs_names)
 
     elif exp == 9:
-        experiment9()
+        graphs_names = [GRAPH_1_NAME]
+        experiment9(graphs_names)
 
     elif exp == 10:
         experiment10()
