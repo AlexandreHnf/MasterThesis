@@ -1,0 +1,26 @@
+{
+    "1_ULB": {
+        "nb_nodes": 149,
+        "nb_edges": 349,
+        "avg_deg": 2.34,
+        "nb_nodes_after": 298,
+        "nb_edges_after": 762,
+        "avg_deg_after": 2.56,
+        "stats": {
+            "Dijkstra": {
+                "avg_CT": 0.001106,
+                "avg_SS": 203.9,
+                "avg_rel": 266.3,
+                "lm_dists_CT": 0,
+                "nb_villo_stations": 32
+            },
+            "ALT": {
+                "avg_CT": 0.000675,
+                "avg_SS": 44.5,
+                "avg_rel": 65.2,
+                "lm_dists_CT": 3.277079,
+                "nb_villo_stations": 32
+            }
+        }
+    }
+}

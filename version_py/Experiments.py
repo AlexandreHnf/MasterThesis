@@ -399,11 +399,33 @@ def experiment9(graphs_names):
 def experiment10():
     """
     Experiment 10 :
+    Multi-modal villo-station-based graph :
+    first preprocessing (for ALT) without preferences then query with preferences
+    TODO TOTEST
+    # TODO : change nb runs to 1000 + use the 6 graphs
+    """
+    pass
+
+
+def experiment11():
+    """
+    Experiment 11 :
+    Multi-modal villo-station-based graph :
+    preprocessing (for ALT) WITH worst-case preferences then query with preferences
+    TODO TOTEST
+    # TODO : change nb runs to 1000 + use the 6 graphs
+    """
+    pass
+
+
+def experiment12():
+    """
+    Experiment 12 :
     Multi-Labelling algorithm pareto optimal
     TODO TOTEST
     # TODO : change nb runs to 1000 + use the 6 graphs
     """
-    print("EXPERIMENT 10 : Multi-Labelling algorithm pareto optimal multi-modal network")
+    print("EXPERIMENT 12 : Multi-Labelling algorithm pareto optimal multi-modal network")
 
 
 # =====================================================
@@ -449,9 +471,15 @@ def launchExperiment(exp):
     elif exp == 10:
         experiment10()
 
+    elif exp == 11:
+        experiment11()
+
+    elif exp == 12:
+        experiment12()
+
 
 def launchAllExperiments():
-    for e in range(1, 11):
+    for e in range(1, 13):
         launchExperiment(e)
 
 

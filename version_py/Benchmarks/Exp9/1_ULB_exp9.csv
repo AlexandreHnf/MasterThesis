@@ -1,0 +1,3 @@
+algo,avg_CT,avg_SS,avg_rel,lm_dists_CT,nb_villo_stations
+Dijkstra,0.001106,203.9,266.3,0,32
+ALT,0.000675,44.5,65.2,3.277079,32
