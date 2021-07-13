@@ -46,7 +46,7 @@ class MultiModalGraph(Graph):
             for edge in self.getAdj(v):
                 # match bike speed (edge weight walk / 3  => ~3x faster)
                 bike_edges.append(Edge(edge.getExtremityNode() + max_id,
-                                       "Bike",
+                                       "Villo",
                                        edge.getWeight() / 3,
                                        edge.getLengthKm() / 3,
                                        edge.getSpeedLimit() / 3))
@@ -54,8 +54,9 @@ class MultiModalGraph(Graph):
 
         # add links between the two layers
         for sn in stations_nodes:
-            self.addEdge(sn, Edge(sn + max_id, "Node to station", 60, None, None))  # node to station
-            self.addEdge(sn + max_id, Edge(sn, "Node to station", 60, None, None))  # station to node
+            # let's say it takes 1 seconds to go from car node to a villo station
+            self.addEdge(sn, Edge(sn + max_id, "toStation", 1, None, None))  # node to station
+            self.addEdge(sn + max_id, Edge(sn, "fromStation", 1, None, None))  # station to node
 
     def getWeightedSum(self, edge, prefs):
         """
@@ -72,16 +73,18 @@ class MultiModalGraph(Graph):
         for v in self.getNodesIDs():
             for edge in self.getAdj(v):
                 weighted_sum = self.getWeightedSum(edge, prefs)
+                #print(edge.getTravelType(), edge.getWeight())
                 edge.setWeight(weighted_sum)
 
 
 # =====================================================================
 
-def addVilloStations(graph):
+def addVilloStations(graph, show=False):
     villo_coords = OSMgraphParser.getVilloNodes()
     # print(villo_coords)
 
-    showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
+    if show:
+        showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
 
     # get Villo stations nodes in the graph
     villo_closests = []
@@ -94,7 +97,8 @@ def addVilloStations(graph):
     nodes_coords = deepcopy(graph.getNodesCoords())
     adjlist = deepcopy(graph.getAdjList())
     multi_graph = MultiModalGraph(nodes_coords, adjlist)
-    print("villo closests : ", villo_closests)
+    if show:
+        print("villo closests : ", villo_closests)
     print("BEFORE : {0} nodes, {1} edges".format(graph.getNbNodes(), graph.getNbEdges()))
     multi_graph.toStationBased(villo_closests)
     print("AFTER : {0} nodes, {1} edges".format(multi_graph.getNbNodes(), multi_graph.getNbEdges()))

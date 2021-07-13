@@ -5,6 +5,9 @@ from copy import deepcopy
 import IO
 
 
+# TODO : change the print(f"") in print(.format())
+
+
 def experiment1(graphs_names):
     """
     Experiment 1 : test which queue type gives fastest Dijkstra
@@ -16,7 +19,7 @@ def experiment1(graphs_names):
     print("EXPERIMENT 1 : which priority queue Dijkstra")
     all_stats = {}
     for graph_name in graphs_names:
-        print("GRAPH : ", graph_name)
+        print("GRAPH : ", graph_name, GRAPH_FILENAMES[graph_name])
 
         p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
         graph = p.parse()
@@ -316,7 +319,7 @@ def experiment8(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
-        multi_graph, villo_closests = addVilloStations(graph)
+        multi_graph, villo_closests = addVilloStations(graph, True)
 
         all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()
         all_stats[graph_name]["nb_edges_after"] = multi_graph.getNbEdges()
@@ -364,7 +367,7 @@ def experiment9(graphs_names):
                                  "avg_deg": graph.getAvgDegree()}
 
         multi_graph, villo_closests = addVilloStations(graph)
-        prefs = [1,1]
+        prefs = [1, 1]
         multi_graph.toWeightedSum(prefs)
 
         all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()

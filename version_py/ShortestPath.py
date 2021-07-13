@@ -27,6 +27,7 @@ class ShortestPath(object):
             if next_edge is None:  # it means the path is invalid
                 return None
             total_length += next_edge.getWeight()
+            print(next_edge.getTravelType(), end=" ")
         return total_length
 
     def processSearchResult(self):

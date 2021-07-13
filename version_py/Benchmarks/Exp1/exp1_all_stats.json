@@ -5,19 +5,19 @@
         "avg_deg": 2.34,
         "stats": {
             "bin": {
-                "avg_CT": 0.00075,
-                "avg_SS": 88,
-                "avg_rel": 107
+                "avg_CT": 0.00045,
+                "avg_SS": 92,
+                "avg_rel": 114
             },
             "fib": {
-                "avg_CT": 0.002356,
-                "avg_SS": 70,
-                "avg_rel": 86
+                "avg_CT": 0.0012,
+                "avg_SS": 75,
+                "avg_rel": 91
             },
             "list": {
-                "avg_CT": 0.00105,
-                "avg_SS": 83,
-                "avg_rel": 98
+                "avg_CT": 0.000602,
+                "avg_SS": 87,
+                "avg_rel": 106
             }
         }
     }

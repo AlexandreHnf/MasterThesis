@@ -166,6 +166,7 @@ class Dijkstra(ShortestPath):
                 continue
             self.nb_relax_edges += 1
             new_dist = self.dists_so_far[v] + arc.getWeight()
+            #print(arc.getTravelType(), arc.getWeight(), end=" ")
             if neighbour not in self.preds or new_dist < self.dists_so_far[neighbour]:
                 self.preds[neighbour] = v
                 self.dists_so_far[neighbour] = new_dist

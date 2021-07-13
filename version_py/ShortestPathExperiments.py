@@ -5,6 +5,7 @@ from BidirectionalDijkstra import BidirectionalDijkstra
 from BidirectionalAstar import BidirectionalAstar
 from BidirectionalALT import BidirectionalALT
 from ALTpreprocessing import ALTpreprocessing
+from MultiModalGraph import *
 from time import time
 from Quadtree import showQtree
 from Timer import Timer
@@ -107,3 +108,15 @@ def testBidiALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic=
     search_space, shortest_path, sp_coords = balt.findShortestPath()
     timer.printTimeElapsedSec("[BIDI ALT]")
     showResult(graph.getNodesCoords(), search_space, shortest_path, sp_coords, balt, landmarks, show)
+
+
+def testMMDijkstra(graph, s, t, queue_type="bin", show=False):
+    multi_graph, villo_closests = addVilloStations(graph)
+    prefs = [1, 1]
+    multi_graph.toWeightedSum(prefs)
+
+    d = Dijkstra(multi_graph, s, t, queue_type)
+    timer = Timer()
+    search_space, shortest_path, sp_coords = d.findShortestPath()
+    timer.printTimeElapsedSec("[DIJKSTRA]")
+    showResult(multi_graph.getNodesCoords(), search_space, shortest_path, sp_coords, d, None, show)
