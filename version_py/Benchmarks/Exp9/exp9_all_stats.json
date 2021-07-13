@@ -8,17 +8,17 @@
         "avg_deg_after": 2.56,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.001106,
-                "avg_SS": 203.9,
-                "avg_rel": 266.3,
+                "avg_CT": 0.000825,
+                "avg_SS": 123.0,
+                "avg_rel": 160.9,
                 "lm_dists_CT": 0,
                 "nb_villo_stations": 32
             },
             "ALT": {
-                "avg_CT": 0.000675,
-                "avg_SS": 44.5,
-                "avg_rel": 65.2,
-                "lm_dists_CT": 3.277079,
+                "avg_CT": 0.0003,
+                "avg_SS": 16.5,
+                "avg_rel": 26.7,
+                "lm_dists_CT": 2.604708,
                 "nb_villo_stations": 32
             }
         }

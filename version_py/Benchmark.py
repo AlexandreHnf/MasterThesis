@@ -93,7 +93,8 @@ class Benchmark:
                 if not f:
                     success = False
                     break
-                #path_len = algo.getSPweight()
+                travel_types = algo.getSPTravelTypes()
+                print(travel_types)
 
                 stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
                 stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs

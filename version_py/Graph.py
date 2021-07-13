@@ -34,7 +34,8 @@ class Graph:
         return {v: self.nodes_coords[v] for v in path}
 
     def getGeoCoords(self, node_id):
-        return self.nodes_coords[node_id]
+        if node_id > 0:
+            return self.nodes_coords[node_id]
 
     def getQtree(self):
         return self.qtree

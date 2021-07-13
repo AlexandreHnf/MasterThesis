@@ -10,6 +10,8 @@ class Dijkstra(ShortestPath):
     def __init__(self, graph, s, t, priority="bin", bucket_size=40):
         ShortestPath.__init__(self, graph, s, t, bucket_size)
 
+        print(self.s, self.t)
+
         self.search_space = []
         self.search_space_size = 0
         self.nb_relax_edges = 0
@@ -76,6 +78,10 @@ class Dijkstra(ShortestPath):
     def getSPweight(self):
         sp, sp_coords = self.constructShortestPath()
         return self.getPathLength(sp)
+
+    def getSPTravelTypes(self):
+        sp, sp_coords = self.constructShortestPath()
+        return self.getPathTravelTypes(sp)
 
     def getDistsSourceToNodes(self):
         """
@@ -149,7 +155,8 @@ class Dijkstra(ShortestPath):
             self.search_space.append( (self.preds[v], [v]) )
             if v in self.closed_set:
                 continue
-            elif v == self.t:
+            elif v == self.t :#or self.graph.getGeoCoords(v) == self.graph.getGeoCoords(self.t):
+                #print("found : ", v)
                 return True
             self.closed_set.add(v)
             self.relaxVertex(v)

@@ -30,6 +30,24 @@ class ShortestPath(object):
             print(next_edge.getTravelType(), end=" ")
         return total_length
 
+    def getPathTravelTypes(self, path):
+        travel_types = {}
+        path_nodes = path
+        for i in range(len(path_nodes)-1):
+            next_edge = None
+            for edge in self.graph.getAdj(path_nodes[i]):
+                if edge.getExtremityNode() == path_nodes[i+1]:
+                    next_edge = edge
+            if next_edge is None:  # it means the path is invalid
+                return None
+            travel_type = next_edge.getTravelType()
+            if travel_type in travel_types:
+                travel_types[travel_type] += 1
+            else:
+                travel_types[travel_type] = 1
+
+        return travel_types
+
     def processSearchResult(self):
         """
         Implemented by inherited objects
