@@ -21,6 +21,7 @@ def getRandomPair(irange):
 
     return a, b
 
+
 def selectRandomPair(nodes):
     a = random.choice(nodes)
     b = random.choice(nodes)

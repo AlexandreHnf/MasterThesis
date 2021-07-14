@@ -10,7 +10,7 @@ class Dijkstra(ShortestPath):
     def __init__(self, graph, s, t, priority="bin", bucket_size=40):
         ShortestPath.__init__(self, graph, s, t, bucket_size)
 
-        print(self.s, self.t)
+        #print(self.s, self.t)
 
         self.search_space = []
         self.search_space_size = 0

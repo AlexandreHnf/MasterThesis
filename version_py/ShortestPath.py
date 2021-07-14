@@ -31,6 +31,10 @@ class ShortestPath(object):
         return total_length
 
     def getPathTravelTypes(self, path):
+        """
+        For each modality (car, villo, foot, toStation, fromStation,..) give the nb
+        of edges of those types
+        """
         travel_types = {}
         path_nodes = path
         for i in range(len(path_nodes)-1):

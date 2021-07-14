@@ -334,7 +334,7 @@ def experiment8(graphs_names):
         pre_timer.printTimeElapsedMin("lm dists")
         prepro_time = pre_timer.getTimeElapsedSec()
         algos = ["Dijkstra", "ALT"]
-        stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+        stats = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
         print(stats)
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
@@ -383,14 +383,14 @@ def experiment9(graphs_names):
         pre_timer.printTimeElapsedMin("lm dists")
         prepro_time = pre_timer.getTimeElapsedSec()
         algos = ["Dijkstra", "ALT"]
-        stats = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+        stats = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
         print(stats)
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
         stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
 
-        #TODO : add the stats : avg nb of bike edges & car edges in the shortest paths
+        # TODO : add the stats : avg nb of bike edges & car edges in the shortest paths
 
         all_stats[graph_name]["stats"] = stats
         filename = FILE_EXP9 + graph_name + "_exp9.csv"
@@ -486,10 +486,25 @@ def launchAllExperiments():
         launchExperiment(e)
 
 
+def testRandomPairs():
+    p = OSMgraphParser(GRAPH_FILENAMES[GRAPH_1_NAME])
+    graph = p.parse("car")
+
+    multi_graph, villo_closests = addVilloStations(graph)
+    prefs = [1, 1]
+    multi_graph.toWeightedSum(prefs)
+
+    for i in range(30):
+        s, t = Random.selectRandomPair(multi_graph.getNodesIDs())
+        print(s, t)
+
+
 def main():
     launchExperiment(EXPERIMENT)
 
     # launchAllExperiments()
+
+    #testRandomPairs()
 
 
 if __name__ == "__main__":
