@@ -42,12 +42,12 @@ class OSMgraphParser:
         [v] --- weight ---> [w] and add it to the adjacency list
         """
         if not self.isDuplicateEdge(adj_list, v, w, weight):
-            adj_list[v].append(Edge(w, travel_type, weight, speed_limit, length_km))  # new edge forward
+            adj_list[v].append(Edge(w, travel_type, weight, length_km, speed_limit))  # new edge forward
 
             oneway_tag = feature["properties"]["tags"].get("oneway", None)
             if oneway_tag is None or oneway_tag == "no":  # if backward edge must exist
                 if not self.isDuplicateEdge(adj_list, w, v, weight):
-                    adj_list[w].append(Edge(v, travel_type, weight, speed_limit, length_km))  # new edge backward
+                    adj_list[w].append(Edge(v, travel_type, weight, length_km, speed_limit))  # new edge backward
                     self.nb_two_way_edges += 1
 
     def estimateSpeedLimit(self, highway_tag):
@@ -70,7 +70,7 @@ class OSMgraphParser:
         if no maxspeed is provided
         """
         if travel_type == "foot":
-            return SPEED_LIMIT_FOOT
+            return SPEED_FOOT
         elif travel_type == "car":
             maxspeed = feature["properties"]["tags"].get("maxspeed", None)
             if maxspeed:  # not None
@@ -102,7 +102,7 @@ class OSMgraphParser:
     def getNodes(self):
         return self.nodes_coordinates
 
-    def computeEdgeWeight(self, feature):
+    def computeEdgeLengthKm(self, feature):
         """
         Given an edge, composed of 6 coordinates, compute its length in km
         => successive additions of euclidean distances between pairs of intermediate
@@ -160,7 +160,7 @@ class OSMgraphParser:
                                           e.getTravelType(),
                                           e.getWeight(),
                                           e.getLengthKm(),
-                                          e.getSpeedLimit()))
+                                          e.getSpeed()))
                 connected_graph[v] = edges
 
         return connected_graph
@@ -208,11 +208,10 @@ class OSMgraphParser:
                     continue
 
                 speed_limit = self.getSpeedLimit(f, travel_type)
-                length_km = self.computeEdgeWeight(f)
+                length_km = self.computeEdgeLengthKm(f)
                 #edge_weight = length_km
                 edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds
                 self.createEdge(f, adjlist, srcID, tgtID, edge_weight, speed_limit, length_km, travel_type)
-                #TODO : add speed_limit & length_km to attribute of Edge
 
         connected_graph = self.getConnectedGraph(adjlist)
         self.timing = time.time() - start_time

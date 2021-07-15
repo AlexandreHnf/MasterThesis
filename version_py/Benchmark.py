@@ -141,7 +141,7 @@ class Benchmark:
                     algos_success = False
                     break
                 travel_types = algo.getSPTravelTypes()
-                print(travel_types)
+                #print(travel_types)
 
                 stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
                 stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs
@@ -179,35 +179,6 @@ class Benchmark:
 
         return {"lm_dists": lm_dists, "Prepro_time": prepro_time}
 
-    # =========================================================================================
-    # basic experiments
-
-    def testDijkstraQueue(self):
-        # TODO : not used
-        algos = {}
-        name = "Dijkstra_"
-        for q in ["list", "bin", "fib"]:
-            algos[name + q] = Dijkstra(self.graph, -1, -1, q)
-        stats = self.testMultipleQueries(10, algos)
-        # TODO : ne pas prendre l'average
-
-    def testAstarHeuristic(self):
-        # TODO : not used
-        algos = {}
-        name = "Astar_"
-        for h in ["euclidean", "manhattan", "octile"]:
-            algos[name + h] = Astar(self.graph, -1, -1, "bin", 40, h)
-        stats = self.testMultipleQueries(10, algos)
-        # TODO : ne pas prendre l'average
-
-    def testLmSelection(self):
-        # TODO : not used
-        for ls in ["random", "farthest", "planar"]:
-            alt_pre = ALTpreprocessing(self.graph, ls, None, 16)
-            lm_dists = alt_pre.getLmDistances()
-            algos = {"alt": ALT(self.graph, -1, -1, lm_dists, "bin", 40, "")}
-        stats = self.testMultipleQueries(10, algos)
-        # TODO : ne pas prendre l'average
 
     # ==================================================
 

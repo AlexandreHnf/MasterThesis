@@ -23,7 +23,8 @@ GRAPH_FILENAMES =      {GRAPH_1_NAME : GRAPH_ULB,
                         GRAPH_6_NAME : GRAPH_BE}
 
 GRAPH_VILLO =           W + "Graphs\\" + "villo.json"
-SPEED_LIMIT_FOOT =      5  # km/h
+SPEED_FOOT =            5   # km/h
+SPEED_BIKE =            20  # km/h https://cyclinguphill.com/average-speeds-cycling/
 
 # Benchmarks parameters
 # TODO : faire un graph artificial (comme dans goldberg et al. when Astar meets grpah theory)

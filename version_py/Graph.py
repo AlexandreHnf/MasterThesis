@@ -63,7 +63,7 @@ class Graph:
                                                                 e.getTravelType(),
                                                                 e.getWeight(),
                                                                 e.getLengthKm(),
-                                                                e.getSpeedLimit()))
+                                                                e.getSpeed()))
         return reverse_graph
 
     def getReverseGraph(self):

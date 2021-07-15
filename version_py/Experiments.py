@@ -328,7 +328,7 @@ def experiment8(graphs_names):
         # Benchmark
         b = Benchmark(multi_graph)
         pre_timer = Timer()
-        alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
+        alt_pre = ALTpreprocessing(multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
         lm_dists = alt_pre.getLmDistances()
         pre_timer.end_timer()
         pre_timer.printTimeElapsedMin("lm dists")
@@ -353,8 +353,12 @@ def experiment9(graphs_names):
     Experiment 9 :
     Multi modal station-based graph with : car & villo
     Simple queries with weighted summed edge weights (2 metrics)
-    TODO TOTEST
-    # TODO : change nb runs to 1000 + use the 6 graphs
+    => Preprocessing without pref (= same pref for both modalities), then query with pref
+    => PROBLEM : ca va pas prendre en compte les nouveaux nodes ajoutés des stations villo !!
+    => instead : faire un prepro avec les prefs identiques, mais avec les stations
+    TODO : apres le preprocessing pref[1,1], faire des queries avec prefs[1,x], x=1=>X
+    TODO check if the results are coherent
+    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
     all_stats = {}
@@ -366,6 +370,7 @@ def experiment9(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+
         multi_graph, villo_closests = addVilloStations(graph)
         prefs = [1, 1]
         multi_graph.toWeightedSum(prefs)
@@ -376,12 +381,14 @@ def experiment9(graphs_names):
 
         # Benchmark
         b = Benchmark(multi_graph)
+        # preprocessing with same pref for both modalities
         pre_timer = Timer()
-        alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
+        alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
         lm_dists = alt_pre.getLmDistances()
         pre_timer.end_timer()
         pre_timer.printTimeElapsedMin("lm dists")
         prepro_time = pre_timer.getTimeElapsedSec()
+
         algos = ["Dijkstra", "ALT"]
         stats = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
@@ -389,8 +396,6 @@ def experiment9(graphs_names):
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
         stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
-
-        # TODO : add the stats : avg nb of bike edges & car edges in the shortest paths
 
         all_stats[graph_name]["stats"] = stats
         filename = FILE_EXP9 + graph_name + "_exp9.csv"
@@ -403,7 +408,9 @@ def experiment10():
     """
     Experiment 10 :
     Multi-modal villo-station-based graph :
-    first preprocessing (for ALT) without preferences then query with preferences
+    Preprocessing avec les pires users : le plus petit, et le plus grand
+    puis query avec tout le range de preference
+    => p-e séparer cette fonctioni en 2 ? Un avec le plus petit worst case et l'autre le plus grand
     TODO TOTEST
     # TODO : change nb runs to 1000 + use the 6 graphs
     """
@@ -429,6 +436,10 @@ def experiment12():
     # TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 12 : Multi-Labelling algorithm pareto optimal multi-modal network")
+
+
+# TODO : idea : vu qu'on sait que + le lower bound de d(v,t) est "tight", plus ALT performe bien,
+# on peut prendre une mesure de ça: genre la différence entre le lowerbound et d(v,t) en moyenne
 
 
 # =====================================================
