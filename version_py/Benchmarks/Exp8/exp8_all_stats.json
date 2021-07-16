@@ -8,17 +8,29 @@
         "avg_deg_after": 2.56,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.001425,
-                "avg_SS": 179.0,
-                "avg_rel": 232.6,
+                "avg_CT": 0.001697,
+                "avg_SS": 210.9,
+                "avg_rel": 268.2,
+                "avg_travel_types": {
+                    "foot": 13.2,
+                    "toStation": 1.3,
+                    "Villo": 24.3,
+                    "fromStation": 1.4
+                },
                 "lm_dists_CT": 0,
                 "nb_villo_stations": 32
             },
             "ALT": {
-                "avg_CT": 0.0009,
-                "avg_SS": 30.0,
-                "avg_rel": 44.5,
-                "lm_dists_CT": 3.372683,
+                "avg_CT": 0.000975,
+                "avg_SS": 40.3,
+                "avg_rel": 59.7,
+                "avg_travel_types": {
+                    "foot": 13.2,
+                    "toStation": 1.3,
+                    "Villo": 23.9,
+                    "fromStation": 1.4
+                },
+                "lm_dists_CT": 3.105734,
                 "nb_villo_stations": 32
             }
         }

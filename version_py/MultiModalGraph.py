@@ -45,7 +45,6 @@ class MultiModalGraph(Graph):
             bike_edges = []
             for edge in self.getAdj(v):
                 # match bike speed (edge weight walk / 3  => ~3x faster)
-                print(edge.getLengthKm())
                 bike_edges.append(Edge(edge.getExtremityNode() + max_id,
                                        "Villo",
                                        3600 * (edge.getLengthKm() / SPEED_BIKE),
@@ -67,11 +66,11 @@ class MultiModalGraph(Graph):
         """
         if edge.getTravelType() == "car":
             ws = prefs[0] * edge.getWeight() + prefs[1] * getCarGasPrice(edge.getLengthKm())
-            print("car : {0} . {1} + {2} . {3} = {4}".format(prefs[0], edge.getWeight(), prefs[1], getCarGasPrice(edge.getLengthKm()), ws))
+            #print("car : {0} . {1} + {2} . {3} = {4}".format(prefs[0], edge.getWeight(), prefs[1], getCarGasPrice(edge.getLengthKm()), ws))
             return ws
         else:  # bike or foot
             ws = prefs[0] * edge.getWeight() + prefs[1] * 0  # 0€
-            print("{0} : {1} . {2} + {3} . {4} = {5}".format(edge.getTravelType(), prefs[0], edge.getWeight(), prefs[1], 0, ws))
+            #print("{0} : {1} . {2} + {3} . {4} = {5}".format(edge.getTravelType(), prefs[0], edge.getWeight(), prefs[1], 0, ws))
             return ws
 
     def toWeightedSum(self, prefs):

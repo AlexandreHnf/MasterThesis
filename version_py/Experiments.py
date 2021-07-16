@@ -1,3 +1,5 @@
+import copy
+
 from Benchmark import *
 from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
@@ -348,7 +350,14 @@ def experiment8(graphs_names):
     IO.dicToJson(all_stats, FILE_EXP8_ALL)
 
 
-def experiment9(graphs_names):
+def getPref(fixed_pref, x):
+    if fixed_pref == 1:
+        return [1, x]
+    elif fixed_pref == 2:
+        return [x, 1]
+
+
+def experiment9(graphs_names, fixed_pref, pref_range, step):
     """
     Experiment 9 :
     Multi modal station-based graph with : car & villo
@@ -356,7 +365,7 @@ def experiment9(graphs_names):
     => Preprocessing without pref (= same pref for both modalities), then query with pref
     => PROBLEM : ca va pas prendre en compte les nouveaux nodes ajoutés des stations villo !!
     => instead : faire un prepro avec les prefs identiques, mais avec les stations
-    TODO : apres le preprocessing pref[1,1], faire des queries avec prefs[1,x], x=1=>X
+    TODO : apres le preprocessing pref[1,1], faire des queries avec prefs[1,x], x=1=>X, puis prefs[x,1]
     TODO check if the results are coherent
     TODO : change nb runs to 1000 + use the 6 graphs
     """
@@ -370,36 +379,55 @@ def experiment9(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
+        base_multi_graph, villo_closests = addVilloStations(graph)
+        simple_multi_graph = copy.deepcopy(base_multi_graph)
+        simple_multi_graph.toWeightedSum([1, 1])
 
-        multi_graph, villo_closests = addVilloStations(graph)
-        prefs = [1, 1]
-        multi_graph.toWeightedSum(prefs)
+        all_stats[graph_name]["nb_nodes_after"] = simple_multi_graph.getNbNodes()
+        all_stats[graph_name]["nb_edges_after"] = simple_multi_graph.getNbEdges()
+        all_stats[graph_name]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
 
-        all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()
-        all_stats[graph_name]["nb_edges_after"] = multi_graph.getNbEdges()
-        all_stats[graph_name]["avg_deg_after"] = multi_graph.getAvgDegree()
+        nb = 0
+        stats = {}
 
-        # Benchmark
-        b = Benchmark(multi_graph)
-        # preprocessing with same pref for both modalities
-        pre_timer = Timer()
-        alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
-        lm_dists = alt_pre.getLmDistances()
-        pre_timer.end_timer()
-        pre_timer.printTimeElapsedMin("lm dists")
-        prepro_time = pre_timer.getTimeElapsedSec()
+        x = pref_range[0]
+        while x >= pref_range[1]:
+        #for x in range(pref_range[0], pref_range[1], step):
+            prefs = getPref(fixed_pref, x)
 
-        algos = ["Dijkstra", "ALT"]
-        stats = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+            # preprocessing with same pref for both modalities
+            pre_timer = Timer()
+            alt_pre = ALTpreprocessing(simple_multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
+            lm_dists = alt_pre.getLmDistances()
+            pre_timer.end_timer()
+            pre_timer.printTimeElapsedMin("lm dists")
+            prepro_time = pre_timer.getTimeElapsedSec()
 
-        print(stats)
-        header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
-        stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
-        stats["ALT"]["nb_villo_stations"] = len(villo_closests)
+            multi_graph = copy.deepcopy(base_multi_graph)
+            multi_graph.toWeightedSum(prefs)
 
-        all_stats[graph_name]["stats"] = stats
+            # Benchmark query with varying preferences
+            b = Benchmark(multi_graph)
+            algos = ["Dijkstra", "ALT"]
+            stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+
+            stats[nb] = prefs + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
+
+            stat["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
+            stat["ALT"]["nb_villo_stations"] = len(villo_closests)
+
+            all_stats[graph_name][nb] = {"c1": prefs[0], "c2": prefs[1],
+                                         "Dijkstra": stat["Dijkstra"],
+                                         "ALT": stat["ALT"]}
+
+            nb += 1
+            x = round(x + step, 1)
+
+        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
+                  "lm_dists_CT", "nb_villo_stations"]
         filename = FILE_EXP9 + graph_name + "_exp9.csv"
-        IO.writeDictDictStatsToCsv(stats, header, filename)
+        print(stats)
+        IO.writeDictStatsToCsv(stats, header, filename)
 
     IO.dicToJson(all_stats, FILE_EXP9_ALL)
 
@@ -480,7 +508,7 @@ def launchExperiment(exp):
 
     elif exp == 9:
         graphs_names = [GRAPH_1_NAME]
-        experiment9(graphs_names)
+        experiment9(graphs_names, 1, [2, 0], -0.2)
 
     elif exp == 10:
         experiment10()
