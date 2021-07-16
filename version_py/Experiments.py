@@ -432,17 +432,76 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
     IO.dicToJson(all_stats, FILE_EXP9_ALL)
 
 
-def experiment10():
+def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
     """
     Experiment 10 :
     Multi-modal villo-station-based graph :
     Preprocessing avec les pires users : le plus petit, et le plus grand
     puis query avec tout le range de preference
     => p-e séparer cette fonctioni en 2 ? Un avec le plus petit worst case et l'autre le plus grand
-    TODO TOTEST
+    TODO tocheck
     # TODO : change nb runs to 1000 + use the 6 graphs
     """
-    pass
+    all_stats = {}
+    for graph_name in graphs_names:
+        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        graph = p.parse("car")
+
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
+
+        base_multi_graph, villo_closests = addVilloStations(graph)
+        simple_multi_graph = copy.deepcopy(base_multi_graph)
+        simple_multi_graph.toWeightedSum(getPref(fixed_pref, pref_range[worst_case]))
+
+        all_stats[graph_name]["nb_nodes_after"] = simple_multi_graph.getNbNodes()
+        all_stats[graph_name]["nb_edges_after"] = simple_multi_graph.getNbEdges()
+        all_stats[graph_name]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
+
+        nb = 0
+        stats = {}
+
+        x = pref_range[0]
+        while x >= pref_range[1]:
+            # for x in range(pref_range[0], pref_range[1], step):
+            prefs = getPref(fixed_pref, x)
+
+            # preprocessing with same pref for both modalities
+            pre_timer = Timer()
+            alt_pre = ALTpreprocessing(simple_multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
+            lm_dists = alt_pre.getLmDistances()
+            pre_timer.end_timer()
+            pre_timer.printTimeElapsedMin("lm dists")
+            prepro_time = pre_timer.getTimeElapsedSec()
+
+            multi_graph = copy.deepcopy(base_multi_graph)
+            multi_graph.toWeightedSum(prefs)
+
+            # Benchmark query with varying preferences
+            b = Benchmark(multi_graph)
+            algos = ["Dijkstra", "ALT"]
+            stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+
+            stats[nb] = prefs + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
+
+            stat["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
+            stat["ALT"]["nb_villo_stations"] = len(villo_closests)
+
+            all_stats[graph_name][nb] = {"c1": prefs[0], "c2": prefs[1],
+                                         "Dijkstra": stat["Dijkstra"],
+                                         "ALT": stat["ALT"]}
+
+            nb += 1
+            x = round(x + step, 1)
+
+        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
+                  "lm_dists_CT", "nb_villo_stations"]
+        filename = FILE_EXP9 + graph_name + "_exp10.csv"
+        print(stats)
+        IO.writeDictStatsToCsv(stats, header, filename)
+
+    IO.dicToJson(all_stats, FILE_EXP10_ALL)
 
 
 def experiment11():
@@ -511,7 +570,8 @@ def launchExperiment(exp):
         experiment9(graphs_names, 1, [2, 0], -0.2)
 
     elif exp == 10:
-        experiment10()
+        graphs_names = [GRAPH_1_NAME]
+        experiment10(graphs_names, 1, [2, 0], -0.2, 0)
 
     elif exp == 11:
         experiment11()
