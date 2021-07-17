@@ -2,24 +2,50 @@
     "1_ULB": {
         "nb_nodes": 149,
         "nb_edges": 349,
+        "avg_deg": 2.34,
         "stats": {
             "random": {
-                "avg_CT": 0.000225,
-                "avg_SS": 13,
-                "avg_rel": 22,
-                "lm_dists_CT": 0.550518
+                "avg_CT": 0.0002,
+                "avg_SS": 24,
+                "avg_rel": 34,
+                "lm_dists_CT": 0.332252
             },
             "farthest": {
-                "avg_CT": 0.00015,
-                "avg_SS": 10,
-                "avg_rel": 17,
-                "lm_dists_CT": 0.878201
+                "avg_CT": 0.0001,
+                "avg_SS": 18,
+                "avg_rel": 28,
+                "lm_dists_CT": 0.482056
             },
             "planar": {
-                "avg_CT": 0.000225,
-                "avg_SS": 13,
-                "avg_rel": 22,
-                "lm_dists_CT": 0.863291
+                "avg_CT": 0.0001,
+                "avg_SS": 14,
+                "avg_rel": 23,
+                "lm_dists_CT": 0.41354
+            }
+        }
+    },
+    "2_Bruxelles": {
+        "nb_nodes": 1115,
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "stats": {
+            "random": {
+                "avg_CT": 0.001,
+                "avg_SS": 119,
+                "avg_rel": 150,
+                "lm_dists_CT": 16.239367
+            },
+            "farthest": {
+                "avg_CT": 0.0006,
+                "avg_SS": 78,
+                "avg_rel": 103,
+                "lm_dists_CT": 21.730998
+            },
+            "planar": {
+                "avg_CT": 0.001099,
+                "avg_SS": 167,
+                "avg_rel": 204,
+                "lm_dists_CT": 20.447015
             }
         }
     }

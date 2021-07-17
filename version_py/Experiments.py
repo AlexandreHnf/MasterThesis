@@ -538,15 +538,23 @@ def launchExperiment(exp):
     if exp == 1:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment1(graphs_names)
-        plotBenchmarkResult(FILE_EXP1_ALL, "exp1", "avg CT", "|V|")
+        categories = ["bin", "fib", "list"]
+        plotBenchmarkResult(FILE_EXP1_ALL, "Experience 1 - Dijkstra",
+                            categories, "avg CT", "|V|", "avg_CT")
 
     elif exp == 2:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment2(graphs_names)
+        categories = ["euclidean", "manhattan", "octile"]
+        plotBenchmarkResult(FILE_EXP2_ALL, "Experience 2 - Dijkstra",
+                            categories, "avt CT", "|V|", "avg_CT")
 
     elif exp == 3:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment3(graphs_names)
+        categories = ["random", "farthest", "planar"]
+        plotBenchmarkResult(FILE_EXP3_ALL, "Experience 3 - ALT",
+                            categories, "avt CT", "|V|", "avg_CT")
 
     elif exp == 4:
         graphs_names = [GRAPH_1_NAME]

@@ -4,7 +4,7 @@ from IO import *
 
 
 
-def plotBenchmarkResult(filename, title, ylabel, xlabel):
+def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric):
     """
     yMetrics = computation time (CT) or
                 search space (SS) or
@@ -17,11 +17,11 @@ def plotBenchmarkResult(filename, title, ylabel, xlabel):
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
-    for p in ["bin", "fib", "list"]:
+    for p in categories:
         x, y = [], []
         for graph in stats:
             x.append(stats[graph]["nb_nodes"])
-            y.append(stats[graph]["stats"][p]["avg_CT"])
+            y.append(stats[graph]["stats"][p][yMetric])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=p)

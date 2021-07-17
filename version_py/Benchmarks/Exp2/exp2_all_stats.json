@@ -2,21 +2,44 @@
     "1_ULB": {
         "nb_nodes": 149,
         "nb_edges": 349,
+        "avg_deg": 2.34,
         "stats": {
             "euclidean": {
-                "avg_CT": 0.00045,
-                "avg_SS": 59,
-                "avg_rel": 74
+                "avg_CT": 0.0004,
+                "avg_SS": 98,
+                "avg_rel": 119
             },
             "manhattan": {
-                "avg_CT": 0.000899,
-                "avg_SS": 71,
-                "avg_rel": 89
+                "avg_CT": 0.0007,
+                "avg_SS": 82,
+                "avg_rel": 102
             },
             "octile": {
-                "avg_CT": 0.0012,
-                "avg_SS": 88,
-                "avg_rel": 106
+                "avg_CT": 0.0006,
+                "avg_SS": 98,
+                "avg_rel": 120
+            }
+        }
+    },
+    "2_Bruxelles": {
+        "nb_nodes": 1115,
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "stats": {
+            "euclidean": {
+                "avg_CT": 0.0037,
+                "avg_SS": 598,
+                "avg_rel": 661
+            },
+            "manhattan": {
+                "avg_CT": 0.003999,
+                "avg_SS": 418,
+                "avg_rel": 466
+            },
+            "octile": {
+                "avg_CT": 0.0096,
+                "avg_SS": 781,
+                "avg_rel": 851
             }
         }
     }
