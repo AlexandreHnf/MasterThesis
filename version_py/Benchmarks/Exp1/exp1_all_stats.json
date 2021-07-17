@@ -5,19 +5,41 @@
         "avg_deg": 2.34,
         "stats": {
             "bin": {
-                "avg_CT": 0.00045,
-                "avg_SS": 92,
-                "avg_rel": 114
+                "avg_CT": 0.0002,
+                "avg_SS": 97,
+                "avg_rel": 118
             },
             "fib": {
-                "avg_CT": 0.0012,
-                "avg_SS": 75,
-                "avg_rel": 91
+                "avg_CT": 0.0005,
+                "avg_SS": 50,
+                "avg_rel": 64
             },
             "list": {
-                "avg_CT": 0.000602,
-                "avg_SS": 87,
-                "avg_rel": 106
+                "avg_CT": 0.0003,
+                "avg_SS": 69,
+                "avg_rel": 86
+            }
+        }
+    },
+    "2_Bruxelles": {
+        "nb_nodes": 1115,
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "stats": {
+            "bin": {
+                "avg_CT": 0.001699,
+                "avg_SS": 652,
+                "avg_rel": 721
+            },
+            "fib": {
+                "avg_CT": 0.008001,
+                "avg_SS": 615,
+                "avg_rel": 680
+            },
+            "list": {
+                "avg_CT": 0.002901,
+                "avg_SS": 664,
+                "avg_rel": 728
             }
         }
     }

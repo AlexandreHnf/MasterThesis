@@ -4,7 +4,9 @@ from Benchmark import *
 from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
+from Visualization import *
 import IO
+
 
 
 # TODO : change the print(f"") in print(.format())
@@ -497,7 +499,7 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
 
         header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
                   "lm_dists_CT", "nb_villo_stations"]
-        filename = FILE_EXP9 + graph_name + "_exp10.csv"
+        filename = FILE_EXP10 + graph_name + "_exp10.csv"
         print(stats)
         IO.writeDictStatsToCsv(stats, header, filename)
 
@@ -534,8 +536,9 @@ def experiment12():
 def launchExperiment(exp):
     # TODO : put all the necessary graphs instead of just 1
     if exp == 1:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment1(graphs_names)
+        plotBenchmarkResult(FILE_EXP1_ALL, "exp1", "avg CT", "|V|")
 
     elif exp == 2:
         graphs_names = [GRAPH_1_NAME]
