@@ -2,42 +2,86 @@
     "1_ULB": {
         "nb_nodes": 149,
         "nb_edges": 349,
+        "avg_deg": 2.34,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.000603,
-                "avg_SS": 109.2,
-                "avg_rel": 129.8,
+                "avg_CT": 0.0,
+                "avg_SS": 60.3,
+                "avg_rel": 75.2,
                 "lm_dists_CT": 0
             },
             "A*": {
-                "avg_CT": 0.000898,
-                "avg_SS": 108.9,
-                "avg_rel": 129.6,
+                "avg_CT": 0.0005,
+                "avg_SS": 59.3,
+                "avg_rel": 74.6,
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.00015,
-                "avg_SS": 12.7,
-                "avg_rel": 21.4,
-                "lm_dists_CT": 0.84045
+                "avg_CT": 0.0,
+                "avg_SS": 9.7,
+                "avg_rel": 15.7,
+                "lm_dists_CT": 0.424003
             },
             "BidiDijkstra": {
-                "avg_CT": 0.000299,
-                "avg_SS": 59.2,
-                "avg_rel": 87.0,
+                "avg_CT": 0.0003,
+                "avg_SS": 33.6,
+                "avg_rel": 48.9,
                 "lm_dists_CT": 0
             },
             "BidiAstar": {
-                "avg_CT": 0.000602,
-                "avg_SS": 58.4,
-                "avg_rel": 86.0,
+                "avg_CT": 0.0005,
+                "avg_SS": 33.2,
+                "avg_rel": 48.3,
                 "lm_dists_CT": 0
             },
             "BidiALT": {
-                "avg_CT": 0.000375,
-                "avg_SS": 19.8,
-                "avg_rel": 35.5,
-                "lm_dists_CT": 0.84045
+                "avg_CT": 0.0001,
+                "avg_SS": 13.4,
+                "avg_rel": 23.4,
+                "lm_dists_CT": 0.424003
+            }
+        }
+    },
+    "2_Bruxelles": {
+        "nb_nodes": 1115,
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "stats": {
+            "Dijkstra": {
+                "avg_CT": 0.001902,
+                "avg_SS": 607.1,
+                "avg_rel": 672.8,
+                "lm_dists_CT": 0
+            },
+            "A*": {
+                "avg_CT": 0.0031,
+                "avg_SS": 601.8,
+                "avg_rel": 667.8,
+                "lm_dists_CT": 0
+            },
+            "ALT": {
+                "avg_CT": 0.0014,
+                "avg_SS": 202.3,
+                "avg_rel": 239.5,
+                "lm_dists_CT": 21.160012
+            },
+            "BidiDijkstra": {
+                "avg_CT": 0.0035,
+                "avg_SS": 379.8,
+                "avg_rel": 451.0,
+                "lm_dists_CT": 0
+            },
+            "BidiAstar": {
+                "avg_CT": 0.002198,
+                "avg_SS": 375.4,
+                "avg_rel": 446.5,
+                "lm_dists_CT": 0
+            },
+            "BidiALT": {
+                "avg_CT": 0.000998,
+                "avg_SS": 122.2,
+                "avg_rel": 161.4,
+                "lm_dists_CT": 21.160012
             }
         }
     }

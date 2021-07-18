@@ -564,8 +564,11 @@ def launchExperiment(exp):
                             categories, "avt CT", "|V|", "avg_CT")
 
     elif exp == 5:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment5(graphs_names)
+        categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
+        plotBenchmarkResult(FILE_EXP5_ALL, "Experience 5 - Single-modal car networks",
+                            categories, "avt CT", "|V|", "avg_CT")
 
     elif exp == 6:
         graphs_names = [GRAPH_1_NAME]
