@@ -557,8 +557,11 @@ def launchExperiment(exp):
                             categories, "avt CT", "|V|", "avg_CT")
 
     elif exp == 4:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment4(graphs_names)
+        categories = ["1", "2", "4", "8", "16", "32"]
+        plotBenchmarkResult(FILE_EXP4_ALL, "Experience 4 - ALT",
+                            categories, "avt CT", "|V|", "avg_CT")
 
     elif exp == 5:
         graphs_names = [GRAPH_1_NAME]

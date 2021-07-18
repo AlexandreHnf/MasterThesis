@@ -2,42 +2,86 @@
     "1_ULB": {
         "nb_nodes": 149,
         "nb_edges": 349,
+        "avg_deg": 2.34,
         "stats": {
             "1": {
-                "avg_CT": 0.0003,
-                "avg_SS": 41,
-                "avg_rel": 56,
-                "lm_dists_CT": 0.060001
+                "avg_CT": 0.0002,
+                "avg_SS": 36,
+                "avg_rel": 51,
+                "lm_dists_CT": 0.043003
             },
             "2": {
-                "avg_CT": 0.00015,
-                "avg_SS": 32,
-                "avg_rel": 45,
-                "lm_dists_CT": 0.113249
+                "avg_CT": 0.0001,
+                "avg_SS": 24,
+                "avg_rel": 35,
+                "lm_dists_CT": 0.068995
             },
             "4": {
-                "avg_CT": 0.0003,
-                "avg_SS": 37,
-                "avg_rel": 49,
-                "lm_dists_CT": 0.319844
+                "avg_CT": 0.0001,
+                "avg_SS": 15,
+                "avg_rel": 23,
+                "lm_dists_CT": 0.165015
             },
             "8": {
-                "avg_CT": 0.000225,
-                "avg_SS": 25,
-                "avg_rel": 35,
-                "lm_dists_CT": 0.495306
+                "avg_CT": 0.0002,
+                "avg_SS": 18,
+                "avg_rel": 29,
+                "lm_dists_CT": 0.27399
             },
             "16": {
-                "avg_CT": 0.000227,
-                "avg_SS": 17,
-                "avg_rel": 28,
-                "lm_dists_CT": 0.719015
+                "avg_CT": 0.0002,
+                "avg_SS": 22,
+                "avg_rel": 32,
+                "lm_dists_CT": 0.464999
             },
             "32": {
-                "avg_CT": 0.00015,
-                "avg_SS": 15,
-                "avg_rel": 22,
-                "lm_dists_CT": 1.277315
+                "avg_CT": 0.0002,
+                "avg_SS": 19,
+                "avg_rel": 30,
+                "lm_dists_CT": 0.81201
+            }
+        }
+    },
+    "2_Bruxelles": {
+        "nb_nodes": 1115,
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "stats": {
+            "1": {
+                "avg_CT": 0.0005,
+                "avg_SS": 147,
+                "avg_rel": 172,
+                "lm_dists_CT": 1.376985
+            },
+            "2": {
+                "avg_CT": 0.0009,
+                "avg_SS": 167,
+                "avg_rel": 197,
+                "lm_dists_CT": 2.815002
+            },
+            "4": {
+                "avg_CT": 0.0012,
+                "avg_SS": 200,
+                "avg_rel": 242,
+                "lm_dists_CT": 6.042001
+            },
+            "8": {
+                "avg_CT": 0.0006,
+                "avg_SS": 98,
+                "avg_rel": 129,
+                "lm_dists_CT": 11.787449
+            },
+            "16": {
+                "avg_CT": 0.000901,
+                "avg_SS": 116,
+                "avg_rel": 141,
+                "lm_dists_CT": 22.704001
+            },
+            "32": {
+                "avg_CT": 0.001504,
+                "avg_SS": 145,
+                "avg_rel": 169,
+                "lm_dists_CT": 44.301829
             }
         }
     }
