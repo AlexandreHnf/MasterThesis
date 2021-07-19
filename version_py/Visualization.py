@@ -4,7 +4,7 @@ from IO import *
 
 
 
-def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric):
+def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, save_filename):
     """
     yMetrics = computation time (CT) or
                 search space (SS) or
@@ -33,4 +33,6 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric):
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     plt.legend(loc='upper left')
+    plt.savefig(save_filename, dpi=100)
     plt.show()
+

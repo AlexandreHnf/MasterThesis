@@ -15,12 +15,12 @@ GRAPH_BXL_CAP =         W + "Graphs\\" + GRAPH_4_NAME + ".json"
 GRAPH_BE_CTR =          W + "Graphs\\" + GRAPH_5_NAME + ".json"
 GRAPH_BE =              W + "Graphs\\" + GRAPH_6_NAME + ".json"
 
-GRAPH_FILENAMES =      {GRAPH_1_NAME : GRAPH_ULB,
-                        GRAPH_2_NAME : GRAPH_BXL,
-                        GRAPH_3_NAME : GRAPH_BXL_CAP_CTR,
-                        GRAPH_4_NAME : GRAPH_BXL_CAP,
-                        GRAPH_5_NAME : GRAPH_BE_CTR,
-                        GRAPH_6_NAME : GRAPH_BE}
+GRAPH_FILENAMES =      {GRAPH_1_NAME: GRAPH_ULB,
+                        GRAPH_2_NAME: GRAPH_BXL,
+                        GRAPH_3_NAME: GRAPH_BXL_CAP_CTR,
+                        GRAPH_4_NAME: GRAPH_BXL_CAP,
+                        GRAPH_5_NAME: GRAPH_BE_CTR,
+                        GRAPH_6_NAME: GRAPH_BE}
 
 GRAPH_VILLO =           W + "Graphs\\" + "villo.json"
 SPEED_FOOT =            5   # km/h
@@ -43,7 +43,7 @@ SHOW =                  False
 GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
-EXPERIMENT =            5
+EXPERIMENT =            1
 NB_RUNS =               10  # TODO : change it to 1000
 
 # experiments stats filenames /!\ TENTATIVE => change it to be generic

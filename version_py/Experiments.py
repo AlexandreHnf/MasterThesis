@@ -539,36 +539,41 @@ def launchExperiment(exp):
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment1(graphs_names)
         categories = ["bin", "fib", "list"]
+        save_filename = FILE_EXP1 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP1_ALL, "Experience 1 - Dijkstra",
-                            categories, "avg CT", "|V|", "avg_CT")
+                            categories, "avg CT", "|V|", "avg_CT", save_filename)
 
     elif exp == 2:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment2(graphs_names)
         categories = ["euclidean", "manhattan", "octile"]
+        save_filename = FILE_EXP2 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP2_ALL, "Experience 2 - Dijkstra",
-                            categories, "avt CT", "|V|", "avg_CT")
+                            categories, "avt CT", "|V|", "avg_CT", save_filename)
 
     elif exp == 3:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment3(graphs_names)
         categories = ["random", "farthest", "planar"]
+        save_filename = FILE_EXP3 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP3_ALL, "Experience 3 - ALT",
-                            categories, "avt CT", "|V|", "avg_CT")
+                            categories, "avt CT", "|V|", "avg_CT", save_filename)
 
     elif exp == 4:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment4(graphs_names)
         categories = ["1", "2", "4", "8", "16", "32"]
+        save_filename = FILE_EXP4 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP4_ALL, "Experience 4 - ALT",
-                            categories, "avt CT", "|V|", "avg_CT")
+                            categories, "avt CT", "|V|", "avg_CT", save_filename)
 
     elif exp == 5:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment5(graphs_names)
         categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
+        save_filename = FILE_EXP5 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP5_ALL, "Experience 5 - Single-modal car networks",
-                            categories, "avt CT", "|V|", "avg_CT")
+                            categories, "avt CT", "|V|", "avg_CT", save_filename)
 
     elif exp == 6:
         graphs_names = [GRAPH_1_NAME]
