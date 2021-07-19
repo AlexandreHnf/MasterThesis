@@ -536,6 +536,7 @@ def experiment12():
 
 def launchExperiment(exp):
     # TODO : put all the necessary graphs instead of just 1
+    # TODO : les plots les faire dans Visualization avec tous les params
     if exp == 1:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment1(graphs_names)
@@ -589,14 +590,20 @@ def launchExperiment(exp):
         experiment7(graphs_names)
         save_filename = FILE_EXP7 + "plot_avg_CT.png"
         speeds = [0.1, 15, 30, 90, 120, 1e10]
-        added_edges = [0, 10, 50, 100, 200]
+        #added_edges = [0, 10, 50, 100, 200]
         plotExp7Result(FILE_EXP7_ALL, "Experience 7 - Nb added edges - avg CT",
                        "avg CT (sec.)", "|added edges|", "avg_CT", speeds,
                        "Dijkstra", "1_ULB", save_filename)
 
     elif exp == 8:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment8(graphs_names)
+
+        categories = ["Dijkstra", "ALT"]
+        save_filename = FILE_EXP8 + "plot_avg_CT.png"
+        plotBenchmarkResult(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
+                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
+
         # TODO plot : modality1 - modality2 for Dijkstra & ALT
 
     elif exp == 9:

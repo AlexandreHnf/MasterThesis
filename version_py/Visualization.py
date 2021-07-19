@@ -3,6 +3,19 @@ import matplotlib.pyplot as plt
 from IO import *
 
 
+def show(legend, title, ylabel, xlabel, save_filename):
+    if legend is not None:
+        plt.legend()
+        plt.legend(loc='upper left')
+
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+
+    plt.savefig(save_filename, dpi=100)
+    plt.show()
+
+
 def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, save_filename):
     """
     yMetrics = computation time (CT) or
@@ -27,13 +40,7 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, sa
         plt.plot(x, y)
 
     # show
-    plt.legend()
-    plt.title(title)
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
-    plt.legend(loc='upper left')
-    plt.savefig(save_filename, dpi=100)
-    plt.show()
+    show("upper left", title, ylabel, xlabel, save_filename)
 
 
 def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
@@ -47,14 +54,11 @@ def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
     plt.plot(x, y, marker="o")
 
     # show
-    plt.title(title)
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
-    plt.savefig(save_filename, dpi=100)
-    plt.show()
+    show(None, title, ylabel, xlabel, save_filename)
 
 
 def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph, save_filename):
+    # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
 
     fig = plt.figure()
@@ -70,12 +74,13 @@ def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
         plt.plot(x, y)
+        plt.xticks(x, x)
 
     # show
-    plt.legend()
-    plt.title(title)
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
-    plt.legend(loc='upper left')
-    plt.savefig(save_filename, dpi=100)
-    plt.show()
+    show("upper left", title, ylabel, xlabel, save_filename)
+
+
+def plotExp8Result(filename, title, ylabel, xlabel, yMetric, save_filename):
+    stats = getJsonData(filename)
+
+    # histogram
