@@ -2,10 +2,21 @@
     "1_ULB": {
         "nb_nodes": 149,
         "nb_edges": 349,
+        "avg_deg": 2.34,
         "stats": [
             "planar",
             16,
-            0.847136
+            1.097315
+        ]
+    },
+    "2_Bruxelles": {
+        "nb_nodes": 1115,
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "stats": [
+            "planar",
+            16,
+            44.846371
         ]
     }
 }

@@ -217,7 +217,7 @@ def experiment6(graphs_names):
     """
     Experiment 6 : Single modal car network
     Preprocessing benchmarks
-    TODO check if the results are coherent (plot the qtree ?)
+    TODO check if the results are coherent (plot exp + the qtree)
     TODO : change nb experiments to 1000 + use the 6 graphs
     TODO : change this experiment, with different parameters for preprocessing
     """
@@ -576,8 +576,11 @@ def launchExperiment(exp):
                             categories, "avt CT", "|V|", "avg_CT", save_filename)
 
     elif exp == 6:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment6(graphs_names)
+        save_filename = FILE_EXP6 + "plot_prepro_CT.png"
+        plotPreprocessingResult(FILE_EXP6_ALL, "Experience 6 - Preprocessing",
+                                "computation time (sec.)", "|V|", save_filename)
 
     elif exp == 7:
         graphs_names = [GRAPH_1_NAME]

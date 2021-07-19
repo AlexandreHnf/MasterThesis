@@ -36,3 +36,20 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, sa
     plt.savefig(save_filename, dpi=100)
     plt.show()
 
+
+def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
+    stats = getJsonData(filename)
+
+    x, y = [], []
+    for graph in stats:
+        x.append(stats[graph]["nb_nodes"])
+        y.append(stats[graph]["stats"][2])
+
+    plt.plot(x, y, marker="o")
+
+    # show
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+    plt.savefig(save_filename, dpi=100)
+    plt.show()
