@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from IO import *
 
 
-
 def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, save_filename):
     """
     yMetrics = computation time (CT) or
@@ -51,5 +50,32 @@ def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
     plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
+    plt.savefig(save_filename, dpi=100)
+    plt.show()
+
+
+def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph, save_filename):
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    for s in speeds:
+        x, y = [], []
+        for k in stats[graph]:
+            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
+                if stats[graph][k]["speed_limit"] == s:
+                    x.append(stats[graph][k]["nb_added_edges"])
+                    y.append(stats[graph][k]["ALT"][yMetric])
+
+        # scatter points
+        ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
+        plt.plot(x, y)
+
+    # show
+    plt.legend()
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+    plt.legend(loc='upper left')
     plt.savefig(save_filename, dpi=100)
     plt.show()

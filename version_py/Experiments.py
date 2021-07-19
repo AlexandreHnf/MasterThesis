@@ -220,6 +220,7 @@ def experiment6(graphs_names):
     TODO check if the results are coherent (plot exp + the qtree)
     TODO : change nb experiments to 1000 + use the 6 graphs
     TODO : change this experiment, with different parameters for preprocessing
+    ()
     """
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
     all_stats = {}
@@ -541,7 +542,7 @@ def launchExperiment(exp):
         categories = ["bin", "fib", "list"]
         save_filename = FILE_EXP1 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP1_ALL, "Experience 1 - Dijkstra",
-                            categories, "avg CT", "|V|", "avg_CT", save_filename)
+                            categories, "avg CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 2:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
@@ -549,7 +550,7 @@ def launchExperiment(exp):
         categories = ["euclidean", "manhattan", "octile"]
         save_filename = FILE_EXP2 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP2_ALL, "Experience 2 - Dijkstra",
-                            categories, "avt CT", "|V|", "avg_CT", save_filename)
+                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 3:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
@@ -557,7 +558,7 @@ def launchExperiment(exp):
         categories = ["random", "farthest", "planar"]
         save_filename = FILE_EXP3 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP3_ALL, "Experience 3 - ALT",
-                            categories, "avt CT", "|V|", "avg_CT", save_filename)
+                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 4:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
@@ -565,7 +566,7 @@ def launchExperiment(exp):
         categories = ["1", "2", "4", "8", "16", "32"]
         save_filename = FILE_EXP4 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP4_ALL, "Experience 4 - ALT",
-                            categories, "avt CT", "|V|", "avg_CT", save_filename)
+                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 5:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
@@ -573,7 +574,8 @@ def launchExperiment(exp):
         categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
         save_filename = FILE_EXP5 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP5_ALL, "Experience 5 - Single-modal car networks",
-                            categories, "avt CT", "|V|", "avg_CT", save_filename)
+                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
+        # TODO plot : |V| - improv (1 for speedup, 1 for rel, 1 for SS
 
     elif exp == 6:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
@@ -585,10 +587,17 @@ def launchExperiment(exp):
     elif exp == 7:
         graphs_names = [GRAPH_1_NAME]
         experiment7(graphs_names)
+        save_filename = FILE_EXP7 + "plot_avg_CT.png"
+        speeds = [0.1, 15, 30, 90, 120, 1e10]
+        added_edges = [0, 10, 50, 100, 200]
+        plotExp7Result(FILE_EXP7_ALL, "Experience 7 - Nb added edges - avg CT",
+                       "avg CT (sec.)", "|added edges|", "avg_CT", speeds,
+                       "Dijkstra", "1_ULB", save_filename)
 
     elif exp == 8:
         graphs_names = [GRAPH_1_NAME]
         experiment8(graphs_names)
+        # TODO plot : modality1 - modality2 for Dijkstra & ALT
 
     elif exp == 9:
         graphs_names = [GRAPH_1_NAME]
