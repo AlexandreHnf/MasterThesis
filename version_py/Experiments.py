@@ -391,6 +391,7 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
         all_stats[graph_name]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
 
         nb = 0
+        all_stats[graph_name]["stats"] = {}
         stats = {}
 
         x = pref_range[0]
@@ -419,7 +420,7 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
             stat["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
             stat["ALT"]["nb_villo_stations"] = len(villo_closests)
 
-            all_stats[graph_name][nb] = {"c1": prefs[0], "c2": prefs[1],
+            all_stats[graph_name]["stats"][nb] = {"c1": prefs[0], "c2": prefs[1],
                                          "Dijkstra": stat["Dijkstra"],
                                          "ALT": stat["ALT"]}
 
@@ -597,20 +598,25 @@ def launchExperiment(exp):
 
     elif exp == 8:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
-        # experiment8(graphs_names)
+        experiment8(graphs_names)
 
         categories = ["Dijkstra", "ALT"]
         save_filename = FILE_EXP8 + "plot_avg_CT.png"
-        # plotBenchmarkResult(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
-        #                     categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
+        plotBenchmarkResult(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
+                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
         # plot : modality1 - modality2 for Dijkstra & ALT
-        plotExp8Result(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
+        save_filename = FILE_EXP8 + "plot_piechart_Dijkstra.png"
+        plotModalitiesPieChart(FILE_EXP8_ALL, "Experience 8 - Pie chart modalities",
                        "1_ULB", "Dijkstra", save_filename)
 
     elif exp == 9:
         graphs_names = [GRAPH_1_NAME]
         experiment9(graphs_names, 1, [2, 0], -0.2)
+        save_filename = FILE_EXP9 + "plot_avg_CT.png"
+        plotExp9Result(FILE_EXP9_ALL, "Experience 9 - prefs - avg CT",
+                       "avg CT (sec.)", "c2", "c2", "avg_CT",
+                        "1_ULB", save_filename)
 
     elif exp == 10:
         graphs_names = [GRAPH_1_NAME]

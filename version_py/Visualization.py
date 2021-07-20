@@ -80,7 +80,7 @@ def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
-def plotExp8Result(filename, title, graph, algo, save_filename):
+def plotModalitiesPieChart(filename, title, graph, algo, save_filename):
     stats = getJsonData(filename)
 
     # pie chart
@@ -90,9 +90,30 @@ def plotExp8Result(filename, title, graph, algo, save_filename):
 
     values = list(stats[graph]["stats"][algo]["avg_travel_types"].values())
     categories = list(stats[graph]["stats"][algo]["avg_travel_types"].keys())
-    #students = [23, 17, 50, 29, 12]
+
     ax.pie(values, labels=categories, autopct='%1.2f%%')
 
     plt.title(title)
     plt.savefig(save_filename, dpi=100)
     plt.show()
+
+
+def plotExp9Result(filename, title, ylabel, xlabel, xMetric, yMetric, graph, save_filename):
+    # TODO : "zoomer" sur l'axe y pour mieux voir les différences
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    for algo in ["Dijkstra", "ALT"]:
+        x, y = [], []
+        for k in stats[graph]["stats"]:
+            x.append(stats[graph]["stats"][k][xMetric])
+            y.append(stats[graph]["stats"][k][algo][yMetric])
+
+        # scatter points
+        ax1.scatter(x, y, s=10, marker="s", label=algo)
+        plt.plot(x, y)
+        plt.xticks(x, x)
+
+    # show
+    show("upper left", title, ylabel, xlabel, save_filename)
