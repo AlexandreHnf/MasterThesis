@@ -80,7 +80,19 @@ def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
-def plotExp8Result(filename, title, ylabel, xlabel, yMetric, save_filename):
+def plotExp8Result(filename, title, graph, algo, save_filename):
     stats = getJsonData(filename)
 
-    # histogram
+    # pie chart
+    fig = plt.figure()
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.axis('equal')
+
+    values = list(stats[graph]["stats"][algo]["avg_travel_types"].values())
+    categories = list(stats[graph]["stats"][algo]["avg_travel_types"].keys())
+    #students = [23, 17, 50, 29, 12]
+    ax.pie(values, labels=categories, autopct='%1.2f%%')
+
+    plt.title(title)
+    plt.savefig(save_filename, dpi=100)
+    plt.show()

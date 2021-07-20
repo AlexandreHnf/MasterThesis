@@ -597,14 +597,16 @@ def launchExperiment(exp):
 
     elif exp == 8:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
-        experiment8(graphs_names)
+        # experiment8(graphs_names)
 
         categories = ["Dijkstra", "ALT"]
         save_filename = FILE_EXP8 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
-                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
+        # plotBenchmarkResult(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
+        #                     categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
-        # TODO plot : modality1 - modality2 for Dijkstra & ALT
+        # plot : modality1 - modality2 for Dijkstra & ALT
+        plotExp8Result(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
+                       "1_ULB", "Dijkstra", save_filename)
 
     elif exp == 9:
         graphs_names = [GRAPH_1_NAME]
