@@ -464,6 +464,7 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
         all_stats[graph_name]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
 
         nb = 0
+        all_stats[graph_name]["stats"] = {}
         stats = {}
 
         x = pref_range[0]
@@ -492,7 +493,7 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
             stat["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
             stat["ALT"]["nb_villo_stations"] = len(villo_closests)
 
-            all_stats[graph_name][nb] = {"c1": prefs[0], "c2": prefs[1],
+            all_stats[graph_name]["stats"][nb] = {"c1": prefs[0], "c2": prefs[1],
                                          "Dijkstra": stat["Dijkstra"],
                                          "ALT": stat["ALT"]}
 
@@ -621,6 +622,10 @@ def launchExperiment(exp):
     elif exp == 10:
         graphs_names = [GRAPH_1_NAME]
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
+        save_filename = FILE_EXP10 + "plot_avg_CT.png"
+        plotExp9Result(FILE_EXP10_ALL, "Experience 10 - prefs - avg CT",
+                       "avg CT (sec.)", "c2", "c2", "avg_CT",
+                       "1_ULB", save_filename)
 
     elif exp == 11:
         experiment11()

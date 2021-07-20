@@ -1,12 +1,12 @@
 c1,c2,algo,avg_CT,avg_SS,avg_rel,lm_dists_CT,nb_villo_stations
-1,2,0.0009,176.7,224.7,"{'car': 34.5, 'toStation': 1.4, 'Villo': 5.7, 'fromStation': 1.1}",0,0.0006,35.1,50.1,"{'car': 34.5, 'toStation': 1.4, 'Villo': 5.7, 'fromStation': 1.1}",2.186463
-1,1.8,0.001275,179.4,230.0,"{'car': 20.7, 'fromStation': 1.2, 'toStation': 1.6, 'Villo': 5.0}",0,0.000375,25.0,39.3,"{'car': 20.3, 'fromStation': 1.2, 'toStation': 1.6, 'Villo': 5.5}",1.984346
-1,1.6,0.002474,177.7,232.5,"{'car': 15.7, 'toStation': 1.1, 'Villo': 6.7, 'fromStation': 1}",0,0.000675,20.3,34.1,"{'car': 15.8, 'toStation': 1.1, 'Villo': 6.7, 'fromStation': 1}",2.087372
-1,1.4,0.000899,211.9,265.1,"{'car': 12.0, 'Villo': 20.7, 'toStation': 1.2, 'fromStation': 1.3}",0,0.000377,41.8,61.2,"{'car': 11.6, 'Villo': 20.7, 'toStation': 1.2, 'fromStation': 1.3}",2.165347
-1,1.2,0.002098,169.7,219.8,"{'car': 20.0, 'toStation': 1.3, 'Villo': 9.3, 'fromStation': 1}",0,0.000225,19.7,32.0,"{'car': 20.0, 'toStation': 1.3, 'Villo': 9.3, 'fromStation': 1}",2.285749
-1,1.0,0.000451,166.7,217.1,"{'Villo': 9.1, 'fromStation': 1.3, 'car': 12.5, 'toStation': 1.2}",0,0.000448,19.1,31.6,"{'Villo': 9.1, 'fromStation': 1.3, 'car': 12.0, 'toStation': 1.2}",2.226197
-1,0.8,0.000525,228.7,285.9,"{'Villo': 21.1, 'fromStation': 1.4, 'car': 18.8, 'toStation': 1.1}",0,0.0006,25.0,41.1,"{'Villo': 20.7, 'fromStation': 1.4, 'car': 19.1, 'toStation': 1.1}",2.282313
-1,0.6,0.0006,245.2,307.2,"{'Villo': 10.6, 'fromStation': 1.3, 'car': 24.6, 'toStation': 1.4}",0,0.00015,25.0,40.6,"{'Villo': 10.5, 'fromStation': 1.3, 'car': 24.6, 'toStation': 1.4}",2.272374
-1,0.4,0.000375,177.1,228.2,"{'car': 18.8, 'toStation': 1.3, 'Villo': 7.6}",0,0.0003,20.1,31.4,"{'car': 18.8, 'toStation': 1.3, 'Villo': 7.4}",2.085212
-1,0.2,0.000525,128.9,170.6,"{'Villo': 12.4, 'fromStation': 1.3, 'car': 12.4, 'toStation': 1.1}",0,7.5e-05,15.4,26.0,"{'Villo': 12.4, 'fromStation': 1.3, 'car': 12.4, 'toStation': 1.1}",2.19511
-1,0.0,0.000677,208.1,263.6,"{'car': 33.0, 'toStation': 1.4, 'Villo': 5.8, 'fromStation': 1.4}",0,0.000523,24.4,39.6,"{'car': 33.0, 'toStation': 1.4, 'Villo': 5.8, 'fromStation': 1.4}",2.282524
+1,2,0.0004,118.0,156.4,"{'car': 13.6, 'Villo': 8.1, 'fromStation': 1.3, 'toStation': 1.1}",0,0.0003,17.4,27.5,"{'car': 13.6, 'Villo': 8.1, 'fromStation': 1.3, 'toStation': 1.1}",2.329005
+1,1.8,0.000799,185.9,234.0,"{'Villo': 5.7, 'fromStation': 1.3, 'car': 19.4, 'toStation': 1.5}",0,0.0002,26.9,43.7,"{'Villo': 5.7, 'fromStation': 1.3, 'car': 19.4, 'toStation': 1.5}",2.297003
+1,1.6,0.0007,131.9,168.8,"{'Villo': 7.1, 'car': 11.2, 'fromStation': 1.1, 'toStation': 1}",0,0.0001,22.5,33.5,"{'Villo': 7.1, 'car': 11.2, 'fromStation': 1.1, 'toStation': 1}",2.164983
+1,1.4,0.0005,182.4,235.1,"{'Villo': 19.1, 'fromStation': 1.5, 'car': 14.4, 'toStation': 1.1}",0,0.0004,27.0,41.0,"{'Villo': 19.1, 'fromStation': 1.5, 'car': 14.4, 'toStation': 1.1}",2.253019
+1,1.2,0.0009,130.4,167.4,"{'Villo': 13.3, 'fromStation': 1.4, 'car': 9.3, 'toStation': 1.2}",0,0.0006,46.6,58.7,"{'Villo': 13.3, 'fromStation': 1.4, 'car': 9.1, 'toStation': 1.2}",1.991984
+1,1.0,0.000499,156.4,200.0,"{'Villo': 9.5, 'fromStation': 1.2, 'car': 10.0, 'toStation': 1.1}",0,0.0003,23.3,34.2,"{'Villo': 9.5, 'fromStation': 1.2, 'car': 9.7, 'toStation': 1.1}",2.195013
+1,0.8,0.001,215.5,270.7,"{'Villo': 12.0, 'fromStation': 1.4, 'car': 20.5, 'toStation': 1.4}",0,0.0003,37.9,59.3,"{'Villo': 12.0, 'fromStation': 1.4, 'car': 20.5, 'toStation': 1.4}",2.024998
+1,0.6,0.001,175.4,226.0,"{'Villo': 18.2, 'car': 19.8, 'fromStation': 1.2, 'toStation': 1.2}",0,0.0005,34.8,52.3,"{'Villo': 18.1, 'car': 15.4, 'fromStation': 1.2, 'toStation': 1.2}",2.034999
+1,0.4,0.000698,205.2,259.8,"{'Villo': 4.9, 'fromStation': 1.2, 'car': 20.1, 'toStation': 1.5}",0,0.0003,26.5,42.2,"{'Villo': 4.7, 'fromStation': 1.2, 'car': 18.1, 'toStation': 1.5}",2.437998
+1,0.2,0.000704,157.4,205.6,"{'Villo': 5.7, 'fromStation': 1.1, 'car': 21.1, 'toStation': 1.5}",0,0.000198,21.1,34.8,"{'Villo': 5.7, 'fromStation': 1.1, 'car': 21.1, 'toStation': 1.5}",2.638
+1,0.0,0.000501,180.9,233.6,"{'Villo': 7.7, 'fromStation': 1.3, 'car': 21.4, 'toStation': 1.4}",0,0.0002,24.8,39.5,"{'Villo': 7.7, 'fromStation': 1.3, 'car': 21.4, 'toStation': 1.4}",2.488982
