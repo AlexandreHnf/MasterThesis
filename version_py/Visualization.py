@@ -63,6 +63,7 @@ def plotImprovementsResult(filename, title, categories, ylabel, xlabel, yMetric,
     # show
     show("upper left", title, ylabel, xlabel, save_filename)
 
+
 def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
     stats = getJsonData(filename)
 
@@ -89,7 +90,35 @@ def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph
             if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
                 if stats[graph][k]["speed_limit"] == s:
                     x.append(stats[graph][k]["nb_added_edges"])
-                    y.append(stats[graph][k]["ALT"][yMetric])
+                    y.append(stats[graph][k][algo][yMetric])
+
+        # scatter points
+        ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
+        plt.plot(x, y)
+        plt.xticks(x, x)
+
+    # show
+    show("upper left", title, ylabel, xlabel, save_filename)
+
+
+def plotImprovementsExp7(filename, title, ylabel, xlabel, yMetric, speeds, graph, save_filename):
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    for s in speeds:
+        x, y = [], []
+        for k in stats[graph]:
+            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
+                if stats[graph][k]["speed_limit"] == s:
+                    x.append(stats[graph][k]["nb_added_edges"])
+                    avg_metric_dijkstra = stats[graph][k]["Dijkstra"][yMetric]
+                    avg_metric_ALT = stats[graph][k]["ALT"][yMetric]
+                    if avg_metric_ALT == 0.0:
+                        print(avg_metric_dijkstra, avg_metric_ALT)
+                        avg_metric_ALT = (avg_metric_dijkstra)/10
+                    improv = round(avg_metric_dijkstra / avg_metric_ALT, 6)
+                    y.append(improv)
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")

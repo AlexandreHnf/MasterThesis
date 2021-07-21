@@ -578,8 +578,8 @@ def launchExperiment(exp):
         save_filename = FILE_EXP5 + "plot_avg_CT.png"
         plotBenchmarkResult(FILE_EXP5_ALL, "Experience 5 - Single-modal car networks",
                             categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
-        # TODO plot : |V| - improv (1 for speedup, 1 for rel, 1 for SS
 
+        # plot : |V| - improv (1 for speedup, 1 for rel, 1 for SS
         categories = ["A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
         save_filename = FILE_EXP5 + "plot_improv_CT.png"
         plotImprovementsResult(FILE_EXP5_ALL, "Experience 5 - Improvement avg CT",
@@ -600,7 +600,12 @@ def launchExperiment(exp):
         #added_edges = [0, 10, 50, 100, 200]
         plotExp7Result(FILE_EXP7_ALL, "Experience 7 - Nb added edges - avg CT",
                        "avg CT (sec.)", "|added edges|", "avg_CT", speeds,
-                       "Dijkstra", "1_ULB", save_filename)
+                       "ALT", "1_ULB", save_filename)
+
+        save_filename = FILE_EXP7 + "plot_improv_CT.png"
+        plotImprovementsExp7(FILE_EXP7_ALL, "Experience 7 - speedup",
+                             "Speedup (CT)", "|added edges|", "avg_CT", speeds,
+                             "1_ULB", save_filename)
 
     elif exp == 8:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]

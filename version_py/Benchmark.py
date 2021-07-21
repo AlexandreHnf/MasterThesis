@@ -105,7 +105,7 @@ class Benchmark:
             r += 1
         # round
         for algo_name in algos:
-            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"], 6)
+            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"], 7)
             stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"], 2)
             stats[algo_name]["avg_rel"] = round(stats[algo_name]["avg_rel"], 2)
             if algo_name in ["ALT", "BidiALT"]:
