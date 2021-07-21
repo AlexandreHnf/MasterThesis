@@ -580,6 +580,11 @@ def launchExperiment(exp):
                             categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
         # TODO plot : |V| - improv (1 for speedup, 1 for rel, 1 for SS
 
+        categories = ["A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
+        save_filename = FILE_EXP5 + "plot_improv_CT.png"
+        plotImprovementsResult(FILE_EXP5_ALL, "Experience 5 - Improvement avg CT",
+                               categories, "Speedup", "|V|", "avg_CT", save_filename)
+
     elif exp == 6:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment6(graphs_names)

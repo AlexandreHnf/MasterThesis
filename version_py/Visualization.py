@@ -43,6 +43,26 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, sa
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
+def plotImprovementsResult(filename, title, categories, ylabel, xlabel, yMetric, save_filename):
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    for p in categories:
+        x, y = [], []
+        for graph in stats:
+            x.append(stats[graph]["nb_nodes"])
+            avg_metric_dijkstra = stats[graph]["stats"]["Dijkstra"][yMetric]
+            improv = avg_metric_dijkstra / stats[graph]["stats"][p][yMetric]
+            y.append(improv)
+
+        # scatter points
+        ax1.scatter(x, y, s=10, marker="s", label=p)
+        plt.plot(x, y)
+
+    # show
+    show("upper left", title, ylabel, xlabel, save_filename)
+
 def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
     stats = getJsonData(filename)
 
