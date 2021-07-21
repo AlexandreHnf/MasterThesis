@@ -6,7 +6,7 @@ from IO import *
 def show(legend, title, ylabel, xlabel, save_filename):
     if legend is not None:
         plt.legend()
-        plt.legend(loc='upper left')
+        plt.legend(loc=legend)
 
     plt.title(title)
     plt.ylabel(ylabel)
@@ -78,6 +78,20 @@ def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
     show(None, title, ylabel, xlabel, save_filename)
 
 
+def plotAvgDegResult(filename, title, ylabel, xlabel, save_filename):
+    stats = getJsonData(filename)
+
+    x, y = [], []
+    for graph in stats:
+        x.append(stats[graph]["nb_nodes"])
+        y.append(stats[graph]["avg_deg"])
+
+    plt.plot(x, y, marker="o")
+
+    # show
+    show(None, title, ylabel, xlabel, save_filename)
+
+
 def plotExp7Result(filename, title, ylabel, xlabel, ymetric, speeds, algo, graph, save_filename):
     # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
@@ -119,6 +133,29 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, speeds, graph
                         avg_metric_ALT = (avg_metric_dijkstra)/10
                     improv = round(avg_metric_dijkstra / avg_metric_ALT, 6)
                     y.append(improv)
+
+        # scatter points
+        ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
+        plt.plot(x, y)
+        plt.xticks(x, x)
+
+    # show
+    show("upper right", title, ylabel, xlabel, save_filename)
+
+
+def plotExp7AvgDegResult(filename, title, ylabel, xlabel, speeds, graph, save_filename):
+    # TODO : "zoomer" sur l'axe y pour mieux voir les différences
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    for s in speeds:
+        x, y = [], []
+        for k in stats[graph]:
+            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
+                if stats[graph][k]["speed_limit"] == s:
+                    x.append(stats[graph][k]["nb_added_edges"])
+                    y.append(stats[graph][k]["avg_degree_after"])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
@@ -190,16 +227,3 @@ def plotExp9Result(filename, title, ylabel, xlabel, xmetric, ymetric, graph, sav
 
     show("upper left", title, ylabel, xlabel, save_filename)
 
-
-def plotAvgDegResult(filename, title, ylabel, xlabel, save_filename):
-    stats = getJsonData(filename)
-
-    x, y = [], []
-    for graph in stats:
-        x.append(stats[graph]["nb_nodes"])
-        y.append(stats[graph]["avg_deg"])
-
-    plt.plot(x, y, marker="o")
-
-    # show
-    show(None, title, ylabel, xlabel, save_filename)

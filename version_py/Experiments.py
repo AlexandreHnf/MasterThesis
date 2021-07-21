@@ -596,7 +596,7 @@ def launchExperiment(exp):
         save_filename = FILE_EXP5 + "plot_avg_deg.png"
         plotAvgDegResult(FILE_EXP5_ALL, "Experience 5 - avg degree",
                          "avg deg", "|V|", save_filename)
-        
+
     elif exp == 6:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment6(graphs_names)
@@ -606,7 +606,7 @@ def launchExperiment(exp):
 
     elif exp == 7:
         graphs_names = [GRAPH_1_NAME]
-        experiment7(graphs_names)
+        #experiment7(graphs_names)
         save_filename = FILE_EXP7 + "plot_avg_CT.png"
         speeds = [0.1, 15, 30, 90, 120, 1e10]
         #added_edges = [0, 10, 50, 100, 200]
@@ -617,6 +617,11 @@ def launchExperiment(exp):
         save_filename = FILE_EXP7 + "plot_improv_CT.png"
         plotImprovementsExp7(FILE_EXP7_ALL, "Experience 7 - speedup",
                              "Speedup (CT)", "|added edges|", "avg_CT", speeds,
+                             "1_ULB", save_filename)
+
+        save_filename = FILE_EXP7 + "plot_avgDeg.png"
+        plotExp7AvgDegResult(FILE_EXP7_ALL, "Experience 7 - avg deg",
+                             "avg deg after", "|added edges|", speeds,
                              "1_ULB", save_filename)
 
     elif exp == 8:
