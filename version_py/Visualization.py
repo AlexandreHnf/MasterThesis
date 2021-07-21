@@ -80,6 +80,30 @@ def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
+def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, xMetric, save_filename):
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    for t in categories:
+        x, y = [], []
+        for k in stats[graph]["stats"]:
+            x.append(stats[graph]["stats"][k][xMetric])
+            if t not in stats[graph]["stats"][k][algo]["avg_travel_types"]:
+                y.append(0)
+            else:
+                y.append(stats[graph]["stats"][k][algo]["avg_travel_types"][t])
+
+        # scatter points
+        ax1.scatter(x, y, s=10, marker="s", label=t)
+        plt.plot(x, y)
+        plt.xticks(x, x)
+
+    # show
+    plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left",  mode="expand", ncol=4)
+    show(None, "", ylabel, xlabel, save_filename)
+
+
 def plotModalitiesPieChart(filename, title, graph, algo, save_filename):
     stats = getJsonData(filename)
 
@@ -115,5 +139,4 @@ def plotExp9Result(filename, title, ylabel, xlabel, xMetric, yMetric, graph, sav
         plt.plot(x, y)
         plt.xticks(x, x)
 
-    # show
-    show("upper left", title, ylabel, xlabel, save_filename)
+

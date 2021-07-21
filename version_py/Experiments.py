@@ -619,6 +619,12 @@ def launchExperiment(exp):
                        "avg CT (sec.)", "c2", "c2", "avg_CT",
                         "1_ULB", save_filename)
 
+        save_filename = FILE_EXP9 + "plot_travelTypes.png"
+        plotModalitiesLines(FILE_EXP9_ALL, "Experience 9 - Travel types",
+                            "Travel types frequency", "c2", "1_ULB",
+                            ["Villo", "fromStation", "toStation", "car"],
+                            "Dijkstra", "c2", save_filename)
+
     elif exp == 10:
         graphs_names = [GRAPH_1_NAME]
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
@@ -626,6 +632,12 @@ def launchExperiment(exp):
         plotExp9Result(FILE_EXP10_ALL, "Experience 10 - prefs - avg CT",
                        "avg CT (sec.)", "c2", "c2", "avg_CT",
                        "1_ULB", save_filename)
+
+        save_filename = FILE_EXP10 + "plot_travelTypes.png"
+        plotModalitiesLines(FILE_EXP10_ALL, "Experience 10 - Travel types",
+                            "Travel types frequency", "c2", "1_ULB",
+                            ["Villo", "fromStation", "toStation", "car"],
+                            "Dijkstra", "c2", save_filename)
 
     elif exp == 11:
         experiment11()
