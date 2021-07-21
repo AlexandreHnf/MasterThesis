@@ -16,9 +16,9 @@ def show(legend, title, ylabel, xlabel, save_filename):
     plt.show()
 
 
-def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, save_filename):
+def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, ymetric, save_filename):
     """
-    yMetrics = computation time (CT) or
+    ymetrics = computation time (CT) or
                 search space (SS) or
                 nb relaxed edges (RE) or
                 speed up or
@@ -33,7 +33,7 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, sa
         x, y = [], []
         for graph in stats:
             x.append(stats[graph]["nb_nodes"])
-            y.append(stats[graph]["stats"][p][yMetric])
+            y.append(stats[graph]["stats"][p][ymetric])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=p)
@@ -43,7 +43,7 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, yMetric, sa
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
-def plotImprovementsResult(filename, title, categories, ylabel, xlabel, yMetric, save_filename):
+def plotImprovementsResult(filename, title, categories, ylabel, xlabel, ymetric, save_filename):
     stats = getJsonData(filename)
 
     fig = plt.figure()
@@ -52,8 +52,8 @@ def plotImprovementsResult(filename, title, categories, ylabel, xlabel, yMetric,
         x, y = [], []
         for graph in stats:
             x.append(stats[graph]["nb_nodes"])
-            avg_metric_dijkstra = stats[graph]["stats"]["Dijkstra"][yMetric]
-            improv = avg_metric_dijkstra / stats[graph]["stats"][p][yMetric]
+            avg_metric_dijkstra = stats[graph]["stats"]["Dijkstra"][ymetric]
+            improv = avg_metric_dijkstra / stats[graph]["stats"][p][ymetric]
             y.append(improv)
 
         # scatter points
@@ -78,7 +78,7 @@ def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
     show(None, title, ylabel, xlabel, save_filename)
 
 
-def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph, save_filename):
+def plotExp7Result(filename, title, ylabel, xlabel, ymetric, speeds, algo, graph, save_filename):
     # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
 
@@ -90,7 +90,7 @@ def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph
             if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
                 if stats[graph][k]["speed_limit"] == s:
                     x.append(stats[graph][k]["nb_added_edges"])
-                    y.append(stats[graph][k][algo][yMetric])
+                    y.append(stats[graph][k][algo][ymetric])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
@@ -101,7 +101,7 @@ def plotExp7Result(filename, title, ylabel, xlabel, yMetric, speeds, algo, graph
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
-def plotImprovementsExp7(filename, title, ylabel, xlabel, yMetric, speeds, graph, save_filename):
+def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, speeds, graph, save_filename):
     stats = getJsonData(filename)
 
     fig = plt.figure()
@@ -112,8 +112,8 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, yMetric, speeds, graph
             if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
                 if stats[graph][k]["speed_limit"] == s:
                     x.append(stats[graph][k]["nb_added_edges"])
-                    avg_metric_dijkstra = stats[graph][k]["Dijkstra"][yMetric]
-                    avg_metric_ALT = stats[graph][k]["ALT"][yMetric]
+                    avg_metric_dijkstra = stats[graph][k]["Dijkstra"][ymetric]
+                    avg_metric_ALT = stats[graph][k]["ALT"][ymetric]
                     if avg_metric_ALT == 0.0:
                         print(avg_metric_dijkstra, avg_metric_ALT)
                         avg_metric_ALT = (avg_metric_dijkstra)/10
@@ -129,7 +129,7 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, yMetric, speeds, graph
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
-def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, xMetric, save_filename):
+def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, xmetric, save_filename):
     stats = getJsonData(filename)
 
     fig = plt.figure()
@@ -137,7 +137,7 @@ def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo
     for t in categories:
         x, y = [], []
         for k in stats[graph]["stats"]:
-            x.append(stats[graph]["stats"][k][xMetric])
+            x.append(stats[graph]["stats"][k][xmetric])
             if t not in stats[graph]["stats"][k][algo]["avg_travel_types"]:
                 y.append(0)
             else:
@@ -171,7 +171,7 @@ def plotModalitiesPieChart(filename, title, graph, algo, save_filename):
     plt.show()
 
 
-def plotExp9Result(filename, title, ylabel, xlabel, xMetric, yMetric, graph, save_filename):
+def plotExp9Result(filename, title, ylabel, xlabel, xmetric, ymetric, graph, save_filename):
     # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
 
@@ -180,8 +180,8 @@ def plotExp9Result(filename, title, ylabel, xlabel, xMetric, yMetric, graph, sav
     for algo in ["Dijkstra", "ALT"]:
         x, y = [], []
         for k in stats[graph]["stats"]:
-            x.append(stats[graph]["stats"][k][xMetric])
-            y.append(stats[graph]["stats"][k][algo][yMetric])
+            x.append(stats[graph]["stats"][k][xmetric])
+            y.append(stats[graph]["stats"][k][algo][ymetric])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=algo)
@@ -191,3 +191,15 @@ def plotExp9Result(filename, title, ylabel, xlabel, xMetric, yMetric, graph, sav
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
+def plotAvgDegResult(filename, title, ylabel, xlabel, save_filename):
+    stats = getJsonData(filename)
+
+    x, y = [], []
+    for graph in stats:
+        x.append(stats[graph]["nb_nodes"])
+        y.append(stats[graph]["avg_deg"])
+
+    plt.plot(x, y, marker="o")
+
+    # show
+    show(None, title, ylabel, xlabel, save_filename)

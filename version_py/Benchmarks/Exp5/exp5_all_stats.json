@@ -5,40 +5,40 @@
         "avg_deg": 2.34,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.0007975,
-                "avg_SS": 108.6,
-                "avg_rel": 129.1,
+                "avg_CT": 0.0003288,
+                "avg_SS": 78.4,
+                "avg_rel": 97.0,
                 "lm_dists_CT": 0
             },
             "A*": {
-                "avg_CT": 0.0016846,
-                "avg_SS": 108.4,
-                "avg_rel": 128.7,
+                "avg_CT": 0.0005299,
+                "avg_SS": 77.7,
+                "avg_rel": 96.4,
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0006634,
-                "avg_SS": 27.9,
-                "avg_rel": 40.7,
-                "lm_dists_CT": 0.7057044000000019
+                "avg_CT": 0.000177,
+                "avg_SS": 14.8,
+                "avg_rel": 24.1,
+                "lm_dists_CT": 0.6914542999999997
             },
             "BidiDijkstra": {
-                "avg_CT": 0.0007917,
-                "avg_SS": 74.0,
-                "avg_rel": 103.7,
+                "avg_CT": 0.0002677,
+                "avg_SS": 50.6,
+                "avg_rel": 71.6,
                 "lm_dists_CT": 0
             },
             "BidiAstar": {
-                "avg_CT": 0.0012942,
-                "avg_SS": 73.2,
-                "avg_rel": 103.2,
+                "avg_CT": 0.0005727,
+                "avg_SS": 50.6,
+                "avg_rel": 71.6,
                 "lm_dists_CT": 0
             },
             "BidiALT": {
-                "avg_CT": 0.0005019,
-                "avg_SS": 22.0,
-                "avg_rel": 36.9,
-                "lm_dists_CT": 0.7057044000000019
+                "avg_CT": 0.0002531,
+                "avg_SS": 17.2,
+                "avg_rel": 29.9,
+                "lm_dists_CT": 0.6914542999999997
             }
         }
     },
@@ -48,40 +48,40 @@
         "avg_deg": 1.76,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.0031897,
-                "avg_SS": 476.3,
-                "avg_rel": 533.4,
+                "avg_CT": 0.0021812,
+                "avg_SS": 441.5,
+                "avg_rel": 497.0,
                 "lm_dists_CT": 0
             },
             "A*": {
-                "avg_CT": 0.0046623,
-                "avg_SS": 473.0,
-                "avg_rel": 528.8,
+                "avg_CT": 0.0043117,
+                "avg_SS": 438.6,
+                "avg_rel": 493.9,
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0007568,
-                "avg_SS": 53.9,
-                "avg_rel": 75.3,
-                "lm_dists_CT": 38.20675970000002
+                "avg_CT": 0.0023245,
+                "avg_SS": 190.2,
+                "avg_rel": 219.9,
+                "lm_dists_CT": 33.592598
             },
             "BidiDijkstra": {
-                "avg_CT": 0.0017355,
-                "avg_SS": 266.6,
-                "avg_rel": 317.4,
+                "avg_CT": 0.0012973,
+                "avg_SS": 229.0,
+                "avg_rel": 277.3,
                 "lm_dists_CT": 0
             },
             "BidiAstar": {
-                "avg_CT": 0.0029475,
-                "avg_SS": 265.2,
-                "avg_rel": 315.4,
+                "avg_CT": 0.0022388,
+                "avg_SS": 228.0,
+                "avg_rel": 276.2,
                 "lm_dists_CT": 0
             },
             "BidiALT": {
-                "avg_CT": 0.0010255,
-                "avg_SS": 70.0,
-                "avg_rel": 96.6,
-                "lm_dists_CT": 38.20675970000002
+                "avg_CT": 0.0010669,
+                "avg_SS": 92.4,
+                "avg_rel": 121.0,
+                "lm_dists_CT": 33.592598
             }
         }
     }

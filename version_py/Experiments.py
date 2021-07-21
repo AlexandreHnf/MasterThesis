@@ -592,6 +592,11 @@ def launchExperiment(exp):
         plotImprovementsResult(FILE_EXP5_ALL, "Experience 5 - Improvement avg CT",
                                categories, "Speedup", "|V|", "avg_CT", save_filename)
 
+        # plot : |V| - avg deg
+        save_filename = FILE_EXP5 + "plot_avg_deg.png"
+        plotAvgDegResult(FILE_EXP5_ALL, "Experience 5 - avg degree",
+                         "avg deg", "|V|", save_filename)
+        
     elif exp == 6:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment6(graphs_names)
