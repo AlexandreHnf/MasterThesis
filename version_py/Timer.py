@@ -3,7 +3,8 @@ import time
 
 class Timer:
     def __init__(self):
-        self.start_time = time.time()
+        # self.start_time = time.time()
+        self.start_time = None
         self.end_time = None
         self.timing_sec = 0
         self.timing_min = []  # [min, sec]
@@ -15,11 +16,14 @@ class Timer:
         sec = seconds - minutes * 60
         return minutes, sec
 
-    def end_timer(self):
+    def start(self):
+        self.start_time = time.perf_counter()
+
+    def stop(self):
         """
         End the timer, and compute time elapsed in seconds and in minutes
         """
-        self.end_time = time.time() - self.start_time
+        self.end_time = time.perf_counter() - self.start_time
         self.timing_sec = self.end_time
         # self.elapsed_time_sec = f"{self.end_time} sec"
         self.elapsed_time_sec = "{0} sec".format(self.end_time)
@@ -55,14 +59,14 @@ class Timer:
 
     def printTimeElapsedSec(self, name):
         if not self.end_time:
-            self.end_timer()
+            self.stop()
 
         # print(f"{name} done in {self.elapsed_time_sec}")
         print("{0} done in {1}".format(name, self.elapsed_time_sec))
 
     def printTimeElapsedMin(self, name):
         if not self.end_time:
-            self.end_timer()
+            self.stop()
 
         # print(f"{name} done in {self.elapsed_time_min}")
         print("{0} done in {1}".format(name, self.elapsed_time_min))

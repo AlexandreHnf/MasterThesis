@@ -5,22 +5,22 @@
         "avg_deg": 2.34,
         "stats": {
             "random": {
-                "avg_CT": 0.0002,
-                "avg_SS": 24,
-                "avg_rel": 34,
-                "lm_dists_CT": 0.332252
+                "avg_CT": 0.000103,
+                "avg_SS": 10,
+                "avg_rel": 17,
+                "lm_dists_CT": 0.6103190000000001
             },
             "farthest": {
-                "avg_CT": 0.0001,
-                "avg_SS": 18,
-                "avg_rel": 28,
-                "lm_dists_CT": 0.482056
+                "avg_CT": 0.000127,
+                "avg_SS": 13,
+                "avg_rel": 21,
+                "lm_dists_CT": 0.8074570000000003
             },
             "planar": {
-                "avg_CT": 0.0001,
-                "avg_SS": 14,
+                "avg_CT": 0.000147,
+                "avg_SS": 13,
                 "avg_rel": 23,
-                "lm_dists_CT": 0.41354
+                "lm_dists_CT": 0.6986033000000003
             }
         }
     },
@@ -30,22 +30,22 @@
         "avg_deg": 1.76,
         "stats": {
             "random": {
-                "avg_CT": 0.001,
-                "avg_SS": 119,
-                "avg_rel": 150,
-                "lm_dists_CT": 16.239367
+                "avg_CT": 0.002532,
+                "avg_SS": 118,
+                "avg_rel": 152,
+                "lm_dists_CT": 36.49766219999999
             },
             "farthest": {
-                "avg_CT": 0.0006,
-                "avg_SS": 78,
-                "avg_rel": 103,
-                "lm_dists_CT": 21.730998
+                "avg_CT": 0.001387,
+                "avg_SS": 89,
+                "avg_rel": 114,
+                "lm_dists_CT": 43.7068145
             },
             "planar": {
-                "avg_CT": 0.001099,
-                "avg_SS": 167,
-                "avg_rel": 204,
-                "lm_dists_CT": 20.447015
+                "avg_CT": 0.001927,
+                "avg_SS": 151,
+                "avg_rel": 181,
+                "lm_dists_CT": 36.3084748
             }
         }
     }

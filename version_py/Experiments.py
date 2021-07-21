@@ -113,9 +113,10 @@ def experiment3(graphs_names):
         for ls in stats.keys():
             print("Landmark selection : ", ls)
             pre_timer = Timer()
+            pre_timer.start()
             alt_pre = ALTpreprocessing(graph, ls, None, NB_LANDMARKS)
             lm_dists = alt_pre.getLmDistances()
-            pre_timer.end_timer()
+            pre_timer.stop()
             pre_timer.printTimeElapsedMin("lm dists")
 
             stat = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
@@ -156,9 +157,10 @@ def experiment4(graphs_names):
         for nl in stats.keys():
             print(f"Number of Landmarks : {nl}, selection : {LANDMARK_SELECTION}")
             pre_timer = Timer()
+            pre_timer.start()
             alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, nl)
             lm_dists = alt_pre.getLmDistances()
-            pre_timer.end_timer()
+            pre_timer.stop()
             pre_timer.printTimeElapsedMin("lm dists")
 
             stat = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
@@ -194,9 +196,10 @@ def experiment5(graphs_names):
         # Benchmark
         b = Benchmark(graph)
         pre_timer = Timer()
+        pre_timer.start()
         alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
         lm_dists = alt_pre.getLmDistances()
-        pre_timer.end_timer()
+        pre_timer.stop()
         pre_timer.printTimeElapsedMin("lm dists")
 
         algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
@@ -282,9 +285,10 @@ def experiment7(graphs_names):
                 # Benchmark
                 b = Benchmark(multi_graph)
                 pre_timer = Timer()
+                pre_timer.start()
                 alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
                 lm_dists = alt_pre.getLmDistances()
-                pre_timer.end_timer()
+                pre_timer.stop()
                 prepro_time = pre_timer.getTimeElapsedSec()
                 algos = ["Dijkstra", "ALT"]
                 stat = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
@@ -333,9 +337,10 @@ def experiment8(graphs_names):
         # Benchmark
         b = Benchmark(multi_graph)
         pre_timer = Timer()
+        pre_timer.start()
         alt_pre = ALTpreprocessing(multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
         lm_dists = alt_pre.getLmDistances()
-        pre_timer.end_timer()
+        pre_timer.stop()
         pre_timer.printTimeElapsedMin("lm dists")
         prepro_time = pre_timer.getTimeElapsedSec()
         algos = ["Dijkstra", "ALT"]
@@ -401,9 +406,10 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
 
             # preprocessing with same pref for both modalities
             pre_timer = Timer()
+            pre_timer.start()
             alt_pre = ALTpreprocessing(simple_multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
             lm_dists = alt_pre.getLmDistances()
-            pre_timer.end_timer()
+            pre_timer.stop()
             pre_timer.printTimeElapsedMin("lm dists")
             prepro_time = pre_timer.getTimeElapsedSec()
 
@@ -474,9 +480,10 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
 
             # preprocessing with same pref for both modalities
             pre_timer = Timer()
+            pre_timer.start()
             alt_pre = ALTpreprocessing(simple_multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
             lm_dists = alt_pre.getLmDistances()
-            pre_timer.end_timer()
+            pre_timer.stop()
             pre_timer.printTimeElapsedMin("lm dists")
             prepro_time = pre_timer.getTimeElapsedSec()
 
@@ -552,7 +559,7 @@ def launchExperiment(exp):
         experiment2(graphs_names)
         categories = ["euclidean", "manhattan", "octile"]
         save_filename = FILE_EXP2 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP2_ALL, "Experience 2 - Dijkstra",
+        plotBenchmarkResult(FILE_EXP2_ALL, "Experience 2 - A*",
                             categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 3:
@@ -677,7 +684,7 @@ def testRandomPairs():
 def main():
     launchExperiment(EXPERIMENT)
 
-    # launchAllExperiments()
+    #launchAllExperiments()
 
     #testRandomPairs()
 

@@ -5,40 +5,40 @@
         "avg_deg": 2.34,
         "stats": {
             "1": {
-                "avg_CT": 0.000301,
-                "avg_SS": 46,
-                "avg_rel": 60,
-                "lm_dists_CT": 0.066
+                "avg_CT": 0.000317,
+                "avg_SS": 43,
+                "avg_rel": 59,
+                "lm_dists_CT": 0.06953879999998946
             },
             "2": {
-                "avg_CT": 0.00015,
-                "avg_SS": 27,
-                "avg_rel": 38,
-                "lm_dists_CT": 0.121902
+                "avg_CT": 0.000351,
+                "avg_SS": 26,
+                "avg_rel": 37,
+                "lm_dists_CT": 0.10607249999999624
             },
             "4": {
-                "avg_CT": 0.000226,
-                "avg_SS": 19,
-                "avg_rel": 29,
-                "lm_dists_CT": 0.27202
+                "avg_CT": 0.00012,
+                "avg_SS": 12,
+                "avg_rel": 19,
+                "lm_dists_CT": 0.28971510000000933
             },
             "8": {
-                "avg_CT": 0.00015,
-                "avg_SS": 14,
-                "avg_rel": 23,
-                "lm_dists_CT": 0.414449
+                "avg_CT": 0.000105,
+                "avg_SS": 12,
+                "avg_rel": 18,
+                "lm_dists_CT": 0.49383749999999793
             },
             "16": {
-                "avg_CT": 0.000225,
-                "avg_SS": 16,
-                "avg_rel": 24,
-                "lm_dists_CT": 0.666015
+                "avg_CT": 0.000244,
+                "avg_SS": 17,
+                "avg_rel": 25,
+                "lm_dists_CT": 1.0174516000000011
             },
             "32": {
-                "avg_CT": 0.00015,
-                "avg_SS": 14,
-                "avg_rel": 21,
-                "lm_dists_CT": 1.086352
+                "avg_CT": 0.000157,
+                "avg_SS": 12,
+                "avg_rel": 20,
+                "lm_dists_CT": 1.2155047999999908
             }
         }
     },
@@ -48,40 +48,40 @@
         "avg_deg": 1.76,
         "stats": {
             "1": {
-                "avg_CT": 0.0015,
-                "avg_SS": 234,
-                "avg_rel": 272,
-                "lm_dists_CT": 3.066375
+                "avg_CT": 0.002941,
+                "avg_SS": 450,
+                "avg_rel": 499,
+                "lm_dists_CT": 2.3704198999999875
             },
             "2": {
-                "avg_CT": 0.0021,
-                "avg_SS": 171,
-                "avg_rel": 208,
-                "lm_dists_CT": 6.053137
+                "avg_CT": 0.001873,
+                "avg_SS": 234,
+                "avg_rel": 278,
+                "lm_dists_CT": 4.510171799999995
             },
             "4": {
-                "avg_CT": 0.0012,
-                "avg_SS": 141,
-                "avg_rel": 175,
-                "lm_dists_CT": 11.065198
+                "avg_CT": 0.002362,
+                "avg_SS": 298,
+                "avg_rel": 349,
+                "lm_dists_CT": 9.861687200000006
             },
             "8": {
-                "avg_CT": 0.001351,
-                "avg_SS": 91,
-                "avg_rel": 120,
-                "lm_dists_CT": 28.51824
+                "avg_CT": 0.000515,
+                "avg_SS": 63,
+                "avg_rel": 84,
+                "lm_dists_CT": 19.593973500000004
             },
             "16": {
-                "avg_CT": 0.001691,
-                "avg_SS": 121,
-                "avg_rel": 150,
-                "lm_dists_CT": 42.099966
+                "avg_CT": 0.001595,
+                "avg_SS": 174,
+                "avg_rel": 211,
+                "lm_dists_CT": 35.7602431
             },
             "32": {
-                "avg_CT": 0.002027,
-                "avg_SS": 109,
-                "avg_rel": 137,
-                "lm_dists_CT": 80.449901
+                "avg_CT": 0.003045,
+                "avg_SS": 167,
+                "avg_rel": 202,
+                "lm_dists_CT": 72.68971829999998
             }
         }
     }

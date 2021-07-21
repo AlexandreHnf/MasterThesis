@@ -5,19 +5,19 @@
         "avg_deg": 2.34,
         "stats": {
             "euclidean": {
-                "avg_CT": 0.0004,
-                "avg_SS": 98,
-                "avg_rel": 119
+                "avg_CT": 0.000945,
+                "avg_SS": 67,
+                "avg_rel": 85
             },
             "manhattan": {
-                "avg_CT": 0.0007,
-                "avg_SS": 82,
-                "avg_rel": 102
+                "avg_CT": 0.002154,
+                "avg_SS": 75,
+                "avg_rel": 93
             },
             "octile": {
-                "avg_CT": 0.0006,
-                "avg_SS": 98,
-                "avg_rel": 120
+                "avg_CT": 0.001672,
+                "avg_SS": 75,
+                "avg_rel": 94
             }
         }
     },
@@ -27,19 +27,19 @@
         "avg_deg": 1.76,
         "stats": {
             "euclidean": {
-                "avg_CT": 0.0037,
-                "avg_SS": 598,
-                "avg_rel": 661
+                "avg_CT": 0.006203,
+                "avg_SS": 480,
+                "avg_rel": 533
             },
             "manhattan": {
-                "avg_CT": 0.003999,
-                "avg_SS": 418,
-                "avg_rel": 466
+                "avg_CT": 0.009969,
+                "avg_SS": 552,
+                "avg_rel": 612
             },
             "octile": {
-                "avg_CT": 0.0096,
-                "avg_SS": 781,
-                "avg_rel": 851
+                "avg_CT": 0.005349,
+                "avg_SS": 397,
+                "avg_rel": 442
             }
         }
     }

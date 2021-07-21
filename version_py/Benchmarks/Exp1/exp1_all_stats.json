@@ -5,19 +5,19 @@
         "avg_deg": 2.34,
         "stats": {
             "bin": {
-                "avg_CT": 0.000525,
-                "avg_SS": 81,
-                "avg_rel": 100
+                "avg_CT": 0.000364,
+                "avg_SS": 106,
+                "avg_rel": 129
             },
             "fib": {
-                "avg_CT": 0.001125,
-                "avg_SS": 76,
-                "avg_rel": 94
+                "avg_CT": 0.001737,
+                "avg_SS": 99,
+                "avg_rel": 122
             },
             "list": {
-                "avg_CT": 0.000755,
-                "avg_SS": 101,
-                "avg_rel": 124
+                "avg_CT": 0.000448,
+                "avg_SS": 77,
+                "avg_rel": 95
             }
         }
     },
@@ -27,19 +27,19 @@
         "avg_deg": 1.76,
         "stats": {
             "bin": {
-                "avg_CT": 0.004125,
-                "avg_SS": 608,
-                "avg_rel": 670
+                "avg_CT": 0.004294,
+                "avg_SS": 431,
+                "avg_rel": 484
             },
             "fib": {
-                "avg_CT": 0.015076,
-                "avg_SS": 447,
-                "avg_rel": 502
+                "avg_CT": 0.012083,
+                "avg_SS": 484,
+                "avg_rel": 540
             },
             "list": {
-                "avg_CT": 0.006825,
-                "avg_SS": 427,
-                "avg_rel": 477
+                "avg_CT": 0.003895,
+                "avg_SS": 476,
+                "avg_rel": 527
             }
         }
     }

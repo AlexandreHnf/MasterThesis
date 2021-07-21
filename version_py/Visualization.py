@@ -188,4 +188,6 @@ def plotExp9Result(filename, title, ylabel, xlabel, xMetric, yMetric, graph, sav
         plt.plot(x, y)
         plt.xticks(x, x)
 
+    show("upper left", title, ylabel, xlabel, save_filename)
+
 

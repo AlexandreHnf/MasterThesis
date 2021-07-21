@@ -49,8 +49,9 @@ class Benchmark:
     def runAlgo(self, graph, algo_name, s, t, lm_dists, priority, bucket_size, heuristic):
         algo = self.getSPalgoObject(graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists)
         timer = Timer()
+        timer.start()
         success = algo.run()
-        timer.end_timer()
+        timer.stop()
 
         return success, timer, algo
 
@@ -60,6 +61,7 @@ class Benchmark:
         stats = {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0}
 
         queries_timer = Timer()
+        queries_timer.start()
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
@@ -86,6 +88,7 @@ class Benchmark:
         stats = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0} for algo_name in algos}
 
         queries_timer = Timer()
+        queries_timer.start()
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
@@ -131,6 +134,7 @@ class Benchmark:
         stats = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0, "avg_travel_types": {}} for algo_name in algos}
 
         queries_timer = Timer()
+        queries_timer.start()
         r = 1
         while r <= nb_runs:
             s, t = Random.selectRandomPair(self.graph.getNodesIDs())
@@ -172,9 +176,10 @@ class Benchmark:
 
         alt_pre = ALTpreprocessing(self.graph, lm_selection, None, nb_lm)
         prepro_timer = Timer()
+        prepro_timer.start()
         lm_dists = alt_pre.getLmDistances()
         # landmarks = alt_pre.getLandmarks()
-        prepro_timer.end_timer()
+        prepro_timer.stop()
         prepro_time = prepro_timer.getTimeElapsedSec()
 
         return {"lm_dists": lm_dists, "Prepro_time": prepro_time}

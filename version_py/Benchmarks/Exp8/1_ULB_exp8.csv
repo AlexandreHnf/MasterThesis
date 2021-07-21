@@ -1,3 +1,3 @@
 algo,avg_CT,avg_SS,avg_rel,lm_dists_CT,nb_villo_stations
-Dijkstra,0.00075,141.6,182.0,"{'foot': 12.2, 'toStation': 1.2, 'Villo': 35.4, 'fromStation': 1.3}",0,32
-ALT,0.00045,26.4,40.4,"{'foot': 12.2, 'toStation': 1.2, 'Villo': 35.4, 'fromStation': 1.3}",2.776043,32
+Dijkstra,0.000986,185.1,239.8,"{'foot': 11.8, 'toStation': 1.2, 'Villo': 16.1, 'fromStation': 1.4}",0,32
+ALT,0.000544,41.0,57.2,"{'foot': 11.8, 'toStation': 1.2, 'Villo': 15.8, 'fromStation': 1.4}",2.7755333000000064,32
