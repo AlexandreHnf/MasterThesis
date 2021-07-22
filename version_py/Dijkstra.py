@@ -152,7 +152,7 @@ class Dijkstra(ShortestPath):
         while self.unvisited:  # not empty
             self.search_space_size += 1
             _, v = self.getHighestPriorityNode()
-            self.search_space.append( (self.preds[v], [v]) )
+            self.search_space.append((self.preds[v], [v]))
             if v in self.closed_set:
                 continue
             elif v == self.t :#or self.graph.getGeoCoords(v) == self.graph.getGeoCoords(self.t):
