@@ -291,7 +291,7 @@ def experiment7(graphs_names):
                 pre_timer.stop()
                 prepro_time = pre_timer.getTimeElapsedSec()
                 algos = ["Dijkstra", "ALT"]
-                stat = b.testMultipleQueries(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+                stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
                 stats[nb_exp] = [s, n] + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
                 print("Stats : ", stats[nb_exp])
@@ -606,7 +606,7 @@ def launchExperiment(exp):
 
     elif exp == 7:
         graphs_names = [GRAPH_1_NAME]
-        #experiment7(graphs_names)
+        experiment7(graphs_names)
         save_filename = FILE_EXP7 + "plot_avg_CT.png"
         speeds = [0.1, 15, 30, 90, 120, 1e10]
         #added_edges = [0, 10, 50, 100, 200]
@@ -642,7 +642,7 @@ def launchExperiment(exp):
         graphs_names = [GRAPH_1_NAME]
         experiment9(graphs_names, 1, [2, 0], -0.2)
         save_filename = FILE_EXP9 + "plot_avg_CT.png"
-        plotExp9Result(FILE_EXP9_ALL, "Experience 9 - prefs - avg CT",
+        plotPrefExpResult(FILE_EXP9_ALL, "Experience 9 - prefs - avg CT",
                        "avg CT (sec.)", "c2", "c2", "avg_CT",
                         "1_ULB", save_filename)
 
@@ -656,7 +656,7 @@ def launchExperiment(exp):
         graphs_names = [GRAPH_1_NAME]
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
         save_filename = FILE_EXP10 + "plot_avg_CT.png"
-        plotExp9Result(FILE_EXP10_ALL, "Experience 10 - prefs - avg CT",
+        plotPrefExpResult(FILE_EXP10_ALL, "Experience 10 - prefs - avg CT",
                        "avg CT (sec.)", "c2", "c2", "avg_CT",
                        "1_ULB", save_filename)
 

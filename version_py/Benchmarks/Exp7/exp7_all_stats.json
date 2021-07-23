@@ -9,16 +9,24 @@
             "speed_limit": 0.1,
             "nb_added_edges": 0,
             "Dijkstra": {
-                "avg_CT": 0.0002028,
-                "avg_SS": 48.7,
-                "avg_rel": 63.3,
+                "avg_CT": 0.000381,
+                "avg_SS": 83.2,
+                "avg_rel": 103.0,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 16.0
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0001715,
-                "avg_SS": 13.0,
-                "avg_rel": 19.7,
-                "lm_dists_CT": 0.7342017000000001
+                "avg_CT": 0.000296,
+                "avg_SS": 15.7,
+                "avg_rel": 25.0,
+                "max_avg_lb": 509.45,
+                "avg_travel_types": {
+                    "foot": 15.4
+                },
+                "lm_dists_CT": 0.9004629
             }
         },
         "1": {
@@ -27,16 +35,24 @@
             "speed_limit": 0.1,
             "nb_added_edges": 10,
             "Dijkstra": {
-                "avg_CT": 0.0002859,
-                "avg_SS": 64.2,
-                "avg_rel": 84.7,
+                "avg_CT": 0.000439,
+                "avg_SS": 82.6,
+                "avg_rel": 103.7,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 19.9
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0002466,
-                "avg_SS": 16.4,
-                "avg_rel": 27.1,
-                "lm_dists_CT": 0.6915228999999998
+                "avg_CT": 0.000217,
+                "avg_SS": 15.1,
+                "avg_rel": 24.8,
+                "max_avg_lb": 478.73,
+                "avg_travel_types": {
+                    "foot": 19.9
+                },
+                "lm_dists_CT": 0.7524758999999999
             }
         },
         "2": {
@@ -45,16 +61,24 @@
             "speed_limit": 0.1,
             "nb_added_edges": 50,
             "Dijkstra": {
-                "avg_CT": 0.0003207,
-                "avg_SS": 70.3,
-                "avg_rel": 101.5,
+                "avg_CT": 0.000288,
+                "avg_SS": 85.3,
+                "avg_rel": 123.6,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 33.5
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0001391,
-                "avg_SS": 10.2,
-                "avg_rel": 19.3,
-                "lm_dists_CT": 0.8448037999999998
+                "avg_CT": 0.000153,
+                "avg_SS": 13.5,
+                "avg_rel": 25.8,
+                "max_avg_lb": 486.17,
+                "avg_travel_types": {
+                    "foot": 29.5
+                },
+                "lm_dists_CT": 0.7961585999999996
             }
         },
         "3": {
@@ -63,16 +87,26 @@
             "speed_limit": 0.1,
             "nb_added_edges": 100,
             "Dijkstra": {
-                "avg_CT": 0.0004403,
-                "avg_SS": 85.8,
-                "avg_rel": 140.7,
+                "avg_CT": 0.000495,
+                "avg_SS": 92.6,
+                "avg_rel": 153.6,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 13.9,
+                    "Public Transport": 1
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.000285,
-                "avg_SS": 18.4,
-                "avg_rel": 39.2,
-                "lm_dists_CT": 0.8776635999999995
+                "avg_CT": 0.000393,
+                "avg_SS": 25.6,
+                "avg_rel": 51.3,
+                "max_avg_lb": 488.17,
+                "avg_travel_types": {
+                    "foot": 13.8,
+                    "Public Transport": 1
+                },
+                "lm_dists_CT": 1.0222921999999999
             }
         },
         "4": {
@@ -81,16 +115,26 @@
             "speed_limit": 0.1,
             "nb_added_edges": 200,
             "Dijkstra": {
-                "avg_CT": 0.000508,
-                "avg_SS": 93.9,
-                "avg_rel": 187.3,
+                "avg_CT": 0.000389,
+                "avg_SS": 84.8,
+                "avg_rel": 171.5,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 16.5,
+                    "Public Transport": 1.1
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0003114,
-                "avg_SS": 18.7,
-                "avg_rel": 47.9,
-                "lm_dists_CT": 0.9833612999999994
+                "avg_CT": 0.00019,
+                "avg_SS": 12.0,
+                "avg_rel": 33.4,
+                "max_avg_lb": 520.09,
+                "avg_travel_types": {
+                    "foot": 16.5,
+                    "Public Transport": 1.1
+                },
+                "lm_dists_CT": 1.1311447999999995
             }
         },
         "5": {
@@ -99,16 +143,24 @@
             "speed_limit": 15,
             "nb_added_edges": 0,
             "Dijkstra": {
-                "avg_CT": 0.0005305,
-                "avg_SS": 118.1,
-                "avg_rel": 140.4,
+                "avg_CT": 0.000467,
+                "avg_SS": 99.8,
+                "avg_rel": 119.8,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 22.6
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0003999,
-                "avg_SS": 31.0,
-                "avg_rel": 45.4,
-                "lm_dists_CT": 0.7276363000000003
+                "avg_CT": 0.0002,
+                "avg_SS": 17.1,
+                "avg_rel": 28.8,
+                "max_avg_lb": 560.34,
+                "avg_travel_types": {
+                    "foot": 22.6
+                },
+                "lm_dists_CT": 0.8445063000000008
             }
         },
         "6": {
@@ -117,16 +169,26 @@
             "speed_limit": 15,
             "nb_added_edges": 10,
             "Dijkstra": {
-                "avg_CT": 0.0002172,
-                "avg_SS": 63.5,
-                "avg_rel": 84.2,
+                "avg_CT": 0.000213,
+                "avg_SS": 62.4,
+                "avg_rel": 83.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 18.7,
+                    "Public Transport": 1.2
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0001319,
-                "avg_SS": 12.6,
-                "avg_rel": 22.7,
-                "lm_dists_CT": 0.7431054000000001
+                "avg_CT": 0.000139,
+                "avg_SS": 14.3,
+                "avg_rel": 23.2,
+                "max_avg_lb": 424.73,
+                "avg_travel_types": {
+                    "foot": 18.9,
+                    "Public Transport": 1.2
+                },
+                "lm_dists_CT": 0.8620252000000006
             }
         },
         "7": {
@@ -135,16 +197,26 @@
             "speed_limit": 15,
             "nb_added_edges": 50,
             "Dijkstra": {
-                "avg_CT": 0.0003972,
-                "avg_SS": 95.0,
-                "avg_rel": 135.3,
+                "avg_CT": 0.000284,
+                "avg_SS": 76.7,
+                "avg_rel": 109.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 11.4,
+                    "Public Transport": 3.0
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0003312,
-                "avg_SS": 21.5,
-                "avg_rel": 38.1,
-                "lm_dists_CT": 0.9089316000000007
+                "avg_CT": 0.000198,
+                "avg_SS": 24.3,
+                "avg_rel": 36.3,
+                "max_avg_lb": 333.97,
+                "avg_travel_types": {
+                    "foot": 11.3,
+                    "Public Transport": 1.8
+                },
+                "lm_dists_CT": 0.7909889999999997
             }
         },
         "8": {
@@ -153,16 +225,26 @@
             "speed_limit": 15,
             "nb_added_edges": 100,
             "Dijkstra": {
-                "avg_CT": 0.0004628,
-                "avg_SS": 79.8,
-                "avg_rel": 123.3,
+                "avg_CT": 0.000303,
+                "avg_SS": 56.6,
+                "avg_rel": 99.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "Public Transport": 2.2,
+                    "foot": 7.1
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0004228,
-                "avg_SS": 32.2,
-                "avg_rel": 55.3,
-                "lm_dists_CT": 0.8012154000000002
+                "avg_CT": 0.000127,
+                "avg_SS": 9.1,
+                "avg_rel": 19.3,
+                "max_avg_lb": 272.92,
+                "avg_travel_types": {
+                    "Public Transport": 2.0,
+                    "foot": 6.5
+                },
+                "lm_dists_CT": 0.9311180000000014
             }
         },
         "9": {
@@ -171,16 +253,26 @@
             "speed_limit": 15,
             "nb_added_edges": 200,
             "Dijkstra": {
-                "avg_CT": 0.0006786,
-                "avg_SS": 93.6,
-                "avg_rel": 167.6,
+                "avg_CT": 0.000659,
+                "avg_SS": 81.4,
+                "avg_rel": 156.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 12.6,
+                    "Public Transport": 4.4
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0003085,
-                "avg_SS": 9.8,
-                "avg_rel": 27.7,
-                "lm_dists_CT": 1.0672160999999996
+                "avg_CT": 0.000392,
+                "avg_SS": 14.6,
+                "avg_rel": 36.8,
+                "max_avg_lb": 236.77,
+                "avg_travel_types": {
+                    "foot": 12.5,
+                    "Public Transport": 3.8
+                },
+                "lm_dists_CT": 1.127516
             }
         },
         "10": {
@@ -189,16 +281,24 @@
             "speed_limit": 30,
             "nb_added_edges": 0,
             "Dijkstra": {
-                "avg_CT": 0.0004061,
-                "avg_SS": 89.6,
-                "avg_rel": 111.1,
+                "avg_CT": 0.000318,
+                "avg_SS": 47.9,
+                "avg_rel": 63.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 11.0
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.00018,
-                "avg_SS": 14.2,
-                "avg_rel": 24.6,
-                "lm_dists_CT": 0.7103694000000011
+                "avg_CT": 0.000179,
+                "avg_SS": 9.0,
+                "avg_rel": 14.2,
+                "max_avg_lb": 459.92,
+                "avg_travel_types": {
+                    "foot": 11.3
+                },
+                "lm_dists_CT": 1.0683885999999987
             }
         },
         "11": {
@@ -207,16 +307,26 @@
             "speed_limit": 30,
             "nb_added_edges": 10,
             "Dijkstra": {
-                "avg_CT": 0.0002837,
-                "avg_SS": 74.7,
-                "avg_rel": 94.8,
+                "avg_CT": 0.000693,
+                "avg_SS": 88.7,
+                "avg_rel": 115.6,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 15.0,
+                    "Public Transport": 1.5
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0001534,
-                "avg_SS": 13.6,
-                "avg_rel": 23.0,
-                "lm_dists_CT": 0.6972459000000004
+                "avg_CT": 0.000315,
+                "avg_SS": 19.2,
+                "avg_rel": 28.9,
+                "max_avg_lb": 391.5,
+                "avg_travel_types": {
+                    "foot": 15.8,
+                    "Public Transport": 1.2
+                },
+                "lm_dists_CT": 1.0238297999999997
             }
         },
         "12": {
@@ -225,16 +335,26 @@
             "speed_limit": 30,
             "nb_added_edges": 50,
             "Dijkstra": {
-                "avg_CT": 0.0004043,
-                "avg_SS": 80.2,
-                "avg_rel": 122.7,
+                "avg_CT": 0.00066,
+                "avg_SS": 74.9,
+                "avg_rel": 110.6,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 7.0,
+                    "Public Transport": 3.0
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0002687,
-                "avg_SS": 18.7,
-                "avg_rel": 36.3,
-                "lm_dists_CT": 0.7528488000000007
+                "avg_CT": 0.000372,
+                "avg_SS": 19.5,
+                "avg_rel": 33.6,
+                "max_avg_lb": 289.43,
+                "avg_travel_types": {
+                    "foot": 7.0,
+                    "Public Transport": 2.6
+                },
+                "lm_dists_CT": 1.281196399999999
             }
         },
         "13": {
@@ -243,16 +363,26 @@
             "speed_limit": 30,
             "nb_added_edges": 100,
             "Dijkstra": {
-                "avg_CT": 0.0005539,
-                "avg_SS": 104.9,
-                "avg_rel": 170.3,
+                "avg_CT": 0.000382,
+                "avg_SS": 49.3,
+                "avg_rel": 92.6,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 6.0,
+                    "Public Transport": 5.0
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0003457,
-                "avg_SS": 19.5,
-                "avg_rel": 41.7,
-                "lm_dists_CT": 0.9682919999999999
+                "avg_CT": 0.000374,
+                "avg_SS": 14.4,
+                "avg_rel": 29.3,
+                "max_avg_lb": 216.72,
+                "avg_travel_types": {
+                    "foot": 7.3,
+                    "Public Transport": 2.8
+                },
+                "lm_dists_CT": 1.3292643999999996
             }
         },
         "14": {
@@ -261,16 +391,26 @@
             "speed_limit": 30,
             "nb_added_edges": 200,
             "Dijkstra": {
-                "avg_CT": 0.0003616,
-                "avg_SS": 79.2,
-                "avg_rel": 148.1,
+                "avg_CT": 0.000597,
+                "avg_SS": 108.8,
+                "avg_rel": 198.9,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 5.1,
+                    "Public Transport": 3.5
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.000213,
-                "avg_SS": 13.9,
-                "avg_rel": 35.9,
-                "lm_dists_CT": 1.0183111
+                "avg_CT": 0.000704,
+                "avg_SS": 37.4,
+                "avg_rel": 81.0,
+                "max_avg_lb": 165.12,
+                "avg_travel_types": {
+                    "foot": 5.2,
+                    "Public Transport": 3.1
+                },
+                "lm_dists_CT": 1.3254111000000002
             }
         },
         "15": {
@@ -279,16 +419,24 @@
             "speed_limit": 90,
             "nb_added_edges": 0,
             "Dijkstra": {
-                "avg_CT": 0.0002658,
-                "avg_SS": 81.9,
-                "avg_rel": 102.0,
+                "avg_CT": 0.000601,
+                "avg_SS": 68.7,
+                "avg_rel": 85.2,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 15.1
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0001369,
-                "avg_SS": 13.4,
-                "avg_rel": 21.0,
-                "lm_dists_CT": 0.6728232000000016
+                "avg_CT": 0.000329,
+                "avg_SS": 11.8,
+                "avg_rel": 19.9,
+                "max_avg_lb": 492.93,
+                "avg_travel_types": {
+                    "foot": 15.1
+                },
+                "lm_dists_CT": 0.771965999999999
             }
         },
         "16": {
@@ -297,16 +445,26 @@
             "speed_limit": 90,
             "nb_added_edges": 10,
             "Dijkstra": {
-                "avg_CT": 0.0002862,
-                "avg_SS": 78.0,
-                "avg_rel": 95.8,
+                "avg_CT": 0.000225,
+                "avg_SS": 45.0,
+                "avg_rel": 60.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 13.5,
+                    "Public Transport": 1.3
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0002098,
-                "avg_SS": 19.5,
-                "avg_rel": 29.0,
-                "lm_dists_CT": 0.7167902999999995
+                "avg_CT": 0.00015,
+                "avg_SS": 11.2,
+                "avg_rel": 18.5,
+                "max_avg_lb": 352.46,
+                "avg_travel_types": {
+                    "foot": 11.4,
+                    "Public Transport": 1
+                },
+                "lm_dists_CT": 0.8882700999999997
             }
         },
         "17": {
@@ -315,16 +473,26 @@
             "speed_limit": 90,
             "nb_added_edges": 50,
             "Dijkstra": {
-                "avg_CT": 0.0004495,
-                "avg_SS": 116.5,
-                "avg_rel": 162.9,
+                "avg_CT": 0.000381,
+                "avg_SS": 79.3,
+                "avg_rel": 120.0,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 13.7,
+                    "Public Transport": 4.1
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0001919,
-                "avg_SS": 14.8,
-                "avg_rel": 30.9,
-                "lm_dists_CT": 0.8668051999999999
+                "avg_CT": 0.000243,
+                "avg_SS": 17.9,
+                "avg_rel": 33.4,
+                "max_avg_lb": 261.84,
+                "avg_travel_types": {
+                    "foot": 13.7,
+                    "Public Transport": 4.0
+                },
+                "lm_dists_CT": 0.8964540999999997
             }
         },
         "18": {
@@ -333,16 +501,26 @@
             "speed_limit": 90,
             "nb_added_edges": 100,
             "Dijkstra": {
-                "avg_CT": 0.0003172,
-                "avg_SS": 87.7,
-                "avg_rel": 149.5,
+                "avg_CT": 0.000457,
+                "avg_SS": 58.7,
+                "avg_rel": 106.0,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "Public Transport": 4.5,
+                    "foot": 5.3
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0002736,
-                "avg_SS": 22.1,
-                "avg_rel": 50.6,
-                "lm_dists_CT": 0.8478509999999986
+                "avg_CT": 0.000544,
+                "avg_SS": 26.3,
+                "avg_rel": 50.1,
+                "max_avg_lb": 146.07,
+                "avg_travel_types": {
+                    "Public Transport": 4.2,
+                    "foot": 5.3
+                },
+                "lm_dists_CT": 0.8669134000000014
             }
         },
         "19": {
@@ -351,16 +529,26 @@
             "speed_limit": 90,
             "nb_added_edges": 200,
             "Dijkstra": {
-                "avg_CT": 0.0004818,
-                "avg_SS": 71.7,
-                "avg_rel": 145.5,
+                "avg_CT": 0.000532,
+                "avg_SS": 65.3,
+                "avg_rel": 142.7,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 3.0,
+                    "Public Transport": 3.4
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0005333,
-                "avg_SS": 27.9,
-                "avg_rel": 70.0,
-                "lm_dists_CT": 0.9456398999999998
+                "avg_CT": 0.000234,
+                "avg_SS": 11.2,
+                "avg_rel": 30.7,
+                "max_avg_lb": 94.8,
+                "avg_travel_types": {
+                    "foot": 3.4,
+                    "Public Transport": 3.0
+                },
+                "lm_dists_CT": 1.2909001000000018
             }
         },
         "20": {
@@ -369,16 +557,24 @@
             "speed_limit": 120,
             "nb_added_edges": 0,
             "Dijkstra": {
-                "avg_CT": 0.0003593,
-                "avg_SS": 82.5,
-                "avg_rel": 102.1,
+                "avg_CT": 0.000403,
+                "avg_SS": 95.9,
+                "avg_rel": 118.0,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 24.8
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0003555,
-                "avg_SS": 30.9,
-                "avg_rel": 43.4,
-                "lm_dists_CT": 0.7042745000000004
+                "avg_CT": 0.000178,
+                "avg_SS": 13.1,
+                "avg_rel": 21.6,
+                "max_avg_lb": 521.93,
+                "avg_travel_types": {
+                    "foot": 21.8
+                },
+                "lm_dists_CT": 0.9198023999999982
             }
         },
         "21": {
@@ -387,16 +583,26 @@
             "speed_limit": 120,
             "nb_added_edges": 10,
             "Dijkstra": {
-                "avg_CT": 0.0003134,
-                "avg_SS": 69.4,
-                "avg_rel": 91.9,
+                "avg_CT": 0.000352,
+                "avg_SS": 72.7,
+                "avg_rel": 99.4,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 17.9,
+                    "Public Transport": 2.2
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0001955,
-                "avg_SS": 18.1,
-                "avg_rel": 29.4,
-                "lm_dists_CT": 0.8347692000000002
+                "avg_CT": 0.000219,
+                "avg_SS": 11.9,
+                "avg_rel": 18.7,
+                "max_avg_lb": 379.84,
+                "avg_travel_types": {
+                    "foot": 20.1,
+                    "Public Transport": 1.1
+                },
+                "lm_dists_CT": 1.1887855999999992
             }
         },
         "22": {
@@ -405,16 +611,26 @@
             "speed_limit": 120,
             "nb_added_edges": 50,
             "Dijkstra": {
-                "avg_CT": 0.0005109,
-                "avg_SS": 94.3,
-                "avg_rel": 135.6,
+                "avg_CT": 0.00054,
+                "avg_SS": 81.1,
+                "avg_rel": 113.0,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 15.7,
+                    "Public Transport": 3.3
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0002431,
-                "avg_SS": 15.5,
-                "avg_rel": 31.2,
-                "lm_dists_CT": 0.7889809999999997
+                "avg_CT": 0.000427,
+                "avg_SS": 23.6,
+                "avg_rel": 40.9,
+                "max_avg_lb": 315.5,
+                "avg_travel_types": {
+                    "foot": 17.4,
+                    "Public Transport": 3.2
+                },
+                "lm_dists_CT": 1.0937920000000005
             }
         },
         "23": {
@@ -423,16 +639,26 @@
             "speed_limit": 120,
             "nb_added_edges": 100,
             "Dijkstra": {
-                "avg_CT": 0.0004,
-                "avg_SS": 75.2,
-                "avg_rel": 144.1,
+                "avg_CT": 0.000381,
+                "avg_SS": 84.5,
+                "avg_rel": 142.5,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 6.0,
+                    "Public Transport": 5.7
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0004344,
-                "avg_SS": 33.7,
-                "avg_rel": 62.5,
-                "lm_dists_CT": 0.9869742000000024
+                "avg_CT": 0.00043,
+                "avg_SS": 31.7,
+                "avg_rel": 68.3,
+                "max_avg_lb": 141.67,
+                "avg_travel_types": {
+                    "foot": 8.1,
+                    "Public Transport": 4.0
+                },
+                "lm_dists_CT": 0.9703846999999968
             }
         },
         "24": {
@@ -441,16 +667,26 @@
             "speed_limit": 120,
             "nb_added_edges": 200,
             "Dijkstra": {
-                "avg_CT": 0.0008722,
-                "avg_SS": 90.6,
-                "avg_rel": 195.0,
+                "avg_CT": 0.000585,
+                "avg_SS": 89.3,
+                "avg_rel": 183.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 4.9,
+                    "Public Transport": 7.2
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0014017,
-                "avg_SS": 45.6,
-                "avg_rel": 111.5,
-                "lm_dists_CT": 1.1442209999999982
+                "avg_CT": 0.000429,
+                "avg_SS": 22.4,
+                "avg_rel": 60.5,
+                "max_avg_lb": 87.65,
+                "avg_travel_types": {
+                    "foot": 7.0,
+                    "Public Transport": 10.3
+                },
+                "lm_dists_CT": 1.0407009999999985
             }
         },
         "25": {
@@ -459,16 +695,24 @@
             "speed_limit": 10000000000.0,
             "nb_added_edges": 0,
             "Dijkstra": {
-                "avg_CT": 0.0004262,
-                "avg_SS": 62.9,
-                "avg_rel": 79.2,
+                "avg_CT": 0.000311,
+                "avg_SS": 70.3,
+                "avg_rel": 88.7,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 16.4
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.000433,
-                "avg_SS": 23.2,
-                "avg_rel": 31.1,
-                "lm_dists_CT": 0.9389891999999982
+                "avg_CT": 0.000158,
+                "avg_SS": 14.8,
+                "avg_rel": 23.8,
+                "max_avg_lb": 502.65,
+                "avg_travel_types": {
+                    "foot": 16.4
+                },
+                "lm_dists_CT": 0.9577449000000016
             }
         },
         "26": {
@@ -477,16 +721,26 @@
             "speed_limit": 10000000000.0,
             "nb_added_edges": 10,
             "Dijkstra": {
-                "avg_CT": 0.000418,
-                "avg_SS": 76.4,
-                "avg_rel": 97.6,
+                "avg_CT": 0.000318,
+                "avg_SS": 76.0,
+                "avg_rel": 100.6,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 12.3,
+                    "Public Transport": 1.5
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0002044,
-                "avg_SS": 13.2,
-                "avg_rel": 22.9,
-                "lm_dists_CT": 0.8277366000000015
+                "avg_CT": 0.000202,
+                "avg_SS": 18.9,
+                "avg_rel": 29.7,
+                "max_avg_lb": 358.88,
+                "avg_travel_types": {
+                    "foot": 13.3,
+                    "Public Transport": 1.3
+                },
+                "lm_dists_CT": 0.7378062000000014
             }
         },
         "27": {
@@ -495,16 +749,26 @@
             "speed_limit": 10000000000.0,
             "nb_added_edges": 50,
             "Dijkstra": {
-                "avg_CT": 0.0002738,
-                "avg_SS": 79.5,
-                "avg_rel": 114.6,
+                "avg_CT": 0.000342,
+                "avg_SS": 78.4,
+                "avg_rel": 116.3,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 12.4,
+                    "Public Transport": 4.3
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0002528,
-                "avg_SS": 25.9,
-                "avg_rel": 44.1,
-                "lm_dists_CT": 0.8824720999999975
+                "avg_CT": 0.000246,
+                "avg_SS": 20.0,
+                "avg_rel": 39.6,
+                "max_avg_lb": 222.98,
+                "avg_travel_types": {
+                    "foot": 12.8,
+                    "Public Transport": 4.0
+                },
+                "lm_dists_CT": 0.9000817999999988
             }
         },
         "28": {
@@ -513,16 +777,26 @@
             "speed_limit": 10000000000.0,
             "nb_added_edges": 100,
             "Dijkstra": {
-                "avg_CT": 0.000444,
-                "avg_SS": 88.3,
-                "avg_rel": 140.0,
+                "avg_CT": 0.000568,
+                "avg_SS": 91.4,
+                "avg_rel": 144.2,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "foot": 8.3,
+                    "Public Transport": 7.9
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0007064,
-                "avg_SS": 43.7,
-                "avg_rel": 79.6,
-                "lm_dists_CT": 0.8552577999999968
+                "avg_CT": 0.000682,
+                "avg_SS": 35.7,
+                "avg_rel": 78.6,
+                "max_avg_lb": 103.79,
+                "avg_travel_types": {
+                    "foot": 8.7,
+                    "Public Transport": 8.3
+                },
+                "lm_dists_CT": 0.9560750999999996
             }
         },
         "29": {
@@ -531,16 +805,26 @@
             "speed_limit": 10000000000.0,
             "nb_added_edges": 200,
             "Dijkstra": {
-                "avg_CT": 0.0003296,
-                "avg_SS": 68.2,
-                "avg_rel": 158.4,
+                "avg_CT": 0.000922,
+                "avg_SS": 125.9,
+                "avg_rel": 226.2,
+                "max_avg_lb": 0,
+                "avg_travel_types": {
+                    "Public Transport": 28.1,
+                    "foot": 5.2
+                },
                 "lm_dists_CT": 0
             },
             "ALT": {
-                "avg_CT": 0.0004199,
-                "avg_SS": 25.4,
-                "avg_rel": 81.3,
-                "lm_dists_CT": 0.7229268999999974
+                "avg_CT": 0.001263,
+                "avg_SS": 65.5,
+                "avg_rel": 142.6,
+                "max_avg_lb": 42.63,
+                "avg_travel_types": {
+                    "Public Transport": 27.2,
+                    "foot": 5.4
+                },
+                "lm_dists_CT": 1.237988099999999
             }
         }
     }

@@ -166,6 +166,28 @@ def plotExp7AvgDegResult(filename, title, ylabel, xlabel, speeds, graph, save_fi
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
+def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, speeds, graph, save_filename):
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    for s in speeds:
+        x, y = [], []
+        for k in stats[graph]:
+            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
+                if stats[graph][k]["speed_limit"] == s:
+                    x.append(stats[graph][k]["nb_added_edges"])
+                    y.append(stats[graph][k]["ALT"]["max_avg_lb"])
+
+        # scatter points
+        ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
+        plt.plot(x, y)
+        plt.xticks(x, x)
+
+    # show
+    show("upper left", title, ylabel, xlabel, save_filename)
+
+
 def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, xmetric, save_filename):
     stats = getJsonData(filename)
 
@@ -208,7 +230,7 @@ def plotModalitiesPieChart(filename, title, graph, algo, save_filename):
     plt.show()
 
 
-def plotExp9Result(filename, title, ylabel, xlabel, xmetric, ymetric, graph, save_filename):
+def plotPrefExpResult(filename, title, ylabel, xlabel, xmetric, ymetric, graph, save_filename):
     # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
 
@@ -226,6 +248,20 @@ def plotExp9Result(filename, title, ylabel, xlabel, xmetric, ymetric, graph, sav
         plt.xticks(x, x)
 
     show("upper left", title, ylabel, xlabel, save_filename)
+
+
+def plotPrefAvgMaxLb(filename, title, ylabel, xlabel, xmetric, graph, save_filename):
+    stats = getJsonData(filename)
+
+    x, y = [], []
+    for k in stats[graph]["stats"]:
+        x.append(stats[graph]["stats"][k][xmetric])
+        y.append(stats[graph]["stats"][k]["ALT"]["max_avg_lb"])
+
+    plt.plot(x, y, marker="o")
+
+    # show
+    show(None, title, ylabel, xlabel, save_filename)
 
 
 # ====================================================
@@ -354,6 +390,13 @@ def plotExp7(metrics, improvements, graphs):
                              "avg deg after", "|added edges|", speeds,
                              graph, save_filename)
 
+        # plot : mac avg lower bound - ALT
+        save_filename = FILE_EXP7 + "plot_max_avg_lb_" + graph + ".png"
+        plotMaxAvgLbExp7(FILE_EXP7_ALL,
+                         "Experience 7 - Max average distance lower bound - " + graph,
+                         "max avg lower bound", "|added edges|", speeds,
+                         graph, save_filename)
+
 
 def plotExp8(metrics):
     """
@@ -383,15 +426,24 @@ def plotExp9(metrics, graphs):
     for graph in graphs:
         for metric in metrics:
             save_filename = FILE_EXP9 + "plot_" + metric + "_" + graph + ".png"
-            plotExp9Result(FILE_EXP9_ALL, "Experience 9 - prefs - " + metric + " - " + graph,
-                           metrics[metric], "c2", "c2", metric,
-                           graph, save_filename)
+            plotPrefExpResult(FILE_EXP9_ALL,
+                              "Experience 9 - prefs - " + metric + " - " + graph,
+                              metrics[metric], "c2", "c2", metric,
+                              graph, save_filename)
 
         save_filename = FILE_EXP9 + "plot_travelTypes_" + graph + ".png"
-        plotModalitiesLines(FILE_EXP9_ALL, "Experience 9 - Travel types - " + graph,
+        plotModalitiesLines(FILE_EXP9_ALL,
+                            "Experience 9 - Travel types - " + graph,
                             "Travel types frequency", "c2", graph,
                             ["Villo", "fromStation", "toStation", "car"],
                             "Dijkstra", "c2", save_filename)
+
+        # plot max avg lb
+        save_filename = FILE_EXP9 + "plot_max_avg_lb_" + graph + ".png"
+        plotPrefAvgMaxLb(FILE_EXP9_ALL,
+                         "Experience 9 - Max avg lower bound - " + graph,
+                         "Max avg dist lb", "c2", "c2",
+                         graph, save_filename)
 
 
 def plotExp10(metrics, graphs):
@@ -401,9 +453,9 @@ def plotExp10(metrics, graphs):
     for graph in graphs:
         for metric in metrics:
             save_filename = FILE_EXP10 + "plot_" + metric + "_" + graph + ".png"
-            plotExp9Result(FILE_EXP10_ALL, "Experience 10 - prefs - " + metric + " - " + graph,
-                           metrics[metric], "c2", "c2", metric,
-                           graph, save_filename)
+            plotPrefExpResult(FILE_EXP10_ALL, "Experience 10 - prefs - " + metric + " - " + graph,
+                              metrics[metric], "c2", "c2", metric,
+                              graph, save_filename)
 
         save_filename = FILE_EXP10 + "plot_travelTypes_" + graph + ".png"
         plotModalitiesLines(FILE_EXP10_ALL, "Experience 10 - Travel types - " + graph,
@@ -425,12 +477,12 @@ def main():
 
     graphs = [GRAPH_1_NAME, GRAPH_2_NAME, GRAPH_3_NAME, GRAPH_4_NAME, GRAPH_5_NAME, GRAPH_6_NAME]
 
-    plotExp1(metrics)
-    plotExp2(metrics)
-    plotExp3(metrics)
-    plotExp4(metrics)
-    plotExp5(metrics, improvements)
-    plotExp6()
+    # plotExp1(metrics)
+    # plotExp2(metrics)
+    # plotExp3(metrics)
+    # plotExp4(metrics)
+    # plotExp5(metrics, improvements)
+    # plotExp6()
     plotExp7(metrics, improvements, [GRAPH_1_NAME])
     plotExp8(metrics)
     plotExp9(metrics, [GRAPH_1_NAME])
