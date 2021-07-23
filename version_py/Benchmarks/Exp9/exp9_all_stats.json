@@ -11,29 +11,31 @@
                 "c1": 1,
                 "c2": 2,
                 "Dijkstra": {
-                    "avg_CT": 0.000759,
-                    "avg_SS": 148.0,
-                    "avg_rel": 193.7,
+                    "avg_CT": 0.000763,
+                    "avg_SS": 174.6,
+                    "avg_rel": 223.3,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "car": 25.5,
-                        "Villo": 3.5,
+                        "car": 17.0,
+                        "Villo": 16.8,
                         "fromStation": 1.2,
-                        "toStation": 1.1
+                        "toStation": 1
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.00031,
-                    "avg_SS": 21.0,
-                    "avg_rel": 33.0,
+                    "avg_CT": 0.000284,
+                    "avg_SS": 24.1,
+                    "avg_rel": 36.8,
+                    "max_avg_lb": 86.32,
                     "avg_travel_types": {
-                        "car": 26.1,
-                        "Villo": 3.5,
+                        "car": 17.0,
+                        "Villo": 16.8,
                         "fromStation": 1.2,
-                        "toStation": 1.1
+                        "toStation": 1
                     },
-                    "lm_dists_CT": 2.701879100000042,
+                    "lm_dists_CT": 2.5077058,
                     "nb_villo_stations": 32
                 }
             },
@@ -41,29 +43,31 @@
                 "c1": 1,
                 "c2": 1.8,
                 "Dijkstra": {
-                    "avg_CT": 0.000783,
-                    "avg_SS": 162.7,
-                    "avg_rel": 211.1,
+                    "avg_CT": 0.000368,
+                    "avg_SS": 80.5,
+                    "avg_rel": 107.2,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "car": 32.3,
-                        "Villo": 7.6,
-                        "fromStation": 1.5,
-                        "toStation": 1.2
+                        "Villo": 7.9,
+                        "car": 6.3,
+                        "toStation": 1.2,
+                        "fromStation": 1
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000335,
-                    "avg_SS": 21.2,
-                    "avg_rel": 34.6,
+                    "avg_CT": 0.000158,
+                    "avg_SS": 14.2,
+                    "avg_rel": 21.5,
+                    "max_avg_lb": 87.38,
                     "avg_travel_types": {
-                        "car": 32.3,
-                        "Villo": 7.6,
-                        "fromStation": 1.5,
-                        "toStation": 1.2
+                        "Villo": 7.9,
+                        "car": 6.3,
+                        "toStation": 1.2,
+                        "fromStation": 1
                     },
-                    "lm_dists_CT": 2.5829903999999715,
+                    "lm_dists_CT": 2.4383492,
                     "nb_villo_stations": 32
                 }
             },
@@ -71,29 +75,31 @@
                 "c1": 1,
                 "c2": 1.6,
                 "Dijkstra": {
-                    "avg_CT": 0.000768,
-                    "avg_SS": 158.3,
-                    "avg_rel": 204.7,
+                    "avg_CT": 0.000672,
+                    "avg_SS": 117.2,
+                    "avg_rel": 156.7,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "Villo": 16.2,
+                        "Villo": 9.3,
                         "fromStation": 1.3,
-                        "car": 26.5,
-                        "toStation": 1.4
+                        "car": 18.7,
+                        "toStation": 1.1
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000351,
-                    "avg_SS": 25.5,
-                    "avg_rel": 39.7,
+                    "avg_CT": 0.0003,
+                    "avg_SS": 16.8,
+                    "avg_rel": 29.3,
+                    "max_avg_lb": 79.78,
                     "avg_travel_types": {
-                        "Villo": 16.2,
+                        "Villo": 9.3,
                         "fromStation": 1.3,
-                        "car": 26.5,
-                        "toStation": 1.4
+                        "car": 18.7,
+                        "toStation": 1.1
                     },
-                    "lm_dists_CT": 2.607543299999975,
+                    "lm_dists_CT": 2.346414899999999,
                     "nb_villo_stations": 32
                 }
             },
@@ -101,29 +107,31 @@
                 "c1": 1,
                 "c2": 1.4,
                 "Dijkstra": {
-                    "avg_CT": 0.000751,
-                    "avg_SS": 132.5,
-                    "avg_rel": 176.0,
+                    "avg_CT": 0.00078,
+                    "avg_SS": 153.0,
+                    "avg_rel": 195.2,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "car": 20.7,
-                        "Villo": 6.6,
-                        "fromStation": 1.2,
-                        "toStation": 1
+                        "Villo": 11.3,
+                        "fromStation": 1.1,
+                        "car": 12.2,
+                        "toStation": 1.3
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000303,
-                    "avg_SS": 18.2,
-                    "avg_rel": 30.4,
+                    "avg_CT": 0.000479,
+                    "avg_SS": 38.1,
+                    "avg_rel": 54.8,
+                    "max_avg_lb": 99.78,
                     "avg_travel_types": {
-                        "car": 20.1,
-                        "Villo": 6.6,
-                        "fromStation": 1.2,
-                        "toStation": 1
+                        "Villo": 12.3,
+                        "fromStation": 1.1,
+                        "car": 11.0,
+                        "toStation": 1.3
                     },
-                    "lm_dists_CT": 2.6068063000000166,
+                    "lm_dists_CT": 2.4009707999999996,
                     "nb_villo_stations": 32
                 }
             },
@@ -131,29 +139,31 @@
                 "c1": 1,
                 "c2": 1.2,
                 "Dijkstra": {
-                    "avg_CT": 0.000756,
-                    "avg_SS": 154.0,
-                    "avg_rel": 196.0,
+                    "avg_CT": 0.001161,
+                    "avg_SS": 200.3,
+                    "avg_rel": 250.8,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "car": 23.1,
-                        "Villo": 5.9,
-                        "fromStation": 1.3,
+                        "Villo": 8.6,
+                        "fromStation": 1.5,
+                        "car": 26.0,
                         "toStation": 1.1
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000276,
-                    "avg_SS": 20.0,
-                    "avg_rel": 30.1,
+                    "avg_CT": 0.00075,
+                    "avg_SS": 42.1,
+                    "avg_rel": 61.5,
+                    "max_avg_lb": 95.27,
                     "avg_travel_types": {
-                        "car": 22.8,
-                        "Villo": 5.9,
-                        "fromStation": 1.3,
+                        "Villo": 8.4,
+                        "fromStation": 1.5,
+                        "car": 26.0,
                         "toStation": 1.1
                     },
-                    "lm_dists_CT": 2.561324099999979,
+                    "lm_dists_CT": 2.5173988000000005,
                     "nb_villo_stations": 32
                 }
             },
@@ -161,29 +171,31 @@
                 "c1": 1,
                 "c2": 1.0,
                 "Dijkstra": {
-                    "avg_CT": 0.00097,
-                    "avg_SS": 189.5,
-                    "avg_rel": 243.3,
+                    "avg_CT": 0.00093,
+                    "avg_SS": 115.0,
+                    "avg_rel": 152.9,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "Villo": 10.1,
-                        "fromStation": 1.2,
-                        "car": 23.1,
-                        "toStation": 1.5
+                        "Villo": 11.7,
+                        "fromStation": 1.4,
+                        "car": 15.4,
+                        "toStation": 1.1
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.00089,
-                    "avg_SS": 56.4,
-                    "avg_rel": 78.2,
+                    "avg_CT": 0.000372,
+                    "avg_SS": 17.2,
+                    "avg_rel": 27.6,
+                    "max_avg_lb": 79.7,
                     "avg_travel_types": {
-                        "Villo": 10.1,
-                        "fromStation": 1.2,
-                        "car": 23.1,
-                        "toStation": 1.5
+                        "Villo": 11.7,
+                        "fromStation": 1.4,
+                        "car": 15.0,
+                        "toStation": 1.1
                     },
-                    "lm_dists_CT": 2.5211289999999735,
+                    "lm_dists_CT": 3.8580515999999996,
                     "nb_villo_stations": 32
                 }
             },
@@ -191,29 +203,31 @@
                 "c1": 1,
                 "c2": 0.8,
                 "Dijkstra": {
-                    "avg_CT": 0.000789,
-                    "avg_SS": 166.6,
-                    "avg_rel": 215.7,
+                    "avg_CT": 0.000847,
+                    "avg_SS": 179.4,
+                    "avg_rel": 225.4,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "car": 13.0,
-                        "fromStation": 1.3,
-                        "toStation": 1.3,
-                        "Villo": 9.7
+                        "Villo": 10.2,
+                        "fromStation": 1.5,
+                        "car": 29.2,
+                        "toStation": 1.4
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000315,
-                    "avg_SS": 22.5,
-                    "avg_rel": 35.9,
+                    "avg_CT": 0.000445,
+                    "avg_SS": 35.6,
+                    "avg_rel": 53.7,
+                    "max_avg_lb": 96.18,
                     "avg_travel_types": {
-                        "car": 13.0,
-                        "fromStation": 1.3,
-                        "toStation": 1.3,
-                        "Villo": 9.7
+                        "Villo": 10.2,
+                        "fromStation": 1.5,
+                        "car": 23.2,
+                        "toStation": 1.4
                     },
-                    "lm_dists_CT": 2.718170700000087,
+                    "lm_dists_CT": 3.1776088000000016,
                     "nb_villo_stations": 32
                 }
             },
@@ -221,29 +235,31 @@
                 "c1": 1,
                 "c2": 0.6,
                 "Dijkstra": {
-                    "avg_CT": 0.000543,
-                    "avg_SS": 126.5,
-                    "avg_rel": 165.0,
+                    "avg_CT": 0.000674,
+                    "avg_SS": 156.8,
+                    "avg_rel": 203.6,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "Villo": 2.4,
-                        "fromStation": 1.1,
-                        "car": 35.7,
-                        "toStation": 1
+                        "car": 15.2,
+                        "fromStation": 1.3,
+                        "toStation": 1.1,
+                        "Villo": 8.8
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000247,
-                    "avg_SS": 21.6,
-                    "avg_rel": 34.7,
+                    "avg_CT": 0.000197,
+                    "avg_SS": 16.4,
+                    "avg_rel": 26.5,
+                    "max_avg_lb": 98.4,
                     "avg_travel_types": {
-                        "Villo": 2.4,
-                        "fromStation": 1.1,
-                        "car": 35.7,
-                        "toStation": 1
+                        "car": 15.2,
+                        "fromStation": 1.3,
+                        "toStation": 1.1,
+                        "Villo": 8.8
                     },
-                    "lm_dists_CT": 2.5476620000000594,
+                    "lm_dists_CT": 2.446156200000001,
                     "nb_villo_stations": 32
                 }
             },
@@ -251,29 +267,31 @@
                 "c1": 1,
                 "c2": 0.4,
                 "Dijkstra": {
-                    "avg_CT": 0.000801,
-                    "avg_SS": 149.3,
-                    "avg_rel": 194.5,
+                    "avg_CT": 0.000989,
+                    "avg_SS": 181.4,
+                    "avg_rel": 228.8,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "car": 24.7,
-                        "toStation": 1.2,
-                        "Villo": 5.5,
-                        "fromStation": 1.5
+                        "Villo": 13.8,
+                        "fromStation": 1.2,
+                        "car": 9.5,
+                        "toStation": 1.3
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000386,
-                    "avg_SS": 23.6,
-                    "avg_rel": 38.4,
+                    "avg_CT": 0.000622,
+                    "avg_SS": 47.8,
+                    "avg_rel": 64.4,
+                    "max_avg_lb": 93.46,
                     "avg_travel_types": {
-                        "car": 24.8,
-                        "toStation": 1.2,
-                        "Villo": 5.2,
-                        "fromStation": 1.5
+                        "Villo": 13.7,
+                        "fromStation": 1.2,
+                        "car": 8.9,
+                        "toStation": 1.3
                     },
-                    "lm_dists_CT": 2.908990499999959,
+                    "lm_dists_CT": 2.5550952000000002,
                     "nb_villo_stations": 32
                 }
             },
@@ -281,29 +299,31 @@
                 "c1": 1,
                 "c2": 0.2,
                 "Dijkstra": {
-                    "avg_CT": 0.000722,
-                    "avg_SS": 139.5,
-                    "avg_rel": 182.0,
+                    "avg_CT": 0.000573,
+                    "avg_SS": 134.9,
+                    "avg_rel": 177.6,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "Villo": 8.1,
-                        "fromStation": 1.2,
-                        "car": 13.2,
-                        "toStation": 1.3
+                        "car": 17.1,
+                        "Villo": 10.0,
+                        "fromStation": 1.5,
+                        "toStation": 1.1
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000406,
-                    "avg_SS": 25.1,
-                    "avg_rel": 39.0,
+                    "avg_CT": 0.000284,
+                    "avg_SS": 23.6,
+                    "avg_rel": 37.5,
+                    "max_avg_lb": 87.35,
                     "avg_travel_types": {
-                        "Villo": 8.1,
-                        "fromStation": 1.2,
-                        "car": 13.2,
-                        "toStation": 1.3
+                        "car": 17.1,
+                        "Villo": 10.0,
+                        "fromStation": 1.5,
+                        "toStation": 1.1
                     },
-                    "lm_dists_CT": 2.7702714000000697,
+                    "lm_dists_CT": 2.335674400000002,
                     "nb_villo_stations": 32
                 }
             },
@@ -311,29 +331,31 @@
                 "c1": 1,
                 "c2": 0.0,
                 "Dijkstra": {
-                    "avg_CT": 0.001208,
-                    "avg_SS": 144.3,
-                    "avg_rel": 189.4,
+                    "avg_CT": 0.000565,
+                    "avg_SS": 151.4,
+                    "avg_rel": 192.0,
+                    "max_avg_lb": 0,
                     "avg_travel_types": {
-                        "car": 11.3,
-                        "toStation": 1.5,
-                        "Villo": 3.6,
-                        "fromStation": 1.2
+                        "car": 10.9,
+                        "Villo": 9.8,
+                        "fromStation": 1.3,
+                        "toStation": 1.2
                     },
                     "lm_dists_CT": 0,
                     "nb_villo_stations": 32
                 },
                 "ALT": {
-                    "avg_CT": 0.000503,
-                    "avg_SS": 20.2,
-                    "avg_rel": 32.6,
+                    "avg_CT": 0.000415,
+                    "avg_SS": 47.4,
+                    "avg_rel": 64.1,
+                    "max_avg_lb": 91.23,
                     "avg_travel_types": {
-                        "car": 10.6,
-                        "toStation": 1.4,
-                        "Villo": 4.3,
-                        "fromStation": 1.1
+                        "car": 9.5,
+                        "Villo": 10.1,
+                        "fromStation": 1.2,
+                        "toStation": 1.1
                     },
-                    "lm_dists_CT": 2.5672002999999677,
+                    "lm_dists_CT": 2.7678978,
                     "nb_villo_stations": 32
                 }
             }

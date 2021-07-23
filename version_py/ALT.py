@@ -33,3 +33,13 @@ class ALT(Astar):
         if not exist_sol:
             return None
         return self.processSearchResult()
+
+    def getAvgMaxHeuristicDist(self):
+        avg_max_dist = 0
+        for v in self.graph.getNodesIDs():
+            max_dist = self.ALTHeuristic(v, self.t)
+            avg_max_dist += max_dist
+
+        return avg_max_dist / self.graph.getNbNodes()
+
+

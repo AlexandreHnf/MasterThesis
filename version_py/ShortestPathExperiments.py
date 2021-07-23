@@ -83,6 +83,8 @@ def testALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic="euc
     timer.printTimeElapsedSec("[ALT]")
     showResult(graph.getNodesCoords(), search_space, shortest_path, sp_coords, alt, landmarks, show)
 
+    max_avg_dist = alt.getAvgMaxHeuristicDist()
+    print("max avg distance ALT : ", max_avg_dist)
 
 def testBidiDijkstra(graph, s, t, queue_type="bin", show=False):
     bd = BidirectionalDijkstra(graph, s, t, queue_type)

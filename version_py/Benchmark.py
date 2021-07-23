@@ -57,7 +57,6 @@ class Benchmark:
 
 
     def testSingleQuery(self, nb_runs, algo_name, priority, bucket_size, heuristic, lm_dists):
-        # TODO check if the results are coherent
         stats = {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0}
 
         queries_timer = Timer()
@@ -84,7 +83,6 @@ class Benchmark:
 
 
     def testMultipleQueries(self, nb_runs, graph, algos, lm_dists=None, prepro_time=0):
-        # TODO check if the results are coherent
         stats = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0} for algo_name in algos}
 
         queries_timer = Timer()
@@ -130,8 +128,8 @@ class Benchmark:
 
 
     def testMultipleQueriesMultiModal(self, nb_runs, graph, algos, lm_dists=None, prepro_time=0):
-        # TODO check if the results are coherent
-        stats = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0, "avg_travel_types": {}} for algo_name in algos}
+        stats = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0, "max_avg_lb": 0,
+                             "avg_travel_types": {}} for algo_name in algos}
 
         queries_timer = Timer()
         queries_timer.start()
@@ -150,6 +148,8 @@ class Benchmark:
                 stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
                 stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs
                 stats[algo_name]["avg_rel"] += algo.getNbRelaxedEdges() / nb_runs
+                if algo_name == "ALT":
+                    stats[algo_name]["max_avg_lb"] += algo.getAvgMaxHeuristicDist() / nb_runs
                 self.addTravelTypesStats(stats, algo_name, travel_types, nb_runs)
 
             if not algos_success:
@@ -161,6 +161,7 @@ class Benchmark:
             stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"], 2)
             stats[algo_name]["avg_rel"] = round(stats[algo_name]["avg_rel"], 2)
             if algo_name in ["ALT", "BidiALT"]:
+                stats[algo_name]["max_avg_lb"] = round(stats[algo_name]["max_avg_lb"], 2)
                 stats[algo_name]["lm_dists_CT"] = prepro_time
             else:
                 stats[algo_name]["lm_dists_CT"] = 0

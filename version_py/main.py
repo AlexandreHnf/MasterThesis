@@ -62,14 +62,14 @@ def runAllSP(s, t):
     graph = p.parse()
     p.showStats()
 
-    testDijkstra(graph, s, t)
-    testAstar(graph, s, t)
+    # testDijkstra(graph, s, t)
+    # testAstar(graph, s, t)
     testALT(graph, s, t, "planar", "bin", "euclidean", True)
 
     # bidirectional
-    testBidiDijkstra(graph, s, t)
-    testBidiAstar(graph, s, t)
-    testBidiALT(graph, s, t, "planar", "bin", "euclidean")
+    # testBidiDijkstra(graph, s, t)
+    # testBidiAstar(graph, s, t)
+    # testBidiALT(graph, s, t, "planar", "bin", "euclidean")
 
 
 def testLandmark():
