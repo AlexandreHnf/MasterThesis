@@ -463,6 +463,13 @@ def plotExp10(metrics, graphs):
                             ["Villo", "fromStation", "toStation", "car"],
                             "Dijkstra", "c2", save_filename)
 
+        # plot max avg lb
+        save_filename = FILE_EXP10 + "plot_max_avg_lb_" + graph + ".png"
+        plotPrefAvgMaxLb(FILE_EXP10_ALL,
+                         "Experience 10 - Max avg lower bound - " + graph,
+                         "Max avg dist lb", "c2", "c2",
+                         graph, save_filename)
+
 
 # ===============================================================
 
