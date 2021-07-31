@@ -1,5 +1,9 @@
 W = "D:\\Users\\Alexandre\\Desktop\\ULB\\MA2\\Memoire\\Codes\\MasterThesis\\version_py\\"
 
+earthRadiusKm = 6371
+
+limit_connection_ratio = 0.5
+
 # Graphs
 GRAPH_1_NAME =          "1_ULB"
 GRAPH_2_NAME =          "2_Bruxelles"
@@ -25,6 +29,14 @@ GRAPH_FILENAMES =      {GRAPH_1_NAME: GRAPH_ULB,
 GRAPH_VILLO =           W + "Graphs\\" + "villo.json"
 SPEED_FOOT =            5   # km/h
 SPEED_BIKE =            20  # km/h https://cyclinguphill.com/average-speeds-cycling/
+NOT_VALID_MAXSPEEDS =   not_valid = ["signals",
+                                     "variable",
+                                     "30; 50",
+                                     "50;30",
+                                     "50; 30; 50",
+                                     "30;70",
+                                     "FR:urban",
+                                     "BE:urban"]
 
 # Benchmarks parameters
 # TODO : faire un graph artificial (comme dans goldberg et al. when Astar meets grpah theory)

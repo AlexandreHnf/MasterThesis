@@ -38,13 +38,13 @@ class MultiModalGraph(Graph):
         Transform the uni-modal graph into a multi-modal station-based graph
         """
 
-        # duplicate the base graph and change the duplicated edges weights (~3x faster)
+        # duplicate the base graph and change the duplicated edges weights
         max_id = max(self.getNodesIDs())
         print("max id in the graph : ", max_id)
         for v in self.getNodesIDs():
             bike_edges = []
             for edge in self.getAdj(v):
-                # match bike speed (edge weight walk / 3  => ~3x faster)
+                # match bike speed
                 bike_edges.append(Edge(edge.getExtremityNode() + max_id,
                                        "Villo",
                                        3600 * (edge.getLengthKm() / SPEED_BIKE),

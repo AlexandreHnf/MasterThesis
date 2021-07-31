@@ -484,12 +484,12 @@ def main():
 
     graphs = [GRAPH_1_NAME, GRAPH_2_NAME, GRAPH_3_NAME, GRAPH_4_NAME, GRAPH_5_NAME, GRAPH_6_NAME]
 
-    # plotExp1(metrics)
-    # plotExp2(metrics)
-    # plotExp3(metrics)
-    # plotExp4(metrics)
-    # plotExp5(metrics, improvements)
-    # plotExp6()
+    plotExp1(metrics)
+    plotExp2(metrics)
+    plotExp3(metrics)
+    plotExp4(metrics)
+    plotExp5(metrics, improvements)
+    plotExp6()
     plotExp7(metrics, improvements, [GRAPH_1_NAME])
     plotExp8(metrics)
     plotExp9(metrics, [GRAPH_1_NAME])

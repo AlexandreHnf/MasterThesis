@@ -1,8 +1,5 @@
 from math import pi, sin, cos, asin, sqrt, radians
 from Constants import *
-import json
-
-earthRadiusKm = 6371
 
 
 def deg2rad(deg):
@@ -121,6 +118,10 @@ def getCarGasPrice(length_km):
     price = length_km / 100 * CAR_CONSUMPTION * GAS_PRICE_KM
 
     return round(price, 2)
+
+
+def percent(x, tot):
+    return round(100*(x / tot), 4)
 
 
 if __name__ == "__main__":

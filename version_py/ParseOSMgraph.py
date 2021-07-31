@@ -1,5 +1,4 @@
 # coding=utf-8
-import json
 from Utils import *
 from Edge import Edge
 from Constants import *
@@ -7,11 +6,14 @@ import random
 import time
 from Graph import Graph
 from Dijkstra import Dijkstra
+from Quadtree import bounding_box
 import IO
 
+
 class OSMgraphParser:
-    def __init__(self, filename):
-        self.graph_filename = filename
+    def __init__(self, graph_name):
+        self.graph_name = graph_name
+        self.graph_filename = GRAPH_FILENAMES[graph_name]
         self.nodes_coordinates = {}  # key = node ID, value = (lat, lon)
         self.original_nb_nodes = 0
         self.original_nb_edges = 0
@@ -23,6 +25,8 @@ class OSMgraphParser:
         self.nb_two_way_edges = 0
         self.nb_duplicate_edges = 0
         self.timing = 0
+
+        self.boundingbox = None
 
     def isDuplicateEdge(self, adj_list, v, w, weight):
         """
@@ -73,7 +77,8 @@ class OSMgraphParser:
             return SPEED_FOOT
         elif travel_type == "car":
             maxspeed = feature["properties"]["tags"].get("maxspeed", None)
-            if maxspeed:  # not None
+            # valid maxspeed
+            if maxspeed and maxspeed not in NOT_VALID_MAXSPEEDS:
                 return int(maxspeed)
             else:
                 return self.estimateSpeedLimit(feature["properties"]["tags"]["highway"])
@@ -172,7 +177,7 @@ class OSMgraphParser:
         strongly connected
         """
         connected_graph = []
-        while self.connection_ratio < 0.5:
+        while self.connection_ratio < limit_connection_ratio:
             s = random.choice(list(adjlist.keys()))  # random starting node
             connected_graph = self.getStronglyConnectedGraph(adjlist, s)
             self.connection_ratio = len(connected_graph) / len(adjlist)
@@ -197,6 +202,7 @@ class OSMgraphParser:
         features = IO.getJsonData(self.graph_filename)["features"]
         adjlist = {}  # key = ID, value = list of adjacent Edge (object)
         self.getNodesCoordinates(features, adjlist)
+        self.boundingbox = bounding_box(self.nodes_coordinates.values())
 
         for f in features:
             if f["geometry"]["type"] == "LineString":  # if edges
@@ -223,24 +229,39 @@ class OSMgraphParser:
         Show all stats related to the parsing of the OSM graph data
         """
         print("======= Stats graph OSM ======== ")
+        print("Graph Name :              {0}".format(self.graph_name))
         print("Raw graph :               {0} nodes, {1} edges".format(self.original_nb_nodes, self.original_nb_nodes))
-        print("Nb two way edges :        {0} = {1} % ".format(self.nb_two_way_edges, 100*(self.nb_two_way_edges / self.original_nb_edges)))
-        print("Nb duplicate edges :      {0} = {1} %".format(self.nb_duplicate_edges, 100*(self.nb_duplicate_edges/self.original_nb_edges)))
-        print("Nb self loop edges :      {0} = {1} %".format(self.nb_self_loops, 100*(self.nb_self_loops/self.original_nb_edges)))
-        print("Nb edges no speed limit : {0} = {1} %".format(self.nb_edges_no_speed, 100*(self.nb_edges_no_speed/self.original_nb_edges)))
+        print("Nb two way edges :        {0} = {1} % ".format(self.nb_two_way_edges, percent(self.nb_two_way_edges, self.original_nb_edges)))
+        print("Nb duplicate edges :      {0} = {1} %".format(self.nb_duplicate_edges, percent(self.nb_duplicate_edges, self.original_nb_edges)))
+        print("Nb self loop edges :      {0} = {1} %".format(self.nb_self_loops, percent(self.nb_self_loops, self.original_nb_edges)))
+        print("Nb edges no speed limit : {0} = {1} %".format(self.nb_edges_no_speed, percent(self.nb_edges_no_speed, self.original_nb_edges)))
         print("Final graph :             {0} nodes, {1} edges".format(self.tot_nb_nodes, self.tot_nb_edges))
-        print("Graph connection ratio :  {0} % of vertices left".format(100*self.connection_ratio))
+        print("Graph connection ratio :  {0} % of vertices left".format(percent(self.connection_ratio, 1)))
         print("Parsing done in {0} seconds".format(self.timing))
         print("====================================")
+
+
+
+
+def showAllGraphsStats():
+    for g in GRAPH_FILENAMES.keys():
+        p = OSMgraphParser(g)
+        graph = p.parse()
+        print(p.boundingbox)
+        p.showStats()
 
 
 def main():
     # graph = {"id": [Edge, Edge, ...], ...}
     # nodes = {"id": [lat, lon], ...}
-    p = OSMgraphParser(GRAPH_BXL)
+    """
+    p = OSMgraphParser(GRAPH_FILENAMES[GRAPH_1_NAME])
     graph = p.parse()
     graph.showGraph()
     p.showStats()
+    """
+
+    showAllGraphsStats()
 
 if __name__ == "__main__":
     main()
