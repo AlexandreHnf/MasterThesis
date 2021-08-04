@@ -1,52 +1,52 @@
 {
-    "1_ULB": {
-        "nb_nodes": 149,
-        "nb_edges": 349,
-        "avg_deg": 2.34,
-        "stats": {
-            "random": {
-                "avg_CT": 0.000103,
-                "avg_SS": 10,
-                "avg_rel": 17,
-                "lm_dists_CT": 0.6103190000000001
-            },
-            "farthest": {
-                "avg_CT": 0.000127,
-                "avg_SS": 13,
-                "avg_rel": 21,
-                "lm_dists_CT": 0.8074570000000003
-            },
-            "planar": {
-                "avg_CT": 0.000147,
-                "avg_SS": 13,
-                "avg_rel": 23,
-                "lm_dists_CT": 0.6986033000000003
-            }
-        }
-    },
     "2_Bruxelles": {
         "nb_nodes": 1115,
-        "nb_edges": 1960,
         "avg_deg": 1.76,
         "stats": {
             "random": {
-                "avg_CT": 0.002532,
-                "avg_SS": 118,
-                "avg_rel": 152,
-                "lm_dists_CT": 36.49766219999999
+                "avg_rel": 165,
+                "lm_dists_CT": 15.602760000001581,
+                "avg_CT": 0.001072,
+                "avg_SS": 135
             },
             "farthest": {
-                "avg_CT": 0.001387,
-                "avg_SS": 89,
-                "avg_rel": 114,
-                "lm_dists_CT": 43.7068145
+                "avg_rel": 166,
+                "lm_dists_CT": 22.982306799996877,
+                "avg_CT": 0.000997,
+                "avg_SS": 135
             },
             "planar": {
-                "avg_CT": 0.001927,
-                "avg_SS": 151,
-                "avg_rel": 181,
-                "lm_dists_CT": 36.3084748
+                "avg_rel": 170,
+                "lm_dists_CT": 19.855713500001002,
+                "avg_CT": 0.0009,
+                "avg_SS": 139
             }
-        }
+        },
+        "nb_edges": 1960
+    },
+    "1_ULB": {
+        "nb_nodes": 149,
+        "avg_deg": 2.34,
+        "stats": {
+            "random": {
+                "avg_rel": 26,
+                "lm_dists_CT": 0.275828999998339,
+                "avg_CT": 0.000132,
+                "avg_SS": 17
+            },
+            "farthest": {
+                "avg_rel": 26,
+                "lm_dists_CT": 0.5690650000033202,
+                "avg_CT": 0.000127,
+                "avg_SS": 17
+            },
+            "planar": {
+                "avg_rel": 25,
+                "lm_dists_CT": 0.5808761999942362,
+                "avg_CT": 0.000145,
+                "avg_SS": 16
+            }
+        },
+        "nb_edges": 349
     }
 }

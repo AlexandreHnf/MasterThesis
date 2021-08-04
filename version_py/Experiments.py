@@ -1,14 +1,14 @@
 import copy
+import IO
 
 from Benchmark import *
 from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
 from Visualization import *
-import IO
+from Timer import Timer
 
 
-# TODO : change the print(f"") in print(.format())
 
 
 def experiment1(graphs_names):
@@ -17,12 +17,11 @@ def experiment1(graphs_names):
     - List (list)
     - Binary Heap (bin)
     - Fibonacci Heap (fib)
-    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 1 : which priority queue Dijkstra")
     all_stats = {}
     for graph_name in graphs_names:
-        print("GRAPH : ", graph_name, graph_name)
+        print("GRAPH : ", graph_name)
 
         p = OSMgraphParser(graph_name)
         graph = p.parse()
@@ -39,7 +38,7 @@ def experiment1(graphs_names):
             print("Priority : ", p)
             stat = b.testSingleQuery(NB_RUNS, "Dijkstra", p, BUCKET_SIZE, None, None)
             stats[p] = stat
-            print(stat)
+            # print(stat)
         all_stats[graph_name]["stats"] = stats
 
         header = ["priority", "avg_CT", "avg_SS", "avg_rel"]
@@ -55,8 +54,6 @@ def experiment2(graphs_names):
     - Euclidean
     - Manhattan
     - Octile
-    TODO : change nb runs to 1000 + use the 6 graphs
-    TODO check if the results are coherent
     """
     print("EXPERIMENT 2 : which heuristic A*")
     all_stats = {}
@@ -76,7 +73,7 @@ def experiment2(graphs_names):
             print("Heuristic : ", h)
             stat = b.testSingleQuery(NB_RUNS, "A*", "bin", BUCKET_SIZE, h, None)
             stats[h] = stat
-            print(stat)
+            # print(stat)
         all_stats[graph_name]["stats"] = stats
 
         header = ["heuristic", "avg_CT", "avg_SS", "avg_rel"]
@@ -92,8 +89,6 @@ def experiment3(graphs_names):
     - Random
     - Farthest
     - Planar
-    TODO : change nb runs to 1000 + use the 6 graphs
-    TODO check if the results are coherent
     """
     print("EXPERIMENT 3 : which landmark selection ALT")
     all_stats = {}
@@ -121,7 +116,7 @@ def experiment3(graphs_names):
             stat = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
             stat["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
             stats[ls] = stat
-            print(stat)
+            # print(stat)
         all_stats[graph_name]["stats"] = stats
 
         header = ["landmark_selection", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
@@ -136,8 +131,6 @@ def experiment4(graphs_names):
     Experiment 4 : test which nb of landmarks (k) gives fastest ALT
     => test with 1, 2, 4, 8, 16 and 21 landmarks
     difficult to have the optimal k => NP-hard problem
-    TODO : change nb runs to 1000 + use the 6 graphs
-    TODO check if the results are coherent with plots
     """
     print("EXPERIMENT 4 : how many landmarks ALT")
     all_stats = {}
@@ -165,7 +158,7 @@ def experiment4(graphs_names):
             stat = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
             stat["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
             stats[nl] = stat
-            print(stat)
+            # print(stat)
         all_stats[graph_name]["stats"] = stats
 
         header = ["nb_landmark", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
@@ -179,8 +172,6 @@ def experiment5(graphs_names):
     """
     Experiment 5 : Single modal car network
     query benchmarks for a given graph for multiple algorithms
-    TODO check if the results are coherent (with the plots)
-    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
     all_stats = {}
@@ -205,7 +196,7 @@ def experiment5(graphs_names):
 
         prepro_time = pre_timer.getTimeElapsedSec()
         stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists, prepro_time)
-        print(stats)
+        # print(stats)
 
         all_stats[graph_name]["stats"] = stats
 
@@ -220,9 +211,6 @@ def experiment6(graphs_names):
     """
     Experiment 6 : Single modal car network
     Preprocessing benchmarks
-    TODO check if the results are coherent (plot exp + the qtree)
-    TODO : change nb experiments to 1000 + use the 6 graphs
-    TODO : change this experiment, with different parameters for preprocessing
     ()
     """
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
@@ -253,8 +241,6 @@ def experiment6(graphs_names):
 def experiment7(graphs_names):
     """
     Experiment 7 : Multi-modal public transport network
-    TODO check if the results are coherent (with plots)
-    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
     all_stats = {}
@@ -294,7 +280,7 @@ def experiment7(graphs_names):
                 stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
                 stats[nb_exp] = [s, n] + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
-                print("Stats : ", stats[nb_exp])
+                # print("Stats : ", stats[nb_exp])
 
                 all_stats[graph_name][nb_exp] = {"nb_edges_after": multi_graph.getNbEdges(),
                                                  "avg_degree_after": multi_graph.getAvgDegree(),
@@ -312,11 +298,9 @@ def experiment7(graphs_names):
     IO.dicToJson(all_stats, getFileExpPath(7, "exp7_all_stats.json"))
 
 
-def experiment8(graphs_names):
+def experiment8(graphs_names, show):
     """
     Experiment 8 : Multi-modal villo-station-based network
-    TODO check if the results are coherent (with graph)
-    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 8 : Multi-modal villo-station-based network : Dijkstra & ALT")
     all_stats = {}
@@ -328,7 +312,7 @@ def experiment8(graphs_names):
                                  "nb_edges": graph.getNbEdges(),
                                  "avg_deg": graph.getAvgDegree()}
 
-        multi_graph, villo_closests = addVilloStations(graph, True)
+        multi_graph, villo_closests = addVilloStations(graph, show)
 
         all_stats[graph_name]["nb_nodes_after"] = multi_graph.getNbNodes()
         all_stats[graph_name]["nb_edges_after"] = multi_graph.getNbEdges()
@@ -346,7 +330,7 @@ def experiment8(graphs_names):
         algos = ["Dijkstra", "ALT"]
         stats = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
-        print(stats)
+        # print(stats)
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
         stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
@@ -374,8 +358,6 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
     => PROBLEM : ca va pas prendre en compte les nouveaux nodes ajoutés des stations villo !!
     => instead : faire un prepro avec les prefs identiques, mais avec les stations
     TODO : apres le preprocessing pref[1,1], faire des queries avec prefs[1,x], x=1=>X, puis prefs[x,1]
-    TODO check if the results are coherent
-    TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
     all_stats = {}
@@ -436,7 +418,7 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
         header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
                   "lm_dists_CT", "nb_villo_stations"]
         filename = getFileExpPath(9, graph_name + "_exp9.csv")
-        print(stats)
+        # print(stats)
         IO.writeDictStatsToCsv(stats, header, filename)
 
     IO.dicToJson(all_stats, getFileExpPath(9, "exp9_all_stats.json"))
@@ -449,8 +431,6 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
     Preprocessing avec les pires users : le plus petit, et le plus grand
     puis query avec tout le range de preference
     => p-e séparer cette fonctioni en 2 ? Un avec le plus petit worst case et l'autre le plus grand
-    TODO tocheck
-    # TODO : change nb runs to 1000 + use the 6 graphs
     """
     all_stats = {}
     for graph_name in graphs_names:
@@ -510,7 +490,7 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
         header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
                   "lm_dists_CT", "nb_villo_stations"]
         filename = getFileExpPath(10, graph_name + "_exp10.csv")
-        print(stats)
+        # print(stats)
         IO.writeDictStatsToCsv(stats, header, filename)
 
     IO.dicToJson(all_stats, getFileExpPath(10, "exp10_all_stats.json"))
@@ -544,57 +524,112 @@ def experiment12():
 # =====================================================
 
 def launchExperiment(exp):
-    # TODO : put all the necessary graphs instead of just 1
+    timer_all = Timer()
+    timer_all.start()
+
     if exp == 1 or exp == -1:
+        timer = Timer()
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        # graphs_names = GRAPHS
+        timer.start()
         experiment1(graphs_names)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 1")
+        print("==========================================================================")
 
     if exp == 2 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        # graphs_names = GRAPHS
         experiment2(graphs_names)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 2")
+        print("==========================================================================")
 
     if exp == 3 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        # graphs_names = GRAPHS
         experiment3(graphs_names)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 3")
+        print("==========================================================================")
 
     if exp == 4 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        # graphs_names = GRAPHS
         experiment4(graphs_names)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 4")
+        print("==========================================================================")
 
     if exp == 5 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        # graphs_names = GRAPHS
         experiment5(graphs_names)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 5")
+        print("==========================================================================")
 
     if exp == 6 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        # graphs_names = GRAPHS
         experiment6(graphs_names)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 6")
+        print("==========================================================================")
 
     if exp == 7 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB]
+        # graphs_names = [GRAPH_BXL]
         experiment7(graphs_names)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 7")
+        print("==========================================================================")
 
     if exp == 8 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
-        experiment8(graphs_names)
+        # graphs_names = GRAPHS
+        experiment8(graphs_names, show=False)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 8")
+        print("==========================================================================")
 
     if exp == 9 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB]
+        #graphs_names = GRAPHS
         experiment9(graphs_names, 1, [2, 0], -0.2)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 9")
+        print("==========================================================================")
 
     if exp == 10 or exp == -1:
+        timer = Timer()
+        timer.start()
         graphs_names = [GRAPH_ULB]
+        # graphs_names = GRAPHS
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
+        timer.stop()
+        timer.printTimeElapsedMin("Exp 10")
+        print("==========================================================================")
 
-    if exp == 11 or exp == -1:
-        experiment11()
+    timer_all.stop()
+    timer_all.printTimeElapsedMin("All experiments")
 
-    if exp == 12 or exp == -1:
-        experiment12()
-
-
-def launchAllExperiments():
-    for e in range(1, 13):
-        launchExperiment(e)
 
 
 def testRandomPairs():

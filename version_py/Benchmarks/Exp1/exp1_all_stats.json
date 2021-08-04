@@ -1,46 +1,46 @@
 {
-    "1_ULB": {
-        "nb_nodes": 149,
-        "nb_edges": 349,
-        "avg_deg": 2.34,
-        "stats": {
-            "bin": {
-                "avg_CT": 0.000221,
-                "avg_SS": 88,
-                "avg_rel": 108
-            },
-            "fib": {
-                "avg_CT": 0.001026,
-                "avg_SS": 84,
-                "avg_rel": 103
-            },
-            "list": {
-                "avg_CT": 0.000298,
-                "avg_SS": 87,
-                "avg_rel": 107
-            }
-        }
-    },
     "2_Bruxelles": {
         "nb_nodes": 1115,
-        "nb_edges": 1960,
         "avg_deg": 1.76,
         "stats": {
-            "bin": {
-                "avg_CT": 0.001771,
-                "avg_SS": 599,
-                "avg_rel": 664
+            "list": {
+                "avg_rel": 644,
+                "avg_CT": 0.002863,
+                "avg_SS": 582
             },
             "fib": {
-                "avg_CT": 0.006987,
-                "avg_SS": 479,
-                "avg_rel": 535
+                "avg_rel": 632,
+                "avg_CT": 0.008333,
+                "avg_SS": 571
             },
-            "list": {
-                "avg_CT": 0.003023,
-                "avg_SS": 591,
-                "avg_rel": 656
+            "bin": {
+                "avg_rel": 636,
+                "avg_CT": 0.00161,
+                "avg_SS": 575
             }
-        }
+        },
+        "nb_edges": 1960
+    },
+    "1_ULB": {
+        "nb_nodes": 149,
+        "avg_deg": 2.34,
+        "stats": {
+            "list": {
+                "avg_rel": 100,
+                "avg_CT": 0.000284,
+                "avg_SS": 81
+            },
+            "fib": {
+                "avg_rel": 99,
+                "avg_CT": 0.000896,
+                "avg_SS": 80
+            },
+            "bin": {
+                "avg_rel": 100,
+                "avg_CT": 0.000227,
+                "avg_SS": 81
+            }
+        },
+        "nb_edges": 349
     }
 }

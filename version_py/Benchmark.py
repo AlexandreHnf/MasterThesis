@@ -143,7 +143,6 @@ class Benchmark:
                     algos_success = False
                     break
                 travel_types = algo.getSPTravelTypes()
-                #print(travel_types)
 
                 stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
                 stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs

@@ -199,7 +199,6 @@ class OSMgraphParser:
 
         """
         start_time = time.time()
-        print(self.graph_filename)
         features = IO.getJsonData(self.graph_filename)["features"]
         adjlist = {}  # key = ID, value = list of adjacent Edge (object)
         self.getNodesCoordinates(features, adjlist)

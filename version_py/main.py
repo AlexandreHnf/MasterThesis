@@ -48,11 +48,9 @@ def processArgs():
                 testMMDijkstra(graph, int(a[3]), int(a[4]), a[5], a[6])
 
         else:
-            if a[1] == "runAllExperiments":
-                launchAllExperiments()
-            elif a[1] == "runExperiment":
+            if a[1] == "runExp":
                 print("experiment " + a[2])
-                launchExperiment(a[2])  # 1: runExperiment, 2: experiment nb
+                launchExperiment(int(a[2]))  # 1: runExperiment, 2: experiment nb
 
     else:
         print("not enough arguments")

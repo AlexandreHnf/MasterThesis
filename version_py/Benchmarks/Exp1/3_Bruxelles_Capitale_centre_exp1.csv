@@ -1,0 +1,4 @@
+priority,avg_CT,avg_SS,avg_rel
+bin,2859,2496,0.015125
+fib,2955,2583,0.07549
+list,2899,2532,0.028387
