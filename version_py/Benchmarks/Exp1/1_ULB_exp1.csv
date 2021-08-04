@@ -1,3 +1,4 @@
+sep=,
 priority,avg_CT,avg_SS,avg_rel
 bin,0.000364,106,129
 fib,0.001737,99,122

@@ -127,7 +127,7 @@ class ALTpreprocessing:
 
     def divideInRegions(self, k, origin):
         regions = [[] for _ in range(k)]
-        region_size = 360.0 / k # angle
+        region_size = 360.0 / k  # angle
         for pid, coord in self.graph.getNodesCoords().items():
             b = bearing(origin[0], origin[1], coord[0], coord[1], True)
             s = int(b / region_size)

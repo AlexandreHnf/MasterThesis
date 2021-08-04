@@ -8,7 +8,6 @@ from Visualization import *
 import IO
 
 
-
 # TODO : change the print(f"") in print(.format())
 
 
@@ -23,9 +22,9 @@ def experiment1(graphs_names):
     print("EXPERIMENT 1 : which priority queue Dijkstra")
     all_stats = {}
     for graph_name in graphs_names:
-        print("GRAPH : ", graph_name, GRAPH_FILENAMES[graph_name])
+        print("GRAPH : ", graph_name, graph_name)
 
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse()
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -62,7 +61,7 @@ def experiment2(graphs_names):
     print("EXPERIMENT 2 : which heuristic A*")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse()
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -99,7 +98,7 @@ def experiment3(graphs_names):
     print("EXPERIMENT 3 : which landmark selection ALT")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse()
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -143,7 +142,7 @@ def experiment4(graphs_names):
     print("EXPERIMENT 4 : how many landmarks ALT")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse()
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -155,7 +154,7 @@ def experiment4(graphs_names):
 
         stats = {1: None, 2: None, 4: None, 8: None, 16: None, 32: None}
         for nl in stats.keys():
-            print(f"Number of Landmarks : {nl}, selection : {LANDMARK_SELECTION}")
+            print("Number of Landmarks : {0}, selection: {1}".format(nl, LANDMARK_SELECTION))
             pre_timer = Timer()
             pre_timer.start()
             alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, nl)
@@ -186,7 +185,7 @@ def experiment5(graphs_names):
     print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse()
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -216,6 +215,7 @@ def experiment5(graphs_names):
 
     IO.dicToJson(all_stats, FILE_EXP5_ALL)
 
+
 def experiment6(graphs_names):
     """
     Experiment 6 : Single modal car network
@@ -228,7 +228,7 @@ def experiment6(graphs_names):
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse()
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -259,7 +259,7 @@ def experiment7(graphs_names):
     print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse("foot")
         print("nb edges before experiments : ", graph.getNbEdges())
 
@@ -298,10 +298,10 @@ def experiment7(graphs_names):
 
                 all_stats[graph_name][nb_exp] = {"nb_edges_after": multi_graph.getNbEdges(),
                                                  "avg_degree_after": multi_graph.getAvgDegree(),
-                                                  "speed_limit": s,
-                                                  "nb_added_edges": n,
-                                                  "Dijkstra": stat["Dijkstra"],
-                                                  "ALT": stat["ALT"]}
+                                                 "speed_limit": s,
+                                                 "nb_added_edges": n,
+                                                 "Dijkstra": stat["Dijkstra"],
+                                                 "ALT": stat["ALT"]}
                 nb_exp += 1
 
         header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_rel",
@@ -321,7 +321,7 @@ def experiment8(graphs_names):
     print("EXPERIMENT 8 : Multi-modal villo-station-based network : Dijkstra & ALT")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse("foot")
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -380,7 +380,7 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
     print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse("car")
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -401,7 +401,7 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
 
         x = pref_range[0]
         while x >= pref_range[1]:
-        #for x in range(pref_range[0], pref_range[1], step):
+            # for x in range(pref_range[0], pref_range[1], step):
             prefs = getPref(fixed_pref, x)
 
             # preprocessing with same pref for both modalities
@@ -427,8 +427,8 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
             stat["ALT"]["nb_villo_stations"] = len(villo_closests)
 
             all_stats[graph_name]["stats"][nb] = {"c1": prefs[0], "c2": prefs[1],
-                                         "Dijkstra": stat["Dijkstra"],
-                                         "ALT": stat["ALT"]}
+                                                  "Dijkstra": stat["Dijkstra"],
+                                                  "ALT": stat["ALT"]}
 
             nb += 1
             x = round(x + step, 1)
@@ -454,7 +454,7 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
     """
     all_stats = {}
     for graph_name in graphs_names:
-        p = OSMgraphParser(GRAPH_FILENAMES[graph_name])
+        p = OSMgraphParser(graph_name)
         graph = p.parse("car")
 
         all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
@@ -501,8 +501,8 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
             stat["ALT"]["nb_villo_stations"] = len(villo_closests)
 
             all_stats[graph_name]["stats"][nb] = {"c1": prefs[0], "c2": prefs[1],
-                                         "Dijkstra": stat["Dijkstra"],
-                                         "ALT": stat["ALT"]}
+                                                  "Dijkstra": stat["Dijkstra"],
+                                                  "ALT": stat["ALT"]}
 
             nb += 1
             x = round(x + step, 1)
@@ -545,7 +545,6 @@ def experiment12():
 
 def launchExperiment(exp):
     # TODO : put all the necessary graphs instead of just 1
-    # TODO : les plots les faire dans Visualization avec tous les params
     if exp == 1:
         graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
         experiment1(graphs_names)
@@ -609,7 +608,7 @@ def launchExperiment(exp):
         experiment7(graphs_names)
         save_filename = FILE_EXP7 + "plot_avg_CT.png"
         speeds = [0.1, 15, 30, 90, 120, 1e10]
-        #added_edges = [0, 10, 50, 100, 200]
+        # added_edges = [0, 10, 50, 100, 200]
         plotExp7Result(FILE_EXP7_ALL, "Experience 7 - Nb added edges - avg CT",
                        "avg CT (sec.)", "|added edges|", "avg_CT", speeds,
                        "ALT", "1_ULB", save_filename)
@@ -636,15 +635,15 @@ def launchExperiment(exp):
         # plot : modality1 - modality2 for Dijkstra & ALT
         save_filename = FILE_EXP8 + "plot_piechart_Dijkstra.png"
         plotModalitiesPieChart(FILE_EXP8_ALL, "Experience 8 - Pie chart modalities",
-                       "1_ULB", "Dijkstra", save_filename)
+                               "1_ULB", "Dijkstra", save_filename)
 
     elif exp == 9:
         graphs_names = [GRAPH_1_NAME]
         experiment9(graphs_names, 1, [2, 0], -0.2)
         save_filename = FILE_EXP9 + "plot_avg_CT.png"
         plotPrefExpResult(FILE_EXP9_ALL, "Experience 9 - prefs - avg CT",
-                       "avg CT (sec.)", "c2", "c2", "avg_CT",
-                        "1_ULB", save_filename)
+                          "avg CT (sec.)", "c2", "c2", "avg_CT",
+                          "1_ULB", save_filename)
 
         save_filename = FILE_EXP9 + "plot_travelTypes.png"
         plotModalitiesLines(FILE_EXP9_ALL, "Experience 9 - Travel types",
@@ -657,8 +656,8 @@ def launchExperiment(exp):
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
         save_filename = FILE_EXP10 + "plot_avg_CT.png"
         plotPrefExpResult(FILE_EXP10_ALL, "Experience 10 - prefs - avg CT",
-                       "avg CT (sec.)", "c2", "c2", "avg_CT",
-                       "1_ULB", save_filename)
+                          "avg CT (sec.)", "c2", "c2", "avg_CT",
+                          "1_ULB", save_filename)
 
         save_filename = FILE_EXP10 + "plot_travelTypes.png"
         plotModalitiesLines(FILE_EXP10_ALL, "Experience 10 - Travel types",
@@ -679,7 +678,7 @@ def launchAllExperiments():
 
 
 def testRandomPairs():
-    p = OSMgraphParser(GRAPH_FILENAMES[GRAPH_1_NAME])
+    p = OSMgraphParser(GRAPH_FILENAMES[GRAPH_1_NAME]["W"])
     graph = p.parse("car")
 
     multi_graph, villo_closests = addVilloStations(graph)
@@ -694,9 +693,9 @@ def testRandomPairs():
 def main():
     launchExperiment(EXPERIMENT)
 
-    #launchAllExperiments()
+    # launchAllExperiments()
 
-    #testRandomPairs()
+    # testRandomPairs()
 
 
 if __name__ == "__main__":

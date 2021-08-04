@@ -11,9 +11,9 @@ import IO
 
 
 class OSMgraphParser:
-    def __init__(self, graph_name):
+    def __init__(self, graph_name, os="W"):
         self.graph_name = graph_name
-        self.graph_filename = GRAPH_FILENAMES[graph_name]
+        self.graph_filename = GRAPH_FILENAMES[graph_name][os]
         self.nodes_coordinates = {}  # key = node ID, value = (lat, lon)
         self.original_nb_nodes = 0
         self.original_nb_edges = 0
@@ -206,7 +206,7 @@ class OSMgraphParser:
 
         for f in features:
             if f["geometry"]["type"] == "LineString":  # if edges
-                self.original_nb_edges += 1
+                #self.original_nb_edges += 1
                 srcID = f["src"]
                 tgtID = f["tgt"]
                 if srcID == tgtID:  # self loop
@@ -219,6 +219,7 @@ class OSMgraphParser:
                 edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds
                 self.createEdge(f, adjlist, srcID, tgtID, edge_weight, speed_limit, length_km, travel_type)
 
+        self.original_nb_edges = self.getNbEdges(adjlist)
         connected_graph = self.getConnectedGraph(adjlist)
         self.timing = time.time() - start_time
 
@@ -230,7 +231,7 @@ class OSMgraphParser:
         """
         print("======= Stats graph OSM ======== ")
         print("Graph Name :              {0}".format(self.graph_name))
-        print("Raw graph :               {0} nodes, {1} edges".format(self.original_nb_nodes, self.original_nb_nodes))
+        print("Raw graph :               {0} nodes, {1} edges".format(self.original_nb_nodes, self.original_nb_edges))
         print("Nb two way edges :        {0} = {1} % ".format(self.nb_two_way_edges, percent(self.nb_two_way_edges, self.original_nb_edges)))
         print("Nb duplicate edges :      {0} = {1} %".format(self.nb_duplicate_edges, percent(self.nb_duplicate_edges, self.original_nb_edges)))
         print("Nb self loop edges :      {0} = {1} %".format(self.nb_self_loops, percent(self.nb_self_loops, self.original_nb_edges)))
@@ -247,6 +248,7 @@ def showAllGraphsStats():
     for g in GRAPH_FILENAMES.keys():
         p = OSMgraphParser(g)
         graph = p.parse()
+        print("avg deg : ", graph.getAvgDegree())
         print(p.boundingbox)
         p.showStats()
 

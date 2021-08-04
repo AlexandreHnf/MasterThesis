@@ -366,7 +366,6 @@ def plotExp6():
 def plotExp7(metrics, improvements, graphs):
     """
     TODO : prendre tous les algos (Dijkstra et ALT) et tous les graphs
-    1 -> 6
     """
     speeds = [0.1, 15, 30, 90, 120, 1e10]
 

@@ -19,12 +19,19 @@ GRAPH_BXL_CAP =         W + "Graphs\\" + GRAPH_4_NAME + ".json"
 GRAPH_BE_CTR =          W + "Graphs\\" + GRAPH_5_NAME + ".json"
 GRAPH_BE =              W + "Graphs\\" + GRAPH_6_NAME + ".json"
 
-GRAPH_FILENAMES =      {GRAPH_1_NAME: GRAPH_ULB,
-                        GRAPH_2_NAME: GRAPH_BXL,
-                        GRAPH_3_NAME: GRAPH_BXL_CAP_CTR,
-                        GRAPH_4_NAME: GRAPH_BXL_CAP,
-                        GRAPH_5_NAME: GRAPH_BE_CTR,
-                        GRAPH_6_NAME: GRAPH_BE}
+GRAPH_ULB_U =           "Graphs/" + GRAPH_1_NAME + ".json"
+GRAPH_BXL_U =           "Graphs/" + GRAPH_2_NAME + ".json"
+GRAPH_BXL_CAP_CTR_U =   "Graphs/" + GRAPH_3_NAME + ".json"
+GRAPH_BXL_CAP_U =       "Graphs/" + GRAPH_4_NAME + ".json"
+GRAPH_BE_CTR_U =        "Graphs/" + GRAPH_5_NAME + ".json"
+GRAPH_BE_U =            "Graphs/" + GRAPH_6_NAME + ".json"
+
+GRAPH_FILENAMES =      {GRAPH_1_NAME: {"W": GRAPH_ULB,          "U": GRAPH_ULB_U},
+                        GRAPH_2_NAME: {"W": GRAPH_BXL,          "U": GRAPH_BXL_U},
+                        GRAPH_3_NAME: {"W": GRAPH_BXL_CAP_CTR,  "U": GRAPH_BXL_CAP_CTR_U},
+                        GRAPH_4_NAME: {"W": GRAPH_BXL_CAP,      "U": GRAPH_BXL_CAP_U},
+                        GRAPH_5_NAME: {"W": GRAPH_BE_CTR,       "U": GRAPH_BE_CTR_U},
+                        GRAPH_6_NAME: {"W": GRAPH_BE,           "U": GRAPH_BE_U}}
 
 GRAPH_VILLO =           W + "Graphs\\" + "villo.json"
 SPEED_FOOT =            5   # km/h

@@ -12,11 +12,11 @@ import sys
 
 def processArgs():
     """
-    main.py <Dijkstra, BidiDijkstra, Astar, BidiAstar> <graph file> <start> <dest>  <priority queue> <show>
+    main.py <Dijkstra, BidiDijkstra, Astar, BidiAstar> <graph name> <start> <dest>  <priority queue> <show>
     main.py <ALT/BidiALT> <priority queue> <start> <dest> <graph file>
-    <show> : S or NS (show or not show)
+    <show> : True or False (show or not show)
 
-    /!\ graph file in ubuntu path : ex: Graphs/2_Bruxelles.json
+    !!! graph file in ubuntu path : ex: Graphs/2_Bruxelles.json
     """
     print(sys.argv[0])
     algos = ["Dijkstra", "BidiDijkstra", "Astar", "BidiAstar", "ALT", "BidiALT", "MMDijkstra"]
@@ -25,8 +25,8 @@ def processArgs():
 
         a = sys.argv
 
-        if sys.argv[1] in algos:
-            p = OSMgraphParser(sys.argv[2])
+        if a[1] in algos:
+            p = OSMgraphParser(sys.argv[2], "U")
             graph = p.parse()
             p.showStats()
 
@@ -50,6 +50,7 @@ def processArgs():
             if a[1] == "runAllExperiments":
                 launchAllExperiments()
             elif a[1] == "runExperiment":
+                print("experiment " + a[2])
                 launchExperiment(a[2])  # 1: runExperiment, 2: experiment nb
 
     else:
@@ -58,7 +59,7 @@ def processArgs():
 
 
 def runAllSP(s, t):
-    p = OSMgraphParser(GRAPH_BXL)
+    p = OSMgraphParser(GRAPH_2_NAME)
     graph = p.parse()
     p.showStats()
 
@@ -73,21 +74,23 @@ def runAllSP(s, t):
 
 
 def testLandmark():
-    p = OSMgraphParser(GRAPH_BXL)
+    p = OSMgraphParser(GRAPH_2_NAME)
     graph = p.parse()
     # =========================================
     testLandmarks(graph, "random")
+    testLandmarks(graph, "planar")
+    testLandmarks(graph, "farthest")
 
 
 # ==================================================================
 def main():
-    runAllSP(7, 1335)
+    # runAllSP(7, 1335)
     # testLandmark()
     # =========================================
-    # processArgs()
+    processArgs()
 
     # =========================================
-    # p = OSMgraphParser(GRAPH_BXL)
+    # p = OSMgraphParser(GRAPH_2_NAME)
     # graph = p.parse()
     # testMMDijkstra(graph, 7, 2670, "bin", False)
     # TODO : prendre en compte les coordonnées plutot que paires s,t, ou alors on laisse comme ca et les s, t random vont se charger de trouver les bonnes paires ?
