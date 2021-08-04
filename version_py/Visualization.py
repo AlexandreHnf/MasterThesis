@@ -377,13 +377,32 @@ def plotExp5(metrics, improvements):
 
 def plotExp6():
     """
-
+    Single modal
+    preprocessing time - |V|
     """
+
+    # preprocessing time - |V| with k=16, planar
     save_filename = getFileExpPath(6, "plot_prepro_CT.png")
     plotPreprocessingResult(getFileExpPath(6, "exp6_all_stats.json"),
                             "Experience 6 - Preprocessing",
                             "computation time (sec.)", "|V|",
                             save_filename)
+
+    # preprocessing time - |V| with [random, farthest, planar]
+    categories = ["random", "farthest", "planar"]
+    save_filename = getFileExpPath(6, "plot_prepro_CT_selections.png")
+    plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
+                        "Experience 6 - ALT - " + "lm_dists_CT",
+                        categories, "preprocessing time (sec.)",
+                        "|V|", "lm_dists_CT", save_filename)
+
+    # preprocessing time - |V| with k=[1,2,4,8,16,32]
+    categories = ["1", "2", "4", "8", "16", "32"]
+    save_filename = getFileExpPath(6, "plot_prepro_CT_k.png")
+    plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
+                        "Experience 6 - ALT - " + "lm_dists_CT",
+                        categories, "preprocessing time (sec.)",
+                        "|V|", "lm_dists_CT", save_filename)
 
 # ====================================================
 
