@@ -545,50 +545,50 @@ def experiment12():
 
 def launchExperiment(exp):
     # TODO : put all the necessary graphs instead of just 1
-    if exp == 1:
+    if exp == 1 or exp == -1:
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment1(graphs_names)
 
-    elif exp == 2:
+    if exp == 2 or exp == -1:
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment2(graphs_names)
 
-    elif exp == 3:
+    if exp == 3 or exp == -1:
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment3(graphs_names)
 
-    elif exp == 4:
+    if exp == 4 or exp == -1:
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment4(graphs_names)
 
-    elif exp == 5:
+    if exp == 5 or exp == -1:
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment5(graphs_names)
 
-    elif exp == 6:
+    if exp == 6 or exp == -1:
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment6(graphs_names)
 
-    elif exp == 7:
+    if exp == 7 or exp == -1:
         graphs_names = [GRAPH_ULB]
         experiment7(graphs_names)
 
-    elif exp == 8:
+    if exp == 8 or exp == -1:
         graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment8(graphs_names)
 
-    elif exp == 9:
+    if exp == 9 or exp == -1:
         graphs_names = [GRAPH_ULB]
         experiment9(graphs_names, 1, [2, 0], -0.2)
 
-    elif exp == 10:
+    if exp == 10 or exp == -1:
         graphs_names = [GRAPH_ULB]
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
 
-    elif exp == 11:
+    if exp == 11 or exp == -1:
         experiment11()
 
-    elif exp == 12:
+    if exp == 12 or exp == -1:
         experiment12()
 
 

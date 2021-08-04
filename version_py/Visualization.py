@@ -506,6 +506,35 @@ def plotExp10(metrics, graphs):
 
 # ===============================================================
 
+
+def launchPlotExp(metrics, improvements, exp):
+    """
+    exp = -1 = run all plots
+    """
+    if exp == 1 or exp == -1:
+        plotExp1(metrics)
+    if exp == 2 or exp == -1:
+        plotExp2(metrics)
+    if exp == 3 or exp == -1:
+        plotExp3(metrics)
+    if exp == 4 or exp == -1:
+        plotExp4(metrics)
+    if exp == 5 or exp == -1:
+        plotExp5(metrics, improvements)
+    if exp == 6 or exp == -1:
+        plotExp6()
+    if exp == 7 or exp == -1:
+        plotExp7(metrics, improvements, [GRAPH_ULB])
+    if exp == 8 or exp == -1:
+        plotExp8(metrics)
+    if exp == 9 or exp == -1:
+        plotExp9(metrics, [GRAPH_ULB])
+    if exp == 10 or exp == -1:
+        plotExp10(metrics, [GRAPH_ULB])
+
+# ===============================================================
+
+
 def main():
     metrics = {"avg_CT": "avg CT (sec.)",
                "avg_rel": "avg nb rel edges",
@@ -515,16 +544,7 @@ def main():
                     "avg_rel": "avg relaxed edges improvement",
                     "avg_SS": "avg search space size improvement"}
 
-    plotExp1(metrics)
-    plotExp2(metrics)
-    plotExp3(metrics)
-    plotExp4(metrics)
-    plotExp5(metrics, improvements)
-    plotExp6()
-    plotExp7(metrics, improvements, [GRAPH_ULB])
-    plotExp8(metrics)
-    plotExp9(metrics, [GRAPH_ULB])
-    plotExp10(metrics, [GRAPH_ULB])
+    launchPlotExp(metrics, improvements, EXPERIMENT)
 
 
 if __name__ == "__main__":
