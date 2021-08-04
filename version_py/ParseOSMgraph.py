@@ -11,9 +11,9 @@ import IO
 
 
 class OSMgraphParser:
-    def __init__(self, graph_name, os="W"):
+    def __init__(self, graph_name):
         self.graph_name = graph_name
-        self.graph_filename = GRAPH_FILENAMES[graph_name][os]
+        self.graph_filename = IO.getGraphPath(graph_name)
         self.nodes_coordinates = {}  # key = node ID, value = (lat, lon)
         self.original_nb_nodes = 0
         self.original_nb_edges = 0
@@ -90,7 +90,7 @@ class OSMgraphParser:
         in Brussels
         """
         stations_coordinates = []  # value = (lat, lon)
-        features = IO.getJsonData(GRAPH_VILLO)["features"]
+        features = IO.getJsonData(IO.getGraphPath(GRAPH_VILLO))["features"]
         for f in features:
             stations_coordinates.append((f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0]))
         return stations_coordinates
@@ -199,6 +199,7 @@ class OSMgraphParser:
 
         """
         start_time = time.time()
+        print(self.graph_filename)
         features = IO.getJsonData(self.graph_filename)["features"]
         adjlist = {}  # key = ID, value = list of adjacent Edge (object)
         self.getNodesCoordinates(features, adjlist)
@@ -245,7 +246,7 @@ class OSMgraphParser:
 
 
 def showAllGraphsStats():
-    for g in GRAPH_FILENAMES.keys():
+    for g in GRAPHS.keys():
         p = OSMgraphParser(g)
         graph = p.parse()
         print("avg deg : ", graph.getAvgDegree())

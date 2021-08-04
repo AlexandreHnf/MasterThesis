@@ -4,6 +4,7 @@ from ShortestPathExperiments import *
 from Experiments import *
 
 import sys
+import os
 
 
 # TODO : deal with paths of Windows + Uubuntu when using argv
@@ -26,7 +27,7 @@ def processArgs():
         a = sys.argv
 
         if a[1] in algos:
-            p = OSMgraphParser(sys.argv[2], "U")
+            p = OSMgraphParser(sys.argv[2])
             graph = p.parse()
             p.showStats()
 
@@ -59,7 +60,7 @@ def processArgs():
 
 
 def runAllSP(s, t):
-    p = OSMgraphParser(GRAPH_2_NAME)
+    p = OSMgraphParser(GRAPH_BXL)
     graph = p.parse()
     p.showStats()
 
@@ -74,12 +75,18 @@ def runAllSP(s, t):
 
 
 def testLandmark():
-    p = OSMgraphParser(GRAPH_2_NAME)
+    p = OSMgraphParser(GRAPH_BXL)
     graph = p.parse()
     # =========================================
     testLandmarks(graph, "random")
     testLandmarks(graph, "planar")
     testLandmarks(graph, "farthest")
+
+
+def testPaths():
+    abs_path = os.path.abspath("Benchmarks")
+    path_exp1 = os.path.join(abs_path, "Exp1", "1_ULB") + ".json"
+    print(path_exp1)
 
 
 # ==================================================================
@@ -88,6 +95,7 @@ def main():
     # testLandmark()
     # =========================================
     processArgs()
+    # testPaths()
 
     # =========================================
     # p = OSMgraphParser(GRAPH_2_NAME)

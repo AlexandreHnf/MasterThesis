@@ -43,10 +43,10 @@ def experiment1(graphs_names):
         all_stats[graph_name]["stats"] = stats
 
         header = ["priority", "avg_CT", "avg_SS", "avg_rel"]
-        filename = FILE_EXP1 + graph_name + "_exp1.csv"
+        filename = getFileExpPath(1, graph_name + "_exp1.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP1_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(1, "exp1_all_stats.json"))
 
 
 def experiment2(graphs_names):
@@ -80,10 +80,10 @@ def experiment2(graphs_names):
         all_stats[graph_name]["stats"] = stats
 
         header = ["heuristic", "avg_CT", "avg_SS", "avg_rel"]
-        filename = FILE_EXP2 + graph_name + "_exp2.csv"
+        filename = getFileExpPath(2, graph_name + "_exp2.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP2_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(2, "exp2_all_stats.json"))
 
 
 def experiment3(graphs_names):
@@ -125,10 +125,10 @@ def experiment3(graphs_names):
         all_stats[graph_name]["stats"] = stats
 
         header = ["landmark_selection", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
-        filename = FILE_EXP3 + graph_name + "_exp3.csv"
+        filename = getFileExpPath(3, graph_name + "_exp3.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP3_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(3, "exp3_all_stats.json"))
 
 
 def experiment4(graphs_names):
@@ -169,10 +169,10 @@ def experiment4(graphs_names):
         all_stats[graph_name]["stats"] = stats
 
         header = ["nb_landmark", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
-        filename = FILE_EXP4 + graph_name + "_exp4.csv"
+        filename = getFileExpPath(4, graph_name + "_exp4.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP4_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(4, "exp4_all_stats.json"))
 
 
 def experiment5(graphs_names):
@@ -210,10 +210,10 @@ def experiment5(graphs_names):
         all_stats[graph_name]["stats"] = stats
 
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
-        filename = FILE_EXP5 + graph_name + "_exp5.csv"
+        filename = getFileExpPath(5, graph_name + "_exp5.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP5_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(5, "exp5_all_stats.json"))
 
 
 def experiment6(graphs_names):
@@ -244,10 +244,10 @@ def experiment6(graphs_names):
         stats = [LANDMARK_SELECTION, NB_LANDMARKS, stat["Prepro_time"]]
 
         all_stats[graph_name]["stats"] = stats
-        filename = FILE_EXP6 + graph_name + "_exp6.csv"
+        filename = getFileExpPath(6, graph_name + "_exp6.csv")
         IO.writeSingleRowStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP6_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(6, "exp6_all_stats.json"))
 
 
 def experiment7(graphs_names):
@@ -306,10 +306,10 @@ def experiment7(graphs_names):
 
         header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_rel",
                   "ALT_avg_CT", "ALT_avg_SS", "ALT_avg_rel", "lm_dists_CT"]
-        filename = FILE_EXP7 + graph_name + "_exp7.csv"
+        filename = getFileExpPath(7, graph_name + "_exp7.csv")
         IO.writeDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP7_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(7, "exp7_all_stats.json"))
 
 
 def experiment8(graphs_names):
@@ -352,10 +352,10 @@ def experiment8(graphs_names):
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
 
         all_stats[graph_name]["stats"] = stats
-        filename = FILE_EXP8 + graph_name + "_exp8.csv"
+        filename = getFileExpPath(8, graph_name + "_exp8.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP8_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(8, "exp8_all_stats.json"))
 
 
 def getPref(fixed_pref, x):
@@ -435,11 +435,11 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
 
         header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
                   "lm_dists_CT", "nb_villo_stations"]
-        filename = FILE_EXP9 + graph_name + "_exp9.csv"
+        filename = getFileExpPath(9, graph_name + "_exp9.csv")
         print(stats)
         IO.writeDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP9_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(9, "exp9_all_stats.json"))
 
 
 def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
@@ -509,11 +509,11 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
 
         header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
                   "lm_dists_CT", "nb_villo_stations"]
-        filename = FILE_EXP10 + graph_name + "_exp10.csv"
+        filename = getFileExpPath(10, graph_name + "_exp10.csv")
         print(stats)
         IO.writeDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, FILE_EXP10_ALL)
+    IO.dicToJson(all_stats, getFileExpPath(10, "exp10_all_stats.json"))
 
 
 def experiment11():
@@ -546,124 +546,44 @@ def experiment12():
 def launchExperiment(exp):
     # TODO : put all the necessary graphs instead of just 1
     if exp == 1:
-        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
+        graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment1(graphs_names)
-        categories = ["bin", "fib", "list"]
-        save_filename = FILE_EXP1 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP1_ALL, "Experience 1 - Dijkstra",
-                            categories, "avg CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 2:
-        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
+        graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment2(graphs_names)
-        categories = ["euclidean", "manhattan", "octile"]
-        save_filename = FILE_EXP2 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP2_ALL, "Experience 2 - A*",
-                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 3:
-        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
+        graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment3(graphs_names)
-        categories = ["random", "farthest", "planar"]
-        save_filename = FILE_EXP3 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP3_ALL, "Experience 3 - ALT",
-                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 4:
-        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
+        graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment4(graphs_names)
-        categories = ["1", "2", "4", "8", "16", "32"]
-        save_filename = FILE_EXP4 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP4_ALL, "Experience 4 - ALT",
-                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
 
     elif exp == 5:
-        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
+        graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment5(graphs_names)
-        categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
-        save_filename = FILE_EXP5 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP5_ALL, "Experience 5 - Single-modal car networks",
-                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
-
-        # plot : |V| - improv (1 for speedup, 1 for rel, 1 for SS
-        categories = ["A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
-        save_filename = FILE_EXP5 + "plot_improv_CT.png"
-        plotImprovementsResult(FILE_EXP5_ALL, "Experience 5 - Improvement avg CT",
-                               categories, "Speedup", "|V|", "avg_CT", save_filename)
-
-        # plot : |V| - avg deg
-        save_filename = FILE_EXP5 + "plot_avg_deg.png"
-        plotAvgDegResult(FILE_EXP5_ALL, "Experience 5 - avg degree",
-                         "avg deg", "|V|", save_filename)
 
     elif exp == 6:
-        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
+        graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment6(graphs_names)
-        save_filename = FILE_EXP6 + "plot_prepro_CT.png"
-        plotPreprocessingResult(FILE_EXP6_ALL, "Experience 6 - Preprocessing",
-                                "computation time (sec.)", "|V|", save_filename)
 
     elif exp == 7:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_ULB]
         experiment7(graphs_names)
-        save_filename = FILE_EXP7 + "plot_avg_CT.png"
-        speeds = [0.1, 15, 30, 90, 120, 1e10]
-        # added_edges = [0, 10, 50, 100, 200]
-        plotExp7Result(FILE_EXP7_ALL, "Experience 7 - Nb added edges - avg CT",
-                       "avg CT (sec.)", "|added edges|", "avg_CT", speeds,
-                       "ALT", "1_ULB", save_filename)
-
-        save_filename = FILE_EXP7 + "plot_improv_CT.png"
-        plotImprovementsExp7(FILE_EXP7_ALL, "Experience 7 - speedup",
-                             "Speedup (CT)", "|added edges|", "avg_CT", speeds,
-                             "1_ULB", save_filename)
-
-        save_filename = FILE_EXP7 + "plot_avgDeg.png"
-        plotExp7AvgDegResult(FILE_EXP7_ALL, "Experience 7 - avg deg",
-                             "avg deg after", "|added edges|", speeds,
-                             "1_ULB", save_filename)
 
     elif exp == 8:
-        graphs_names = [GRAPH_1_NAME, GRAPH_2_NAME]
+        graphs_names = [GRAPH_ULB, GRAPH_BXL]
         experiment8(graphs_names)
 
-        categories = ["Dijkstra", "ALT"]
-        save_filename = FILE_EXP8 + "plot_avg_CT.png"
-        plotBenchmarkResult(FILE_EXP8_ALL, "Experience 8 - Multi-modal station-based",
-                            categories, "avt CT (sec.)", "|V|", "avg_CT", save_filename)
-
-        # plot : modality1 - modality2 for Dijkstra & ALT
-        save_filename = FILE_EXP8 + "plot_piechart_Dijkstra.png"
-        plotModalitiesPieChart(FILE_EXP8_ALL, "Experience 8 - Pie chart modalities",
-                               "1_ULB", "Dijkstra", save_filename)
-
     elif exp == 9:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_ULB]
         experiment9(graphs_names, 1, [2, 0], -0.2)
-        save_filename = FILE_EXP9 + "plot_avg_CT.png"
-        plotPrefExpResult(FILE_EXP9_ALL, "Experience 9 - prefs - avg CT",
-                          "avg CT (sec.)", "c2", "c2", "avg_CT",
-                          "1_ULB", save_filename)
-
-        save_filename = FILE_EXP9 + "plot_travelTypes.png"
-        plotModalitiesLines(FILE_EXP9_ALL, "Experience 9 - Travel types",
-                            "Travel types frequency", "c2", "1_ULB",
-                            ["Villo", "fromStation", "toStation", "car"],
-                            "Dijkstra", "c2", save_filename)
 
     elif exp == 10:
-        graphs_names = [GRAPH_1_NAME]
+        graphs_names = [GRAPH_ULB]
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
-        save_filename = FILE_EXP10 + "plot_avg_CT.png"
-        plotPrefExpResult(FILE_EXP10_ALL, "Experience 10 - prefs - avg CT",
-                          "avg CT (sec.)", "c2", "c2", "avg_CT",
-                          "1_ULB", save_filename)
-
-        save_filename = FILE_EXP10 + "plot_travelTypes.png"
-        plotModalitiesLines(FILE_EXP10_ALL, "Experience 10 - Travel types",
-                            "Travel types frequency", "c2", "1_ULB",
-                            ["Villo", "fromStation", "toStation", "car"],
-                            "Dijkstra", "c2", save_filename)
 
     elif exp == 11:
         experiment11()
@@ -678,7 +598,7 @@ def launchAllExperiments():
 
 
 def testRandomPairs():
-    p = OSMgraphParser(GRAPH_FILENAMES[GRAPH_1_NAME]["W"])
+    p = OSMgraphParser(GRAPH_ULB)
     graph = p.parse("car")
 
     multi_graph, villo_closests = addVilloStations(graph)

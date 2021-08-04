@@ -1,9 +1,23 @@
 import csv
 import json
+import os
 from Constants import *
 
 
+def getGraphPath(graph_name):
+    filename = os.path.join(os.path.abspath("Graphs"), graph_name) + ".json"
+    return filename
+
+
+def getFileExpPath(exp_nb, extension):
+    benchmarks = os.path.abspath("Benchmarks")
+    filename = os.path.join(benchmarks, "Exp" + str(exp_nb), extension)
+    return filename
+
+
+# ==========================
 # all functions that will be used to write shortest path experiments stats to csv files
+# ==========================
 
 
 def writeDictDictStatsToCsv(stats, header, filename):

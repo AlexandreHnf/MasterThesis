@@ -268,70 +268,90 @@ def plotPrefAvgMaxLb(filename, title, ylabel, xlabel, xmetric, graph, save_filen
 
 def plotExp1(metrics):
     """
-
+    priority queues : bin, fib, list
+    avg CT - |V|
+    avg rel - |V|
+    avg SS - |V|
     """
     categories = ["bin", "fib", "list"]
 
     for metric in metrics:
-        save_filename = FILE_EXP1 + "plot_" + metric + ".png"
-        plotBenchmarkResult(FILE_EXP1_ALL,
+        save_filename = getFileExpPath(1, "plot_" + metric + ".png")
+        plotBenchmarkResult(getFileExpPath(1, "exp1_all_stats.json"),
                             "Experience 1 - Dijkstra - " + metric,
                             categories, metrics[metric], "|V|", metric,
                             save_filename)
 
+# ====================================================
+
 
 def plotExp2(metrics):
     """
-
+    heuristics : euclidean, manhattan, octile
+    avg CT - |V|
+    avg rel - |V|
+    avg SS - |V|
     """
     categories = ["euclidean", "manhattan", "octile"]
 
     for metric in metrics:
-        save_filename = FILE_EXP2 + "plot_" + metric + ".png"
-        plotBenchmarkResult(FILE_EXP2_ALL,
+        save_filename = getFileExpPath(2, "plot_" + metric + ".png")
+        plotBenchmarkResult(getFileExpPath(2, "exp2_all_stats.json"),
                             "Experience 2 - A* - " + metric,
                             categories, metrics[metric], "|V|", metric,
                             save_filename)
 
+# ====================================================
+
 
 def plotExp3(metrics):
     """
-
+    landmark selections : random, farthest, planar
+    avg CT - |V|
+    avg rel - |V|
+    avg SS - |V|
     """
     categories = ["random", "farthest", "planar"]
 
     for metric in metrics:
-        save_filename = FILE_EXP3 + "plot_" + metric + ".png"
-        plotBenchmarkResult(FILE_EXP3_ALL,
+        save_filename = getFileExpPath(3, "plot_" + metric + ".png")
+        plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
                             "Experience 3 - ALT - " + metric,
                             categories, metrics[metric], "|V|", metric,
                             save_filename)
 
+# ====================================================
+
 
 def plotExp4(metrics):
     """
-
+    landmarks number : 1, 2, 4, 8, 16, 32
+    avg CT - |V|
+    avg rel - |V|
+    avg SS - |V|
     """
     categories = ["1", "2", "4", "8", "16", "32"]
 
     for metric in metrics:
-        save_filename = FILE_EXP4 + "plot_" + metric + ".png"
-        plotBenchmarkResult(FILE_EXP4_ALL,
+        save_filename = getFileExpPath(4, "plot_" + metric + ".png")
+        plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
                             "Experience 4 - ALT - " + metric,
                             categories, metrics[metric], "|V|", metric,
                             save_filename)
 
+# ====================================================
+
 
 def plotExp5(metrics, improvements):
     """
-
+    Single modal algos : Dijkstra, A*, ALT, BidiDijkstra, BidiA*, BidiALT
     """
     # plot standard metrics
     categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
     for metric in metrics:
-        save_filename = FILE_EXP5 + "plot_" + metric + ".png"
-        plotBenchmarkResult(FILE_EXP5_ALL,
+        save_filename = getFileExpPath(5, "plot_" + metric + ".png")
+        plotBenchmarkResult(getFileExpPath(5, "exp5_all_stats.json"),
                             "Experience 5 - Single-modal car networks - " + metric,
                             categories, metrics[metric], "|V|", metric,
                             save_filename)
@@ -340,27 +360,32 @@ def plotExp5(metrics, improvements):
     categories = ["A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
     for metric in improvements:
-        save_filename = FILE_EXP5 + "plot_improv_" + metric + ".png"
-        plotImprovementsResult(FILE_EXP5_ALL,
+        save_filename = getFileExpPath(5, "plot_improv_" + metric + ".png")
+        plotImprovementsResult(getFileExpPath(5, "exp5_all_stats.json"),
                                "Experience 5 - Improvement - " + metric,
                                categories, improvements[metric], "|V|",
                                metric, save_filename)
 
     # plot : |V| - avg deg
-    save_filename = FILE_EXP5 + "plot_avg_deg.png"
-    plotAvgDegResult(FILE_EXP5_ALL, "Experience 5 - avg degree",
+    save_filename = getFileExpPath(5, "plot_avg_deg.png")
+    plotAvgDegResult(getFileExpPath(5, "exp5_all_stats.json"),
+                     "Experience 5 - avg degree",
                      "avg deg", "|V|", save_filename)
+
+# ====================================================
 
 
 def plotExp6():
     """
 
     """
-    save_filename = FILE_EXP6 + "plot_prepro_CT.png"
-    plotPreprocessingResult(FILE_EXP6_ALL,
+    save_filename = getFileExpPath(6, "plot_prepro_CT.png")
+    plotPreprocessingResult(getFileExpPath(6, "exp6_all_stats.json"),
                             "Experience 6 - Preprocessing",
                             "computation time (sec.)", "|V|",
                             save_filename)
+
+# ====================================================
 
 
 def plotExp7(metrics, improvements, graphs):
@@ -371,30 +396,33 @@ def plotExp7(metrics, improvements, graphs):
 
     for graph in graphs:
         for metric in metrics:
-            save_filename = FILE_EXP7 + "plot_" + metric + "_" + graph + ".png"
-            plotExp7Result(FILE_EXP7_ALL,
+            save_filename = getFileExpPath(7, "plot_" + metric + "_" + graph + ".png")
+            plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
                            "Experience 7 - Nb added edges - " + metric + " - " + graph,
                            metrics[metric], "|added edges|", metric,
                            speeds, "ALT", graph, save_filename)
 
         for metric in improvements:
-            save_filename = FILE_EXP7 + "plot_improv_" + metric + "_" + graph + ".png"
-            plotImprovementsExp7(FILE_EXP7_ALL,
+            save_filename = getFileExpPath(7, "plot_improv_" + metric + "_" + graph + ".png")
+            plotImprovementsExp7(getFileExpPath(7, "exp7_all_stats.json"),
                                  "Experience 7 - improvement - " + metric + " - " + graph,
                                  improvements[metric], "|added edges|", metric,
                                  speeds, graph, save_filename)
 
-        save_filename = FILE_EXP7 + "plot_avgDeg_" + graph + ".png"
-        plotExp7AvgDegResult(FILE_EXP7_ALL, "Experience 7 - avg deg - " + graph,
+        save_filename = getFileExpPath(7, "plot_avgDeg_" + graph + ".png")
+        plotExp7AvgDegResult(getFileExpPath(7, "exp7_all_stats.json"),
+                             "Experience 7 - avg deg - " + graph,
                              "avg deg after", "|added edges|", speeds,
                              graph, save_filename)
 
         # plot : mac avg lower bound - ALT
-        save_filename = FILE_EXP7 + "plot_max_avg_lb_" + graph + ".png"
-        plotMaxAvgLbExp7(FILE_EXP7_ALL,
+        save_filename = getFileExpPath(7, "plot_max_avg_lb_" + graph + ".png")
+        plotMaxAvgLbExp7(getFileExpPath(7, "exp7_all_stats.json"),
                          "Experience 7 - Max average distance lower bound - " + graph,
                          "max avg lower bound", "|added edges|", speeds,
                          graph, save_filename)
+
+# ====================================================
 
 
 def plotExp8(metrics):
@@ -405,17 +433,19 @@ def plotExp8(metrics):
 
     # plot standard metrics
     for metric in metrics:
-        save_filename = FILE_EXP8 + "plot_" + metric + ".png"
-        plotBenchmarkResult(FILE_EXP8_ALL,
+        save_filename = getFileExpPath(8, "plot_" + metric + ".png")
+        plotBenchmarkResult(getFileExpPath(8, "exp8_all_stats.json"),
                             "Experience 8 - Multi-modal station-based - " + metric,
                             categories, metrics[metric], "|V|",
                             metric, save_filename)
 
     # plot : modality1 - modality2 for Dijkstra & ALT
-    save_filename = FILE_EXP8 + "plot_piechart_Dijkstra.png"
-    plotModalitiesPieChart(FILE_EXP8_ALL,
+    save_filename = getFileExpPath(8, "plot_piechart_Dijkstra.png")
+    plotModalitiesPieChart(getFileExpPath(8, "exp8_all_stats.json"),
                            "Experience 8 - Pie chart modalities",
                            "1_ULB", "Dijkstra", save_filename)
+
+# ====================================================
 
 
 def plotExp9(metrics, graphs):
@@ -424,25 +454,27 @@ def plotExp9(metrics, graphs):
     """
     for graph in graphs:
         for metric in metrics:
-            save_filename = FILE_EXP9 + "plot_" + metric + "_" + graph + ".png"
-            plotPrefExpResult(FILE_EXP9_ALL,
+            save_filename = getFileExpPath(9, "plot_" + metric + "_" + graph + ".png")
+            plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
                               "Experience 9 - prefs - " + metric + " - " + graph,
                               metrics[metric], "c2", "c2", metric,
                               graph, save_filename)
 
-        save_filename = FILE_EXP9 + "plot_travelTypes_" + graph + ".png"
-        plotModalitiesLines(FILE_EXP9_ALL,
+        save_filename = getFileExpPath(9, "plot_travelTypes_" + graph + ".png")
+        plotModalitiesLines(getFileExpPath(9, "exp9_all_stats.json"),
                             "Experience 9 - Travel types - " + graph,
                             "Travel types frequency", "c2", graph,
                             ["Villo", "fromStation", "toStation", "car"],
                             "Dijkstra", "c2", save_filename)
 
         # plot max avg lb
-        save_filename = FILE_EXP9 + "plot_max_avg_lb_" + graph + ".png"
-        plotPrefAvgMaxLb(FILE_EXP9_ALL,
+        save_filename = getFileExpPath(9, "plot_max_avg_lb_" + graph + ".png")
+        plotPrefAvgMaxLb(getFileExpPath(9, "exp9_all_stats.json"),
                          "Experience 9 - Max avg lower bound - " + graph,
                          "Max avg dist lb", "c2", "c2",
                          graph, save_filename)
+
+# ====================================================
 
 
 def plotExp10(metrics, graphs):
@@ -451,20 +483,22 @@ def plotExp10(metrics, graphs):
     """
     for graph in graphs:
         for metric in metrics:
-            save_filename = FILE_EXP10 + "plot_" + metric + "_" + graph + ".png"
-            plotPrefExpResult(FILE_EXP10_ALL, "Experience 10 - prefs - " + metric + " - " + graph,
+            save_filename = getFileExpPath(10, "plot_" + metric + "_" + graph + ".png")
+            plotPrefExpResult(getFileExpPath(10, "exp10_all_stats.json"),
+                              "Experience 10 - prefs - " + metric + " - " + graph,
                               metrics[metric], "c2", "c2", metric,
                               graph, save_filename)
 
-        save_filename = FILE_EXP10 + "plot_travelTypes_" + graph + ".png"
-        plotModalitiesLines(FILE_EXP10_ALL, "Experience 10 - Travel types - " + graph,
+        save_filename = getFileExpPath(10, "plot_travelTypes_" + graph + ".png")
+        plotModalitiesLines(getFileExpPath(10, "exp10_all_stats.json"),
+                            "Experience 10 - Travel types - " + graph,
                             "Travel types frequency", "c2", graph,
                             ["Villo", "fromStation", "toStation", "car"],
                             "Dijkstra", "c2", save_filename)
 
         # plot max avg lb
-        save_filename = FILE_EXP10 + "plot_max_avg_lb_" + graph + ".png"
-        plotPrefAvgMaxLb(FILE_EXP10_ALL,
+        save_filename = getFileExpPath(10, "plot_max_avg_lb_" + graph + ".png")
+        plotPrefAvgMaxLb(getFileExpPath(10, "exp10_all_stats.json"),
                          "Experience 10 - Max avg lower bound - " + graph,
                          "Max avg dist lb", "c2", "c2",
                          graph, save_filename)
@@ -481,18 +515,16 @@ def main():
                     "avg_rel": "avg relaxed edges improvement",
                     "avg_SS": "avg search space size improvement"}
 
-    graphs = [GRAPH_1_NAME, GRAPH_2_NAME, GRAPH_3_NAME, GRAPH_4_NAME, GRAPH_5_NAME, GRAPH_6_NAME]
-
     plotExp1(metrics)
     plotExp2(metrics)
     plotExp3(metrics)
     plotExp4(metrics)
     plotExp5(metrics, improvements)
     plotExp6()
-    plotExp7(metrics, improvements, [GRAPH_1_NAME])
+    plotExp7(metrics, improvements, [GRAPH_ULB])
     plotExp8(metrics)
-    plotExp9(metrics, [GRAPH_1_NAME])
-    plotExp10(metrics, [GRAPH_1_NAME])
+    plotExp9(metrics, [GRAPH_ULB])
+    plotExp10(metrics, [GRAPH_ULB])
 
 
 if __name__ == "__main__":

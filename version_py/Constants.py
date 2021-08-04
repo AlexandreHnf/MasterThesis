@@ -5,35 +5,22 @@ earthRadiusKm = 6371
 limit_connection_ratio = 0.5
 
 # Graphs
-GRAPH_1_NAME =          "1_ULB"
-GRAPH_2_NAME =          "2_Bruxelles"
-GRAPH_3_NAME =          "3_Bruxelles_Capitale_centre"
-GRAPH_4_NAME =          "4_Bruxelles_Capitale"
-GRAPH_5_NAME =          "5_Belgique_centre"
-GRAPH_6_NAME =          "6_Belgique"
+GRAPH_ULB =             "1_ULB"
+GRAPH_BXL =             "2_Bruxelles"
+GRAPH_BXL_CAP_CTR =     "3_Bruxelles_Capitale_centre"
+GRAPH_BXL_CAP =         "4_Bruxelles_Capitale"
+GRAPH_BE_CTR =          "5_Belgique_centre"
+GRAPH_BE =              "6_Belgique"
 
-GRAPH_ULB =             W + "Graphs\\" + GRAPH_1_NAME + ".json"
-GRAPH_BXL =             W + "Graphs\\" + GRAPH_2_NAME + ".json"
-GRAPH_BXL_CAP_CTR =     W + "Graphs\\" + GRAPH_3_NAME + ".json"
-GRAPH_BXL_CAP =         W + "Graphs\\" + GRAPH_4_NAME + ".json"
-GRAPH_BE_CTR =          W + "Graphs\\" + GRAPH_5_NAME + ".json"
-GRAPH_BE =              W + "Graphs\\" + GRAPH_6_NAME + ".json"
+GRAPHS =                [GRAPH_ULB,
+                        GRAPH_BXL,
+                        GRAPH_BXL_CAP_CTR,
+                        GRAPH_BXL_CAP,
+                        GRAPH_BE_CTR,
+                        GRAPH_BE]
 
-GRAPH_ULB_U =           "Graphs/" + GRAPH_1_NAME + ".json"
-GRAPH_BXL_U =           "Graphs/" + GRAPH_2_NAME + ".json"
-GRAPH_BXL_CAP_CTR_U =   "Graphs/" + GRAPH_3_NAME + ".json"
-GRAPH_BXL_CAP_U =       "Graphs/" + GRAPH_4_NAME + ".json"
-GRAPH_BE_CTR_U =        "Graphs/" + GRAPH_5_NAME + ".json"
-GRAPH_BE_U =            "Graphs/" + GRAPH_6_NAME + ".json"
+GRAPH_VILLO =           "villo"
 
-GRAPH_FILENAMES =      {GRAPH_1_NAME: {"W": GRAPH_ULB,          "U": GRAPH_ULB_U},
-                        GRAPH_2_NAME: {"W": GRAPH_BXL,          "U": GRAPH_BXL_U},
-                        GRAPH_3_NAME: {"W": GRAPH_BXL_CAP_CTR,  "U": GRAPH_BXL_CAP_CTR_U},
-                        GRAPH_4_NAME: {"W": GRAPH_BXL_CAP,      "U": GRAPH_BXL_CAP_U},
-                        GRAPH_5_NAME: {"W": GRAPH_BE_CTR,       "U": GRAPH_BE_CTR_U},
-                        GRAPH_6_NAME: {"W": GRAPH_BE,           "U": GRAPH_BE_U}}
-
-GRAPH_VILLO =           W + "Graphs\\" + "villo.json"
 SPEED_FOOT =            5   # km/h
 SPEED_BIKE =            20  # km/h https://cyclinguphill.com/average-speeds-cycling/
 NOT_VALID_MAXSPEEDS =   not_valid = ["signals",
@@ -62,7 +49,7 @@ SHOW =                  False
 GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
-EXPERIMENT =            7
+EXPERIMENT =            1
 NB_RUNS =               10  # TODO : change it to 1000
 
 # experiments stats filenames /!\ TENTATIVE => change it to be generic
