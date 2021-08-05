@@ -74,6 +74,46 @@ class MultipleQueriesThread(threading.Thread):
             self.stat[algo_name]["avg_rel"] += algo.getNbRelaxedEdges()
 
 
+class MultipleQueriesMultimodalThread(threading.Thread):
+    def __init__(self, threadID, name, graph, algos, lm_dists, prepro_time):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.algos_success = True
+        self.timer = Timer()
+
+        self.algos = algos
+        self.lm_dists = lm_dists
+        self.graph = graph
+        self.s, self.t = Random.selectRandomPair(graph.getNodesIDs())
+
+        self.stat = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0, "max_avg_lb": 0,
+                                 "avg_travel_types": {}} for algo_name in algos}
+
+    def addTravelTypesStats(self, algo_name, travel_types):
+        for key in travel_types:
+            if key not in self.stat[algo_name]["avg_travel_types"]:
+                self.stat[algo_name]["avg_travel_types"][key] = travel_types[key]
+            else:
+                self.stat[algo_name]["avg_travel_types"][key] += travel_types[key]
+
+    def run(self):
+        for algo_name in self.algos:
+            self.timer.start()
+            algo = getSPalgoObject(self.graph, algo_name, self.s, self.t,
+                                   PRIORITY, BUCKET_SIZE, HEURISTIC, self.lm_dists)
+            success = algo.run()
+            self.timer.stop()
+            travel_types = algo.getSPTravelTypes()
+
+            self.stat[algo_name]["avg_CT"] += self.timer.getTimeElapsedSec()
+            self.stat[algo_name]["avg_SS"] += algo.getSearchSpaceSize()
+            self.stat[algo_name]["avg_rel"] += algo.getNbRelaxedEdges()
+            if algo_name == "ALT":
+                self.stat[algo_name]["max_avg_lb"] += algo.getAvgMaxHeuristicDist()
+            self.addTravelTypesStats(algo_name, travel_types)
+
+
 def main():
     threads = []
     # create new threads

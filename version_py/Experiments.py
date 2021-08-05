@@ -663,12 +663,21 @@ def testRandomPairs():
         print(s, t)
 
 
+def showVilloStations(graph_name):
+    p = OSMgraphParser(graph_name)
+    graph = p.parse("foot")
+
+    multi_graph, villo_closests = addVilloStations(graph, True)
+
+
 def main():
     launchExperiment(EXPERIMENT)
 
     # launchAllExperiments()
 
     # testRandomPairs()
+
+    # showVilloStations(GRAPH_BXL_CAP)
 
 
 if __name__ == "__main__":

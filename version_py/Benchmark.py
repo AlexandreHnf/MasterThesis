@@ -10,43 +10,13 @@ from ALTpreprocessing import ALTpreprocessing
 from ParseOSMgraph import OSMgraphParser
 from Constants import *
 from Timer import Timer
-from Thread import SingleQueryThread, MultipleQueriesThread
+from Thread import SingleQueryThread, MultipleQueriesThread, MultipleQueriesMultimodalThread
 
 
 class Benchmark:
     def __init__(self, graph):
         self.graph = graph
         self.irange = (1, self.graph.getNbNodes())
-
-
-    def getSPalgoObject(self, graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists):
-        """
-        From the algorithm name, provide the shortest path object instance with the given
-        parameters
-        ex:  algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
-        """
-        if algo_name == "Dijkstra":
-            return Dijkstra(graph, s, t, priority, bucket_size)
-        elif algo_name == "A*":
-            return Astar(graph, s, t, priority, bucket_size, heuristic)
-        elif algo_name == "ALT":
-            return ALT(graph, s, t, lm_dists, priority, bucket_size, heuristic)
-        elif algo_name == "BidiDijkstra":
-            return BidirectionalDijkstra(graph, s, t, priority, bucket_size)
-        elif algo_name == "BidiAstar":
-            return BidirectionalAstar(graph, s, t, priority, bucket_size, heuristic)
-        elif algo_name == "BidiALT":
-            return BidirectionalALT(graph, s, t, lm_dists, priority, bucket_size, heuristic)
-
-
-    def runAlgo(self, graph, algo_name, s, t, lm_dists, priority, bucket_size, heuristic):
-        algo = self.getSPalgoObject(graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists)
-        timer = Timer()
-        timer.start()
-        success = algo.run()
-        timer.stop()
-
-        return success, timer, algo
 
 
     def testSingleQuery(self, nb_runs, algo_name, priority, bucket_size, heuristic, lm_dists):
@@ -107,9 +77,9 @@ class Benchmark:
 
         # round
         for algo_name in algos:
-            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"], 7)
-            stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"], 2)
-            stats[algo_name]["avg_rel"] = round(stats[algo_name]["avg_rel"], 2)
+            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"] / nb_runs, 7)
+            stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"] / nb_runs, 2)
+            stats[algo_name]["avg_rel"] = round(stats[algo_name]["avg_rel"] / nb_runs, 2)
             if algo_name in ["ALT", "BidiALT"]:
                 stats[algo_name]["lm_dists_CT"] = prepro_time
             else:
@@ -134,34 +104,34 @@ class Benchmark:
 
         queries_timer = Timer()
         queries_timer.start()
-        r = 1
-        while r <= nb_runs:
-            s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            algos_success = True
+
+        threads = []
+        # create new threads
+        for i in range(nb_runs):
+            my_thread = MultipleQueriesMultimodalThread(i + 1, "Exp1", graph, algos, lm_dists, prepro_time)
+            my_thread.start()
+            threads.append(my_thread)
+
+        # synchronize
+        for i in range(nb_runs):
+            threads[i].join()
+
+        for i in range(nb_runs):
             for algo_name in algos:
-                success, timer, algo = self.runAlgo(graph, algo_name, s, t, lm_dists, PRIORITY, BUCKET_SIZE, HEURISTIC)
-                if not success:
-                    algos_success = False
-                    break
-                travel_types = algo.getSPTravelTypes()
-
-                stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
-                stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs
-                stats[algo_name]["avg_rel"] += algo.getNbRelaxedEdges() / nb_runs
+                stats[algo_name]["avg_CT"] += threads[i].stat[algo_name]["avg_CT"]
+                stats[algo_name]["avg_SS"] += threads[i].stat[algo_name]["avg_SS"]
+                stats[algo_name]["avg_rel"] += threads[i].stat[algo_name]["avg_rel"]
                 if algo_name == "ALT":
-                    stats[algo_name]["max_avg_lb"] += algo.getAvgMaxHeuristicDist() / nb_runs
-                self.addTravelTypesStats(stats, algo_name, travel_types, nb_runs)
+                    stats[algo_name]["max_avg_lb"] += threads[i].stat[algo_name]["max_avg_lb"]
+                self.addTravelTypesStats(stats, algo_name, threads[i].stat[algo_name]["avg_travel_types"], nb_runs)
 
-            if not algos_success:
-                continue
-            r += 1
         # round
         for algo_name in algos:
-            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"], 6)
-            stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"], 2)
-            stats[algo_name]["avg_rel"] = round(stats[algo_name]["avg_rel"], 2)
+            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"] / nb_runs, 6)
+            stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"] / nb_runs, 2)
+            stats[algo_name]["avg_rel"] = round(stats[algo_name]["avg_rel"] / nb_runs, 2)
             if algo_name in ["ALT", "BidiALT"]:
-                stats[algo_name]["max_avg_lb"] = round(stats[algo_name]["max_avg_lb"], 2)
+                stats[algo_name]["max_avg_lb"] = round(stats[algo_name]["max_avg_lb"] / nb_runs, 2)
                 stats[algo_name]["lm_dists_CT"] = prepro_time
             else:
                 stats[algo_name]["lm_dists_CT"] = 0
