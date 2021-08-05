@@ -529,8 +529,8 @@ def launchExperiment(exp):
 
     if exp == 1 or exp == -1:
         timer = Timer()
-        graphs_names = [GRAPH_ULB, GRAPH_BXL]
-        # graphs_names = GRAPHS
+        # graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        graphs_names = GRAPHS
         timer.start()
         experiment1(graphs_names)
         timer.stop()
@@ -611,7 +611,7 @@ def launchExperiment(exp):
         timer = Timer()
         timer.start()
         graphs_names = [GRAPH_ULB]
-        #graphs_names = GRAPHS
+        # graphs_names = [GRAPH_BXL, GRAPH_CAP_CTR]
         experiment9(graphs_names, 1, [2, 0], -0.2)
         timer.stop()
         timer.printTimeElapsedMin("Exp 9")
@@ -621,7 +621,7 @@ def launchExperiment(exp):
         timer = Timer()
         timer.start()
         graphs_names = [GRAPH_ULB]
-        # graphs_names = GRAPHS
+        # graphs_names = [GRAPH_BXL, GRAPH_CAP_CTR]
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
         timer.stop()
         timer.printTimeElapsedMin("Exp 10")

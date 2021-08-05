@@ -10,20 +10,13 @@ from ALTpreprocessing import ALTpreprocessing
 from ParseOSMgraph import OSMgraphParser
 from Constants import *
 from Timer import Timer
+from Thread import SingleQueryThread
 
 
 class Benchmark:
     def __init__(self, graph):
         self.graph = graph
         self.irange = (1, self.graph.getNbNodes())
-
-
-    def selectRandomPairs(self, irange, nb):
-        pairs = []
-        for _ in range(nb):
-            pairs.append(Random.getRandomPair(irange))
-
-        return pairs
 
 
     def getSPalgoObject(self, graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists):
@@ -61,19 +54,26 @@ class Benchmark:
 
         queries_timer = Timer()
         queries_timer.start()
-        r = 1
-        while r <= nb_runs:
-            s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            success, timer, algo = self.runAlgo(self.graph, algo_name, s, t, lm_dists, priority, bucket_size, heuristic)
-            if not success:
-                continue
 
-            stats["avg_CT"] += timer.getTimeElapsedSec()
-            stats["avg_SS"] += algo.getSearchSpaceSize()
-            stats["avg_rel"] += algo.getNbRelaxedEdges()
+        threads = []
+        # create new threads
+        for i in range(nb_runs):
+            my_thread = SingleQueryThread(i + 1, "Exp1", self.graph, algo_name, lm_dists, priority, bucket_size, heuristic)
+            my_thread.start()
+            threads.append(my_thread)
 
-            # print(f"s: {s} t: {t} : SP len: {round(path_len, 2)} time: {round(timing, 4)} ss: {ss} rel: {rel}")
-            r += 1
+        # synchronize
+        for i in range(nb_runs):
+            threads[i].join()
+
+        for i in range(nb_runs):
+            if threads[i].success:
+                # print("thread {0} : {1}".format(threads[i].threadID, threads[i].timer.getTimeElapsedSec()))
+                stats["avg_CT"] += threads[i].timer.getTimeElapsedSec()
+                stats["avg_SS"] += threads[i].algo.getSearchSpaceSize()
+                stats["avg_rel"] += threads[i].algo.getNbRelaxedEdges()
+
+        # ===================================
 
         stats["avg_CT"] = round(stats["avg_CT"] / nb_runs, 6)
         stats["avg_SS"] = round(stats["avg_SS"] / nb_runs)

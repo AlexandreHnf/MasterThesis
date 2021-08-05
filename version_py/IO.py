@@ -35,7 +35,9 @@ def writeDictDictStatsToCsv(stats, header, filename):
         writer.writerow(header)
 
         for p in stats.keys():
-            data = [p] + list(stats[p].values())
+            data = [p]
+            for metric in header[1:]:
+                data.append(stats[p][metric])
 
             # write the data
             writer.writerow(data)

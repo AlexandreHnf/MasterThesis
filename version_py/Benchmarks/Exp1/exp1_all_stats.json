@@ -1,44 +1,132 @@
 {
+    "4_Bruxelles_Capitale": {
+        "nb_nodes": 25448,
+        "avg_deg": 2.14,
+        "stats": {
+            "bin": {
+                "avg_CT": 0.212576,
+                "avg_SS": 18844,
+                "avg_rel": 21002
+            },
+            "list": {
+                "avg_CT": 0.778852,
+                "avg_SS": 24014,
+                "avg_rel": 26633
+            },
+            "fib": {
+                "avg_CT": 0.558272,
+                "avg_SS": 14695,
+                "avg_rel": 16392
+            }
+        },
+        "nb_edges": 54392
+    },
     "2_Bruxelles": {
         "nb_nodes": 1115,
         "avg_deg": 1.76,
         "stats": {
+            "bin": {
+                "avg_CT": 0.002401,
+                "avg_SS": 690,
+                "avg_rel": 746
+            },
             "list": {
-                "avg_rel": 644,
-                "avg_CT": 0.002863,
-                "avg_SS": 582
+                "avg_CT": 0.000756,
+                "avg_SS": 179,
+                "avg_rel": 202
             },
             "fib": {
-                "avg_rel": 632,
-                "avg_CT": 0.008333,
-                "avg_SS": 571
-            },
-            "bin": {
-                "avg_rel": 636,
-                "avg_CT": 0.00161,
-                "avg_SS": 575
+                "avg_CT": 0.007878,
+                "avg_SS": 552,
+                "avg_rel": 598
             }
         },
         "nb_edges": 1960
+    },
+    "3_Bruxelles_Capitale_centre": {
+        "nb_nodes": 4755,
+        "avg_deg": 2.08,
+        "stats": {
+            "bin": {
+                "avg_CT": 0.00593,
+                "avg_SS": 1328,
+                "avg_rel": 1552
+            },
+            "list": {
+                "avg_CT": 0.014962,
+                "avg_SS": 2022,
+                "avg_rel": 2316
+            },
+            "fib": {
+                "avg_CT": 0.138141,
+                "avg_SS": 3802,
+                "avg_rel": 4342
+            }
+        },
+        "nb_edges": 9892
+    },
+    "6_Belgique": {
+        "nb_nodes": 395301,
+        "avg_deg": 2.21,
+        "stats": {
+            "bin": {
+                "avg_CT": 1.017572,
+                "avg_SS": 137964,
+                "avg_rel": 151578
+            },
+            "list": {
+                "avg_CT": 6.503426,
+                "avg_SS": 117282,
+                "avg_rel": 129572
+            },
+            "fib": {
+                "avg_CT": 30.16601,
+                "avg_SS": 279662,
+                "avg_rel": 306775
+            }
+        },
+        "nb_edges": 871716
+    },
+    "5_Belgique_centre": {
+        "nb_nodes": 213888,
+        "avg_deg": 2.18,
+        "stats": {
+            "bin": {
+                "avg_CT": 0.543808,
+                "avg_SS": 102973,
+                "avg_rel": 112642
+            },
+            "list": {
+                "avg_CT": 18.704161,
+                "avg_SS": 206832,
+                "avg_rel": 225776
+            },
+            "fib": {
+                "avg_CT": 10.668585,
+                "avg_SS": 98094,
+                "avg_rel": 107820
+            }
+        },
+        "nb_edges": 466262
     },
     "1_ULB": {
         "nb_nodes": 149,
         "avg_deg": 2.34,
         "stats": {
+            "bin": {
+                "avg_CT": 0.000379,
+                "avg_SS": 135,
+                "avg_rel": 166
+            },
             "list": {
-                "avg_rel": 100,
-                "avg_CT": 0.000284,
-                "avg_SS": 81
+                "avg_CT": 0.000374,
+                "avg_SS": 122,
+                "avg_rel": 142
             },
             "fib": {
-                "avg_rel": 99,
-                "avg_CT": 0.000896,
-                "avg_SS": 80
-            },
-            "bin": {
-                "avg_rel": 100,
-                "avg_CT": 0.000227,
-                "avg_SS": 81
+                "avg_CT": 0.000267,
+                "avg_SS": 28,
+                "avg_rel": 38
             }
         },
         "nb_edges": 349
