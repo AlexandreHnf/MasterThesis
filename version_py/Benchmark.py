@@ -10,7 +10,7 @@ from ALTpreprocessing import ALTpreprocessing
 from ParseOSMgraph import OSMgraphParser
 from Constants import *
 from Timer import Timer
-from Thread import SingleQueryThread
+from Thread import SingleQueryThread, MultipleQueriesThread
 
 
 class Benchmark:
@@ -87,23 +87,24 @@ class Benchmark:
 
         queries_timer = Timer()
         queries_timer.start()
-        r = 1
-        while r <= nb_runs:
-            s, t = Random.selectRandomPair(self.graph.getNodesIDs())
-            # print(f"run: {r}, s: {s} t: {t}")
-            algos_success = True
-            for algo_name in algos:
-                success, timer, algo = self.runAlgo(graph, algo_name, s, t, lm_dists, PRIORITY, BUCKET_SIZE, HEURISTIC)
-                if not success:
-                    algos_success = False
-                    break
 
-                stats[algo_name]["avg_CT"] += timer.getTimeElapsedSec() / nb_runs
-                stats[algo_name]["avg_SS"] += algo.getSearchSpaceSize() / nb_runs
-                stats[algo_name]["avg_rel"] += algo.getNbRelaxedEdges() / nb_runs
-            if not algos_success:
-                continue
-            r += 1
+        threads = []
+        # create new threads
+        for i in range(nb_runs):
+            my_thread = MultipleQueriesThread(i + 1, "Exp1", graph, algos, lm_dists)
+            my_thread.start()
+            threads.append(my_thread)
+
+        # synchronize
+        for i in range(nb_runs):
+            threads[i].join()
+
+        for i in range(nb_runs):
+            for algo_name in algos:
+                stats[algo_name]["avg_CT"] += threads[i].stat[algo_name]["avg_CT"]
+                stats[algo_name]["avg_SS"] += threads[i].stat[algo_name]["avg_SS"]
+                stats[algo_name]["avg_rel"] += threads[i].stat[algo_name]["avg_rel"]
+
         # round
         for algo_name in algos:
             stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"], 7)

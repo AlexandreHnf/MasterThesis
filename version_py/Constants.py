@@ -52,4 +52,4 @@ GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
 EXPERIMENT =            -1
-NB_RUNS =               500  # TODO : change it to 1000
+NB_RUNS =               100  # TODO : change it to 1000

@@ -58,6 +58,8 @@ def experiment2(graphs_names):
     print("EXPERIMENT 2 : which heuristic A*")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse()
 
@@ -93,6 +95,8 @@ def experiment3(graphs_names):
     print("EXPERIMENT 3 : which landmark selection ALT")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse()
 
@@ -135,6 +139,8 @@ def experiment4(graphs_names):
     print("EXPERIMENT 4 : how many landmarks ALT")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse()
 
@@ -176,6 +182,8 @@ def experiment5(graphs_names):
     print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse()
 
@@ -193,7 +201,7 @@ def experiment5(graphs_names):
         pre_timer.printTimeElapsedMin("lm dists")
 
         algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
-
+        print("running algos... : ".join(algos))
         prepro_time = pre_timer.getTimeElapsedSec()
         stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists, prepro_time)
         # print(stats)
@@ -216,6 +224,8 @@ def experiment6(graphs_names):
     print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse()
 
@@ -245,6 +255,8 @@ def experiment7(graphs_names):
     print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse("foot")
         print("nb edges before experiments : ", graph.getNbEdges())
@@ -305,6 +317,8 @@ def experiment8(graphs_names, show):
     print("EXPERIMENT 8 : Multi-modal villo-station-based network : Dijkstra & ALT")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse("foot")
 
@@ -362,6 +376,8 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
     print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse("car")
 
@@ -434,6 +450,8 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
     """
     all_stats = {}
     for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
         p = OSMgraphParser(graph_name)
         graph = p.parse("car")
 
@@ -570,8 +588,8 @@ def launchExperiment(exp):
     if exp == 5 or exp == -1:
         timer = Timer()
         timer.start()
-        graphs_names = [GRAPH_ULB, GRAPH_BXL]
-        # graphs_names = GRAPHS
+        # graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        graphs_names = GRAPHS
         experiment5(graphs_names)
         timer.stop()
         timer.printTimeElapsedMin("Exp 5")
