@@ -21,7 +21,6 @@ from Graph import Graph
 import threading
 
 
-
 class LandmarkDistThread(threading.Thread):
     def __init__(self, threadID, graph, landmark, lm_est):
         threading.Thread.__init__(self)
@@ -36,11 +35,10 @@ class LandmarkDistThread(threading.Thread):
     def run(self):
         dijkstra = Dijkstra(self.graph, self.landmark, -1)
         dists = dijkstra.getDistsSourceToNodes()
-        print("thread {0} : {1}".format(self.threadID, len(dists)))
+        # print("thread {0} : {1}".format(self.threadID, len(dists)))
 
         for i, pid in enumerate(self.graph.getNodesCoords()):
             self.lm_dists[pid] = dists[pid]
-
 
 
 class ALTpreprocessing:
@@ -82,7 +80,7 @@ class ALTpreprocessing:
         """
         x, y = target
         close_vertices = self.graph.getQtree().query_range(x - rng, x + rng, y - rng, y + rng)
-        best_vertex = None # if no corresponding vertex
+        best_vertex = None  # if no corresponding vertex
         best_dist = float("inf")
         for point, vertices in close_vertices.items():
             dist = haversine(point[0], point[1], target[0], target[1])
@@ -101,31 +99,6 @@ class ALTpreprocessing:
         d = Dijkstra(self.graph, s, t)
         return d.existShortestPath()
 
-    def lmExactDist(self, v, landmark, lm_est):
-        """
-        => mini A* algorithm to compute shortest path between a node v and a landmark
-        Speedup by using precomputed euclidean distances between nodes and landmarks
-        """
-        lm_dists = lm_est[landmark]
-        pred = {v: 0}  # source = v
-        closed_set = set()
-        unseen = [(0, v)]
-        while unseen:
-            _, w = heappop(unseen)
-            if w in closed_set:
-                continue
-            elif w == landmark:
-                return pred[w]
-            closed_set.add(w)
-            for arc in self.graph.getAdj(w):
-                neighbour = arc.getExtremityNode()
-                if neighbour not in closed_set:
-                    new_dist = (pred[w] + arc.getWeight())
-                    if neighbour not in pred or new_dist < pred[neighbour]:
-                        pred[neighbour] = new_dist
-                        est = new_dist + lm_dists[neighbour]
-                        heappush(unseen, (new_dist + est, neighbour))
-        return None  # if no vvalid path found
 
     def getLandmarksDistances(self, landmarks):
         """
@@ -159,17 +132,6 @@ class ALTpreprocessing:
                 lm_dists[pid].append(threads[i].lm_dists[pid])
 
         return lm_dists
-
-        # monothread
-        # for i, pid in enumerate(self.graph.getNodesCoords()):
-        #     for landmark, _ in landmarks:
-        #         try:
-        #             d = self.lmExactDist(pid, landmark, lm_est)
-        #         except KeyError:
-        #             d = None
-        #         lm_dists[pid].append(d)
-        #
-        # return lm_dists
 
     def divideInRegions(self, k, origin):
         regions = [[] for _ in range(k)]

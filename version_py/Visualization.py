@@ -354,7 +354,39 @@ def plotExp4(metrics):
 # ====================================================
 
 
-def plotExp5(metrics, improvements):
+def plotExp5():
+    """
+    Single modal
+    preprocessing time - |V|
+    """
+    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
+    # preprocessing time - |V| with k=16, planar
+    save_filename = getFileExpPath(5, "plot_prepro_CT_{0}.png".format(graphs))
+    plotPreprocessingResult(getFileExpPath(5, "exp5_all_stats.json"),
+                            "Experience 5 - Preprocessing",
+                            "computation time (sec.)", "|V|",
+                            save_filename)
+
+    # preprocessing time - |V| with [random, farthest, planar]
+    categories = ["random", "farthest", "planar"]
+    save_filename = getFileExpPath(5, "plot_prepro_CT_selections_{0}.png".format(graphs))
+    plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
+                        "Experience 5 - ALT - " + "lm_dists_CT",
+                        categories, "preprocessing time (sec.)",
+                        "|V|", "lm_dists_CT", save_filename)
+
+    # preprocessing time - |V| with k=[1,2,4,8,16,32]
+    categories = ["1", "2", "4", "8", "16", "32"]
+    save_filename = getFileExpPath(5, "plot_prepro_CT_k_{0}.png".format(graphs))
+    plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
+                        "Experience 5 - ALT - " + "lm_dists_CT",
+                        categories, "preprocessing time (sec.)",
+                        "|V|", "lm_dists_CT", save_filename)
+
+# ====================================================
+
+
+def plotExp6(metrics, improvements):
     """
     Single modal algos : Dijkstra, A*, ALT, BidiDijkstra, BidiA*, BidiALT
     """
@@ -363,9 +395,9 @@ def plotExp5(metrics, improvements):
 
     graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
-        save_filename = getFileExpPath(5, "plot_{0}_{1}.png".format(metric, graphs))
-        plotBenchmarkResult(getFileExpPath(5, "exp5_all_stats.json"),
-                            "Experience 5 - Single-modal car networks - " + metric,
+        save_filename = getFileExpPath(6, "plot_{0}_{1}.png".format(metric, graphs))
+        plotBenchmarkResult(getFileExpPath(6, "exp5_all_stats.json"),
+                            "Experience 6 - Single-modal car networks - " + metric,
                             categories, metrics[metric], "|V|", metric,
                             save_filename)
 
@@ -373,49 +405,17 @@ def plotExp5(metrics, improvements):
     categories = ["A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
     for metric in improvements:
-        save_filename = getFileExpPath(5, "plot_improv_{0}_{1}.png".format(metric, graphs))
-        plotImprovementsResult(getFileExpPath(5, "exp5_all_stats.json"),
-                               "Experience 5 - Improvement - " + metric,
+        save_filename = getFileExpPath(6, "plot_improv_{0}_{1}.png".format(metric, graphs))
+        plotImprovementsResult(getFileExpPath(6, "exp6_all_stats.json"),
+                               "Experience 6 - Improvement - " + metric,
                                categories, improvements[metric], "|V|",
                                metric, save_filename)
 
     # plot : |V| - avg deg
-    save_filename = getFileExpPath(5, "plot_avg_deg_{0}.png".format(graphs))
-    plotAvgDegResult(getFileExpPath(5, "exp5_all_stats.json"),
-                     "Experience 5 - avg degree",
+    save_filename = getFileExpPath(6, "plot_avg_deg_{0}.png".format(graphs))
+    plotAvgDegResult(getFileExpPath(6, "exp6_all_stats.json"),
+                     "Experience 6 - avg degree",
                      "avg deg", "|V|", save_filename)
-
-# ====================================================
-
-
-def plotExp6():
-    """
-    Single modal
-    preprocessing time - |V|
-    """
-    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
-    # preprocessing time - |V| with k=16, planar
-    save_filename = getFileExpPath(6, "plot_prepro_CT_{0}.png".format(graphs))
-    plotPreprocessingResult(getFileExpPath(6, "exp6_all_stats.json"),
-                            "Experience 6 - Preprocessing",
-                            "computation time (sec.)", "|V|",
-                            save_filename)
-
-    # preprocessing time - |V| with [random, farthest, planar]
-    categories = ["random", "farthest", "planar"]
-    save_filename = getFileExpPath(6, "plot_prepro_CT_selections_{0}.png".format(graphs))
-    plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
-                        "Experience 6 - ALT - " + "lm_dists_CT",
-                        categories, "preprocessing time (sec.)",
-                        "|V|", "lm_dists_CT", save_filename)
-
-    # preprocessing time - |V| with k=[1,2,4,8,16,32]
-    categories = ["1", "2", "4", "8", "16", "32"]
-    save_filename = getFileExpPath(6, "plot_prepro_CT_k_{0}.png".format(graphs))
-    plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
-                        "Experience 6 - ALT - " + "lm_dists_CT",
-                        categories, "preprocessing time (sec.)",
-                        "|V|", "lm_dists_CT", save_filename)
 
 # ====================================================
 

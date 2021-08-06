@@ -1,7 +1,2 @@
-algo,avg_CT,avg_SS,avg_rel,lm_dists_CT
-Dijkstra,0.0005224,162,214,0
-ALT,0.0002394,26,44,0.4109213000001546
-BidiALT,0.0003941,40,73,0.4109213000001546
-A*,0.0008128,157,205,0
-BidiDijkstra,0.0003093,68,97,0
-BidiAstar,0.0004684,68,97,0
+landmark_selection,nb_landmarks,prepro_CT
+planar,16,0.047208199997839984

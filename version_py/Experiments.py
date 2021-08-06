@@ -177,9 +177,41 @@ def experiment4(graphs_names):
 def experiment5(graphs_names):
     """
     Experiment 5 : Single modal car network
+    Preprocessing benchmarks
+    """
+    print("EXPERIMENT 5 : Single modal car network, preprocessing benchmarks")
+    all_stats = {}
+    for graph_name in graphs_names:
+        print("GRAPH : ", graph_name)
+
+        p = OSMgraphParser(graph_name)
+        graph = p.parse()
+
+        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
+                                 "nb_edges": graph.getNbEdges(),
+                                 "avg_deg": graph.getAvgDegree()}
+
+        # Benchmark
+        b = Benchmark(graph)
+        stat = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
+
+        print(stat["Prepro_time"], " seconds")
+        header = ["landmark_selection", "nb_landmarks", "prepro_CT"]
+        stats = [LANDMARK_SELECTION, NB_LANDMARKS, stat["Prepro_time"]]
+
+        all_stats[graph_name]["stats"] = stats
+        filename = getFileExpPath(5, graph_name + "_exp5.csv")
+        IO.writeSingleRowStatsToCsv(stats, header, filename)
+
+    IO.dicToJson(all_stats, getFileExpPath(5, "exp5_all_stats.json"))
+
+
+def experiment6(graphs_names):
+    """
+    Experiment 6 : Single modal car network
     query benchmarks for a given graph for multiple algorithms
     """
-    print("EXPERIMENT 5 : Single modal car network query benchmarks for a given graph for multiple algo")
+    print("EXPERIMENT 6 : Single modal car network query benchmarks for a given graph for multiple algo")
     all_stats = {}
     for graph_name in graphs_names:
         print("GRAPH : ", graph_name)
@@ -209,43 +241,10 @@ def experiment5(graphs_names):
         all_stats[graph_name]["stats"] = stats
 
         header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
-        filename = getFileExpPath(5, graph_name + "_exp5.csv")
+        filename = getFileExpPath(6, graph_name + "_exp6.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(5, "exp5_all_stats.json"))
-
-
-def experiment6(graphs_names):
-    """
-    Experiment 6 : Single modal car network
-    Preprocessing benchmarks
-    ()
-    """
-    print("EXPERIMENT 6 : Single modal car network, preprocessing benchmarks")
-    all_stats = {}
-    for graph_name in graphs_names:
-        print("GRAPH : ", graph_name)
-
-        p = OSMgraphParser(graph_name)
-        graph = p.parse()
-
-        all_stats[graph_name] = {"nb_nodes": graph.getNbNodes(),
-                                 "nb_edges": graph.getNbEdges(),
-                                 "avg_deg": graph.getAvgDegree()}
-
-        # Benchmark
-        b = Benchmark(graph)
-        stat = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
-
-        print(stat["Prepro_time"], " seconds")
-        header = ["landmark_selection", "nb_landmarks", "prepro_CT"]
-        stats = [LANDMARK_SELECTION, NB_LANDMARKS, stat["Prepro_time"]]
-
-        all_stats[graph_name]["stats"] = stats
-        filename = getFileExpPath(6, graph_name + "_exp6.csv")
-        IO.writeSingleRowStatsToCsv(stats, header, filename)
-
-    IO.dicToJson(all_stats, getFileExpPath(6, "exp6_all_stats.json"))
+    IO.dicToJson(all_stats, getFileExpPath(6, "exp5_all_stats.json"))
 
 
 def experiment7(graphs_names):
