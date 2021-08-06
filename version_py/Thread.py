@@ -2,6 +2,7 @@ import threading
 from Timer import Timer
 import Random
 from Constants import *
+from heapq import heappush, heappop
 
 from Dijkstra import Dijkstra
 from Astar import Astar
@@ -32,10 +33,9 @@ def getSPalgoObject(graph, algo_name, s, t, priority, bucket_size, heuristic, lm
 
 
 class SingleQueryThread(threading.Thread):
-    def __init__(self, threadID, name, graph, algo_name, lm_dists, priority, bucket_size, heuristic):
+    def __init__(self, threadID, graph, algo_name, lm_dists, priority, bucket_size, heuristic):
         threading.Thread.__init__(self)
         self.threadID = threadID
-        self.name = name
         self.success = True
         self.timer = Timer()
         s, t = Random.selectRandomPair(graph.getNodesIDs())
@@ -48,10 +48,9 @@ class SingleQueryThread(threading.Thread):
 
 
 class MultipleQueriesThread(threading.Thread):
-    def __init__(self, threadID, name, graph, algos, lm_dists):
+    def __init__(self, threadID, graph, algos, lm_dists):
         threading.Thread.__init__(self)
         self.threadID = threadID
-        self.name = name
         self.algos_success = True
         self.timer = Timer()
 
@@ -75,10 +74,9 @@ class MultipleQueriesThread(threading.Thread):
 
 
 class MultipleQueriesMultimodalThread(threading.Thread):
-    def __init__(self, threadID, name, graph, algos, lm_dists, prepro_time):
+    def __init__(self, threadID, graph, algos, lm_dists, prepro_time):
         threading.Thread.__init__(self)
         self.threadID = threadID
-        self.name = name
         self.algos_success = True
         self.timer = Timer()
 
@@ -114,22 +112,3 @@ class MultipleQueriesMultimodalThread(threading.Thread):
             self.addTravelTypesStats(algo_name, travel_types)
 
 
-def main():
-    threads = []
-    # create new threads
-    for i in range(2):
-        threads.append(SingleQueryThread(i + 1, "Exp" + str(i + 1)))
-
-    # start new threads
-    for i in range(2):
-        threads[i].start()
-
-    # synchronize
-    for i in range(2):
-        threads[i].join()
-
-    print("Exiting Main Thread")
-
-
-if __name__ == "__main__":
-    main()

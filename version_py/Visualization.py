@@ -1,6 +1,7 @@
 import csv
 import matplotlib.pyplot as plt
 from IO import *
+import numpy as np
 
 
 def show(legend, title, ylabel, xlabel, save_filename):
@@ -11,6 +12,9 @@ def show(legend, title, ylabel, xlabel, save_filename):
     plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
+
+    plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
+    plt.gca().ticklabel_format(useMathText=True)
 
     plt.savefig(save_filename, dpi=100)
     plt.show()
@@ -31,7 +35,8 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, ymetric, sa
     ax1 = fig.add_subplot(111)
     for p in categories:
         x, y = [], []
-        for graph in stats:
+        for g in KEPT_GRAPHS:
+            graph = GRAPHS[g]
             x.append(stats[graph]["nb_nodes"])
             y.append(stats[graph]["stats"][p][ymetric])
 
@@ -50,7 +55,8 @@ def plotImprovementsResult(filename, title, categories, ylabel, xlabel, ymetric,
     ax1 = fig.add_subplot(111)
     for p in categories:
         x, y = [], []
-        for graph in stats:
+        for g in KEPT_GRAPHS:
+            graph = GRAPHS[g]
             x.append(stats[graph]["nb_nodes"])
             avg_metric_dijkstra = stats[graph]["stats"]["Dijkstra"][ymetric]
             improv = avg_metric_dijkstra / stats[graph]["stats"][p][ymetric]
@@ -68,7 +74,8 @@ def plotPreprocessingResult(filename, title, ylabel, xlabel, save_filename):
     stats = getJsonData(filename)
 
     x, y = [], []
-    for graph in stats:
+    for g in KEPT_GRAPHS:
+        graph = GRAPHS[g]
         x.append(stats[graph]["nb_nodes"])
         y.append(stats[graph]["stats"][2])
 
@@ -82,7 +89,8 @@ def plotAvgDegResult(filename, title, ylabel, xlabel, save_filename):
     stats = getJsonData(filename)
 
     x, y = [], []
-    for graph in stats:
+    for g in KEPT_GRAPHS:
+        graph = GRAPHS[g]
         x.append(stats[graph]["nb_nodes"])
         y.append(stats[graph]["avg_deg"])
 
@@ -275,8 +283,9 @@ def plotExp1(metrics):
     """
     categories = ["bin", "fib", "list"]
 
+    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
-        save_filename = getFileExpPath(1, "plot_" + metric + ".png")
+        save_filename = getFileExpPath(1, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(1, "exp1_all_stats.json"),
                             "Experience 1 - Dijkstra - " + metric,
                             categories, metrics[metric], "|V|", metric,
@@ -294,8 +303,9 @@ def plotExp2(metrics):
     """
     categories = ["euclidean", "manhattan", "octile"]
 
+    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
-        save_filename = getFileExpPath(2, "plot_" + metric + ".png")
+        save_filename = getFileExpPath(2, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(2, "exp2_all_stats.json"),
                             "Experience 2 - A* - " + metric,
                             categories, metrics[metric], "|V|", metric,
@@ -313,8 +323,9 @@ def plotExp3(metrics):
     """
     categories = ["random", "farthest", "planar"]
 
+    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
-        save_filename = getFileExpPath(3, "plot_" + metric + ".png")
+        save_filename = getFileExpPath(3, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
                             "Experience 3 - ALT - " + metric,
                             categories, metrics[metric], "|V|", metric,
@@ -332,8 +343,9 @@ def plotExp4(metrics):
     """
     categories = ["1", "2", "4", "8", "16", "32"]
 
+    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
-        save_filename = getFileExpPath(4, "plot_" + metric + ".png")
+        save_filename = getFileExpPath(4, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
                             "Experience 4 - ALT - " + metric,
                             categories, metrics[metric], "|V|", metric,
@@ -349,8 +361,9 @@ def plotExp5(metrics, improvements):
     # plot standard metrics
     categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
+    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
-        save_filename = getFileExpPath(5, "plot_" + metric + ".png")
+        save_filename = getFileExpPath(5, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(5, "exp5_all_stats.json"),
                             "Experience 5 - Single-modal car networks - " + metric,
                             categories, metrics[metric], "|V|", metric,
@@ -360,14 +373,14 @@ def plotExp5(metrics, improvements):
     categories = ["A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
     for metric in improvements:
-        save_filename = getFileExpPath(5, "plot_improv_" + metric + ".png")
+        save_filename = getFileExpPath(5, "plot_improv_{0}_{1}.png".format(metric, graphs))
         plotImprovementsResult(getFileExpPath(5, "exp5_all_stats.json"),
                                "Experience 5 - Improvement - " + metric,
                                categories, improvements[metric], "|V|",
                                metric, save_filename)
 
     # plot : |V| - avg deg
-    save_filename = getFileExpPath(5, "plot_avg_deg.png")
+    save_filename = getFileExpPath(5, "plot_avg_deg_{0}.png".format(graphs))
     plotAvgDegResult(getFileExpPath(5, "exp5_all_stats.json"),
                      "Experience 5 - avg degree",
                      "avg deg", "|V|", save_filename)
@@ -380,9 +393,9 @@ def plotExp6():
     Single modal
     preprocessing time - |V|
     """
-
+    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
     # preprocessing time - |V| with k=16, planar
-    save_filename = getFileExpPath(6, "plot_prepro_CT.png")
+    save_filename = getFileExpPath(6, "plot_prepro_CT_{0}.png".format(graphs))
     plotPreprocessingResult(getFileExpPath(6, "exp6_all_stats.json"),
                             "Experience 6 - Preprocessing",
                             "computation time (sec.)", "|V|",
@@ -390,7 +403,7 @@ def plotExp6():
 
     # preprocessing time - |V| with [random, farthest, planar]
     categories = ["random", "farthest", "planar"]
-    save_filename = getFileExpPath(6, "plot_prepro_CT_selections.png")
+    save_filename = getFileExpPath(6, "plot_prepro_CT_selections_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
                         "Experience 6 - ALT - " + "lm_dists_CT",
                         categories, "preprocessing time (sec.)",
@@ -398,7 +411,7 @@ def plotExp6():
 
     # preprocessing time - |V| with k=[1,2,4,8,16,32]
     categories = ["1", "2", "4", "8", "16", "32"]
-    save_filename = getFileExpPath(6, "plot_prepro_CT_k.png")
+    save_filename = getFileExpPath(6, "plot_prepro_CT_k_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
                         "Experience 6 - ALT - " + "lm_dists_CT",
                         categories, "preprocessing time (sec.)",
@@ -553,6 +566,19 @@ def launchPlotExp(metrics, improvements, exp):
 
 # ===============================================================
 
+def multipleXticks():
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    ax2 = ax1.twiny()
+
+    a = np.cos(2 * np.pi * np.linspace(0, 1, 6))
+
+    ax1.plot(range(6), a)
+    ax2.plot(range(3), np.ones(3))  # Create a dummy plot
+    ax2.cla()
+    ax2.set_xticklabels(['zero', 'two', 'four'])
+    plt.show()
+
 
 def main():
     metrics = {"avg_CT": "avg CT (sec.)",
@@ -564,6 +590,7 @@ def main():
                     "avg_SS": "avg search space size improvement"}
 
     launchPlotExp(metrics, improvements, EXPERIMENT)
+    # multipleXticks()
 
 
 if __name__ == "__main__":

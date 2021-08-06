@@ -19,6 +19,8 @@ GRAPHS =                [GRAPH_ULB,
                          GRAPH_BE_CTR,
                          GRAPH_BE]
 
+KEPT_GRAPHS =           [0, 1, 2]
+
 GRAPH_VILLO =           "villo"
 
 
@@ -51,5 +53,5 @@ SHOW =                  False
 GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
-EXPERIMENT =            8
+EXPERIMENT =            6
 NB_RUNS =               10  # TODO : change it to 1000

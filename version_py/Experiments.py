@@ -201,7 +201,7 @@ def experiment5(graphs_names):
         pre_timer.printTimeElapsedMin("lm dists")
 
         algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
-        print("running algos... : ".join(algos))
+        print("running algos... : " + " - ".join(algos))
         prepro_time = pre_timer.getTimeElapsedSec()
         stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists, prepro_time)
         # print(stats)
@@ -598,8 +598,8 @@ def launchExperiment(exp):
     if exp == 6 or exp == -1:
         timer = Timer()
         timer.start()
-        graphs_names = [GRAPH_ULB, GRAPH_BXL]
-        # graphs_names = GRAPHS
+        # graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        graphs_names = GRAPHS
         experiment6(graphs_names)
         timer.stop()
         timer.printTimeElapsedMin("Exp 6")
@@ -609,7 +609,7 @@ def launchExperiment(exp):
         timer = Timer()
         timer.start()
         graphs_names = [GRAPH_ULB]
-        # graphs_names = [GRAPH_BXL]
+        # graphs_names = [GRAPH_BXL_CAP]
         experiment7(graphs_names)
         timer.stop()
         timer.printTimeElapsedMin("Exp 7")
@@ -618,8 +618,8 @@ def launchExperiment(exp):
     if exp == 8 or exp == -1:
         timer = Timer()
         timer.start()
-        graphs_names = [GRAPH_ULB, GRAPH_BXL]
-        # graphs_names = GRAPHS
+        # graphs_names = [GRAPH_ULB, GRAPH_BXL]
+        graphs_names = [GRAPH_BXL_CAP]
         experiment8(graphs_names, show=False)
         timer.stop()
         timer.printTimeElapsedMin("Exp 8")
@@ -628,8 +628,8 @@ def launchExperiment(exp):
     if exp == 9 or exp == -1:
         timer = Timer()
         timer.start()
-        graphs_names = [GRAPH_ULB]
-        # graphs_names = [GRAPH_BXL, GRAPH_CAP_CTR]
+        # graphs_names = [GRAPH_ULB]
+        graphs_names = [GRAPH_BXL_CAP]
         experiment9(graphs_names, 1, [2, 0], -0.2)
         timer.stop()
         timer.printTimeElapsedMin("Exp 9")
@@ -638,8 +638,8 @@ def launchExperiment(exp):
     if exp == 10 or exp == -1:
         timer = Timer()
         timer.start()
-        graphs_names = [GRAPH_ULB]
-        # graphs_names = [GRAPH_BXL, GRAPH_CAP_CTR]
+        # graphs_names = [GRAPH_ULB]
+        graphs_names = [GRAPH_BXL_CAP]
         experiment10(graphs_names, 1, [2, 0], -0.2, 0)
         timer.stop()
         timer.printTimeElapsedMin("Exp 10")

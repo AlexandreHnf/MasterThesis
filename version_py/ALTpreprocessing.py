@@ -16,6 +16,51 @@ from collections import defaultdict
 from Utils import haversine, bearing
 from Dijkstra import Dijkstra
 
+import threading
+
+
+class LandmarkDistThread(threading.Thread):
+    def __init__(self, threadID, graph, landmark, lm_est):
+        threading.Thread.__init__(self)
+
+        self.threadID = threadID
+        self.graph = graph
+        self.landmark = landmark
+
+        self.lm_est = lm_est
+        self.lm_dists = {}
+
+    def lmExactDist(self, v, landmark, lm_est):
+        lm_dists = lm_est[landmark]
+        pred = {v: 0}  # source = v
+        closed_set = set()
+        unseen = [(0, v)]
+        while unseen:
+            _, w = heappop(unseen)
+            if w in closed_set:
+                continue
+            elif w == landmark:
+                return pred[w]
+            closed_set.add(w)
+            for arc in self.graph.getAdj(w):
+                neighbour = arc.getExtremityNode()
+                if neighbour not in closed_set:
+                    new_dist = (pred[w] + arc.getWeight())
+                    if neighbour not in pred or new_dist < pred[neighbour]:
+                        pred[neighbour] = new_dist
+                        est = new_dist + lm_dists[neighbour]
+                        heappush(unseen, (new_dist + est, neighbour))
+        return None  # if no valid path found
+
+    def run(self):
+        for i, pid in enumerate(self.graph.getNodesCoords()):
+            try:
+                d = self.lmExactDist(pid, self.landmark, self.lm_est)
+            except KeyError:
+                d = None
+            self.lm_dists[pid] = d
+
+
 class ALTpreprocessing:
     """
     Class that contains functions to find landmarks in a graph network
@@ -98,7 +143,7 @@ class ALTpreprocessing:
                         pred[neighbour] = new_dist
                         est = new_dist + lm_dists[neighbour]
                         heappush(unseen, (new_dist + est, neighbour))
-        return None # if no vvalid path found
+        return None  # if no vvalid path found
 
     def getLandmarksDistances(self, landmarks):
         """
@@ -115,6 +160,25 @@ class ALTpreprocessing:
 
         # compute all distances from each node to every landmark
         lm_dists = defaultdict(list)
+
+        # threads = []
+        # # create new threads
+        # for i, landmark in enumerate(landmarks):
+        #     my_thread = LandmarkDistThread(i + 1, self.graph, landmark[0], lm_est)
+        #     my_thread.start()
+        #     threads.append(my_thread)
+        #
+        # # synchronize
+        # for i, landmark in enumerate(landmarks):
+        #     threads[i].join()
+        #
+        # for pid in self.graph.getNodesCoords():
+        #     for i, landmark in enumerate(landmarks):
+        #         lm_dists[pid].append(threads[i].lm_dists[pid])
+        #
+        # return lm_dists
+
+        # monothread
         for i, pid in enumerate(self.graph.getNodesCoords()):
             for landmark, _ in landmarks:
                 try:

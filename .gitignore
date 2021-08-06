@@ -86,6 +86,7 @@ fabric.properties
 
 ### PyCharm Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+.idea/
 
 # *.iml
 # modules.xml
@@ -119,3 +120,5 @@ fabric.properties
 version_py/big_graphs/
 version_py/small_graph/
 version_py/*.pyc
+
+cmake-build-debug/

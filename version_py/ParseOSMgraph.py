@@ -206,7 +206,6 @@ class OSMgraphParser:
 
         for f in features:
             if f["geometry"]["type"] == "LineString":  # if edges
-                #self.original_nb_edges += 1
                 srcID = f["src"]
                 tgtID = f["tgt"]
                 if srcID == tgtID:  # self loop
