@@ -52,10 +52,17 @@ def testLandmarks(graph, lm_selection):
 def testDijkstra(graph, s, t, queue_type="bin", show=False):
     d = Dijkstra(graph, s, t, queue_type)
     timer = Timer()
-    timer.start()
-    search_space, shortest_path, sp_coords = d.findShortestPath()
-    timer.printTimeElapsedSec("[DIJKSTRA]")
-    showResult(graph.getNodesCoords(), search_space, shortest_path, sp_coords, d, None, show)
+    if t == -1:
+        timer.start()
+        dists = d.getDistsSourceToNodes()
+        print("nb nodes visited : ", len(dists))
+        timer.printTimeElapsedSec("[DIJKSTRA] single source")
+    else:
+        timer.start()
+        search_space, shortest_path, sp_coords = d.findShortestPath()
+        timer.printTimeElapsedSec("[DIJKSTRA]")
+
+        showResult(graph.getNodesCoords(), search_space, shortest_path, sp_coords, d, None, show)
 
 
 def testAstar(graph, s, t, queue_type="bin", heuristic="euclidean", show=False):

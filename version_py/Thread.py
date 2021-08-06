@@ -112,3 +112,4 @@ class MultipleQueriesMultimodalThread(threading.Thread):
             self.addTravelTypesStats(algo_name, travel_types)
 
 
+
