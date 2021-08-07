@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 from Astar import Astar
 from ALTpreprocessing import ALTpreprocessing
 

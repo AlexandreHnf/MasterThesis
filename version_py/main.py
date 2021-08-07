@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+
 from Constants import *
 from ParseOSMgraph import OSMgraphParser
 from ShortestPathExperiments import *

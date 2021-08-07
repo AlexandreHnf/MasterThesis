@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 class Edge:
     def __init__(self, extremity_node, travel_type, weight, length_km, speed):
         self.travel_type = travel_type

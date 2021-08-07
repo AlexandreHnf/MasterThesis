@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 import csv
 import matplotlib.pyplot as plt
 from IO import *

@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 class ShortestPath(object):
 
     def __init__(self, graph, s, t, bucket_size=40):
