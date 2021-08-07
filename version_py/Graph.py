@@ -1,13 +1,18 @@
 from Utils import haversine
 from Edge import Edge
-from Quadtree import Quadtree, MultiQuadtree, PointDictToQuadtree
+from Quadtree import PointDictToQuadtree
+
 
 class Graph:
-    def __init__(self, nodes_coords, adj_list, bucket_size=40):
+    def __init__(self, nodes_coords, adj_list, bucket_size=40, name=""):
         self.nodes_coords = nodes_coords
         self.adj_list = adj_list
         self.rev_adj_list = self.setReverseGraph(self.adj_list)
         self.qtree = PointDictToQuadtree(nodes_coords, bucket_size, multiquadtree=True)
+        self.name = name
+
+    def getName(self):
+        return self.name
 
     def getNbNodes(self):
         return len(self.nodes_coords)

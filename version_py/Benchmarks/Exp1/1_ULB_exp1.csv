@@ -1,4 +1,4 @@
-priority,avg_CT,avg_SS,avg_rel
-fib,0.001156,95,113
-bin,0.00027,91,110
-list,0.000272,71,91
+priority,avg_CT,avg_SS,avg_RS
+bin,0.000285,79,98
+fib,0.000982,82,101
+list,0.000305,81,99

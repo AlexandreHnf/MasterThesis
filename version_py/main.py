@@ -49,8 +49,16 @@ def processArgs():
 
         else:
             if a[1] == "runExp":
-                print("experiment " + a[2])
-                launchExperiment(int(a[2]))  # 1: runExperiment, 2: experiment nb
+                print("experiment " + a[3])
+
+                exp = int(a[3])
+                if a[2] == "S":
+                    # 1: runExperiment, 2: single or multimodal, 3: experiment nb
+                    launchSingleModalExperiment(exp)
+
+                elif a[2] == "M":
+                    # 1: runExperiment, 2: single or multimodal, 3: experiment nb
+                    launchMultimodalExperiment(exp)
 
     else:
         print("not enough arguments")

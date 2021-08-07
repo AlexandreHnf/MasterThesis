@@ -1,134 +1,134 @@
 {
-    "6_Belgique": {
-        "nb_nodes": 395301,
-        "nb_edges": 871716,
-        "stats": {
-            "fib": {
-                "avg_SS": 139756,
-                "avg_CT": 42.428406,
-                "avg_RS": 153364
-            },
-            "bin": {
-                "avg_SS": 157526,
-                "avg_CT": 8.018269,
-                "avg_RS": 173166
-            },
-            "list": {
-                "avg_SS": 220090,
-                "avg_CT": 126.958168,
-                "avg_RS": 241648
-            }
-        },
-        "avg_deg": 2.21
-    },
-    "2_Bruxelles": {
-        "nb_nodes": 1115,
-        "nb_edges": 1960,
-        "stats": {
-            "fib": {
-                "avg_SS": 425,
-                "avg_CT": 0.007241,
-                "avg_RS": 477
-            },
-            "bin": {
-                "avg_SS": 571,
-                "avg_CT": 0.001939,
-                "avg_RS": 633
-            },
-            "list": {
-                "avg_SS": 496,
-                "avg_CT": 0.003995,
-                "avg_RS": 540
-            }
-        },
-        "avg_deg": 1.76
-    },
-    "5_Belgique_centre": {
-        "nb_nodes": 213888,
-        "nb_edges": 466262,
-        "stats": {
-            "fib": {
-                "avg_SS": 110285,
-                "avg_CT": 38.762112,
-                "avg_RS": 120897
-            },
-            "bin": {
-                "avg_SS": 131347,
-                "avg_CT": 8.479165,
-                "avg_RS": 143849
-            },
-            "list": {
-                "avg_SS": 131782,
-                "avg_CT": 45.114,
-                "avg_RS": 144292
-            }
-        },
-        "avg_deg": 2.18
-    },
-    "4_Bruxelles_Capitale": {
-        "nb_nodes": 25448,
-        "nb_edges": 54392,
-        "stats": {
-            "fib": {
-                "avg_SS": 14341,
-                "avg_CT": 3.307026,
-                "avg_RS": 16028
-            },
-            "bin": {
-                "avg_SS": 14228,
-                "avg_CT": 0.509606,
-                "avg_RS": 15870
-            },
-            "list": {
-                "avg_SS": 11209,
-                "avg_CT": 0.851651,
-                "avg_RS": 12537
-            }
-        },
-        "avg_deg": 2.14
-    },
     "3_Bruxelles_Capitale_centre": {
-        "nb_nodes": 4755,
-        "nb_edges": 9892,
         "stats": {
-            "fib": {
-                "avg_SS": 2230,
-                "avg_CT": 0.183053,
-                "avg_RS": 2566
-            },
             "bin": {
-                "avg_SS": 2714,
-                "avg_CT": 0.032073,
-                "avg_RS": 3098
+                "avg_RS": 2888,
+                "avg_SS": 2522,
+                "avg_CT": 0.020645
+            },
+            "fib": {
+                "avg_RS": 3008,
+                "avg_SS": 2628,
+                "avg_CT": 0.383189
             },
             "list": {
-                "avg_SS": 2801,
-                "avg_CT": 0.042046,
-                "avg_RS": 3201
+                "avg_RS": 3116,
+                "avg_SS": 2731,
+                "avg_CT": 0.0644
             }
         },
-        "avg_deg": 2.08
+        "nb_nodes": 4755,
+        "avg_deg": 2.08,
+        "nb_edges": 9892
+    },
+    "6_Belgique": {
+        "stats": {
+            "bin": {
+                "avg_RS": 228760,
+                "avg_SS": 208477,
+                "avg_CT": 82.851343
+            },
+            "fib": {
+                "avg_RS": 228506,
+                "avg_SS": 208193,
+                "avg_CT": 1108.819009
+            },
+            "list": {
+                "avg_RS": 213707,
+                "avg_SS": 194642,
+                "avg_CT": 973.904846
+            }
+        },
+        "nb_nodes": 395301,
+        "avg_deg": 2.21,
+        "nb_edges": 871716
     },
     "1_ULB": {
-        "nb_nodes": 149,
-        "nb_edges": 349,
         "stats": {
-            "fib": {
-                "avg_SS": 95,
-                "avg_CT": 0.001156,
-                "avg_RS": 113
-            },
             "bin": {
-                "avg_SS": 91,
-                "avg_CT": 0.00027,
-                "avg_RS": 110
+                "avg_RS": 98,
+                "avg_SS": 79,
+                "avg_CT": 0.000285
+            },
+            "fib": {
+                "avg_RS": 101,
+                "avg_SS": 82,
+                "avg_CT": 0.000982
             },
             "list": {
-                "avg_SS": 71,
-                "avg_CT": 0.000272,
-                "avg_RS": 91
+                "avg_RS": 99,
+                "avg_SS": 81,
+                "avg_CT": 0.000305
             }
         },
-        "avg_deg": 2.34
+        "nb_nodes": 149,
+        "avg_deg": 2.34,
+        "nb_edges": 349
+    },
+    "4_Bruxelles_Capitale": {
+        "stats": {
+            "bin": {
+                "avg_RS": 17238,
+                "avg_SS": 15466,
+                "avg_CT": 1.066585
+            },
+            "fib": {
+                "avg_RS": 16056,
+                "avg_SS": 14397,
+                "avg_CT": 18.198546
+            },
+            "list": {
+                "avg_RS": 14047,
+                "avg_SS": 12573,
+                "avg_CT": 4.623516
+            }
+        },
+        "nb_nodes": 25448,
+        "avg_deg": 2.14,
+        "nb_edges": 54392
+    },
+    "2_Bruxelles": {
+        "stats": {
+            "bin": {
+                "avg_RS": 625,
+                "avg_SS": 564,
+                "avg_CT": 0.002113
+            },
+            "fib": {
+                "avg_RS": 599,
+                "avg_SS": 541,
+                "avg_CT": 0.012825
+            },
+            "list": {
+                "avg_RS": 615,
+                "avg_SS": 555,
+                "avg_CT": 0.002961
+            }
+        },
+        "nb_nodes": 1115,
+        "avg_deg": 1.76,
+        "nb_edges": 1960
+    },
+    "5_Belgique_centre": {
+        "stats": {
+            "bin": {
+                "avg_RS": 122438,
+                "avg_SS": 111761,
+                "avg_CT": 43.454575
+            },
+            "fib": {
+                "avg_RS": 116047,
+                "avg_SS": 105865,
+                "avg_CT": 434.26234
+            },
+            "list": {
+                "avg_RS": 123182,
+                "avg_SS": 112444,
+                "avg_CT": 402.883675
+            }
+        },
+        "nb_nodes": 213888,
+        "avg_deg": 2.18,
+        "nb_edges": 466262
     }
 }

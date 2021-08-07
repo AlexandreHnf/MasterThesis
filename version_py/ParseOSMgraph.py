@@ -8,6 +8,7 @@ from Graph import Graph
 from Dijkstra import Dijkstra
 from Quadtree import bounding_box
 import IO
+from Timer import Timer
 
 
 class OSMgraphParser:
@@ -60,7 +61,8 @@ class OSMgraphParser:
         we have to estimate it depending on the road type
         """
         self.nb_edges_no_speed += 1
-        if highway_tag in ["primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link", "residential"]:
+        if highway_tag in ["primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link",
+                           "residential"]:
             return 50  # 50 km/h => do not take into account 30 km/h roads
         elif highway_tag in ["trunk", "trunk_link", "motorway", "motorway_link"]:
             return 120  # high speed roads
@@ -170,7 +172,6 @@ class OSMgraphParser:
 
         return connected_graph
 
-
     def getConnectedGraph(self, adjlist):
         """
         remove non connected nodes so that the graph is
@@ -214,7 +215,7 @@ class OSMgraphParser:
 
                 speed_limit = self.getSpeedLimit(f, travel_type)
                 length_km = self.computeEdgeLengthKm(f)
-                #edge_weight = length_km
+                # edge_weight = length_km
                 edge_weight = 3600 * (length_km / speed_limit)  # travel time in seconds
                 self.createEdge(f, adjlist, srcID, tgtID, edge_weight, speed_limit, length_km, travel_type)
 
@@ -222,7 +223,7 @@ class OSMgraphParser:
         connected_graph = self.getConnectedGraph(adjlist)
         self.timing = time.time() - start_time
 
-        return Graph(self.nodes_coordinates, connected_graph)
+        return Graph(self.nodes_coordinates, connected_graph, 40, self.graph_name)
 
     def showStats(self):
         """
@@ -231,25 +232,31 @@ class OSMgraphParser:
         print("======= Stats graph OSM ======== ")
         print("Graph Name :              {0}".format(self.graph_name))
         print("Raw graph :               {0} nodes, {1} edges".format(self.original_nb_nodes, self.original_nb_edges))
-        print("Nb two way edges :        {0} = {1} % ".format(self.nb_two_way_edges, percent(self.nb_two_way_edges, self.original_nb_edges)))
-        print("Nb duplicate edges :      {0} = {1} %".format(self.nb_duplicate_edges, percent(self.nb_duplicate_edges, self.original_nb_edges)))
-        print("Nb self loop edges :      {0} = {1} %".format(self.nb_self_loops, percent(self.nb_self_loops, self.original_nb_edges)))
-        print("Nb edges no speed limit : {0} = {1} %".format(self.nb_edges_no_speed, percent(self.nb_edges_no_speed, self.original_nb_edges)))
+        print("Nb two way edges :        {0} = {1} % ".format(self.nb_two_way_edges,
+                                                              percent(self.nb_two_way_edges, self.original_nb_edges)))
+        print("Nb duplicate edges :      {0} = {1} %".format(self.nb_duplicate_edges,
+                                                             percent(self.nb_duplicate_edges,
+                                                                     self.original_nb_edges)))
+        print("Nb self loop edges :      {0} = {1} %".format(self.nb_self_loops,
+                                                             percent(self.nb_self_loops, self.original_nb_edges)))
+        print("Nb edges no speed limit : {0} = {1} %".format(self.nb_edges_no_speed,
+                                                             percent(self.nb_edges_no_speed, self.original_nb_edges)))
         print("Final graph :             {0} nodes, {1} edges".format(self.tot_nb_nodes, self.tot_nb_edges))
         print("Graph connection ratio :  {0} % of vertices left".format(percent(self.connection_ratio, 1)))
         print("Parsing done in {0} seconds".format(self.timing))
         print("====================================")
 
 
-
-
 def showAllGraphsStats():
-    for g in GRAPHS.keys():
+    timer = Timer()
+    timer.start()
+    for g in GRAPHS:
         p = OSMgraphParser(g)
         graph = p.parse()
         print("avg deg : ", graph.getAvgDegree())
         print(p.boundingbox)
         p.showStats()
+    timer.printTimeElapsedSec("parsing 6 graphs")
 
 
 def main():
@@ -263,6 +270,7 @@ def main():
     """
 
     showAllGraphsStats()
+
 
 if __name__ == "__main__":
     main()
