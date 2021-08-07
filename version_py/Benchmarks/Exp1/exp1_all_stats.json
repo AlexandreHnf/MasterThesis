@@ -6,17 +6,17 @@
             "fib": {
                 "avg_SS": 139756,
                 "avg_CT": 42.428406,
-                "avg_rel": 153364
+                "avg_RS": 153364
             },
             "bin": {
                 "avg_SS": 157526,
                 "avg_CT": 8.018269,
-                "avg_rel": 173166
+                "avg_RS": 173166
             },
             "list": {
                 "avg_SS": 220090,
                 "avg_CT": 126.958168,
-                "avg_rel": 241648
+                "avg_RS": 241648
             }
         },
         "avg_deg": 2.21
@@ -28,17 +28,17 @@
             "fib": {
                 "avg_SS": 425,
                 "avg_CT": 0.007241,
-                "avg_rel": 477
+                "avg_RS": 477
             },
             "bin": {
                 "avg_SS": 571,
                 "avg_CT": 0.001939,
-                "avg_rel": 633
+                "avg_RS": 633
             },
             "list": {
                 "avg_SS": 496,
                 "avg_CT": 0.003995,
-                "avg_rel": 540
+                "avg_RS": 540
             }
         },
         "avg_deg": 1.76
@@ -50,17 +50,17 @@
             "fib": {
                 "avg_SS": 110285,
                 "avg_CT": 38.762112,
-                "avg_rel": 120897
+                "avg_RS": 120897
             },
             "bin": {
                 "avg_SS": 131347,
                 "avg_CT": 8.479165,
-                "avg_rel": 143849
+                "avg_RS": 143849
             },
             "list": {
                 "avg_SS": 131782,
                 "avg_CT": 45.114,
-                "avg_rel": 144292
+                "avg_RS": 144292
             }
         },
         "avg_deg": 2.18
@@ -72,17 +72,17 @@
             "fib": {
                 "avg_SS": 14341,
                 "avg_CT": 3.307026,
-                "avg_rel": 16028
+                "avg_RS": 16028
             },
             "bin": {
                 "avg_SS": 14228,
                 "avg_CT": 0.509606,
-                "avg_rel": 15870
+                "avg_RS": 15870
             },
             "list": {
                 "avg_SS": 11209,
                 "avg_CT": 0.851651,
-                "avg_rel": 12537
+                "avg_RS": 12537
             }
         },
         "avg_deg": 2.14
@@ -94,17 +94,17 @@
             "fib": {
                 "avg_SS": 2230,
                 "avg_CT": 0.183053,
-                "avg_rel": 2566
+                "avg_RS": 2566
             },
             "bin": {
                 "avg_SS": 2714,
                 "avg_CT": 0.032073,
-                "avg_rel": 3098
+                "avg_RS": 3098
             },
             "list": {
                 "avg_SS": 2801,
                 "avg_CT": 0.042046,
-                "avg_rel": 3201
+                "avg_RS": 3201
             }
         },
         "avg_deg": 2.08
@@ -116,17 +116,17 @@
             "fib": {
                 "avg_SS": 95,
                 "avg_CT": 0.001156,
-                "avg_rel": 113
+                "avg_RS": 113
             },
             "bin": {
                 "avg_SS": 91,
                 "avg_CT": 0.00027,
-                "avg_rel": 110
+                "avg_RS": 110
             },
             "list": {
                 "avg_SS": 71,
                 "avg_CT": 0.000272,
-                "avg_rel": 91
+                "avg_RS": 91
             }
         },
         "avg_deg": 2.34

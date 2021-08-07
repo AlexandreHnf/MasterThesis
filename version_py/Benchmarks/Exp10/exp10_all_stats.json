@@ -16,7 +16,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 39.1,
+                    "avg_RS": 39.1,
                     "lm_dists_CT": 1.8537362999995821,
                     "avg_CT": 0.000184,
                     "avg_SS": 25.32,
@@ -32,7 +32,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 208.28,
+                    "avg_RS": 208.28,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000466,
                     "avg_SS": 161.4,
@@ -48,7 +48,7 @@
                         "car": 24.66
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 42.92,
+                    "avg_RS": 42.92,
                     "lm_dists_CT": 1.4204958000045735,
                     "avg_CT": 0.000258,
                     "avg_SS": 28.28,
@@ -64,7 +64,7 @@
                         "car": 30.84
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 213.79,
+                    "avg_RS": 213.79,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000599,
                     "avg_SS": 166.22,
@@ -80,7 +80,7 @@
                         "car": 15.75
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 38.85,
+                    "avg_RS": 38.85,
                     "lm_dists_CT": 1.7241334000063944,
                     "avg_CT": 0.000208,
                     "avg_SS": 24.92,
@@ -96,7 +96,7 @@
                         "car": 12.79
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 208.15,
+                    "avg_RS": 208.15,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.00053,
                     "avg_SS": 161.77,
@@ -112,7 +112,7 @@
                         "car": 33.31
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 40.45,
+                    "avg_RS": 40.45,
                     "lm_dists_CT": 1.5642834000027506,
                     "avg_CT": 0.000195,
                     "avg_SS": 26.49,
@@ -128,7 +128,7 @@
                         "car": 33.46
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 205.62,
+                    "avg_RS": 205.62,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000493,
                     "avg_SS": 159.46,
@@ -144,7 +144,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 40.84,
+                    "avg_RS": 40.84,
                     "lm_dists_CT": 1.8407631999943987,
                     "avg_CT": 0.000212,
                     "avg_SS": 26.81,
@@ -160,7 +160,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 204.74,
+                    "avg_RS": 204.74,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000513,
                     "avg_SS": 158.89,
@@ -176,7 +176,7 @@
                         "car": 16.44
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 41.51,
+                    "avg_RS": 41.51,
                     "lm_dists_CT": 1.6341519999987213,
                     "avg_CT": 0.00024,
                     "avg_SS": 27.45,
@@ -192,7 +192,7 @@
                         "car": 18.46
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 207.02,
+                    "avg_RS": 207.02,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.00059,
                     "avg_SS": 160.6,
@@ -208,7 +208,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 42.57,
+                    "avg_RS": 42.57,
                     "lm_dists_CT": 2.5611172999997507,
                     "avg_CT": 0.000225,
                     "avg_SS": 27.85,
@@ -224,7 +224,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 213.61,
+                    "avg_RS": 213.61,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.00054,
                     "avg_SS": 166.67,
@@ -240,7 +240,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 40.4,
+                    "avg_RS": 40.4,
                     "lm_dists_CT": 1.441830600000685,
                     "avg_CT": 0.000233,
                     "avg_SS": 26.3,
@@ -256,7 +256,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 207.01,
+                    "avg_RS": 207.01,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000535,
                     "avg_SS": 161.02,
@@ -272,7 +272,7 @@
                         "car": 19.7
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 42.58,
+                    "avg_RS": 42.58,
                     "lm_dists_CT": 1.73233519999485,
                     "avg_CT": 0.000241,
                     "avg_SS": 28.05,
@@ -288,7 +288,7 @@
                         "car": 19.88
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 211.51,
+                    "avg_RS": 211.51,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000574,
                     "avg_SS": 164.32,
@@ -304,7 +304,7 @@
                         "car": 14.85
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 40.55,
+                    "avg_RS": 40.55,
                     "lm_dists_CT": 1.690219199997955,
                     "avg_CT": 0.000232,
                     "avg_SS": 26.19,
@@ -320,7 +320,7 @@
                         "car": 15.02
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 212.86,
+                    "avg_RS": 212.86,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000599,
                     "avg_SS": 165.65,
@@ -336,7 +336,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 38.48,
+                    "avg_RS": 38.48,
                     "lm_dists_CT": 1.7826500000010128,
                     "avg_CT": 0.000285,
                     "avg_SS": 24.83,
@@ -352,7 +352,7 @@
                         "toStation": 1.0
                     },
                     "nb_villo_stations": 32,
-                    "avg_rel": 202.45,
+                    "avg_RS": 202.45,
                     "lm_dists_CT": 0,
                     "avg_CT": 0.000777,
                     "avg_SS": 156.69,

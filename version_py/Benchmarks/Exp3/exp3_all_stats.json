@@ -4,19 +4,19 @@
         "avg_deg": 1.76,
         "stats": {
             "random": {
-                "avg_rel": 165,
+                "avg_RS": 165,
                 "lm_dists_CT": 15.602760000001581,
                 "avg_CT": 0.001072,
                 "avg_SS": 135
             },
             "farthest": {
-                "avg_rel": 166,
+                "avg_RS": 166,
                 "lm_dists_CT": 22.982306799996877,
                 "avg_CT": 0.000997,
                 "avg_SS": 135
             },
             "planar": {
-                "avg_rel": 170,
+                "avg_RS": 170,
                 "lm_dists_CT": 19.855713500001002,
                 "avg_CT": 0.0009,
                 "avg_SS": 139
@@ -29,19 +29,19 @@
         "avg_deg": 2.34,
         "stats": {
             "random": {
-                "avg_rel": 26,
+                "avg_RS": 26,
                 "lm_dists_CT": 0.275828999998339,
                 "avg_CT": 0.000132,
                 "avg_SS": 17
             },
             "farthest": {
-                "avg_rel": 26,
+                "avg_RS": 26,
                 "lm_dists_CT": 0.5690650000033202,
                 "avg_CT": 0.000127,
                 "avg_SS": 17
             },
             "planar": {
-                "avg_rel": 25,
+                "avg_RS": 25,
                 "lm_dists_CT": 0.5808761999942362,
                 "avg_CT": 0.000145,
                 "avg_SS": 16

@@ -59,7 +59,7 @@ class MultipleQueriesThread(threading.Thread):
         self.graph = graph
         self.s, self.t = Random.selectRandomPair(graph.getNodesIDs())
 
-        self.stat = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0} for algo_name in algos}
+        self.stat = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_RS": 0} for algo_name in algos}
 
     def run(self):
         for algo_name in self.algos:
@@ -70,7 +70,7 @@ class MultipleQueriesThread(threading.Thread):
             self.timer.stop()
             self.stat[algo_name]["avg_CT"] += self.timer.getTimeElapsedSec()
             self.stat[algo_name]["avg_SS"] += algo.getSearchSpaceSize()
-            self.stat[algo_name]["avg_rel"] += algo.getNbRelaxedEdges()
+            self.stat[algo_name]["avg_RS"] += algo.getNbRelaxedEdges()
 
 
 class MultipleQueriesMultimodalThread(threading.Thread):
@@ -85,7 +85,7 @@ class MultipleQueriesMultimodalThread(threading.Thread):
         self.graph = graph
         self.s, self.t = Random.selectRandomPair(graph.getNodesIDs())
 
-        self.stat = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_rel": 0, "max_avg_lb": 0,
+        self.stat = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_RS": 0, "max_avg_lb": 0,
                                  "avg_travel_types": {}} for algo_name in algos}
 
     def addTravelTypesStats(self, algo_name, travel_types):
@@ -106,7 +106,7 @@ class MultipleQueriesMultimodalThread(threading.Thread):
 
             self.stat[algo_name]["avg_CT"] += self.timer.getTimeElapsedSec()
             self.stat[algo_name]["avg_SS"] += algo.getSearchSpaceSize()
-            self.stat[algo_name]["avg_rel"] += algo.getNbRelaxedEdges()
+            self.stat[algo_name]["avg_RS"] += algo.getNbRelaxedEdges()
             if algo_name == "ALT":
                 self.stat[algo_name]["max_avg_lb"] += algo.getAvgMaxHeuristicDist()
             self.addTravelTypesStats(algo_name, travel_types)

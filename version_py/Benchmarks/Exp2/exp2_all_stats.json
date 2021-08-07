@@ -4,17 +4,17 @@
         "avg_deg": 1.76,
         "stats": {
             "euclidean": {
-                "avg_rel": 641,
+                "avg_RS": 641,
                 "avg_CT": 0.003567,
                 "avg_SS": 580
             },
             "manhattan": {
-                "avg_rel": 633,
+                "avg_RS": 633,
                 "avg_CT": 0.004677,
                 "avg_SS": 572
             },
             "octile": {
-                "avg_rel": 630,
+                "avg_RS": 630,
                 "avg_CT": 0.003944,
                 "avg_SS": 569
             }
@@ -26,17 +26,17 @@
         "avg_deg": 2.34,
         "stats": {
             "euclidean": {
-                "avg_rel": 100,
+                "avg_RS": 100,
                 "avg_CT": 0.000476,
                 "avg_SS": 81
             },
             "manhattan": {
-                "avg_rel": 100,
+                "avg_RS": 100,
                 "avg_CT": 0.000536,
                 "avg_SS": 81
             },
             "octile": {
-                "avg_rel": 98,
+                "avg_RS": 98,
                 "avg_CT": 0.000549,
                 "avg_SS": 80
             }

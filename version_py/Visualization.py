@@ -566,6 +566,7 @@ def launchPlotExp(metrics, improvements, exp):
 
 # ===============================================================
 
+
 def multipleXticks():
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
@@ -582,11 +583,11 @@ def multipleXticks():
 
 def main():
     metrics = {"avg_CT": "avg CT (sec.)",
-               "avg_rel": "avg nb rel edges",
+               "avg_RS": "avg relaxed space size",
                "avg_SS": "avg search space size"}
 
     improvements = {"avg_CT": "Speedup (CT)",
-                    "avg_rel": "avg relaxed edges improvement",
+                    "avg_RS": "avg relaxed space size improvement",
                     "avg_SS": "avg search space size improvement"}
 
     launchPlotExp(metrics, improvements, EXPERIMENT)

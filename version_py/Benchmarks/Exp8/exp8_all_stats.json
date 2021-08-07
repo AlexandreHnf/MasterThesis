@@ -10,7 +10,7 @@
             "Dijkstra": {
                 "avg_CT": 0.000459,
                 "avg_SS": 161.4,
-                "avg_rel": 211.0,
+                "avg_RS": 211.0,
                 "max_avg_lb": 0,
                 "avg_travel_types": {
                     "Villo": 10.8,
@@ -24,7 +24,7 @@
             "ALT": {
                 "avg_CT": 0.000161,
                 "avg_SS": 18.2,
-                "avg_rel": 29.8,
+                "avg_RS": 29.8,
                 "max_avg_lb": 263.03,
                 "avg_travel_types": {
                     "Villo": 10.8,
@@ -48,7 +48,7 @@
             "Dijkstra": {
                 "avg_CT": 0.004171,
                 "avg_SS": 1124.0,
-                "avg_rel": 1302.1,
+                "avg_RS": 1302.1,
                 "max_avg_lb": 0,
                 "avg_travel_types": {
                     "foot": 15.0,
@@ -62,7 +62,7 @@
             "ALT": {
                 "avg_CT": 0.001631,
                 "avg_SS": 189.1,
-                "avg_rel": 241.6,
+                "avg_RS": 241.6,
                 "max_avg_lb": 485.91,
                 "avg_travel_types": {
                     "foot": 15.0,

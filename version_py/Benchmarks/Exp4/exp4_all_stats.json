@@ -4,37 +4,37 @@
         "avg_deg": 1.76,
         "stats": {
             "16": {
-                "avg_rel": 155,
+                "avg_RS": 155,
                 "lm_dists_CT": 21.575713300000643,
                 "avg_CT": 0.001,
                 "avg_SS": 125
             },
             "1": {
-                "avg_rel": 331,
+                "avg_RS": 331,
                 "lm_dists_CT": 1.3476671000025817,
                 "avg_CT": 0.001332,
                 "avg_SS": 288
             },
             "2": {
-                "avg_rel": 278,
+                "avg_RS": 278,
                 "lm_dists_CT": 2.987478999995801,
                 "avg_CT": 0.001161,
                 "avg_SS": 239
             },
             "4": {
-                "avg_rel": 179,
+                "avg_RS": 179,
                 "lm_dists_CT": 5.89160560000164,
                 "avg_CT": 0.000782,
                 "avg_SS": 148
             },
             "32": {
-                "avg_rel": 159,
+                "avg_RS": 159,
                 "lm_dists_CT": 39.44038580000051,
                 "avg_CT": 0.001354,
                 "avg_SS": 129
             },
             "8": {
-                "avg_rel": 156,
+                "avg_RS": 156,
                 "lm_dists_CT": 12.880734099999245,
                 "avg_CT": 0.000997,
                 "avg_SS": 127
@@ -47,37 +47,37 @@
         "avg_deg": 2.34,
         "stats": {
             "16": {
-                "avg_rel": 25,
+                "avg_RS": 25,
                 "lm_dists_CT": 0.381591400000616,
                 "avg_CT": 0.000118,
                 "avg_SS": 16
             },
             "1": {
-                "avg_rel": 48,
+                "avg_RS": 48,
                 "lm_dists_CT": 0.02922769999713637,
                 "avg_CT": 0.000146,
                 "avg_SS": 35
             },
             "2": {
-                "avg_rel": 39,
+                "avg_RS": 39,
                 "lm_dists_CT": 0.06146150000131456,
                 "avg_CT": 0.000143,
                 "avg_SS": 28
             },
             "4": {
-                "avg_rel": 35,
+                "avg_RS": 35,
                 "lm_dists_CT": 0.1389167000015732,
                 "avg_CT": 0.000122,
                 "avg_SS": 24
             },
             "32": {
-                "avg_rel": 24,
+                "avg_RS": 24,
                 "lm_dists_CT": 0.7454458000065642,
                 "avg_CT": 0.000142,
                 "avg_SS": 15
             },
             "8": {
-                "avg_rel": 28,
+                "avg_RS": 28,
                 "lm_dists_CT": 0.20246530000440544,
                 "avg_CT": 0.000126,
                 "avg_SS": 18

@@ -41,7 +41,7 @@ def experiment1(graphs_names):
             # print(stat)
         all_stats[graph_name]["stats"] = stats
 
-        header = ["priority", "avg_CT", "avg_SS", "avg_rel"]
+        header = ["priority", "avg_CT", "avg_SS", "avg_RS"]
         filename = getFileExpPath(1, graph_name + "_exp1.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -78,7 +78,7 @@ def experiment2(graphs_names):
             # print(stat)
         all_stats[graph_name]["stats"] = stats
 
-        header = ["heuristic", "avg_CT", "avg_SS", "avg_rel"]
+        header = ["heuristic", "avg_CT", "avg_SS", "avg_RS"]
         filename = getFileExpPath(2, graph_name + "_exp2.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -123,7 +123,7 @@ def experiment3(graphs_names):
             # print(stat)
         all_stats[graph_name]["stats"] = stats
 
-        header = ["landmark_selection", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
+        header = ["landmark_selection", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
         filename = getFileExpPath(3, graph_name + "_exp3.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -133,7 +133,7 @@ def experiment3(graphs_names):
 def experiment4(graphs_names):
     """
     Experiment 4 : test which nb of landmarks (k) gives fastest ALT
-    => test with 1, 2, 4, 8, 16 and 21 landmarks
+    => test with 1, 2, 4, 8, 16 and 32 landmarks
     difficult to have the optimal k => NP-hard problem
     """
     print("EXPERIMENT 4 : how many landmarks ALT")
@@ -167,7 +167,7 @@ def experiment4(graphs_names):
             # print(stat)
         all_stats[graph_name]["stats"] = stats
 
-        header = ["nb_landmark", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
+        header = ["nb_landmark", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
         filename = getFileExpPath(4, graph_name + "_exp4.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -240,7 +240,7 @@ def experiment6(graphs_names):
 
         all_stats[graph_name]["stats"] = stats
 
-        header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT"]
+        header = ["algo", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
         filename = getFileExpPath(6, graph_name + "_exp6.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -301,8 +301,8 @@ def experiment7(graphs_names):
                                                  "ALT": stat["ALT"]}
                 nb_exp += 1
 
-        header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_rel",
-                  "ALT_avg_CT", "ALT_avg_SS", "ALT_avg_rel", "lm_dists_CT"]
+        header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_RS",
+                  "ALT_avg_CT", "ALT_avg_SS", "ALT_avg_RS", "lm_dists_CT"]
         filename = getFileExpPath(7, graph_name + "_exp7.csv")
         IO.writeDictStatsToCsv(stats, header, filename)
 
@@ -344,7 +344,7 @@ def experiment8(graphs_names, show):
         stats = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
         # print(stats)
-        header = ["algo", "avg_CT", "avg_SS", "avg_rel", "lm_dists_CT", "nb_villo_stations"]
+        header = ["algo", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT", "nb_villo_stations"]
         stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
 
@@ -430,7 +430,7 @@ def experiment9(graphs_names, fixed_pref, pref_range, step):
             nb += 1
             x = round(x + step, 1)
 
-        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
+        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_RS",
                   "lm_dists_CT", "nb_villo_stations"]
         filename = getFileExpPath(9, graph_name + "_exp9.csv")
         # print(stats)
@@ -504,7 +504,7 @@ def experiment10(graphs_names, fixed_pref, pref_range, step, worst_case):
             nb += 1
             x = round(x + step, 1)
 
-        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_rel",
+        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_RS",
                   "lm_dists_CT", "nb_villo_stations"]
         filename = getFileExpPath(10, graph_name + "_exp10.csv")
         # print(stats)
