@@ -9,7 +9,7 @@ from Benchmark import *
 from MultiModalGraph import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
-from Visualization import *
+# from Visualization import *
 from Timer import Timer
 
 
@@ -41,10 +41,10 @@ def experiment1(graphs):
         all_stats[graph.getName()]["stats"] = stats
 
         header = ["priority", "avg_CT", "avg_SS", "avg_RS"]
-        filename = getFileExpPath(1, graph.getName() + "_exp1.csv")
+        filename = IO.getFileExpPath(1, graph.getName() + "_exp1.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(1, "exp1_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(1, "exp1_all_stats.json"))
 
 
 def experiment2(graphs):
@@ -75,10 +75,10 @@ def experiment2(graphs):
         all_stats[graph.getName()]["stats"] = stats
 
         header = ["heuristic", "avg_CT", "avg_SS", "avg_RS"]
-        filename = getFileExpPath(2, graph.getName() + "_exp2.csv")
+        filename = IO.getFileExpPath(2, graph.getName() + "_exp2.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(2, "exp2_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(2, "exp2_all_stats.json"))
 
 
 def experiment3(graphs):
@@ -117,10 +117,10 @@ def experiment3(graphs):
         all_stats[graph.getName()]["stats"] = stats
 
         header = ["landmark_selection", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
-        filename = getFileExpPath(3, graph.getName() + "_exp3.csv")
+        filename = IO.getFileExpPath(3, graph.getName() + "_exp3.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(3, "exp3_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(3, "exp3_all_stats.json"))
 
 
 def experiment4(graphs):
@@ -158,10 +158,10 @@ def experiment4(graphs):
         all_stats[graph.getName()]["stats"] = stats
 
         header = ["nb_landmark", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
-        filename = getFileExpPath(4, graph.getName() + "_exp4.csv")
+        filename = IO.getFileExpPath(4, graph.getName() + "_exp4.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(4, "exp4_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(4, "exp4_all_stats.json"))
 
 
 def experiment5(graphs):
@@ -187,10 +187,10 @@ def experiment5(graphs):
         stats = [LANDMARK_SELECTION, NB_LANDMARKS, stat["Prepro_time"]]
 
         all_stats[graph.getName()]["stats"] = stats
-        filename = getFileExpPath(5, graph.getName() + "_exp5.csv")
+        filename = IO.getFileExpPath(5, graph.getName() + "_exp5.csv")
         IO.writeSingleRowStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(5, "exp5_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(5, "exp5_all_stats.json"))
 
 
 def experiment6(graphs):
@@ -225,10 +225,10 @@ def experiment6(graphs):
         all_stats[graph.getName()]["stats"] = stats
 
         header = ["algo", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
-        filename = getFileExpPath(6, graph.getName() + "_exp6.csv")
+        filename = IO.getFileExpPath(6, graph.getName() + "_exp6.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(6, "exp5_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(6, "exp5_all_stats.json"))
 
 
 # -------- multimodal ------------
@@ -287,10 +287,10 @@ def experiment7(graphs):
 
         header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_RS",
                   "ALT_avg_CT", "ALT_avg_SS", "ALT_avg_RS", "lm_dists_CT"]
-        filename = getFileExpPath(7, graph.getName() + "_exp7.csv")
+        filename = IO.getFileExpPath(7, graph.getName() + "_exp7.csv")
         IO.writeDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(7, "exp7_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(7, "exp7_all_stats.json"))
 
 
 def experiment8(graphs, show):
@@ -330,10 +330,10 @@ def experiment8(graphs, show):
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
 
         all_stats[graph.getName()]["stats"] = stats
-        filename = getFileExpPath(8, graph.getName() + "_exp8.csv")
+        filename = IO.getFileExpPath(8, graph.getName() + "_exp8.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(8, "exp8_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(8, "exp8_all_stats.json"))
 
 
 def getPref(fixed_pref, x):
@@ -410,11 +410,11 @@ def experiment9(graphs, fixed_pref, pref_range, step):
 
         header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_RS",
                   "lm_dists_CT", "nb_villo_stations"]
-        filename = getFileExpPath(9, graph.getName() + "_exp9.csv")
+        filename = IO.getFileExpPath(9, graph.getName() + "_exp9.csv")
         # print(stats)
         IO.writeDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(9, "exp9_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(9, "exp9_all_stats.json"))
 
 
 def experiment10(graphs, fixed_pref, pref_range, step, worst_case):
@@ -481,11 +481,11 @@ def experiment10(graphs, fixed_pref, pref_range, step, worst_case):
 
         header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_RS",
                   "lm_dists_CT", "nb_villo_stations"]
-        filename = getFileExpPath(10, graph.getName() + "_exp10.csv")
+        filename = IO.getFileExpPath(10, graph.getName() + "_exp10.csv")
         # print(stats)
         IO.writeDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, getFileExpPath(10, "exp10_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(10, "exp10_all_stats.json"))
 
 
 def experiment11():

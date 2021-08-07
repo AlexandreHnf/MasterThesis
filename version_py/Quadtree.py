@@ -4,10 +4,10 @@
 
 # from https://github.com/ryanpon/pathfinding-animator
 
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 # from matplotlib.axes._axes import _log as matplotlib_axes_logger
 # matplotlib_axes_logger.setLevel('ERROR')  # remove useless matplotlib warnings
-from matplotlib import gridspec
+# from matplotlib import gridspec
 from collections import defaultdict
 
 
@@ -80,7 +80,7 @@ class Quadtree(object):
         pointer = self
         while True:
             if pointer.is_node:
-                pointer = pointer._select_child(point)    # descend into the tree
+                pointer = pointer._select_child(point)  # descend into the tree
             elif len(pointer.elements) >= pointer.bucket_size:
                 pointer._branch()
                 pointer = pointer._select_child(point)
@@ -153,8 +153,6 @@ class Quadtree(object):
         return self.nw, self.ne, self.sw, self.se
 
 
-
-
 class MultiQuadtree(Quadtree):
     """ Allows multiple insertions at a point by appending data to a list. """
 
@@ -169,7 +167,7 @@ class MultiQuadtree(Quadtree):
         pointer = self
         while True:
             if pointer.is_node:
-                pointer = pointer._select_child(point)    # descend into the tree
+                pointer = pointer._select_child(point)  # descend into the tree
             elif len(pointer.elements) >= pointer.bucket_size:
                 pointer._branch()
                 pointer = pointer._select_child(point)
@@ -205,6 +203,7 @@ def bounding_box(point_list):
             min_y = y_pnt
     return min_x, max_x, min_y, max_y
 
+
 def PointDictToQuadtree(point_dict, bucket_size=40, multiquadtree=False):
     """ Convert a dictionary of { point_id : (lat, lon) } to quadtree. """
     # bbox = bounding_box(point_dict.itervalues())
@@ -217,16 +216,19 @@ def PointDictToQuadtree(point_dict, bucket_size=40, multiquadtree=False):
         b = qtree.insert(coord, pid)
     return qtree
 
+
 def showGraphPoints(ax, nodes_coords):
     coords_x = [point[1] for _, point in nodes_coords.items()]
     coords_y = [point[0] for _, point in nodes_coords.items()]
     ax.scatter(coords_x, coords_y, s=4)
+
 
 def showLandmarks(ax, landmarks, color):
     # show landmarks
     lm_x = [point[1] for _, point in landmarks]
     lm_y = [point[0] for _, point in landmarks]
     ax.scatter(lm_x, lm_y, s=15, marker="D", c=color)
+
 
 def showPoints(ax, coords_pairs, color, dotsize):
     coords_x = [point[1] for _, point in coords_pairs]
@@ -236,6 +238,7 @@ def showPoints(ax, coords_pairs, color, dotsize):
     else:
         ax.scatter(coords_x, coords_y, s=dotsize, marker="D", c=color)
 
+
 def showVilloPoints(ax, villo_coords, color, dotsize):
     coords_x = [point[1] for point in villo_coords]
     coords_y = [point[0] for point in villo_coords]
@@ -244,56 +247,58 @@ def showVilloPoints(ax, villo_coords, color, dotsize):
     else:
         ax.scatter(coords_x, coords_y, s=dotsize, marker="D", c=color)
 
-def showQtree(qtree, nodes_coords, SPsearch_space, shortest_path, landmarks, showBoundaries=True):
-    DPI = 72
-    fig = plt.figure(figsize=(700/DPI, 500/DPI), dpi=DPI)
-    ax = plt.subplot()
 
-    # show boundaries
-    if showBoundaries:
-        qtree.draw(ax)
+# def showQtree(qtree, nodes_coords, SPsearch_space, shortest_path, landmarks, showBoundaries=True):
+#     DPI = 72
+#     fig = plt.figure(figsize=(700 / DPI, 500 / DPI), dpi=DPI)
+#     ax = plt.subplot()
+#
+#     # show boundaries
+#     if showBoundaries:
+#         qtree.draw(ax)
+#
+#     # ===========================================================
+#     # show points
+#     showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
+#
+#     # show landmarks
+#     if landmarks:
+#         showPoints(ax, landmarks, "r", 15)
+#
+#     # show search space
+#     if SPsearch_space:
+#         brown = (0.69411766529083252, 0.3490196168422699, 0.15686275064945221, 1.0)
+#         showPoints(ax, list(SPsearch_space.items()), brown, 4)
+#
+#     # show shortest path
+#     if shortest_path:
+#         showPoints(ax, list(shortest_path.items()), "blue", 4)
+#
+#     # ===========================================================
+#     # ax.invert_yaxis()
+#     plt.tight_layout()
+#     plt.show()
 
-    # ===========================================================
-    # show points
-    showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
 
-    # show landmarks
-    if landmarks:
-        showPoints(ax, landmarks, "r", 15)
-
-    # show search space
-    if SPsearch_space:
-        brown = (0.69411766529083252, 0.3490196168422699, 0.15686275064945221, 1.0)
-        showPoints(ax, list(SPsearch_space.items()), brown, 4)
-
-    # show shortest path
-    if shortest_path:
-        showPoints(ax, list(shortest_path.items()), "blue", 4)
-
-
-    # ===========================================================
-    # ax.invert_yaxis()
-    plt.tight_layout()
-    plt.show()
-
-def showVilloStations(qtree, nodes_coords, villo_coords, showBoundaries=True):
-    DPI = 72
-    fig = plt.figure(figsize=(700/DPI, 500/DPI), dpi=DPI)
-    ax = plt.subplot()
-
-    # show boundaries
-    if showBoundaries:
-        qtree.draw(ax)
-
-    # show graph coords :
-    showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
-
-    #show villo coords:
-    showVilloPoints(ax, villo_coords, "red", 4)
-
-    plt.tight_layout()
-    plt.show()
+# def showVilloStations(qtree, nodes_coords, villo_coords, showBoundaries=True):
+#     DPI = 72
+#     fig = plt.figure(figsize=(700 / DPI, 500 / DPI), dpi=DPI)
+#     ax = plt.subplot()
+#
+#     # show boundaries
+#     if showBoundaries:
+#         qtree.draw(ax)
+#
+#     # show graph coords :
+#     showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
+#
+#     # show villo coords:
+#     showVilloPoints(ax, villo_coords, "red", 4)
+#
+#     plt.tight_layout()
+#     plt.show()
 
 
 if __name__ == "__main__":
-    showQtree()
+    # showQtree()
+    print("quadtree")

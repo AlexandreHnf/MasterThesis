@@ -11,7 +11,7 @@ from BidirectionalALT import BidirectionalALT
 from ALTpreprocessing import ALTpreprocessing
 from MultiModalGraph import *
 from time import time
-from Quadtree import showQtree
+from Quadtree import *
 from Timer import Timer
 
 
@@ -31,7 +31,7 @@ def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, lan
 
     if show == "True" or show is True:
         print("show !!", show)
-        showQtree(sp_obj.graph.getQtree(), graph_coords, search_space, sp_coords, landmarks)
+        # showQtree(sp_obj.graph.getQtree(), graph_coords, search_space, sp_coords, landmarks)
 
 
 # =================================================================================
@@ -47,7 +47,7 @@ def testLandmarks(graph, lm_selection):
     print(landmarks)
     print("time landmark distances : ", time() - start, " seconds.")
     alt = ALT(graph, -1, -1, lm_dists)
-    showQtree(graph.getQtree(), graph.getNodesCoords(), None, None, landmarks)
+    # showQtree(graph.getQtree(), graph.getNodesCoords(), None, None, landmarks)
     print("============================")
 
 

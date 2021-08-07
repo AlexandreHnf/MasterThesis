@@ -6,7 +6,7 @@ from Graph import Graph
 from Random import *
 from Utils import haversine, getCarGasPrice
 from Edge import Edge
-from Quadtree import showVilloStations
+from Quadtree import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
 
@@ -92,7 +92,8 @@ def addVilloStations(graph, show=False):
     # print(villo_coords)
 
     if show:
-        showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
+        # showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
+        print("show villo")
 
     # get Villo stations nodes in the graph
     villo_closests = []
