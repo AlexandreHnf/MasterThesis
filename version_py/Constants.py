@@ -35,7 +35,6 @@ NOT_VALID_MAXSPEEDS =   not_valid = ["signals",
 
 
 # Benchmarks parameters
-# TODO : faire un graph artificial (comme dans goldberg et al. when Astar meets grpah theory)
 GRAPH =                 GRAPH_BXL
 
 PRIORITY =              "bin"
@@ -52,5 +51,5 @@ GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
 EXPERIMENT =            1
-NB_RUNS =               100  # TODO : change it to 1000
+NB_RUNS =               10
 KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]

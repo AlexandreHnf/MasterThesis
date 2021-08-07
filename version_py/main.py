@@ -107,7 +107,9 @@ def main():
     # p = OSMgraphParser(GRAPH_2_NAME)
     # graph = p.parse()
     # testMMDijkstra(graph, 7, 2670, "bin", False)
-    # TODO : prendre en compte les coordonnées plutot que paires s,t, ou alors on laisse comme ca et les s, t random vont se charger de trouver les bonnes paires ?
+
+    # TODO : prendre en compte les coordonnées plutot que paires s,t,
+    # ou alors on laisse comme ca et les s, t random vont se charger de trouver les bonnes paires ?
 
 
 if __name__ == "__main__":

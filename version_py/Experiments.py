@@ -501,10 +501,14 @@ def experiment11():
 # =====================================================
 
 def parseAllGraphs():
+    timer = Timer()
+    timer.start()
     all_graphs = []
     for g in GRAPHS:
         p = OSMgraphParser(g)
         all_graphs.append(p.parse())
+
+    timer.printTimeElapsedSec("parsed all graphs")
 
     return all_graphs
 
@@ -514,6 +518,7 @@ def launchSingleModalExperiment(exp):
     timer_all.start()
 
     all_graphs = parseAllGraphs()
+
 
     if exp == 1 or exp == -1:
         timer = Timer()
@@ -579,6 +584,10 @@ def launchSingleModalExperiment(exp):
     timer_all.printTimeElapsedMin("All experiments")
 
 
+def parseSingleGraph(graph_nb, base="car"):
+    p = OSMgraphParser(GRAPHS[graph_nb])
+    graph = p.parse(base)
+
 def launchMultimodalExperiment(exp):
     timer_all = Timer()
     timer_all.start()
@@ -587,7 +596,7 @@ def launchMultimodalExperiment(exp):
         timer = Timer()
         timer.start()
         # foot base layer
-        graphs = all_graphs[0]
+        graphs = [parseSingleGraph(0, "foot")]
         # graphs = all_graphs[3]
         experiment7(graphs)
         timer.stop()
@@ -599,7 +608,7 @@ def launchMultimodalExperiment(exp):
         timer.start()
         # foot base layer
         # graphs = all_graphs[:2]
-        graphs = all_graphs[3]
+        graphs = [parseSingleGraph(3, "foot")]
         experiment8(graphs, show=False)
         timer.stop()
         timer.printTimeElapsedMin("Exp 8")
@@ -610,7 +619,7 @@ def launchMultimodalExperiment(exp):
         timer.start()
         # car base layer
         # graphs = all_graphs[0]
-        graphs = all_graphs[3]
+        graphs = [parseSingleGraph(3)]
         experiment9(graphs, 1, [2, 0], -0.2)
         timer.stop()
         timer.printTimeElapsedMin("Exp 9")
@@ -621,7 +630,7 @@ def launchMultimodalExperiment(exp):
         timer.start()
         # car base layer
         # graphs = all_graphs[0]
-        graphs = all_graphs[3]
+        graphs =  [parseSingleGraph(3)]
         experiment10(graphs, 1, [2, 0], -0.2, 0)
         timer.stop()
         timer.printTimeElapsedMin("Exp 10")
