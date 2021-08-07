@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 from math import pi, sin, cos, asin, sqrt, radians
 from Constants import *
 

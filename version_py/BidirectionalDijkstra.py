@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 # https://docs.python.org/3/library/heapq.html
 from heapq import heappush, heappop
 # https://pypi.org/project/fibheap/

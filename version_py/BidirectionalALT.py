@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 from BidirectionalAstar import BidirectionalAstar
 from ALTpreprocessing import ALTpreprocessing
 

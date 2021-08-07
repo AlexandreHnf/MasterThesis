@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 from Utils import haversine
 from Edge import Edge
 from Quadtree import PointDictToQuadtree
@@ -87,12 +91,12 @@ class Graph:
         """
         return round(2*self.getNbNodes()/self.getNbEdges(), 3)
 
-    def showGraph(self):
-        for v, adj in self.adj_list.items():
-            print("{0} : ".format(v), end="")
-            for e in adj:
-                print("--{0}, ".format(e.getExtremityNode()), end=" ")
-            print()
+    # def showGraph(self):
+    #     for v, adj in self.adj_list.items():
+    #         print("{0} : ".format(v), end="")
+    #         for e in adj:
+    #             print("--{0}, ".format(e.getExtremityNode()), end=" ")
+    #         print()
 
     def findClosestNode(self, target, rng=.01):
         """

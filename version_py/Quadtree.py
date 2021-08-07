@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 # from https://github.com/ryanpon/pathfinding-animator
 
 import matplotlib.pyplot as plt
@@ -206,9 +210,9 @@ def PointDictToQuadtree(point_dict, bucket_size=40, multiquadtree=False):
     # bbox = bounding_box(point_dict.itervalues())
     bbox = bounding_box(point_dict.values())
     if multiquadtree:
-        qtree = MultiQuadtree(*bbox, bucket_size)
+        qtree = MultiQuadtree(bbox[0], bbox[1], bbox[2], bbox[3], bucket_size)
     else:
-        qtree = Quadtree(*bbox, bucket_size)
+        qtree = Quadtree(bbox[0], bbox[1], bbox[2], bbox[3], bucket_size)
     for pid, coord in point_dict.items():
         b = qtree.insert(coord, pid)
     return qtree
