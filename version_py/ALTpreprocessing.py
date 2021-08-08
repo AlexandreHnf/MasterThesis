@@ -178,7 +178,6 @@ class ALTpreprocessing:
         if not origin:
             origin = self.graph.getQtree().getOrigin()
         landmarks = [self.graph.getNodesCoords()[self.findClosestNode(origin)]]
-        print(landmarks)
         for _ in range(k):
             max_dist = float("-inf")
             best_candidate = None

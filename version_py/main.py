@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 from Constants import *
 from ParseOSMgraph import OSMgraphParser
 from ShortestPathExperiments import *
@@ -100,18 +99,23 @@ def testPaths():
     print(path_exp1)
 
 
+def showGraphQtree():
+    thickness = [4, 4, 1, 0.5, 0.3, 0.2]
+    for g in range(6):
+        p = OSMgraphParser(GRAPHS[g])
+        graph = p.parse()
+        showGraphPoints(graph.getQtree(), graph.getNodesCoords(), "blue", thickness, False)
+
+
 # ==================================================================
 def main():
     # runAllSP(7, 1335)
     # testLandmark()
     # =========================================
     processArgs()
-    # testPaths()
-
     # =========================================
-    # p = OSMgraphParser(GRAPH_2_NAME)
-    # graph = p.parse()
-    # testMMDijkstra(graph, 7, 2670, "bin", False)
+    # testPaths()
+    # showGraphQtree()
 
     # TODO : prendre en compte les coordonnées plutot que paires s,t,
     # ou alors on laisse comme ca et les s, t random vont se charger de trouver les bonnes paires ?

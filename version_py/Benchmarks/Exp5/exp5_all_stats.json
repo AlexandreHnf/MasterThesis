@@ -1,62 +1,62 @@
 {
-    "5_Belgique_centre": {
-        "nb_nodes": 213888,
-        "avg_deg": 2.18,
+    "3_Bruxelles_Capitale_centre": {
         "stats": [
-            "planar",
+            "farthest",
             16,
-            340.9340833000024
+            2.415050600000086
         ],
-        "nb_edges": 466262
-    },
-    "4_Bruxelles_Capitale": {
-        "nb_nodes": 25448,
-        "avg_deg": 2.14,
-        "stats": [
-            "planar",
-            16,
-            21.736931699997513
-        ],
-        "nb_edges": 54392
+        "nb_nodes": 4755,
+        "nb_edges": 9892,
+        "avg_deg": 2.08
     },
     "6_Belgique": {
+        "stats": [
+            "farthest",
+            16,
+            294.1131706000001
+        ],
         "nb_nodes": 395301,
-        "avg_deg": 2.21,
-        "stats": [
-            "planar",
-            16,
-            806.0870050000012
-        ],
-        "nb_edges": 871716
-    },
-    "3_Bruxelles_Capitale_centre": {
-        "nb_nodes": 4755,
-        "avg_deg": 2.08,
-        "stats": [
-            "planar",
-            16,
-            2.770203100000799
-        ],
-        "nb_edges": 9892
-    },
-    "2_Bruxelles": {
-        "nb_nodes": 1115,
-        "avg_deg": 1.76,
-        "stats": [
-            "planar",
-            16,
-            0.4986969000019599
-        ],
-        "nb_edges": 1960
+        "nb_edges": 871716,
+        "avg_deg": 2.21
     },
     "1_ULB": {
-        "nb_nodes": 149,
-        "avg_deg": 2.34,
         "stats": [
-            "planar",
+            "farthest",
             16,
-            0.047208199997839984
+            0.12388559999999416
         ],
-        "nb_edges": 349
+        "nb_nodes": 149,
+        "nb_edges": 349,
+        "avg_deg": 2.34
+    },
+    "5_Belgique_centre": {
+        "stats": [
+            "farthest",
+            16,
+            156.99647890000006
+        ],
+        "nb_nodes": 213888,
+        "nb_edges": 466262,
+        "avg_deg": 2.18
+    },
+    "2_Bruxelles": {
+        "stats": [
+            "farthest",
+            16,
+            0.5300972000000002
+        ],
+        "nb_nodes": 1115,
+        "nb_edges": 1960,
+        "avg_deg": 1.76
+    },
+    "4_Bruxelles_Capitale": {
+        "stats": [
+            "farthest",
+            16,
+            15.61467090000042
+        ],
+        "nb_nodes": 25448,
+        "nb_edges": 54392,
+        "avg_deg": 2.14
     }
 }

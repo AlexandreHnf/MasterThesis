@@ -1,2 +1,2 @@
 landmark_selection,nb_landmarks,prepro_CT
-planar,16,0.4986969000019599
+farthest,16,0.5300972000000002

@@ -43,7 +43,7 @@ GRAPH =                 GRAPH_BXL
 
 PRIORITY =              "bin"
 HEURISTIC =             "euclidean"
-LANDMARK_SELECTION =    "planar"
+LANDMARK_SELECTION =    "farthest"
 NB_LANDMARKS =          16
 BUCKET_SIZE =           40
 

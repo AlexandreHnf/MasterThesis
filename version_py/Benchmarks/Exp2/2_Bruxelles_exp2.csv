@@ -1,4 +1,4 @@
-heuristic,avg_CT,avg_SS,avg_rel
-euclidean,641,0.003567,580
-manhattan,633,0.004677,572
-octile,630,0.003944,569
+heuristic,avg_CT,avg_SS,avg_RS
+euclidean,0.005133,628,698
+manhattan,0.007351,616,683
+octile,0.004576,457,515
