@@ -56,4 +56,7 @@ CAR_CONSUMPTION =       7    # L / 100km
 
 EXPERIMENT =            1
 NB_RUNS =               10
+
+# Visualization parameters
+EXPERIMENT_PLOT =       -1
 KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]

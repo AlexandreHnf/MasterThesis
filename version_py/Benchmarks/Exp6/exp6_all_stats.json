@@ -1,88 +1,260 @@
 {
-    "2_Bruxelles": {
-        "nb_nodes": 1115,
-        "avg_deg": 1.76,
+    "3_Bruxelles_Capitale_centre": {
+        "avg_deg": 2.08,
         "stats": {
-            "ALT": {
-                "avg_RS": 156.76,
-                "lm_dists_CT": 23.9857966999989,
-                "avg_CT": 0.000968,
-                "avg_SS": 127.35
+            "BidiDijkstra": {
+                "avg_SS": 1338.0,
+                "avg_CT": 0.0193909,
+                "lm_dists_CT": 0,
+                "avg_RS": 1625.3
             },
             "BidiALT": {
-                "avg_RS": 120.99,
-                "lm_dists_CT": 23.9857966999989,
-                "avg_CT": 0.0007497,
-                "avg_SS": 91.16
-            },
-            "A*": {
-                "avg_RS": 630.57,
-                "lm_dists_CT": 0,
-                "avg_CT": 0.0034012,
-                "avg_SS": 569.58
-            },
-            "BidiAstar": {
-                "avg_RS": 401.48,
-                "lm_dists_CT": 0,
-                "avg_CT": 0.0023994,
-                "avg_SS": 338.33
+                "avg_SS": 224.0,
+                "avg_CT": 0.0155402,
+                "lm_dists_CT": 2.4387392999997246,
+                "avg_RS": 312.2
             },
             "Dijkstra": {
-                "avg_RS": 634.39,
+                "avg_SS": 2081.6,
+                "avg_CT": 0.0363773,
                 "lm_dists_CT": 0,
-                "avg_CT": 0.0020885,
-                "avg_SS": 573.09
+                "avg_RS": 2379.6
             },
-            "BidiDijkstra": {
-                "avg_RS": 404.18,
+            "ALT": {
+                "avg_SS": 325.2,
+                "avg_CT": 0.0100853,
+                "lm_dists_CT": 2.4387392999997246,
+                "avg_RS": 429.4
+            },
+            "A*": {
+                "avg_SS": 2063.1,
+                "avg_CT": 0.0523311,
                 "lm_dists_CT": 0,
-                "avg_CT": 0.0015146,
-                "avg_SS": 340.77
+                "avg_RS": 2359.3
+            },
+            "BidiAstar": {
+                "avg_SS": 1317.8,
+                "avg_CT": 0.0352922,
+                "lm_dists_CT": 0,
+                "avg_RS": 1602.4
             }
         },
-        "nb_edges": 1960
+        "nb_nodes": 4755,
+        "nb_edges": 9892
+    },
+    "4_Bruxelles_Capitale": {
+        "avg_deg": 2.14,
+        "stats": {
+            "BidiDijkstra": {
+                "avg_SS": 6303.4,
+                "avg_CT": 0.2232673,
+                "lm_dists_CT": 0,
+                "avg_RS": 7395.4
+            },
+            "BidiALT": {
+                "avg_SS": 1338.0,
+                "avg_CT": 0.0396873,
+                "lm_dists_CT": 13.923357200000282,
+                "avg_RS": 1647.9
+            },
+            "Dijkstra": {
+                "avg_SS": 11672.2,
+                "avg_CT": 0.3700158,
+                "lm_dists_CT": 0,
+                "avg_RS": 13043.8
+            },
+            "ALT": {
+                "avg_SS": 1780.1,
+                "avg_CT": 0.0749155,
+                "lm_dists_CT": 13.923357200000282,
+                "avg_RS": 2071.4
+            },
+            "A*": {
+                "avg_SS": 11549.3,
+                "avg_CT": 0.6507891,
+                "lm_dists_CT": 0,
+                "avg_RS": 12911.0
+            },
+            "BidiAstar": {
+                "avg_SS": 6193.6,
+                "avg_CT": 0.2290258,
+                "lm_dists_CT": 0,
+                "avg_RS": 7264.5
+            }
+        },
+        "nb_nodes": 25448,
+        "nb_edges": 54392
     },
     "1_ULB": {
-        "nb_nodes": 149,
         "avg_deg": 2.34,
         "stats": {
-            "ALT": {
-                "avg_RS": 25.85,
-                "lm_dists_CT": 0.5910092999984045,
-                "avg_CT": 0.000133,
-                "avg_SS": 16.62
+            "BidiDijkstra": {
+                "avg_SS": 34.0,
+                "avg_CT": 0.0002684,
+                "lm_dists_CT": 0,
+                "avg_RS": 51.2
             },
             "BidiALT": {
-                "avg_RS": 33.55,
-                "lm_dists_CT": 0.5910092999984045,
-                "avg_CT": 0.0001704,
-                "avg_SS": 19.44
-            },
-            "A*": {
-                "avg_RS": 101.03,
-                "lm_dists_CT": 0,
-                "avg_CT": 0.0004738,
-                "avg_SS": 82.08
-            },
-            "BidiAstar": {
-                "avg_RS": 68.09,
-                "lm_dists_CT": 0,
-                "avg_CT": 0.0003589,
-                "avg_SS": 47.2
+                "avg_SS": 16.0,
+                "avg_CT": 0.0002825,
+                "lm_dists_CT": 0.2299633000002359,
+                "avg_RS": 27.8
             },
             "Dijkstra": {
-                "avg_RS": 101.66,
+                "avg_SS": 65.0,
+                "avg_CT": 0.0004386,
                 "lm_dists_CT": 0,
-                "avg_CT": 0.0002668,
-                "avg_SS": 82.71
+                "avg_RS": 81.6
             },
-            "BidiDijkstra": {
-                "avg_RS": 68.75,
+            "ALT": {
+                "avg_SS": 14.3,
+                "avg_CT": 0.000212,
+                "lm_dists_CT": 0.2299633000002359,
+                "avg_RS": 22.7
+            },
+            "A*": {
+                "avg_SS": 64.6,
+                "avg_CT": 0.0006718,
                 "lm_dists_CT": 0,
-                "avg_CT": 0.000199,
-                "avg_SS": 47.74
+                "avg_RS": 81.4
+            },
+            "BidiAstar": {
+                "avg_SS": 33.6,
+                "avg_CT": 0.0004429,
+                "lm_dists_CT": 0,
+                "avg_RS": 50.6
             }
         },
+        "nb_nodes": 149,
         "nb_edges": 349
+    },
+    "6_Belgique": {
+        "avg_deg": 2.21,
+        "stats": {
+            "BidiDijkstra": {
+                "avg_SS": 115906.8,
+                "avg_CT": 6.29174,
+                "lm_dists_CT": 0,
+                "avg_RS": 131129.1
+            },
+            "BidiALT": {
+                "avg_SS": 15624.4,
+                "avg_CT": 0.8263641,
+                "lm_dists_CT": 308.48186329999953,
+                "avg_RS": 17453.7
+            },
+            "Dijkstra": {
+                "avg_SS": 212803.0,
+                "avg_CT": 14.6630325,
+                "lm_dists_CT": 0,
+                "avg_RS": 233510.4
+            },
+            "ALT": {
+                "avg_SS": 22575.3,
+                "avg_CT": 2.7859035,
+                "lm_dists_CT": 308.48186329999953,
+                "avg_RS": 24720.0
+            },
+            "A*": {
+                "avg_SS": 209821.1,
+                "avg_CT": 19.638452,
+                "lm_dists_CT": 0,
+                "avg_RS": 230259.4
+            },
+            "BidiAstar": {
+                "avg_SS": 112158.4,
+                "avg_CT": 7.7958722,
+                "lm_dists_CT": 0,
+                "avg_RS": 126898.5
+            }
+        },
+        "nb_nodes": 395301,
+        "nb_edges": 871716
+    },
+    "2_Bruxelles": {
+        "avg_deg": 1.76,
+        "stats": {
+            "BidiDijkstra": {
+                "avg_SS": 369.4,
+                "avg_CT": 0.0016509,
+                "lm_dists_CT": 0,
+                "avg_RS": 434.2
+            },
+            "BidiALT": {
+                "avg_SS": 82.6,
+                "avg_CT": 0.0008745,
+                "lm_dists_CT": 0.46833369999967545,
+                "avg_RS": 108.3
+            },
+            "Dijkstra": {
+                "avg_SS": 604.7,
+                "avg_CT": 0.0024508,
+                "lm_dists_CT": 0,
+                "avg_RS": 667.0
+            },
+            "ALT": {
+                "avg_SS": 127.1,
+                "avg_CT": 0.0025171,
+                "lm_dists_CT": 0.46833369999967545,
+                "avg_RS": 156.0
+            },
+            "A*": {
+                "avg_SS": 601.2,
+                "avg_CT": 0.0045387,
+                "lm_dists_CT": 0,
+                "avg_RS": 663.2
+            },
+            "BidiAstar": {
+                "avg_SS": 365.4,
+                "avg_CT": 0.0031835,
+                "lm_dists_CT": 0,
+                "avg_RS": 430.3
+            }
+        },
+        "nb_nodes": 1115,
+        "nb_edges": 1960
+    },
+    "5_Belgique_centre": {
+        "avg_deg": 2.18,
+        "stats": {
+            "BidiDijkstra": {
+                "avg_SS": 55075.2,
+                "avg_CT": 2.4634669,
+                "lm_dists_CT": 0,
+                "avg_RS": 62300.0
+            },
+            "BidiALT": {
+                "avg_SS": 16485.8,
+                "avg_CT": 0.99393,
+                "lm_dists_CT": 144.31854440000006,
+                "avg_RS": 18543.8
+            },
+            "Dijkstra": {
+                "avg_SS": 117370.3,
+                "avg_CT": 6.9649239,
+                "lm_dists_CT": 0,
+                "avg_RS": 128595.7
+            },
+            "ALT": {
+                "avg_SS": 15451.1,
+                "avg_CT": 1.4557858,
+                "lm_dists_CT": 144.31854440000006,
+                "avg_RS": 17035.6
+            },
+            "A*": {
+                "avg_SS": 114106.1,
+                "avg_CT": 9.9992344,
+                "lm_dists_CT": 0,
+                "avg_RS": 125034.7
+            },
+            "BidiAstar": {
+                "avg_SS": 53532.4,
+                "avg_CT": 3.126105,
+                "lm_dists_CT": 0,
+                "avg_RS": 60554.5
+            }
+        },
+        "nb_nodes": 213888,
+        "nb_edges": 466262
     }
 }

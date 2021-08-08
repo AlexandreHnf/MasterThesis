@@ -228,7 +228,7 @@ def experiment6(graphs):
         filename = IO.getFileExpPath(6, graph.getName() + "_exp6.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
-    IO.dicToJson(all_stats, IO.getFileExpPath(6, "exp5_all_stats.json"))
+    IO.dicToJson(all_stats, IO.getFileExpPath(6, "exp6_all_stats.json"))
 
 
 # -------- multimodal ------------
