@@ -591,6 +591,8 @@ def launchSingleModalExperiment(exp):
 def parseSingleGraph(graph_nb, base="car"):
     p = OSMgraphParser(GRAPHS[graph_nb])
     graph = p.parse(base)
+    return graph
+
 
 def launchMultimodalExperiment(exp):
     timer_all = Timer()
@@ -600,7 +602,7 @@ def launchMultimodalExperiment(exp):
         timer = Timer()
         timer.start()
         # foot base layer
-        graphs = [parseSingleGraph(0, "foot")]
+        graphs = [parseSingleGraph(3, "foot")]
         # graphs = all_graphs[3]
         experiment7(graphs)
         timer.stop()
