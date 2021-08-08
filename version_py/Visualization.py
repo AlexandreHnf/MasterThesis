@@ -105,19 +105,16 @@ def plotAvgDegResult(filename, title, ylabel, xlabel, kept_graphs, save_filename
     show(None, title, ylabel, xlabel, save_filename)
 
 
-def plotExp7Result(filename, title, ylabel, xlabel, ymetric, speeds, algo, graph, save_filename):
+def plotExp7Result(filename, title, ylabel, xlabel, ymetric, algo, graph, save_filename):
     # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
-    for s in speeds:
-        x, y = [], []
-        for k in stats[graph]:
-            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
-                if stats[graph][k]["speed_limit"] == s:
-                    x.append(stats[graph][k]["nb_added_edges"])
-                    y.append(stats[graph][k][algo][ymetric])
+    for s in SPEEDS:
+        x, y = ADDED_EDGES, []
+        for ae in ADDED_EDGES:
+            y.append(stats[graph][str(s)][str(ae)][algo][ymetric])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
@@ -128,24 +125,21 @@ def plotExp7Result(filename, title, ylabel, xlabel, ymetric, speeds, algo, graph
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
-def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, speeds, graph, save_filename):
+def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_filename):
     stats = getJsonData(filename)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
-    for s in speeds:
-        x, y = [], []
-        for k in stats[graph]:
-            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
-                if stats[graph][k]["speed_limit"] == s:
-                    x.append(stats[graph][k]["nb_added_edges"])
-                    avg_metric_dijkstra = stats[graph][k]["Dijkstra"][ymetric]
-                    avg_metric_ALT = stats[graph][k]["ALT"][ymetric]
-                    if avg_metric_ALT == 0.0:
-                        print(avg_metric_dijkstra, avg_metric_ALT)
-                        avg_metric_ALT = (avg_metric_dijkstra) / 10
-                    improv = round(avg_metric_dijkstra / avg_metric_ALT, 6)
-                    y.append(improv)
+    for s in SPEEDS:
+        x, y = ADDED_EDGES, []
+        for ae in ADDED_EDGES:
+            avg_metric_dijkstra = stats[graph][str(s)][str(ae)]["Dijkstra"][ymetric]
+            avg_metric_alt = stats[graph][str(s)][str(ae)]["ALT"][ymetric]
+            if avg_metric_alt == 0.0:
+                # print(avg_metric_dijkstra, avg_metric_alt)
+                avg_metric_alt = avg_metric_dijkstra / 10
+            improv = round(avg_metric_dijkstra / avg_metric_alt, 6)
+            y.append(improv)
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
@@ -156,19 +150,16 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, speeds, graph
     show("upper right", title, ylabel, xlabel, save_filename)
 
 
-def plotExp7AvgDegResult(filename, title, ylabel, xlabel, speeds, graph, save_filename):
+def plotExp7AvgDegResult(filename, title, ylabel, xlabel, graph, save_filename):
     # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
-    for s in speeds:
-        x, y = [], []
-        for k in stats[graph]:
-            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
-                if stats[graph][k]["speed_limit"] == s:
-                    x.append(stats[graph][k]["nb_added_edges"])
-                    y.append(stats[graph][k]["avg_degree_after"])
+    for s in SPEEDS:
+        x, y = ADDED_EDGES, []
+        for ae in ADDED_EDGES:
+            y.append(stats[graph][str(s)][str(ae)]["avg_degree_after"])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
@@ -179,18 +170,15 @@ def plotExp7AvgDegResult(filename, title, ylabel, xlabel, speeds, graph, save_fi
     show("upper left", title, ylabel, xlabel, save_filename)
 
 
-def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, speeds, graph, save_filename):
+def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, graph, save_filename):
     stats = getJsonData(filename)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
-    for s in speeds:
-        x, y = [], []
-        for k in stats[graph]:
-            if k not in ["nb_nodes", "nb_edges", "avg_deg"]:
-                if stats[graph][k]["speed_limit"] == s:
-                    x.append(stats[graph][k]["nb_added_edges"])
-                    y.append(stats[graph][k]["ALT"]["max_avg_lb"])
+    for s in SPEEDS:
+        x, y = ADDED_EDGES, []
+        for ae in ADDED_EDGES:
+            y.append(stats[graph][str(s)][str(ae)]["ALT"]["max_avg_lb"])
 
         # scatter points
         ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
@@ -427,9 +415,8 @@ def plotExp6(metrics, improvements, kept_graphs):
 
 def plotExp7(metrics, improvements, graphs):
     """
-    TODO : prendre tous les algos (Dijkstra et ALT) et tous les graphs
+
     """
-    speeds = [0.1, 15, 30, 90, 120, 1e10]
 
     for graph in graphs:
         for metric in metrics:
@@ -437,26 +424,26 @@ def plotExp7(metrics, improvements, graphs):
             plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
                            "Experience 7 - Nb added edges - " + metric + " - " + graph,
                            metrics[metric], "|added edges|", metric,
-                           speeds, "ALT", graph, save_filename)
+                           "ALT", graph, save_filename)
 
         for metric in improvements:
             save_filename = getFileExpPath(7, "plot_improv_" + metric + "_" + graph + ".png")
             plotImprovementsExp7(getFileExpPath(7, "exp7_all_stats.json"),
                                  "Experience 7 - improvement - " + metric + " - " + graph,
                                  improvements[metric], "|added edges|", metric,
-                                 speeds, graph, save_filename)
+                                 graph, save_filename)
 
         save_filename = getFileExpPath(7, "plot_avgDeg_" + graph + ".png")
         plotExp7AvgDegResult(getFileExpPath(7, "exp7_all_stats.json"),
                              "Experience 7 - avg deg - " + graph,
-                             "avg deg after", "|added edges|", speeds,
+                             "avg deg after", "|added edges|",
                              graph, save_filename)
 
         # plot : mac avg lower bound - ALT
         save_filename = getFileExpPath(7, "plot_max_avg_lb_" + graph + ".png")
         plotMaxAvgLbExp7(getFileExpPath(7, "exp7_all_stats.json"),
                          "Experience 7 - Max average distance lower bound - " + graph,
-                         "max avg lower bound", "|added edges|", speeds,
+                         "max avg lower bound", "|added edges|",
                          graph, save_filename)
 
 # ====================================================

@@ -238,24 +238,24 @@ def experiment7(graphs):
     Experiment 7 : Multi-modal public transport network
     """
     print("EXPERIMENT 7 : Multi-modal public transport network : Dijkstra & ALT")
+
     all_stats = {}
+
     for graph in graphs:
         print("GRAPH : ", graph.getName())
 
         print("nb edges before experiments : ", graph.getNbEdges())
 
-        all_stats[graph.getName()] = {"nb_nodes": graph.getNbNodes(),
-                                      "nb_edges": graph.getNbEdges(),
-                                      "avg_deg": graph.getAvgDegree()}
-
-        nb_added_edges = [0, 10, 50, 100, 200]  # TODO : change nb (200) to be 1.1% of the graph size
-        speed_limits = [0.1, 15, 30, 90, 120, 1e10]
+        all_stats[graph.getName()] = {s: {} for s in SPEEDS}
+        all_stats[graph.getName()]["nb_nodes"] = graph.getNbNodes()
+        all_stats[graph.getName()]["nb_edges"] = graph.getNbEdges()
+        all_stats[graph.getName()]["avg_deg"] = graph.getAvgDegree()
 
         stats = {}
 
         nb_exp = 0
-        for s in speed_limits:
-            for n in nb_added_edges:
+        for s in SPEEDS:
+            for n in ADDED_EDGES:
                 print("==> nb added edges : {0}, speed limit : {1}".format(n, s))
                 nodes_coords = deepcopy(graph.getNodesCoords())
                 adjlist = deepcopy(graph.getAdjList())
@@ -275,14 +275,11 @@ def experiment7(graphs):
                 stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
 
                 stats[nb_exp] = [s, n] + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
-                # print("Stats : ", stats[nb_exp])
 
-                all_stats[graph.getName()][nb_exp] = {"nb_edges_after": multi_graph.getNbEdges(),
-                                                      "avg_degree_after": multi_graph.getAvgDegree(),
-                                                      "speed_limit": s,
-                                                      "nb_added_edges": n,
-                                                      "Dijkstra": stat["Dijkstra"],
-                                                      "ALT": stat["ALT"]}
+                all_stats[graph.getName()][s][n] = {"nb_edges_after": multi_graph.getNbEdges(),
+                                                    "avg_degree_after": multi_graph.getNbNodes(),
+                                                    "Dijkstra": stat["Dijkstra"],
+                                                    "ALT": stat["ALT"]}
                 nb_exp += 1
 
         header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_RS",
@@ -523,7 +520,6 @@ def launchSingleModalExperiment(exp):
 
     all_graphs = parseAllGraphs()
 
-
     if exp == 1 or exp == -1:
         timer = Timer()
         # graphs_names = [GRAPH_ULB, GRAPH_BXL]
@@ -636,7 +632,7 @@ def launchMultimodalExperiment(exp):
         timer.start()
         # car base layer
         # graphs = all_graphs[0]
-        graphs =  [parseSingleGraph(3)]
+        graphs = [parseSingleGraph(3)]
         experiment10(graphs, 1, [2, 0], -0.2, 0)
         timer.stop()
         timer.printTimeElapsedMin("Exp 10")
