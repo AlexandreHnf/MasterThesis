@@ -59,8 +59,8 @@ SPEEDS = [0.1, 15, 30, 90, 120, 1e10]
 # TODO : change nb (200) to be 1.1% of the graph size
 ADDED_EDGES = [0, 10, 50, 100, 200]
 
-EXPERIMENT =            1
-NB_RUNS =               10
+EXPERIMENTS =           [1]
+NB_RUNS =               100
 
 # Visualization parameters
 EXPERIMENT_PLOT =       7

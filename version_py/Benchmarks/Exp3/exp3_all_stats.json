@@ -1,152 +1,152 @@
 {
-    "5_Belgique_centre": {
-        "nb_edges": 466262,
-        "stats": {
-            "planar": {
-                "avg_RS": 13614,
-                "avg_SS": 12380,
-                "lm_dists_CT": 393.1378713999984,
-                "avg_CT": 0.596718
-            },
-            "farthest": {
-                "avg_RS": 20668,
-                "avg_SS": 18962,
-                "lm_dists_CT": 153.85292239999944,
-                "avg_CT": 1.245026
-            },
-            "random": {
-                "avg_RS": 7020,
-                "avg_SS": 6370,
-                "lm_dists_CT": 98.98503449999953,
-                "avg_CT": 0.169816
-            }
-        },
-        "nb_nodes": 213888,
-        "avg_deg": 2.18
-    },
     "2_Bruxelles": {
+        "nb_nodes": 1115,
         "nb_edges": 1960,
         "stats": {
+            "random": {
+                "lm_dists_CT": 0.27101670000047307,
+                "avg_RS": 213,
+                "avg_SS": 177,
+                "avg_CT": 0.001512
+            },
             "planar": {
-                "avg_RS": 157,
-                "avg_SS": 125,
-                "lm_dists_CT": 0.6294715000003634,
-                "avg_CT": 0.00164
+                "lm_dists_CT": 0.514416900001379,
+                "avg_RS": 160,
+                "avg_SS": 131,
+                "avg_CT": 0.000996
             },
             "farthest": {
-                "avg_RS": 247,
-                "avg_SS": 199,
-                "lm_dists_CT": 0.66229199999907,
-                "avg_CT": 0.001878
-            },
-            "random": {
-                "avg_RS": 145,
-                "avg_SS": 118,
-                "lm_dists_CT": 0.3593657000001258,
-                "avg_CT": 0.001329
+                "lm_dists_CT": 0.4347118000005139,
+                "avg_RS": 159,
+                "avg_SS": 130,
+                "avg_CT": 0.00093
             }
         },
-        "nb_nodes": 1115,
         "avg_deg": 1.76
     },
-    "3_Bruxelles_Capitale_centre": {
-        "nb_edges": 9892,
-        "stats": {
-            "planar": {
-                "avg_RS": 635,
-                "avg_SS": 509,
-                "lm_dists_CT": 3.2679650000009133,
-                "avg_CT": 0.008625
-            },
-            "farthest": {
-                "avg_RS": 416,
-                "avg_SS": 333,
-                "lm_dists_CT": 3.079534099999364,
-                "avg_CT": 0.003722
-            },
-            "random": {
-                "avg_RS": 418,
-                "avg_SS": 337,
-                "lm_dists_CT": 1.7212013999996998,
-                "avg_CT": 0.006083
-            }
-        },
-        "nb_nodes": 4755,
-        "avg_deg": 2.08
-    },
     "1_ULB": {
+        "nb_nodes": 149,
         "nb_edges": 349,
         "stats": {
+            "random": {
+                "lm_dists_CT": 0.043067700000392506,
+                "avg_RS": 29,
+                "avg_SS": 19,
+                "avg_CT": 0.000148
+            },
             "planar": {
-                "avg_RS": 17,
-                "avg_SS": 11,
-                "lm_dists_CT": 0.1387642000008782,
-                "avg_CT": 0.000184
+                "lm_dists_CT": 0.05481340000187629,
+                "avg_RS": 26,
+                "avg_SS": 17,
+                "avg_CT": 0.000151
             },
             "farthest": {
-                "avg_RS": 16,
-                "avg_SS": 10,
-                "lm_dists_CT": 0.08610380000027362,
+                "lm_dists_CT": 0.0791763000015635,
+                "avg_RS": 24,
+                "avg_SS": 15,
                 "avg_CT": 0.000135
-            },
-            "random": {
-                "avg_RS": 34,
-                "avg_SS": 23,
-                "lm_dists_CT": 0.05941499999971711,
-                "avg_CT": 0.000471
             }
         },
-        "nb_nodes": 149,
         "avg_deg": 2.34
     },
+    "3_Bruxelles_Capitale_centre": {
+        "nb_nodes": 4755,
+        "nb_edges": 9892,
+        "stats": {
+            "random": {
+                "lm_dists_CT": 1.38437630000044,
+                "avg_RS": 564,
+                "avg_SS": 448,
+                "avg_CT": 0.004066
+            },
+            "planar": {
+                "lm_dists_CT": 2.375189300000784,
+                "avg_RS": 500,
+                "avg_SS": 401,
+                "avg_CT": 0.00356
+            },
+            "farthest": {
+                "lm_dists_CT": 2.386075399997935,
+                "avg_RS": 490,
+                "avg_SS": 392,
+                "avg_CT": 0.003528
+            }
+        },
+        "avg_deg": 2.08
+    },
     "4_Bruxelles_Capitale": {
+        "nb_nodes": 25448,
         "nb_edges": 54392,
         "stats": {
+            "random": {
+                "lm_dists_CT": 9.57081029999972,
+                "avg_RS": 1405,
+                "avg_SS": 1187,
+                "avg_CT": 0.029444
+            },
             "planar": {
-                "avg_RS": 2328,
-                "avg_SS": 2019,
-                "lm_dists_CT": 29.90906879999966,
-                "avg_CT": 0.0372
+                "lm_dists_CT": 44.3300390000004,
+                "avg_RS": 2073,
+                "avg_SS": 1785,
+                "avg_CT": 0.043205
             },
             "farthest": {
-                "avg_RS": 1755,
-                "avg_SS": 1514,
-                "lm_dists_CT": 19.186338499999692,
-                "avg_CT": 0.026942
-            },
-            "random": {
-                "avg_RS": 3984,
-                "avg_SS": 3559,
-                "lm_dists_CT": 13.119305000000168,
-                "avg_CT": 0.063291
+                "lm_dists_CT": 15.295534199998656,
+                "avg_RS": 2811,
+                "avg_SS": 2437,
+                "avg_CT": 0.099875
             }
         },
-        "nb_nodes": 25448,
         "avg_deg": 2.14
     },
-    "6_Belgique": {
-        "nb_edges": 871716,
+    "5_Belgique_centre": {
+        "nb_nodes": 213888,
+        "nb_edges": 466262,
         "stats": {
+            "random": {
+                "lm_dists_CT": 99.45615650000036,
+                "avg_RS": 11188,
+                "avg_SS": 10169,
+                "avg_CT": 1.672465
+            },
             "planar": {
-                "avg_RS": 18476,
-                "avg_SS": 16709,
-                "lm_dists_CT": 796.1514494999992,
-                "avg_CT": 1.244254
+                "lm_dists_CT": 326.2971483000001,
+                "avg_RS": 11796,
+                "avg_SS": 10636,
+                "avg_CT": 1.71745
             },
             "farthest": {
-                "avg_RS": 27855,
-                "avg_SS": 25761,
-                "lm_dists_CT": 352.9361659999995,
-                "avg_CT": 1.344506
-            },
-            "random": {
-                "avg_RS": 11001,
-                "avg_SS": 9804,
-                "lm_dists_CT": 236.90540150000015,
-                "avg_CT": 0.792224
+                "lm_dists_CT": 138.26684670000031,
+                "avg_RS": 18626,
+                "avg_SS": 17067,
+                "avg_CT": 4.643269
             }
         },
+        "avg_deg": 2.18
+    },
+    "6_Belgique": {
         "nb_nodes": 395301,
+        "nb_edges": 871716,
+        "stats": {
+            "random": {
+                "lm_dists_CT": 187.7272284999999,
+                "avg_RS": 20239,
+                "avg_SS": 18515,
+                "avg_CT": 3.36645
+            },
+            "planar": {
+                "lm_dists_CT": 638.7804125999974,
+                "avg_RS": 23404,
+                "avg_SS": 21281,
+                "avg_CT": 3.292242
+            },
+            "farthest": {
+                "lm_dists_CT": 266.45828470000197,
+                "avg_RS": 30356,
+                "avg_SS": 27966,
+                "avg_CT": 5.147392
+            }
+        },
         "avg_deg": 2.21
     }
 }

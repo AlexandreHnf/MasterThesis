@@ -4,6 +4,7 @@
 
 from Dijkstra import Dijkstra
 
+
 class Astar(Dijkstra):
 
     def __init__(self, graph, s, t, priority="bin", bucket_size=40, heuristic=""):

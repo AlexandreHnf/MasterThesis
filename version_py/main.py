@@ -53,9 +53,9 @@ def processArgs():
 
         else:
             if a[1] == "runExp":
-                print("experiment " + a[3])
+                exp = [int(e) for e in a[3].split(",")]
+                print("experiment ", exp)
 
-                exp = int(a[3])
                 if a[2] == "S":
                     # 1: runExperiment, 2: single or multimodal, 3: experiment nb
                     launchSingleModalExperiment(exp)

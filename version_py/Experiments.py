@@ -520,7 +520,7 @@ def launchSingleModalExperiment(exp):
 
     all_graphs = parseAllGraphs()
 
-    if exp == 1 or exp == -1:
+    if 1 in exp or len(exp) == 0:
         timer = Timer()
         # graphs_names = [GRAPH_ULB, GRAPH_BXL]
         graphs = all_graphs
@@ -530,7 +530,7 @@ def launchSingleModalExperiment(exp):
         timer.printTimeElapsedMin("Exp 1")
         print("==========================================================================")
 
-    if exp == 2 or exp == -1:
+    if 2 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # graphs_names = [GRAPH_ULB, GRAPH_BXL]
@@ -540,7 +540,7 @@ def launchSingleModalExperiment(exp):
         timer.printTimeElapsedMin("Exp 2")
         print("==========================================================================")
 
-    if exp == 3 or exp == -1:
+    if 3 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # graphs_names = [GRAPH_ULB, GRAPH_BXL]
@@ -550,7 +550,7 @@ def launchSingleModalExperiment(exp):
         timer.printTimeElapsedMin("Exp 3")
         print("==========================================================================")
 
-    if exp == 4 or exp == -1:
+    if 4 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # graphs_names = [GRAPH_ULB, GRAPH_BXL]
@@ -560,7 +560,7 @@ def launchSingleModalExperiment(exp):
         timer.printTimeElapsedMin("Exp 4")
         print("==========================================================================")
 
-    if exp == 5 or exp == -1:
+    if 5 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # graphs_names = [GRAPH_ULB, GRAPH_BXL]
@@ -570,7 +570,7 @@ def launchSingleModalExperiment(exp):
         timer.printTimeElapsedMin("Exp 5")
         print("==========================================================================")
 
-    if exp == 6 or exp == -1:
+    if 6 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # graphs_names = [GRAPH_ULB, GRAPH_BXL]
@@ -594,7 +594,7 @@ def launchMultimodalExperiment(exp):
     timer_all = Timer()
     timer_all.start()
 
-    if exp == 7 or exp == -1:
+    if 7 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # foot base layer
@@ -605,7 +605,7 @@ def launchMultimodalExperiment(exp):
         timer.printTimeElapsedMin("Exp 7")
         print("==========================================================================")
 
-    if exp == 8 or exp == -1:
+    if 8 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # foot base layer
@@ -616,7 +616,7 @@ def launchMultimodalExperiment(exp):
         timer.printTimeElapsedMin("Exp 8")
         print("==========================================================================")
 
-    if exp == 9 or exp == -1:
+    if 9 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # car base layer
@@ -627,7 +627,7 @@ def launchMultimodalExperiment(exp):
         timer.printTimeElapsedMin("Exp 9")
         print("==========================================================================")
 
-    if exp == 10 or exp == -1:
+    if 10 in exp or len(exp) == 0:
         timer = Timer()
         timer.start()
         # car base layer
@@ -663,7 +663,7 @@ def showVilloStations(graph_name):
 
 
 def main():
-    launchSingleModalExperiment(EXPERIMENT)
+    launchSingleModalExperiment(EXPERIMENTS)
 
     # launchAllExperiments()
 
