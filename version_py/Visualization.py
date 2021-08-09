@@ -20,7 +20,11 @@ def show(legend, title, ylabel, xlabel, save_filename):
     if xlabel == "|V|":
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.gca().ticklabel_format(useMathText=True)
+    if ylabel == "|V|":
+        plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
+        plt.gca().ticklabel_format(useMathText=True)
 
+    plt.tight_layout(pad=0.3)
     plt.savefig(save_filename, dpi=100)
     plt.show()
 
