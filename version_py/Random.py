@@ -33,3 +33,10 @@ def selectRandomPair(nodes):
         a = random.choice(nodes)
         b = random.choice(nodes)
     return a, b
+
+
+def getRandomPairs(nodes, nb_runs):
+    pairs = []
+    for _ in range(nb_runs):
+        s, t = selectRandomPair(nodes)
+        pairs.append((s, t))

@@ -280,7 +280,7 @@ def plotExp1(metrics, kept_graphs):
     """
     categories = ["bin", "fib", "list"]
 
-    graphs = "_".join([str(g+1) for g in kept_graphs])
+    graphs = "".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(1, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(1, "exp1_all_stats.json"),
@@ -300,7 +300,7 @@ def plotExp2(metrics, kept_graphs):
     """
     categories = ["euclidean", "manhattan", "octile"]
 
-    graphs = "_".join([str(g+1) for g in kept_graphs])
+    graphs = "".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(2, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(2, "exp2_all_stats.json"),
@@ -320,7 +320,7 @@ def plotExp3(metrics, kept_graphs):
     """
     categories = ["random", "farthest", "planar"]
 
-    graphs = "_".join([str(g+1) for g in kept_graphs])
+    graphs = "".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(3, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
@@ -340,7 +340,7 @@ def plotExp4(metrics, kept_graphs):
     """
     categories = ["1", "2", "4", "8", "16", "32"]
 
-    graphs = "_".join([str(g+1) for g in kept_graphs])
+    graphs = "".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(4, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
@@ -356,11 +356,11 @@ def plotExp5(kept_graphs):
     Single modal
     preprocessing time - |V|
     """
-    graphs = "_".join([str(g+1) for g in kept_graphs])
+    graphs = "".join([str(g+1) for g in kept_graphs])
     # preprocessing time - |V| with k=16, planar
     save_filename = getFileExpPath(5, "plot_prepro_CT_{0}.png".format(graphs))
     plotPreprocessingResult(getFileExpPath(5, "exp5_all_stats.json"),
-                            "Experience 5 - Preprocessing",
+                            "Experience 5 - Preprocessing - k=16, farthest",
                             "computation time (sec.)", "|V|",
                             kept_graphs, save_filename)
 
@@ -368,7 +368,7 @@ def plotExp5(kept_graphs):
     categories = ["random", "farthest", "planar"]
     save_filename = getFileExpPath(5, "plot_prepro_CT_selections_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
-                        "Experience 5 - ALT - " + "lm_dists_CT",
+                        "Experience 5 - Preprocessing - random, farthest, planar",
                         categories, "preprocessing time (sec.)",
                         "|V|", "lm_dists_CT", kept_graphs, save_filename)
 
@@ -376,7 +376,7 @@ def plotExp5(kept_graphs):
     categories = ["1", "2", "4", "8", "16", "32"]
     save_filename = getFileExpPath(5, "plot_prepro_CT_k_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
-                        "Experience 5 - ALT - " + "lm_dists_CT",
+                        "Experience 5 - Preprocessing - k=[1,2,4,8,16,32]",
                         categories, "preprocessing time (sec.)",
                         "|V|", "lm_dists_CT", kept_graphs, save_filename)
 
@@ -390,7 +390,7 @@ def plotExp6(metrics, improvements, kept_graphs):
     # plot standard metrics
     categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
-    graphs = "_".join([str(g+1) for g in KEPT_GRAPHS])
+    graphs = "".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
         save_filename = getFileExpPath(6, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(6, "exp6_all_stats.json"),
@@ -482,7 +482,7 @@ def plotExp9(metrics, graphs):
     """
     for graph in graphs:
         for metric in metrics:
-            save_filename = getFileExpPath(9, "plot_" + metric + "_" + graph + ".png")
+            save_filename = getFileExpPath(9, "plot_" + metric + "" + graph + ".png")
             plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
                               "Experience 9 - prefs - " + metric + " - " + graph,
                               metrics[metric], "c2", "c2", metric,
@@ -511,7 +511,7 @@ def plotExp10(metrics, graphs):
     """
     for graph in graphs:
         for metric in metrics:
-            save_filename = getFileExpPath(10, "plot_" + metric + "_" + graph + ".png")
+            save_filename = getFileExpPath(10, "plot_" + metric + "" + graph + ".png")
             plotPrefExpResult(getFileExpPath(10, "exp10_all_stats.json"),
                               "Experience 10 - prefs - " + metric + " - " + graph,
                               metrics[metric], "c2", "c2", metric,

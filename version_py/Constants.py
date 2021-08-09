@@ -63,5 +63,5 @@ EXPERIMENTS =           [1]
 NB_RUNS =               100
 
 # Visualization parameters
-EXPERIMENT_PLOT =       1
+EXPERIMENT_PLOT =       7
 KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]

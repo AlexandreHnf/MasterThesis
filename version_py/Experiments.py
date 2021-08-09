@@ -30,12 +30,12 @@ def experiment1(graphs):
                                       "avg_deg": graph.getAvgDegree()}
 
         # Benchmark
-        b = Benchmark(graph)
+        b = Benchmark(graph, NB_RUNS)
 
         stats = {"bin": None, "fib": None, "list": None}
         for p in stats.keys():
             print("Priority : ", p)
-            stat = b.testSingleQuery(NB_RUNS, "Dijkstra", p, BUCKET_SIZE, None, None)
+            stat = b.testSingleQuery("Dijkstra", p, BUCKET_SIZE, None, None)
             stats[p] = stat
             # print(stat)
         all_stats[graph.getName()]["stats"] = stats
@@ -64,12 +64,12 @@ def experiment2(graphs):
                                       "avg_deg": graph.getAvgDegree()}
 
         # Benchmark
-        b = Benchmark(graph)
+        b = Benchmark(graph, NB_RUNS)
 
         stats = {"euclidean": None, "manhattan": None, "octile": None}
         for h in stats.keys():
             print("Heuristic : ", h)
-            stat = b.testSingleQuery(NB_RUNS, "A*", "bin", BUCKET_SIZE, h, None)
+            stat = b.testSingleQuery("A*", "bin", BUCKET_SIZE, h, None)
             stats[h] = stat
             # print(stat)
         all_stats[graph.getName()]["stats"] = stats
@@ -98,7 +98,7 @@ def experiment3(graphs):
                                       "avg_deg": graph.getAvgDegree()}
 
         # Benchmark
-        b = Benchmark(graph)
+        b = Benchmark(graph, NB_RUNS)
 
         stats = {"random": None, "farthest": None, "planar": None}
         for ls in stats.keys():
@@ -110,7 +110,7 @@ def experiment3(graphs):
             pre_timer.stop()
             pre_timer.printTimeElapsedMin("lm dists")
 
-            stat = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+            stat = b.testSingleQuery("ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
             stat["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
             stats[ls] = stat
             # print(stat)
@@ -139,7 +139,7 @@ def experiment4(graphs):
                                       "avg_deg": graph.getAvgDegree()}
 
         # Benchmark
-        b = Benchmark(graph)
+        b = Benchmark(graph, NB_RUNS)
 
         stats = {1: None, 2: None, 4: None, 8: None, 16: None, 32: None}
         for nl in stats.keys():
@@ -151,7 +151,7 @@ def experiment4(graphs):
             pre_timer.stop()
             pre_timer.printTimeElapsedMin("lm dists")
 
-            stat = b.testSingleQuery(NB_RUNS, "ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
+            stat = b.testSingleQuery("ALT", "bin", BUCKET_SIZE, "euclidean", lm_dists)
             stat["lm_dists_CT"] = pre_timer.getTimeElapsedSec()
             stats[nl] = stat
             # print(stat)
@@ -179,7 +179,7 @@ def experiment5(graphs):
                                       "avg_deg": graph.getAvgDegree()}
 
         # Benchmark
-        b = Benchmark(graph)
+        b = Benchmark(graph, NB_RUNS)
         stat = b.testPreprocessing(LANDMARK_SELECTION, NB_LANDMARKS)
 
         print(stat["Prepro_time"], " seconds")
@@ -208,7 +208,7 @@ def experiment6(graphs):
                                       "avg_deg": graph.getAvgDegree()}
 
         # Benchmark
-        b = Benchmark(graph)
+        b = Benchmark(graph, NB_RUNS)
         pre_timer = Timer()
         pre_timer.start()
         alt_pre = ALTpreprocessing(graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
@@ -219,7 +219,7 @@ def experiment6(graphs):
         algos = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
         print("running algos... : " + " - ".join(algos))
         prepro_time = pre_timer.getTimeElapsedSec()
-        stats = b.testMultipleQueries(NB_RUNS, graph, algos, lm_dists, prepro_time)
+        stats = b.testMultipleQueries(graph, algos, lm_dists, prepro_time)
         # print(stats)
 
         all_stats[graph.getName()]["stats"] = stats
@@ -264,7 +264,7 @@ def experiment7(graphs):
                 print("nb edges after added lines = ", multi_graph.getNbEdges())
 
                 # Benchmark
-                b = Benchmark(multi_graph)
+                b = Benchmark(multi_graph, NB_RUNS)
                 pre_timer = Timer()
                 pre_timer.start()
                 alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
@@ -272,7 +272,7 @@ def experiment7(graphs):
                 pre_timer.stop()
                 prepro_time = pre_timer.getTimeElapsedSec()
                 algos = ["Dijkstra", "ALT"]
-                stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+                stat = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
 
                 stats[nb_exp] = [s, n] + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
 
@@ -310,7 +310,7 @@ def experiment8(graphs, show):
         all_stats[graph.getName()]["avg_deg_after"] = multi_graph.getAvgDegree()
 
         # Benchmark
-        b = Benchmark(multi_graph)
+        b = Benchmark(multi_graph, NB_RUNS)
         pre_timer = Timer()
         pre_timer.start()
         alt_pre = ALTpreprocessing(multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
@@ -319,7 +319,7 @@ def experiment8(graphs, show):
         pre_timer.printTimeElapsedMin("lm dists")
         prepro_time = pre_timer.getTimeElapsedSec()
         algos = ["Dijkstra", "ALT"]
-        stats = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+        stats = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
 
         # print(stats)
         header = ["algo", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT", "nb_villo_stations"]
@@ -389,9 +389,9 @@ def experiment9(graphs, fixed_pref, pref_range, step):
             multi_graph.toWeightedSum(prefs)
 
             # Benchmark query with varying preferences
-            b = Benchmark(multi_graph)
+            b = Benchmark(multi_graph, NB_RUNS)
             algos = ["Dijkstra", "ALT"]
-            stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+            stat = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
 
             stats[nb] = prefs + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
 
@@ -460,9 +460,9 @@ def experiment10(graphs, fixed_pref, pref_range, step, worst_case):
             multi_graph.toWeightedSum(prefs)
 
             # Benchmark query with varying preferences
-            b = Benchmark(multi_graph)
+            b = Benchmark(multi_graph, NB_RUNS)
             algos = ["Dijkstra", "ALT"]
-            stat = b.testMultipleQueriesMultiModal(NB_RUNS, multi_graph, algos, lm_dists, prepro_time)
+            stat = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
 
             stats[nb] = prefs + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
 
