@@ -37,12 +37,11 @@ def getSPalgoObject(graph, algo_name, s, t, priority, bucket_size, heuristic, lm
 
 
 class SingleQueryThread(threading.Thread):
-    def __init__(self, threadID, graph, algo_name, lm_dists, priority, bucket_size, heuristic):
+    def __init__(self, threadID, graph, s, t, algo_name, lm_dists, priority, bucket_size, heuristic):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.success = True
         self.timer = Timer()
-        s, t = Random.selectRandomPair(graph.getNodesIDs())
         self.algo = getSPalgoObject(graph, algo_name, s, t, priority, bucket_size, heuristic, lm_dists)
 
     def run(self):
@@ -52,7 +51,7 @@ class SingleQueryThread(threading.Thread):
 
 
 class MultipleQueriesThread(threading.Thread):
-    def __init__(self, threadID, graph, algos, lm_dists):
+    def __init__(self, threadID, graph, s, t, algos, lm_dists):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.algos_success = True
@@ -61,7 +60,7 @@ class MultipleQueriesThread(threading.Thread):
         self.algos = algos
         self.lm_dists = lm_dists
         self.graph = graph
-        self.s, self.t = Random.selectRandomPair(graph.getNodesIDs())
+        self.s, self.t = s, t
 
         self.stat = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_RS": 0} for algo_name in algos}
 
@@ -78,7 +77,7 @@ class MultipleQueriesThread(threading.Thread):
 
 
 class MultipleQueriesMultimodalThread(threading.Thread):
-    def __init__(self, threadID, graph, algos, lm_dists, prepro_time):
+    def __init__(self, threadID, graph, s, t, algos, lm_dists, prepro_time):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.algos_success = True
@@ -87,7 +86,7 @@ class MultipleQueriesMultimodalThread(threading.Thread):
         self.algos = algos
         self.lm_dists = lm_dists
         self.graph = graph
-        self.s, self.t = Random.selectRandomPair(graph.getNodesIDs())
+        self.s, self.t = s, t
 
         self.stat = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_RS": 0, "max_avg_lb": 0,
                                  "avg_travel_types": {}} for algo_name in algos}

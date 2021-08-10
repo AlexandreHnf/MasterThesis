@@ -27,6 +27,9 @@ def getRandomPair(irange):
 
 
 def selectRandomPair(nodes):
+    """
+    Get a s-t pair with s != t
+    """
     a = random.choice(nodes)
     b = random.choice(nodes)
     while a == b:
@@ -35,8 +38,13 @@ def selectRandomPair(nodes):
     return a, b
 
 
-def getRandomPairs(nodes, nb_runs):
+def getRandomPairs(nodes, x):
+    """
+    Get a list of x s-t pairs
+    """
     pairs = []
-    for _ in range(nb_runs):
+    for _ in range(x):
         s, t = selectRandomPair(nodes)
         pairs.append((s, t))
+
+    return pairs

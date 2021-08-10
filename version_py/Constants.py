@@ -60,8 +60,8 @@ SPEEDS = [0.1, 15, 30, 90, 120, 1e10]
 ADDED_EDGES = [0, 10, 50, 100, 200]
 
 EXPERIMENTS =           [1]
-NB_RUNS =               100
+NB_RUNS =               10
 
 # Visualization parameters
-EXPERIMENT_PLOT =       7
+EXPERIMENT_PLOT =       1
 KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]

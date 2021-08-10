@@ -33,7 +33,9 @@ class Benchmark:
         threads = []
         # create new threads
         for i in range(self.nb_runs):
-            my_thread = SingleQueryThread(i + 1, self.graph, algo_name, lm_dists, priority, bucket_size, heuristic)
+            s, t = self.st_pairs[i]
+            my_thread = SingleQueryThread(i + 1, self.graph, s, t, algo_name, lm_dists, priority, bucket_size,
+                                          heuristic)
             my_thread.start()
             threads.append(my_thread)
 
@@ -65,7 +67,8 @@ class Benchmark:
         threads = []
         # create new threads
         for i in range(self.nb_runs):
-            my_thread = MultipleQueriesThread(i + 1, graph, algos, lm_dists)
+            s, t = self.st_pairs[i]
+            my_thread = MultipleQueriesThread(i + 1, graph, s, t, algos, lm_dists)
             my_thread.start()
             threads.append(my_thread)
 
@@ -110,7 +113,8 @@ class Benchmark:
         threads = []
         # create new threads
         for i in range(self.nb_runs):
-            my_thread = MultipleQueriesMultimodalThread(i + 1, graph, algos, lm_dists, prepro_time)
+            s, t = self.st_pairs[i]
+            my_thread = MultipleQueriesMultimodalThread(i + 1, graph, s, t, algos, lm_dists, prepro_time)
             my_thread.start()
             threads.append(my_thread)
 
