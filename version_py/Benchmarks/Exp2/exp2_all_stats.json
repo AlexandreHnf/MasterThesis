@@ -1,134 +1,134 @@
 {
-    "2_Bruxelles": {
-        "nb_nodes": 1115,
-        "nb_edges": 1960,
-        "stats": {
-            "manhattan": {
-                "avg_RS": 599,
-                "avg_SS": 539,
-                "avg_CT": 0.004449
-            },
-            "euclidean": {
-                "avg_RS": 676,
-                "avg_SS": 613,
-                "avg_CT": 0.003632
-            },
-            "octile": {
-                "avg_RS": 640,
-                "avg_SS": 579,
-                "avg_CT": 0.004662
-            }
-        },
-        "avg_deg": 1.76
-    },
-    "1_ULB": {
-        "nb_nodes": 149,
-        "nb_edges": 349,
-        "stats": {
-            "manhattan": {
-                "avg_RS": 97,
-                "avg_SS": 78,
-                "avg_CT": 0.000581
-            },
-            "euclidean": {
-                "avg_RS": 94,
-                "avg_SS": 76,
-                "avg_CT": 0.000438
-            },
-            "octile": {
-                "avg_RS": 97,
-                "avg_SS": 79,
-                "avg_CT": 0.000519
-            }
-        },
-        "avg_deg": 2.34
-    },
     "3_Bruxelles_Capitale_centre": {
-        "nb_nodes": 4755,
+        "stats": {
+            "octile": {
+                "avg_RS": 3008,
+                "avg_CT": 0.080257,
+                "avg_SS": 2624
+            },
+            "manhattan": {
+                "avg_RS": 3001,
+                "avg_CT": 0.095717,
+                "avg_SS": 2618
+            },
+            "euclidean": {
+                "avg_RS": 3008,
+                "avg_CT": 0.075256,
+                "avg_SS": 2625
+            }
+        },
         "nb_edges": 9892,
-        "stats": {
-            "manhattan": {
-                "avg_RS": 3225,
-                "avg_SS": 2822,
-                "avg_CT": 0.106796
-            },
-            "euclidean": {
-                "avg_RS": 2829,
-                "avg_SS": 2471,
-                "avg_CT": 0.035123
-            },
-            "octile": {
-                "avg_RS": 3017,
-                "avg_SS": 2635,
-                "avg_CT": 0.069423
-            }
-        },
-        "avg_deg": 2.08
+        "avg_deg": 2.08,
+        "nb_nodes": 4755
     },
-    "4_Bruxelles_Capitale": {
-        "nb_nodes": 25448,
-        "nb_edges": 54392,
+    "2_Bruxelles": {
         "stats": {
+            "octile": {
+                "avg_RS": 623,
+                "avg_CT": 0.006681,
+                "avg_SS": 562
+            },
             "manhattan": {
-                "avg_RS": 16347,
-                "avg_SS": 14655,
-                "avg_CT": 5.288687
+                "avg_RS": 622,
+                "avg_CT": 0.006898,
+                "avg_SS": 561
             },
             "euclidean": {
-                "avg_RS": 15354,
-                "avg_SS": 13751,
-                "avg_CT": 1.723297
-            },
-            "octile": {
-                "avg_RS": 13883,
-                "avg_SS": 12428,
-                "avg_CT": 1.830234
+                "avg_RS": 623,
+                "avg_CT": 0.004676,
+                "avg_SS": 562
             }
         },
-        "avg_deg": 2.14
-    },
-    "5_Belgique_centre": {
-        "nb_nodes": 213888,
-        "nb_edges": 466262,
-        "stats": {
-            "manhattan": {
-                "avg_RS": 128838,
-                "avg_SS": 117640,
-                "avg_CT": 97.254997
-            },
-            "euclidean": {
-                "avg_RS": 112968,
-                "avg_SS": 103053,
-                "avg_CT": 66.038448
-            },
-            "octile": {
-                "avg_RS": 135194,
-                "avg_SS": 123441,
-                "avg_CT": 103.136242
-            }
-        },
-        "avg_deg": 2.18
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "nb_nodes": 1115
     },
     "6_Belgique": {
-        "nb_nodes": 395301,
-        "nb_edges": 871716,
         "stats": {
+            "octile": {
+                "avg_RS": 242644,
+                "avg_CT": 195.924536,
+                "avg_SS": 221136
+            },
             "manhattan": {
-                "avg_RS": 225141,
-                "avg_SS": 205196,
-                "avg_CT": 154.673335
+                "avg_RS": 241194,
+                "avg_CT": 248.761428,
+                "avg_SS": 219812
             },
             "euclidean": {
-                "avg_RS": 222215,
-                "avg_SS": 202425,
-                "avg_CT": 131.725693
-            },
-            "octile": {
-                "avg_RS": 221186,
-                "avg_SS": 201588,
-                "avg_CT": 139.138559
+                "avg_RS": 242724,
+                "avg_CT": 204.557367,
+                "avg_SS": 221204
             }
         },
-        "avg_deg": 2.21
+        "nb_edges": 871716,
+        "avg_deg": 2.21,
+        "nb_nodes": 395301
+    },
+    "5_Belgique_centre": {
+        "stats": {
+            "octile": {
+                "avg_RS": 122156,
+                "avg_CT": 72.85233,
+                "avg_SS": 111487
+            },
+            "manhattan": {
+                "avg_RS": 121503,
+                "avg_CT": 96.484169,
+                "avg_SS": 110880
+            },
+            "euclidean": {
+                "avg_RS": 122190,
+                "avg_CT": 77.725914,
+                "avg_SS": 111516
+            }
+        },
+        "nb_edges": 466262,
+        "avg_deg": 2.18,
+        "nb_nodes": 213888
+    },
+    "1_ULB": {
+        "stats": {
+            "octile": {
+                "avg_RS": 105,
+                "avg_CT": 0.000795,
+                "avg_SS": 85
+            },
+            "manhattan": {
+                "avg_RS": 105,
+                "avg_CT": 0.001276,
+                "avg_SS": 85
+            },
+            "euclidean": {
+                "avg_RS": 105,
+                "avg_CT": 0.000799,
+                "avg_SS": 85
+            }
+        },
+        "nb_edges": 349,
+        "avg_deg": 2.34,
+        "nb_nodes": 149
+    },
+    "4_Bruxelles_Capitale": {
+        "stats": {
+            "octile": {
+                "avg_RS": 14507,
+                "avg_CT": 1.899613,
+                "avg_SS": 12991
+            },
+            "manhattan": {
+                "avg_RS": 14459,
+                "avg_CT": 2.106294,
+                "avg_SS": 12945
+            },
+            "euclidean": {
+                "avg_RS": 14511,
+                "avg_CT": 2.113175,
+                "avg_SS": 12994
+            }
+        },
+        "nb_edges": 54392,
+        "avg_deg": 2.14,
+        "nb_nodes": 25448
     }
 }

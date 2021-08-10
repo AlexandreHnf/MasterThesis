@@ -17,7 +17,7 @@ from Timer import Timer
 
 def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, landmarks, show):
     # TODO put it in a "SHOW" class along with the matplotlib plots
-    print("Search space : ", list(search_space.keys()))
+    # print("Search space : ", list(search_space.keys()))
     print("shortest_path : ", shortest_path, len(shortest_path))
     print("Search space size : ", sp_obj.getSearchSpaceSize())
     print("Nb relaxed vertex : ", sp_obj.getNbRelaxedEdges())
@@ -29,9 +29,9 @@ def showResult(graph_coords, search_space, shortest_path, sp_coords, sp_obj, lan
     print("===============================================")
     print("===============================================")
 
+    print(show)
     if show == "True" or show is True:
-        print("show !!", show)
-        # showQtree(sp_obj.graph.getQtree(), graph_coords, search_space, sp_coords, landmarks)
+        showQtree(sp_obj.graph.getQtree(), graph_coords, search_space, sp_coords, landmarks)
 
 
 # =================================================================================
@@ -79,7 +79,6 @@ def testAstar(graph, s, t, queue_type="bin", heuristic="euclidean", show=False):
 
 
 def testALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic="euclidean", show=False):
-
     alt_pre = ALTpreprocessing(graph, lm_selection, None, 16)
     prepro_timer = Timer()
     prepro_timer.start()
@@ -96,6 +95,7 @@ def testALT(graph, s, t, lm_selection="planar", queue_type="bin", heuristic="euc
 
     max_avg_dist = alt.getAvgMaxHeuristicDist()
     print("max avg distance ALT : ", max_avg_dist)
+
 
 def testBidiDijkstra(graph, s, t, queue_type="bin", show=False):
     bd = BidirectionalDijkstra(graph, s, t, queue_type)

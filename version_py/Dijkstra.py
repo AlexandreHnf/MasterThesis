@@ -14,7 +14,7 @@ class Dijkstra(ShortestPath):
     def __init__(self, graph, s, t, priority="bin", bucket_size=40):
         ShortestPath.__init__(self, graph, s, t, bucket_size)
 
-        #print(self.s, self.t)
+        # print(self.s, self.t)
 
         self.search_space = []
         self.search_space_size = 0
@@ -145,7 +145,6 @@ class Dijkstra(ShortestPath):
         else:  # list
             self.unvisited.append(node)
 
-
     def run(self):
         """
         Find the shortest path from s to t.
@@ -159,8 +158,7 @@ class Dijkstra(ShortestPath):
             self.search_space.append((self.preds[v], [v]))
             if v in self.closed_set:
                 continue
-            elif v == self.t :#or self.graph.getGeoCoords(v) == self.graph.getGeoCoords(self.t):
-                #print("found : ", v)
+            elif v == self.t:  # or self.graph.getGeoCoords(v) == self.graph.getGeoCoords(self.t):
                 return True
             self.closed_set.add(v)
             self.relaxVertex(v)
@@ -177,8 +175,8 @@ class Dijkstra(ShortestPath):
                 continue
             self.nb_relax_edges += 1
             new_dist = self.dists_so_far[v] + arc.getWeight()
-            #print(arc.getTravelType(), arc.getWeight(), end=" ")
+            # print(arc.getTravelType(), arc.getWeight(), end=" ")
             if neighbour not in self.preds or new_dist < self.dists_so_far[neighbour]:
                 self.preds[neighbour] = v
                 self.dists_so_far[neighbour] = new_dist
-                self.pushPriorityQueue( (new_dist, neighbour) )
+                self.pushPriorityQueue((new_dist, neighbour))

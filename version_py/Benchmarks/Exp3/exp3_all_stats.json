@@ -1,152 +1,152 @@
 {
-    "1_ULB": {
-        "avg_deg": 2.34,
-        "stats": {
-            "random": {
-                "lm_dists_CT": 0.03963389999989886,
-                "avg_CT": 0.000155,
-                "avg_RS": 27,
-                "avg_SS": 18
-            },
-            "farthest": {
-                "lm_dists_CT": 0.11629410000000462,
-                "avg_CT": 0.000477,
-                "avg_RS": 22,
-                "avg_SS": 14
-            },
-            "planar": {
-                "lm_dists_CT": 0.10125710000011168,
-                "avg_CT": 0.000201,
-                "avg_RS": 22,
-                "avg_SS": 14
-            }
-        },
-        "nb_nodes": 149,
-        "nb_edges": 349
-    },
-    "5_Belgique_centre": {
-        "avg_deg": 2.18,
-        "stats": {
-            "random": {
-                "lm_dists_CT": 99.26653499999998,
-                "avg_CT": 0.419867,
-                "avg_RS": 9111,
-                "avg_SS": 8269
-            },
-            "farthest": {
-                "lm_dists_CT": 149.7690015999999,
-                "avg_CT": 0.505076,
-                "avg_RS": 12743,
-                "avg_SS": 11637
-            },
-            "planar": {
-                "lm_dists_CT": 349.57253519999995,
-                "avg_CT": 0.35818,
-                "avg_RS": 10657,
-                "avg_SS": 9736
-            }
-        },
-        "nb_nodes": 213888,
-        "nb_edges": 466262
-    },
-    "6_Belgique": {
-        "avg_deg": 2.21,
-        "stats": {
-            "random": {
-                "lm_dists_CT": 192.95984039999985,
-                "avg_CT": 1.223787,
-                "avg_RS": 14804,
-                "avg_SS": 13520
-            },
-            "farthest": {
-                "lm_dists_CT": 278.24560109999993,
-                "avg_CT": 0.589957,
-                "avg_RS": 12125,
-                "avg_SS": 11007
-            },
-            "planar": {
-                "lm_dists_CT": 693.5539627999997,
-                "avg_CT": 0.268383,
-                "avg_RS": 9057,
-                "avg_SS": 8181
-            }
-        },
-        "nb_nodes": 395301,
-        "nb_edges": 871716
-    },
-    "2_Bruxelles": {
-        "avg_deg": 1.76,
-        "stats": {
-            "random": {
-                "lm_dists_CT": 0.28771789999996145,
-                "avg_CT": 0.001176,
-                "avg_RS": 154,
-                "avg_SS": 124
-            },
-            "farthest": {
-                "lm_dists_CT": 0.543514899999991,
-                "avg_CT": 0.001075,
-                "avg_RS": 160,
-                "avg_SS": 129
-            },
-            "planar": {
-                "lm_dists_CT": 0.4876942999999301,
-                "avg_CT": 0.001072,
-                "avg_RS": 161,
-                "avg_SS": 132
-            }
-        },
-        "nb_nodes": 1115,
-        "nb_edges": 1960
-    },
     "3_Bruxelles_Capitale_centre": {
-        "avg_deg": 2.08,
         "stats": {
-            "random": {
-                "lm_dists_CT": 1.3948281000000406,
-                "avg_CT": 0.004594,
-                "avg_RS": 514,
-                "avg_SS": 411
-            },
-            "farthest": {
-                "lm_dists_CT": 2.1330067000001236,
-                "avg_CT": 0.003325,
-                "avg_RS": 428,
+            "planar": {
+                "avg_RS": 417,
+                "lm_dists_CT": 3.201983200000541,
+                "avg_CT": 0.004164,
                 "avg_SS": 329
             },
-            "planar": {
-                "lm_dists_CT": 2.3803265999999894,
-                "avg_CT": 0.003473,
-                "avg_RS": 448,
-                "avg_SS": 352
-            }
-        },
-        "nb_nodes": 4755,
-        "nb_edges": 9892
-    },
-    "4_Bruxelles_Capitale": {
-        "avg_deg": 2.14,
-        "stats": {
             "random": {
-                "lm_dists_CT": 10.112919500000089,
-                "avg_CT": 0.023335,
-                "avg_RS": 1689,
-                "avg_SS": 1400
+                "avg_RS": 420,
+                "lm_dists_CT": 1.4877224000010756,
+                "avg_CT": 0.004482,
+                "avg_SS": 332
             },
             "farthest": {
-                "lm_dists_CT": 17.042964200000142,
-                "avg_CT": 0.100605,
-                "avg_RS": 3844,
-                "avg_SS": 3393
-            },
-            "planar": {
-                "lm_dists_CT": 22.939689199999975,
-                "avg_CT": 0.054425,
-                "avg_RS": 3043,
-                "avg_SS": 2660
+                "avg_RS": 459,
+                "lm_dists_CT": 2.898622599999726,
+                "avg_CT": 0.00429,
+                "avg_SS": 364
             }
         },
-        "nb_nodes": 25448,
-        "nb_edges": 54392
+        "nb_edges": 9892,
+        "avg_deg": 2.08,
+        "nb_nodes": 4755
+    },
+    "2_Bruxelles": {
+        "stats": {
+            "planar": {
+                "avg_RS": 141,
+                "lm_dists_CT": 0.6102635000006558,
+                "avg_CT": 0.001366,
+                "avg_SS": 113
+            },
+            "random": {
+                "avg_RS": 147,
+                "lm_dists_CT": 0.34970719999910216,
+                "avg_CT": 0.001224,
+                "avg_SS": 118
+            },
+            "farthest": {
+                "avg_RS": 145,
+                "lm_dists_CT": 0.6705307999982324,
+                "avg_CT": 0.001472,
+                "avg_SS": 117
+            }
+        },
+        "nb_edges": 1960,
+        "avg_deg": 1.76,
+        "nb_nodes": 1115
+    },
+    "6_Belgique": {
+        "stats": {
+            "planar": {
+                "avg_RS": 19352,
+                "lm_dists_CT": 762.2073536000007,
+                "avg_CT": 4.621322,
+                "avg_SS": 17538
+            },
+            "random": {
+                "avg_RS": 23533,
+                "lm_dists_CT": 200.75953759999902,
+                "avg_CT": 5.397077,
+                "avg_SS": 21495
+            },
+            "farthest": {
+                "avg_RS": 32901,
+                "lm_dists_CT": 284.0302456999998,
+                "avg_CT": 12.252469,
+                "avg_SS": 30191
+            }
+        },
+        "nb_edges": 871716,
+        "avg_deg": 2.21,
+        "nb_nodes": 395301
+    },
+    "5_Belgique_centre": {
+        "stats": {
+            "planar": {
+                "avg_RS": 9404,
+                "lm_dists_CT": 381.84608300000036,
+                "avg_CT": 1.365764,
+                "avg_SS": 8457
+            },
+            "random": {
+                "avg_RS": 8356,
+                "lm_dists_CT": 110.39500580000094,
+                "avg_CT": 0.824056,
+                "avg_SS": 7506
+            },
+            "farthest": {
+                "avg_RS": 13196,
+                "lm_dists_CT": 162.7768304000001,
+                "avg_CT": 1.919941,
+                "avg_SS": 11998
+            }
+        },
+        "nb_edges": 466262,
+        "avg_deg": 2.18,
+        "nb_nodes": 213888
+    },
+    "1_ULB": {
+        "stats": {
+            "planar": {
+                "avg_RS": 29,
+                "lm_dists_CT": 0.06303999999909138,
+                "avg_CT": 0.000198,
+                "avg_SS": 19
+            },
+            "random": {
+                "avg_RS": 32,
+                "lm_dists_CT": 0.053914500000246335,
+                "avg_CT": 0.00022,
+                "avg_SS": 21
+            },
+            "farthest": {
+                "avg_RS": 30,
+                "lm_dists_CT": 0.0932024999983696,
+                "avg_CT": 0.000199,
+                "avg_SS": 20
+            }
+        },
+        "nb_edges": 349,
+        "avg_deg": 2.34,
+        "nb_nodes": 149
+    },
+    "4_Bruxelles_Capitale": {
+        "stats": {
+            "planar": {
+                "avg_RS": 2301,
+                "lm_dists_CT": 56.141157800000656,
+                "avg_CT": 0.087009,
+                "avg_SS": 1959
+            },
+            "random": {
+                "avg_RS": 2143,
+                "lm_dists_CT": 10.372410200001468,
+                "avg_CT": 0.112267,
+                "avg_SS": 1844
+            },
+            "farthest": {
+                "avg_RS": 3290,
+                "lm_dists_CT": 18.153170400000818,
+                "avg_CT": 0.146712,
+                "avg_SS": 2873
+            }
+        },
+        "nb_edges": 54392,
+        "avg_deg": 2.14,
+        "nb_nodes": 25448
     }
 }

@@ -69,19 +69,21 @@ def processArgs():
         runAllSP(7, 1335)
 
 
-def runAllSP(s, t):
+def runAllSP():
+    # 7, 1335 = good example of s-t
     p = OSMgraphParser(GRAPH_BXL)
     graph = p.parse()
     p.showStats()
+    s, t = selectRandomPair(graph.getNodesIDs())
 
-    # testDijkstra(graph, s, t)
-    # testAstar(graph, s, t)
+    testDijkstra(graph, s, t, "bin", True)
+    testAstar(graph, s, t, "bin", "euclidean", True)
     testALT(graph, s, t, "planar", "bin", "euclidean", True)
 
     # bidirectional
-    # testBidiDijkstra(graph, s, t)
-    # testBidiAstar(graph, s, t)
-    # testBidiALT(graph, s, t, "planar", "bin", "euclidean")
+    testBidiDijkstra(graph, s, t, "bin", True)
+    testBidiAstar(graph, s, t, "bin", "euclidean", True)
+    testBidiALT(graph, s, t, "planar", "bin", "euclidean", True)
 
 
 def testLandmark():
@@ -109,10 +111,10 @@ def showGraphQtree():
 
 # ==================================================================
 def main():
-    # runAllSP(7, 1335)
+    runAllSP()
     # testLandmark()
     # =========================================
-    processArgs()
+    # processArgs()
     # =========================================
     # testPaths()
     # showGraphQtree()

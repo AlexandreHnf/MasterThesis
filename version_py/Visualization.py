@@ -270,6 +270,8 @@ def plotPrefAvgMaxLb(filename, title, ylabel, xlabel, xmetric, graph, save_filen
 
 
 # ====================================================
+# ====================================================
+# ====================================================
 
 def plotExp1(metrics, kept_graphs):
     """
@@ -280,11 +282,11 @@ def plotExp1(metrics, kept_graphs):
     """
     categories = ["bin", "fib", "list"]
 
-    graphs = "".join([str(g+1) for g in kept_graphs])
+    graphs = ",".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(1, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(1, "exp1_all_stats.json"),
-                            "Experience 1 - Dijkstra - " + metric,
+                            "Exp 1 - Dijkstra - {0} - graphs : {1}".format(metric, graphs),
                             categories, metrics[metric], "|V|", metric,
                             kept_graphs, save_filename)
 
@@ -300,11 +302,11 @@ def plotExp2(metrics, kept_graphs):
     """
     categories = ["euclidean", "manhattan", "octile"]
 
-    graphs = "".join([str(g+1) for g in kept_graphs])
+    graphs = ",".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(2, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(2, "exp2_all_stats.json"),
-                            "Experience 2 - A* - " + metric,
+                            "Exp 2 - A* - {0} - graphs : {1}".format(metric, graphs),
                             categories, metrics[metric], "|V|", metric,
                             kept_graphs, save_filename)
 
@@ -320,11 +322,11 @@ def plotExp3(metrics, kept_graphs):
     """
     categories = ["random", "farthest", "planar"]
 
-    graphs = "".join([str(g+1) for g in kept_graphs])
+    graphs = ",".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(3, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
-                            "Experience 3 - ALT - " + metric,
+                            "Exp 3 - ALT - {0} - graphs : {1}".format(metric, graphs),
                             categories, metrics[metric], "|V|", metric,
                             kept_graphs, save_filename)
 
@@ -340,11 +342,11 @@ def plotExp4(metrics, kept_graphs):
     """
     categories = ["1", "2", "4", "8", "16", "32"]
 
-    graphs = "".join([str(g+1) for g in kept_graphs])
+    graphs = ",".join([str(g+1) for g in kept_graphs])
     for metric in metrics:
         save_filename = getFileExpPath(4, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
-                            "Experience 4 - ALT - " + metric,
+                            "Exp 4 - ALT - {0} - graphs : {1}".format(metric, graphs),
                             categories, metrics[metric], "|V|", metric,
                             kept_graphs, save_filename)
 
@@ -356,11 +358,11 @@ def plotExp5(kept_graphs):
     Single modal
     preprocessing time - |V|
     """
-    graphs = "".join([str(g+1) for g in kept_graphs])
+    graphs = ",".join([str(g+1) for g in kept_graphs])
     # preprocessing time - |V| with k=16, planar
     save_filename = getFileExpPath(5, "plot_prepro_CT_{0}.png".format(graphs))
     plotPreprocessingResult(getFileExpPath(5, "exp5_all_stats.json"),
-                            "Experience 5 - Preprocessing - k=16, farthest",
+                            "Exp 5 - Preprocessing - k=16, farthest",
                             "computation time (sec.)", "|V|",
                             kept_graphs, save_filename)
 
@@ -368,7 +370,7 @@ def plotExp5(kept_graphs):
     categories = ["random", "farthest", "planar"]
     save_filename = getFileExpPath(5, "plot_prepro_CT_selections_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
-                        "Experience 5 - Preprocessing - random, farthest, planar",
+                        "Exp 5 - Preprocessing - random, farthest, planar",
                         categories, "preprocessing time (sec.)",
                         "|V|", "lm_dists_CT", kept_graphs, save_filename)
 
@@ -376,7 +378,7 @@ def plotExp5(kept_graphs):
     categories = ["1", "2", "4", "8", "16", "32"]
     save_filename = getFileExpPath(5, "plot_prepro_CT_k_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
-                        "Experience 5 - Preprocessing - k=[1,2,4,8,16,32]",
+                        "Exp 5 - Preprocessing - k=[1,2,4,8,16,32]",
                         categories, "preprocessing time (sec.)",
                         "|V|", "lm_dists_CT", kept_graphs, save_filename)
 
@@ -390,11 +392,11 @@ def plotExp6(metrics, improvements, kept_graphs):
     # plot standard metrics
     categories = ["Dijkstra", "A*", "ALT", "BidiDijkstra", "BidiAstar", "BidiALT"]
 
-    graphs = "".join([str(g+1) for g in KEPT_GRAPHS])
+    graphs = ",".join([str(g+1) for g in KEPT_GRAPHS])
     for metric in metrics:
         save_filename = getFileExpPath(6, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(6, "exp6_all_stats.json"),
-                            "Experience 6 - Single-modal car networks - " + metric,
+                            "Exp 6 - Single-modal car networks - " + metric,
                             categories, metrics[metric], "|V|", metric,
                             kept_graphs, save_filename)
 
@@ -404,14 +406,14 @@ def plotExp6(metrics, improvements, kept_graphs):
     for metric in improvements:
         save_filename = getFileExpPath(6, "plot_improv_{0}_{1}.png".format(metric, graphs))
         plotImprovementsResult(getFileExpPath(6, "exp6_all_stats.json"),
-                               "Experience 6 - Improvement - " + metric,
+                               "Exp 6 - Improvement - " + metric,
                                categories, improvements[metric], "|V|",
                                metric, kept_graphs, save_filename)
 
     # plot : |V| - avg deg
     save_filename = getFileExpPath(6, "plot_avg_deg_{0}.png".format(graphs))
     plotAvgDegResult(getFileExpPath(6, "exp6_all_stats.json"),
-                     "Experience 6 - avg degree",
+                     "Exp 6 - avg degree",
                      "avg deg", "|V|", kept_graphs, save_filename)
 
 # ====================================================
@@ -426,27 +428,27 @@ def plotExp7(metrics, improvements, graphs):
         for metric in metrics:
             save_filename = getFileExpPath(7, "plot_" + metric + "_" + graph + ".png")
             plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
-                           "Experience 7 - Nb added edges - " + metric + " - " + graph,
+                           "Exp 7 - Nb added edges - " + metric + " - " + graph,
                            metrics[metric], "|added edges|", metric,
                            "ALT", graph, save_filename)
 
         for metric in improvements:
             save_filename = getFileExpPath(7, "plot_improv_" + metric + "_" + graph + ".png")
             plotImprovementsExp7(getFileExpPath(7, "exp7_all_stats.json"),
-                                 "Experience 7 - improvement - " + metric + " - " + graph,
+                                 "Exp 7 - improvement - " + metric + " - " + graph,
                                  improvements[metric], "|added edges|", metric,
                                  graph, save_filename)
 
         save_filename = getFileExpPath(7, "plot_avgDeg_" + graph + ".png")
         plotExp7AvgDegResult(getFileExpPath(7, "exp7_all_stats.json"),
-                             "Experience 7 - avg deg - " + graph,
+                             "Exp 7 - avg deg - " + graph,
                              "avg deg after", "|added edges|",
                              graph, save_filename)
 
         # plot : mac avg lower bound - ALT
         save_filename = getFileExpPath(7, "plot_max_avg_lb_" + graph + ".png")
         plotMaxAvgLbExp7(getFileExpPath(7, "exp7_all_stats.json"),
-                         "Experience 7 - Max average distance lower bound - " + graph,
+                         "Exp 7 - Max average distance lower bound - " + graph,
                          "max avg lower bound", "|added edges|",
                          graph, save_filename)
 
@@ -463,14 +465,14 @@ def plotExp8(metrics, kept_graphs):
     for metric in metrics:
         save_filename = getFileExpPath(8, "plot_" + metric + ".png")
         plotBenchmarkResult(getFileExpPath(8, "exp8_all_stats.json"),
-                            "Experience 8 - Multi-modal station-based - " + metric,
+                            "Exp 8 - Multi-modal station-based - " + metric,
                             categories, metrics[metric], "|V|",
                             metric, kept_graphs, save_filename)
 
     # plot : modality1 - modality2 for Dijkstra & ALT
     save_filename = getFileExpPath(8, "plot_piechart_Dijkstra.png")
     plotModalitiesPieChart(getFileExpPath(8, "exp8_all_stats.json"),
-                           "Experience 8 - Pie chart modalities",
+                           "Exp 8 - Pie chart modalities",
                            "1_ULB", "Dijkstra", save_filename)
 
 # ====================================================
@@ -484,13 +486,13 @@ def plotExp9(metrics, graphs):
         for metric in metrics:
             save_filename = getFileExpPath(9, "plot_" + metric + "" + graph + ".png")
             plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
-                              "Experience 9 - prefs - " + metric + " - " + graph,
+                              "Exp 9 - prefs - " + metric + " - " + graph,
                               metrics[metric], "c2", "c2", metric,
                               graph, save_filename)
 
         save_filename = getFileExpPath(9, "plot_travelTypes_" + graph + ".png")
         plotModalitiesLines(getFileExpPath(9, "exp9_all_stats.json"),
-                            "Experience 9 - Travel types - " + graph,
+                            "Exp 9 - Travel types - " + graph,
                             "Travel types frequency", "c2", graph,
                             ["Villo", "fromStation", "toStation", "car"],
                             "Dijkstra", "c2", save_filename)
@@ -498,7 +500,7 @@ def plotExp9(metrics, graphs):
         # plot max avg lb
         save_filename = getFileExpPath(9, "plot_max_avg_lb_" + graph + ".png")
         plotPrefAvgMaxLb(getFileExpPath(9, "exp9_all_stats.json"),
-                         "Experience 9 - Max avg lower bound - " + graph,
+                         "Exp 9 - Max avg lower bound - " + graph,
                          "Max avg dist lb", "c2", "c2",
                          graph, save_filename)
 
@@ -513,13 +515,13 @@ def plotExp10(metrics, graphs):
         for metric in metrics:
             save_filename = getFileExpPath(10, "plot_" + metric + "" + graph + ".png")
             plotPrefExpResult(getFileExpPath(10, "exp10_all_stats.json"),
-                              "Experience 10 - prefs - " + metric + " - " + graph,
+                              "Exp 10 - prefs - " + metric + " - " + graph,
                               metrics[metric], "c2", "c2", metric,
                               graph, save_filename)
 
         save_filename = getFileExpPath(10, "plot_travelTypes_" + graph + ".png")
         plotModalitiesLines(getFileExpPath(10, "exp10_all_stats.json"),
-                            "Experience 10 - Travel types - " + graph,
+                            "Exp 10 - Travel types - " + graph,
                             "Travel types frequency", "c2", graph,
                             ["Villo", "fromStation", "toStation", "car"],
                             "Dijkstra", "c2", save_filename)
@@ -527,7 +529,7 @@ def plotExp10(metrics, graphs):
         # plot max avg lb
         save_filename = getFileExpPath(10, "plot_max_avg_lb_" + graph + ".png")
         plotPrefAvgMaxLb(getFileExpPath(10, "exp10_all_stats.json"),
-                         "Experience 10 - Max avg lower bound - " + graph,
+                         "Exp 10 - Max avg lower bound - " + graph,
                          "Max avg dist lb", "c2", "c2",
                          graph, save_filename)
 
