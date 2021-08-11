@@ -5,8 +5,8 @@
 # from https://github.com/ryanpon/pathfinding-animator
 
 import matplotlib.pyplot as plt
-from matplotlib.axes._axes import _log as matplotlib_axes_logger
-matplotlib_axes_logger.setLevel('ERROR')  # remove useless matplotlib warnings
+# from matplotlib.axes._axes import _log as matplotlib_axes_logger
+# matplotlib_axes_logger.setLevel('ERROR')  # remove useless matplotlib warnings
 # from matplotlib import gridspec
 from collections import defaultdict
 

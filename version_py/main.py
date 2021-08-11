@@ -111,10 +111,10 @@ def showGraphQtree():
 
 # ==================================================================
 def main():
-    runAllSP()
+    # runAllSP()
     # testLandmark()
     # =========================================
-    # processArgs()
+    processArgs()
     # =========================================
     # testPaths()
     # showGraphQtree()

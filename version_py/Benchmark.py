@@ -129,7 +129,7 @@ class Benchmark:
                 stats[algo_name]["avg_RS"] += threads[i].stat[algo_name]["avg_RS"]
                 if algo_name == "ALT":
                     stats[algo_name]["max_avg_lb"] += threads[i].stat[algo_name]["max_avg_lb"]
-                self.addTravelTypesStats(stats, algo_name, threads[i].stat[algo_name]["avg_travel_types"], self.nb_runs)
+                self.addTravelTypesStats(stats, algo_name, threads[i].stat[algo_name]["avg_travel_types"])
 
         # round
         for algo_name in algos:

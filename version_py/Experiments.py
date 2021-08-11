@@ -267,7 +267,7 @@ def experiment7(graphs):
                 b = Benchmark(multi_graph, NB_RUNS)
                 pre_timer = Timer()
                 pre_timer.start()
-                alt_pre = ALTpreprocessing(multi_graph, "planar", None, 16)
+                alt_pre = ALTpreprocessing(multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
                 lm_dists = alt_pre.getLmDistances()
                 pre_timer.stop()
                 prepro_time = pre_timer.getTimeElapsedSec()
@@ -277,7 +277,7 @@ def experiment7(graphs):
                 stats[nb_exp] = [s, n] + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
 
                 all_stats[graph.getName()][s][n] = {"nb_edges_after": multi_graph.getNbEdges(),
-                                                    "avg_degree_after": multi_graph.getNbNodes(),
+                                                    "avg_degree_after": multi_graph.getAvgDegree(),
                                                     "Dijkstra": stat["Dijkstra"],
                                                     "ALT": stat["ALT"]}
                 nb_exp += 1
