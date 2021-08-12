@@ -57,10 +57,16 @@ CAR_CONSUMPTION =       7    # L / 100km
 # Exp 7 - multimodal public transport
 SPEEDS = [0.1, 15, 30, 90, 120, 1e10]
 ADDED_EDGES = [0, 10, 50, 100, 200]
+EXP7_GRAPH = 4
+
+# EXP 8
+EXP8_GRAPHS = [1, 2, 3, 4]
+
+VILLO_TRANSITION_TIME = 300
 
 EXPERIMENTS =           [1]
-NB_RUNS =               10
+NB_RUNS =               100
 
 # Visualization parameters
-EXPERIMENT_PLOT =       7
-KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]
+EXPERIMENT_PLOT =       8
+KEPT_GRAPHS =           [0, 1, 2, 3]

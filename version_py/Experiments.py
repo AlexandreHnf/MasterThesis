@@ -583,7 +583,7 @@ def launchSingleModalExperiment(exp):
 
 
 def parseSingleGraph(graph_nb, base="car"):
-    p = OSMgraphParser(GRAPHS[graph_nb])
+    p = OSMgraphParser(GRAPHS[graph_nb-1])
     graph = p.parse(base)
     return graph
 
@@ -596,7 +596,7 @@ def launchMultimodalExperiment(exp):
         timer = Timer()
         timer.start()
         # foot base layer
-        graphs = [parseSingleGraph(3, "foot")]
+        graphs = [parseSingleGraph(EXP7_GRAPH, "foot")]
         # graphs = all_graphs[3]
         experiment7(graphs)
         timer.stop()
@@ -608,7 +608,7 @@ def launchMultimodalExperiment(exp):
         timer.start()
         # foot base layer
         # graphs = all_graphs[:2]
-        graphs = [parseSingleGraph(3, "foot")]
+        graphs = [parseSingleGraph(g, "foot") for g in EXP8_GRAPHS]
         experiment8(graphs, show=False)
         timer.stop()
         timer.printTimeElapsedMin("Exp 8")

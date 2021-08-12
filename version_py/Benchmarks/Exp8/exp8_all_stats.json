@@ -1,78 +1,154 @@
 {
     "1_ULB": {
-        "nb_nodes": 149,
+        "nb_nodes_after": 298,
+        "stats": {
+            "ALT": {
+                "avg_SS": 24.0,
+                "lm_dists_CT": 0.08898840000256314,
+                "max_avg_lb": 316.92,
+                "avg_RS": 37.43,
+                "nb_villo_stations": 32,
+                "avg_QT": 0.000185,
+                "avg_travel_types": {
+                    "foot": 7.36,
+                    "Villo": 26.68,
+                    "toStation": 1.28,
+                    "fromStation": 1.31
+                }
+            },
+            "Dijkstra": {
+                "avg_SS": 163.0,
+                "lm_dists_CT": 0,
+                "max_avg_lb": 0,
+                "avg_RS": 211.37,
+                "nb_villo_stations": 32,
+                "avg_QT": 0.000502,
+                "avg_travel_types": {
+                    "foot": 7.42,
+                    "Villo": 24.83,
+                    "toStation": 1.28,
+                    "fromStation": 1.31
+                }
+            }
+        },
         "nb_edges": 349,
         "avg_deg": 2.34,
-        "nb_nodes_after": 298,
-        "nb_edges_after": 762,
+        "nb_nodes": 149,
         "avg_deg_after": 2.56,
+        "nb_edges_after": 762
+    },
+    "4_Bruxelles_Capitale": {
+        "nb_nodes_after": 50896,
         "stats": {
-            "Dijkstra": {
-                "avg_QT": 0.000459,
-                "avg_SS": 161.4,
-                "avg_RS": 211.0,
-                "max_avg_lb": 0,
-                "avg_travel_types": {
-                    "Villo": 10.8,
-                    "fromStation": 1.4,
-                    "foot": 5.5,
-                    "toStation": 1.2
-                },
-                "lm_dists_CT": 0,
-                "nb_villo_stations": 32
-            },
             "ALT": {
-                "avg_QT": 0.000161,
-                "avg_SS": 18.2,
-                "avg_RS": 29.8,
-                "max_avg_lb": 263.03,
+                "avg_SS": 2962.79,
+                "lm_dists_CT": 52.46615880000172,
+                "max_avg_lb": 3590.96,
+                "avg_RS": 3476.15,
+                "nb_villo_stations": 355,
+                "avg_QT": 1.523872,
                 "avg_travel_types": {
-                    "Villo": 10.8,
-                    "fromStation": 1.4,
-                    "foot": 5.5,
-                    "toStation": 1.2
-                },
-                "lm_dists_CT": 1.3915785,
-                "nb_villo_stations": 32
+                    "foot": 89.55,
+                    "Villo": 269.91,
+                    "toStation": 1.4,
+                    "fromStation": 1.45
+                }
+            },
+            "Dijkstra": {
+                "avg_SS": 28334.11,
+                "lm_dists_CT": 0,
+                "max_avg_lb": 0,
+                "avg_RS": 31896.73,
+                "nb_villo_stations": 355,
+                "avg_QT": 8.055579,
+                "avg_travel_types": {
+                    "foot": 86.27,
+                    "Villo": 259.06,
+                    "toStation": 1.41,
+                    "fromStation": 1.46
+                }
             }
-        }
+        },
+        "nb_edges": 54392,
+        "avg_deg": 2.14,
+        "nb_nodes": 25448,
+        "avg_deg_after": 2.15,
+        "nb_edges_after": 109494
+    },
+    "3_Bruxelles_Capitale_centre": {
+        "nb_nodes_after": 9510,
+        "stats": {
+            "ALT": {
+                "avg_SS": 763.56,
+                "lm_dists_CT": 5.656156199998804,
+                "max_avg_lb": 929.64,
+                "avg_RS": 957.72,
+                "nb_villo_stations": 262,
+                "avg_QT": 0.083457,
+                "avg_travel_types": {
+                    "foot": 9.98,
+                    "Villo": 138.46,
+                    "toStation": 1.42,
+                    "fromStation": 1.54
+                }
+            },
+            "Dijkstra": {
+                "avg_SS": 4997.5,
+                "lm_dists_CT": 0,
+                "max_avg_lb": 0,
+                "avg_RS": 5903.31,
+                "nb_villo_stations": 262,
+                "avg_QT": 0.235191,
+                "avg_travel_types": {
+                    "foot": 9.94,
+                    "Villo": 139.7,
+                    "toStation": 1.42,
+                    "fromStation": 1.54
+                }
+            }
+        },
+        "nb_edges": 9892,
+        "avg_deg": 2.08,
+        "nb_nodes": 4755,
+        "avg_deg_after": 2.14,
+        "nb_edges_after": 20308
     },
     "2_Bruxelles": {
-        "nb_nodes": 1115,
+        "nb_nodes_after": 2230,
+        "stats": {
+            "ALT": {
+                "avg_SS": 237.75,
+                "lm_dists_CT": 0.9372417999984464,
+                "max_avg_lb": 564.36,
+                "avg_RS": 292.84,
+                "nb_villo_stations": 113,
+                "avg_QT": 0.004105,
+                "avg_travel_types": {
+                    "foot": 14.12,
+                    "Villo": 53.02,
+                    "toStation": 1.45,
+                    "fromStation": 1.37
+                }
+            },
+            "Dijkstra": {
+                "avg_SS": 1067.87,
+                "lm_dists_CT": 0,
+                "max_avg_lb": 0,
+                "avg_RS": 1236.68,
+                "nb_villo_stations": 113,
+                "avg_QT": 0.007566,
+                "avg_travel_types": {
+                    "foot": 13.97,
+                    "Villo": 48.33,
+                    "toStation": 1.46,
+                    "fromStation": 1.38
+                }
+            }
+        },
         "nb_edges": 1960,
         "avg_deg": 1.76,
-        "nb_nodes_after": 2230,
-        "nb_edges_after": 4146,
+        "nb_nodes": 1115,
         "avg_deg_after": 1.86,
-        "stats": {
-            "Dijkstra": {
-                "avg_QT": 0.004171,
-                "avg_SS": 1124.0,
-                "avg_RS": 1302.1,
-                "max_avg_lb": 0,
-                "avg_travel_types": {
-                    "foot": 15.0,
-                    "toStation": 1.4,
-                    "Villo": 52.5,
-                    "fromStation": 1.2
-                },
-                "lm_dists_CT": 0,
-                "nb_villo_stations": 113
-            },
-            "ALT": {
-                "avg_QT": 0.001631,
-                "avg_SS": 189.1,
-                "avg_RS": 241.6,
-                "max_avg_lb": 485.91,
-                "avg_travel_types": {
-                    "foot": 15.0,
-                    "toStation": 1.4,
-                    "Villo": 51.7,
-                    "fromStation": 1.2
-                },
-                "lm_dists_CT": 77.91556999999999,
-                "nb_villo_stations": 113
-            }
-        }
+        "nb_edges_after": 4146
     }
 }

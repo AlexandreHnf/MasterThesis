@@ -138,7 +138,6 @@ class Benchmark:
             stats[algo_name]["avg_RS"] = round(stats[algo_name]["avg_RS"] / self.nb_runs, 2)
             if algo_name in ["ALT", "BidiALT"]:
                 stats[algo_name]["max_avg_lb"] = round(stats[algo_name]["max_avg_lb"] / self.nb_runs, 2)
-                print("MAX AVG LB : ", stats[algo_name]["max_avg_lb"])
                 stats[algo_name]["lm_dists_CT"] = prepro_time
             else:
                 stats[algo_name]["lm_dists_CT"] = 0

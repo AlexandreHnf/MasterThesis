@@ -9,6 +9,7 @@ from Edge import Edge
 from Quadtree import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
+from Timer import Timer
 
 
 class MultiModalGraph(Graph):
@@ -45,7 +46,6 @@ class MultiModalGraph(Graph):
 
         # duplicate the base graph and change the duplicated edges weights
         max_id = max(self.getNodesIDs())
-        print("max id in the graph : ", max_id)
         for v in self.getNodesIDs():
             bike_edges = []
             for edge in self.getAdj(v):
@@ -59,9 +59,13 @@ class MultiModalGraph(Graph):
 
         # add links between the two layers
         for sn in stations_nodes:
-            # let's say it takes 1 seconds to go from car node to a villo station
-            self.addEdge(sn, Edge(sn + max_id, "toStation", 1, None, None))  # node to station
-            self.addEdge(sn + max_id, Edge(sn, "fromStation", 1, None, None))  # station to node
+            # node to station
+            self.addEdge(sn, Edge(sn + max_id, "toStation", VILLO_TRANSITION_TIME, None, None))
+            # station to node
+            self.addEdge(sn + max_id, Edge(sn, "fromStation", VILLO_TRANSITION_TIME, None, None))
+
+        # re-create the reverse graph (becomes multimodal)
+        self.rev_adj_list = self.createReverseGraph(self.adj_list)
 
     def getWeightedSum(self, edge, prefs):
         """
@@ -71,24 +75,26 @@ class MultiModalGraph(Graph):
         """
         if edge.getTravelType() == "car":
             ws = prefs[0] * edge.getWeight() + prefs[1] * getCarGasPrice(edge.getLengthKm())
-            #print("car : {0} . {1} + {2} . {3} = {4}".format(prefs[0], edge.getWeight(), prefs[1], getCarGasPrice(edge.getLengthKm()), ws))
+            # print("car : {0} . {1} + {2} . {3} = {4}".format(prefs[0], edge.getWeight(), prefs[1], getCarGasPrice(edge.getLengthKm()), ws))
             return ws
         else:  # bike or foot
             ws = prefs[0] * edge.getWeight() + prefs[1] * 0  # 0€
-            #print("{0} : {1} . {2} + {3} . {4} = {5}".format(edge.getTravelType(), prefs[0], edge.getWeight(), prefs[1], 0, ws))
+            # print("{0} : {1} . {2} + {3} . {4} = {5}".format(edge.getTravelType(), prefs[0], edge.getWeight(), prefs[1], 0, ws))
             return ws
 
     def toWeightedSum(self, prefs):
         for v in self.getNodesIDs():
             for edge in self.getAdj(v):
                 weighted_sum = self.getWeightedSum(edge, prefs)
-                #print(edge.getTravelType(), edge.getWeight())
+                # print(edge.getTravelType(), edge.getWeight())
                 edge.setWeight(weighted_sum)
 
 
 # =====================================================================
 
 def addVilloStations(graph, show=False):
+    timer = Timer()
+    timer.start()
     villo_coords = OSMgraphParser.getVilloNodes()
     # print(villo_coords)
 
@@ -112,5 +118,6 @@ def addVilloStations(graph, show=False):
     print("BEFORE : {0} nodes, {1} edges".format(graph.getNbNodes(), graph.getNbEdges()))
     multi_graph.toStationBased(villo_closests)
     print("AFTER : {0} nodes, {1} edges".format(multi_graph.getNbNodes(), multi_graph.getNbEdges()))
+    timer.printTimeElapsedMin("single to station-based construction")
 
     return multi_graph, villo_closests

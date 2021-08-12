@@ -221,20 +221,50 @@ def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo
     show(None, "", ylabel, xlabel, save_filename)
 
 
-def plotModalitiesPieChart(filename, title, graph, algo, save_filename):
+def plotModalitiesPieChart(filename, title, graph, algo, categories, save_filename):
+    """
+    code from : https://www.pythonprogramming.in/how-to-pie-chart-with-different-color-themes-in-matplotlib.html
+    # 10 = yellow,
+    # 5 = lightblue,
+    # 13 = red,
+    # 7 = lightgreen
+    # 4 = blue
+    """
     stats = getJsonData(filename)
 
     # pie chart
-    fig = plt.figure()
-    ax = fig.add_axes([0, 0, 1, 1])
-    ax.axis('equal')
+    # categories = list(stats[graph]["stats"][algo]["avg_travel_types"].keys())
+    sizes = []
+    for cat in categories:
+        sizes.append(stats[graph]["stats"][algo]["avg_travel_types"][cat])
 
-    values = list(stats[graph]["stats"][algo]["avg_travel_types"].values())
-    categories = list(stats[graph]["stats"][algo]["avg_travel_types"].keys())
+    # sizes = [11, 3, 5, 6]
+    labels = ["{0} %s".format(cat) % i for cat, i in zip(sizes, categories)]
 
-    ax.pie(values, labels=categories, autopct='%1.2f%%')
+    fig1, ax1 = plt.subplots(figsize=(5, 5))
+    fig1.subplots_adjust(0.3, 0, 1, 1)
+
+    theme = plt.get_cmap('jet')
+
+    c = [theme(1. * i / 15) for i in range(15)]
+    ax1.set_prop_cycle("color", [c[7], c[13], c[10], c[4]])
+
+    _, _ = ax1.pie(sizes, startangle=90, radius=1800)
+
+    ax1.axis('equal')
+
+    total = sum(sizes)
+    plt.legend(
+        loc='upper left',
+        labels=['%s, %1.1f%%' % (l, (float(s) / total) * 100)
+                for l, s in zip(labels, sizes)],
+        prop={'size': 11},
+        bbox_to_anchor=(0.0, 1),
+        bbox_transform=fig1.transFigure
+    )
 
     plt.title(title)
+    plt.tight_layout(pad=0.3)
     plt.savefig(save_filename, dpi=100)
     plt.show()
 
@@ -473,23 +503,32 @@ def plotExp7(metrics, improvements, graphs):
 
 def plotExp8(metrics, kept_graphs):
     """
-
+    Multi-modal station-based - Dijkstra & ALT
     """
     categories = ["Dijkstra", "ALT"]
 
     # plot standard metrics
+    graphs = ",".join([str(g + 1) for g in KEPT_GRAPHS])
     for metric in metrics:
-        save_filename = getFileExpPath(8, "plot_" + metric + ".png")
+        save_filename = getFileExpPath(8, "plot_{0}_{1}.png".format(metric, graphs))
         plotBenchmarkResult(getFileExpPath(8, "exp8_all_stats.json"),
-                            "Exp 8 - Multi-modal station-based - " + metric,
+                            "Exp 8 - {0} - graphs : {1}".format(metric, graphs),
                             categories, metrics[metric], "|V|",
                             metric, kept_graphs, save_filename)
 
+    save_filename = getFileExpPath(8, "plot_prepro_{0}.png".format(graphs))
+    plotBenchmarkResult(getFileExpPath(8, "exp8_all_stats.json"),
+                        "Exp 8 - Preprocessing - graphs : {0}".format(graphs),
+                        ["ALT"], "Preprocessing time (sec.)", "|V|",
+                        "lm_dists_CT", kept_graphs, save_filename)
+
     # plot : modality1 - modality2 for Dijkstra & ALT
-    save_filename = getFileExpPath(8, "plot_piechart_Dijkstra.png")
-    plotModalitiesPieChart(getFileExpPath(8, "exp8_all_stats.json"),
-                           "Exp 8 - Pie chart modalities",
-                           "1_ULB", "Dijkstra", save_filename)
+    categories = ["foot", "toStation", "fromStation", "Villo"]
+    for g in kept_graphs:
+        save_filename = getFileExpPath(8, "plot_piechart_{0}.png".format(str(g + 1)))
+        plotModalitiesPieChart(getFileExpPath(8, "exp8_all_stats.json"),
+                               "Exp 8 - Graph " + str(g + 1),
+                               GRAPHS[g], "ALT", categories, save_filename)
 
 
 # ====================================================
@@ -574,7 +613,7 @@ def launchPlotExp(metrics, improvements, exp):
     if exp == 7 or exp == -1:
         plotExp7(metrics, improvements, [GRAPH_BXL_CAP])
     if exp == 8 or exp == -1:
-        plotExp8(metrics, [GRAPH_ULB, GRAPH_BXL])
+        plotExp8(metrics, KEPT_GRAPHS)
     if exp == 9 or exp == -1:
         plotExp9(metrics, [GRAPH_ULB])
     if exp == 10 or exp == -1:

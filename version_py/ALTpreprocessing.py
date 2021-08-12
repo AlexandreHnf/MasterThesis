@@ -31,7 +31,6 @@ class LandmarkDistThread(threading.Thread):
 
         self.threadID = threadID
         self.graph = Graph(graph.getNodesCoords(), graph.getReverseGraph())
-        print("nb edges reverse graph : ", self.graph.getNbEdges())
         self.landmark = landmark
 
         self.lm_est = lm_est
