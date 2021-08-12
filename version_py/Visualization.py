@@ -42,6 +42,8 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, ymetric, ke
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+
+    m = 0
     for p in categories:
         x, y = [], []
         for g in kept_graphs:
@@ -50,8 +52,9 @@ def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, ymetric, ke
             y.append(stats[graph]["stats"][p][ymetric])
 
         # scatter points
-        ax1.scatter(x, y, s=10, marker="s", label=p)
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=p)
         plt.plot(x, y)
+        m += 1
 
     # show
     show("upper left", title, ylabel, xlabel, save_filename)
@@ -62,6 +65,7 @@ def plotImprovementsResult(filename, title, categories, ylabel, xlabel, ymetric,
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+    m = 0
     for p in categories:
         x, y = [], []
         for g in kept_graphs:
@@ -72,8 +76,9 @@ def plotImprovementsResult(filename, title, categories, ylabel, xlabel, ymetric,
             y.append(improv)
 
         # scatter points
-        ax1.scatter(x, y, s=10, marker="s", label=p)
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=p)
         plt.plot(x, y)
+        m += 1
 
     # show
     show("upper left", title, ylabel, xlabel, save_filename)
@@ -103,7 +108,7 @@ def plotAvgDegResult(filename, title, ylabel, xlabel, kept_graphs, save_filename
         x.append(stats[graph]["nb_nodes"])
         y.append(stats[graph]["avg_deg"])
 
-    plt.plot(x, y, marker="o")
+    plt.plot(x, y, marker="p")
 
     # show
     show(None, title, ylabel, xlabel, save_filename)
@@ -117,15 +122,17 @@ def plotExp7Result(filename, title, ylabel, xlabel, ymetric, algo, graph, save_f
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+    m = 0
     for s in SPEEDS:
         x, y = ADDED_EDGES, []
         for ae in ADDED_EDGES:
             y.append(stats[graph][str(s)][str(ae)][algo][ymetric])
 
         # scatter points
-        ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=str(s) + "km/h")
         plt.plot(x, y)
         plt.xticks(x, x)
+        m += 1
 
     # show
     show("upper right", title, ylabel, xlabel, save_filename)
@@ -140,6 +147,7 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_f
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+    m = 0
     for s in SPEEDS:
         x, y = ADDED_EDGES, []
         for ae in ADDED_EDGES:
@@ -152,9 +160,10 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_f
             y.append(improv)
 
         # scatter points
-        ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=str(s) + "km/h")
         plt.plot(x, y)
         plt.xticks(x, x)
+        m += 1
 
     # show
     show("upper left", title, ylabel, xlabel, save_filename)
@@ -172,7 +181,7 @@ def plotExp7AvgDegResult(filename, title, ylabel, xlabel, graph, save_filename):
     for ae in ADDED_EDGES:
         y.append(stats[graph][str(SPEEDS[0])][str(ae)]["avg_degree_after"])
 
-    plt.plot(x, y, marker="o")
+    plt.plot(x, y, marker="p")
 
     # show
     show("upper left", title, ylabel, xlabel, save_filename)
@@ -183,15 +192,17 @@ def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, graph, save_filename):
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+    m = 0
     for s in SPEEDS:
         x, y = ADDED_EDGES, []
         for ae in ADDED_EDGES:
             y.append(stats[graph][str(s)][str(ae)]["ALT"]["max_avg_lb"])
 
         # scatter points
-        ax1.scatter(x, y, s=10, marker="s", label=str(s) + "km/h")
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=str(s) + "km/h")
         plt.plot(x, y)
         plt.xticks(x, x)
+        m += 1
 
     # show
     show("upper left", title, ylabel, xlabel, save_filename)
@@ -202,6 +213,7 @@ def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+    m = 0
     for t in categories:
         x, y = [], []
         for k in stats[graph]["stats"]:
@@ -212,9 +224,10 @@ def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo
                 y.append(stats[graph]["stats"][k][algo]["avg_travel_types"][t])
 
         # scatter points
-        ax1.scatter(x, y, s=10, marker="s", label=t)
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=t)
         plt.plot(x, y)
         plt.xticks(x, x)
+        m += 1
 
     # show
     plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
@@ -274,6 +287,7 @@ def plotPrefExpResult(filename, title, ylabel, xlabel, xmetric, ymetric, graph, 
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
+    m = 0
     for algo in ["Dijkstra", "ALT"]:
         x, y = [], []
         for k in stats[graph]["stats"]:
@@ -281,9 +295,10 @@ def plotPrefExpResult(filename, title, ylabel, xlabel, xmetric, ymetric, graph, 
             y.append(stats[graph]["stats"][k][algo][ymetric])
 
         # scatter points
-        ax1.scatter(x, y, s=10, marker="s", label=algo)
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=algo)
         plt.plot(x, y)
         plt.xticks(x, x)
+        m += 1
 
     show("upper left", title, ylabel, xlabel, save_filename)
 
@@ -296,7 +311,7 @@ def plotPrefAvgMaxLb(filename, title, ylabel, xlabel, xmetric, graph, save_filen
         x.append(stats[graph]["stats"][k][xmetric])
         y.append(stats[graph]["stats"][k]["ALT"]["max_avg_lb"])
 
-    plt.plot(x, y, marker="o")
+    plt.plot(x, y, marker="d")
 
     # show
     show(None, title, ylabel, xlabel, save_filename)
@@ -397,7 +412,7 @@ def plotExp5(kept_graphs):
     """
     graphs = ",".join([str(g + 1) for g in kept_graphs])
     # preprocessing time - |V| with k=16, planar
-    save_filename = getFileExpPath(5, "plot_prepro_QT_{0}.png".format(graphs))
+    save_filename = getFileExpPath(5, "plot_prepro_CT_{0}.png".format(graphs))
     plotPreprocessingResult(getFileExpPath(5, "exp5_all_stats.json"),
                             "Exp 5 - Preprocessing - k={0}, {1}".format(NB_LANDMARKS, LANDMARK_SELECTION),
                             "computation time (sec.)", "|V|",
@@ -405,7 +420,7 @@ def plotExp5(kept_graphs):
 
     # preprocessing time - |V| with [random, farthest, planar]
     categories = ["random", "farthest", "planar"]
-    save_filename = getFileExpPath(5, "plot_prepro_QT_selections_{0}.png".format(graphs))
+    save_filename = getFileExpPath(5, "plot_prepro_CT_selections_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
                         "Exp 5 - Preprocessing - random, farthest, planar",
                         categories, "preprocessing time (sec.)",
@@ -413,7 +428,7 @@ def plotExp5(kept_graphs):
 
     # preprocessing time - |V| with k=[1,2,4,8,16,32]
     categories = ["1", "2", "4", "8", "16", "32"]
-    save_filename = getFileExpPath(5, "plot_prepro_QT_k_{0}.png".format(graphs))
+    save_filename = getFileExpPath(5, "plot_prepro_CT_k_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
                         "Exp 5 - Preprocessing - k=[1,2,4,8,16,32]",
                         categories, "preprocessing time (sec.)",
@@ -501,7 +516,7 @@ def plotExp7(metrics, improvements, graphs):
 # ====================================================
 
 
-def plotExp8(metrics, kept_graphs):
+def plotExp8(metrics, improvements, kept_graphs):
     """
     Multi-modal station-based - Dijkstra & ALT
     """
@@ -521,6 +536,13 @@ def plotExp8(metrics, kept_graphs):
                         "Exp 8 - Preprocessing - graphs : {0}".format(graphs),
                         ["ALT"], "Preprocessing time (sec.)", "|V|",
                         "lm_dists_CT", kept_graphs, save_filename)
+
+    for metric in improvements:
+        save_filename = getFileExpPath(8, "plot_improv_{0}_{1}.png".format(metric, graphs))
+        plotImprovementsResult(getFileExpPath(8, "exp8_all_stats.json"),
+                               "Exp 8 - Improvement - " + metric,
+                               ["ALT"], improvements[metric], "|V|",
+                               metric, kept_graphs, save_filename)
 
     # plot : modality1 - modality2 for Dijkstra & ALT
     categories = ["foot", "toStation", "fromStation", "Villo"]
@@ -613,7 +635,7 @@ def launchPlotExp(metrics, improvements, exp):
     if exp == 7 or exp == -1:
         plotExp7(metrics, improvements, [GRAPH_BXL_CAP])
     if exp == 8 or exp == -1:
-        plotExp8(metrics, KEPT_GRAPHS)
+        plotExp8(metrics, improvements, KEPT_GRAPHS)
     if exp == 9 or exp == -1:
         plotExp9(metrics, [GRAPH_ULB])
     if exp == 10 or exp == -1:

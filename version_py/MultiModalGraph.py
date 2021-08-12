@@ -60,9 +60,9 @@ class MultiModalGraph(Graph):
         # add links between the two layers
         for sn in stations_nodes:
             # node to station
-            self.addEdge(sn, Edge(sn + max_id, "toStation", VILLO_TRANSITION_TIME, None, None))
+            self.addEdge(sn, Edge(sn + max_id, "toStation", TO_STATION_COST, None, None))
             # station to node
-            self.addEdge(sn + max_id, Edge(sn, "fromStation", VILLO_TRANSITION_TIME, None, None))
+            self.addEdge(sn + max_id, Edge(sn, "fromStation", FROM_STATION_COST, None, None))
 
         # re-create the reverse graph (becomes multimodal)
         self.rev_adj_list = self.createReverseGraph(self.adj_list)

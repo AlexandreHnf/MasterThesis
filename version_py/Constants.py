@@ -60,13 +60,16 @@ ADDED_EDGES = [0, 10, 50, 100, 200]
 EXP7_GRAPH = 4
 
 # EXP 8
-EXP8_GRAPHS = [1, 2, 3, 4]
+EXP8_GRAPHS = [1, 2, 3, 4, 5]
 
-VILLO_TRANSITION_TIME = 300
+TO_STATION_COST =       60
+FROM_STATION_COST =     60
 
 EXPERIMENTS =           [1]
 NB_RUNS =               100
 
 # Visualization parameters
-EXPERIMENT_PLOT =       8
-KEPT_GRAPHS =           [0, 1, 2, 3]
+EXPERIMENT_PLOT =       5
+KEPT_GRAPHS =           [0, 1, 2, 3, 4]
+MARKERS =               ["s", "*", "x", "v", "^", "o", "d", "p"]
+MARKER_SIZE =           20
