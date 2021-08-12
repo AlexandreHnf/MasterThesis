@@ -11,7 +11,7 @@ class Graph:
     def __init__(self, nodes_coords, adj_list, bucket_size=40, name=""):
         self.nodes_coords = nodes_coords
         self.adj_list = adj_list
-        self.rev_adj_list = self.setReverseGraph(self.adj_list)
+        self.rev_adj_list = self.createReverseGraph(self.adj_list)
         self.qtree = PointDictToQuadtree(nodes_coords, bucket_size, multiquadtree=True)
         self.name = name
 
@@ -64,7 +64,7 @@ class Graph:
         self.adj_list[node_id] = edges
         self.nodes_coords[node_id] = self.nodes_coords[reference_node_id]
 
-    def setReverseGraph(self, graph):
+    def createReverseGraph(self, graph):
         reverse_graph = {v: [] for v in graph}
         for v in graph:
             for e in graph[v]:

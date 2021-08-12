@@ -25,7 +25,7 @@ class Benchmark:
         self.st_pairs = Random.getRandomPairs(self.graph.getNodesIDs(), nb_runs)
 
     def testSingleQuery(self, algo_name, priority, bucket_size, heuristic, lm_dists):
-        stats = {"avg_CT": 0, "avg_SS": 0, "avg_RS": 0}
+        stats = {"avg_QT": 0, "avg_SS": 0, "avg_RS": 0}
 
         queries_timer = Timer()
         queries_timer.start()
@@ -46,20 +46,20 @@ class Benchmark:
         for i in range(self.nb_runs):
             if threads[i].success:
                 # print("thread {0} : {1}".format(threads[i].threadID, threads[i].timer.getTimeElapsedSec()))
-                stats["avg_CT"] += threads[i].timer.getTimeElapsedSec()
+                stats["avg_QT"] += threads[i].timer.getTimeElapsedSec()
                 stats["avg_SS"] += threads[i].algo.getSearchSpaceSize()
                 stats["avg_RS"] += threads[i].algo.getNbRelaxedEdges()
 
         # ===================================
 
-        stats["avg_CT"] = round(stats["avg_CT"] / self.nb_runs, 6)
+        stats["avg_QT"] = round(stats["avg_QT"] / self.nb_runs, 6)
         stats["avg_SS"] = round(stats["avg_SS"] / self.nb_runs)
         stats["avg_RS"] = round(stats["avg_RS"] / self.nb_runs)
         queries_timer.printTimeElapsedSec("Queries")
         return stats
 
     def testMultipleQueries(self, graph, algos, lm_dists=None, prepro_time=0):
-        stats = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_RS": 0} for algo_name in algos}
+        stats = {algo_name: {"avg_QT": 0, "avg_SS": 0, "avg_RS": 0} for algo_name in algos}
 
         queries_timer = Timer()
         queries_timer.start()
@@ -78,13 +78,13 @@ class Benchmark:
 
         for i in range(self.nb_runs):
             for algo_name in algos:
-                stats[algo_name]["avg_CT"] += threads[i].stat[algo_name]["avg_CT"]
+                stats[algo_name]["avg_QT"] += threads[i].stat[algo_name]["avg_QT"]
                 stats[algo_name]["avg_SS"] += threads[i].stat[algo_name]["avg_SS"]
                 stats[algo_name]["avg_RS"] += threads[i].stat[algo_name]["avg_RS"]
 
         # round
         for algo_name in algos:
-            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"] / self.nb_runs, 7)
+            stats[algo_name]["avg_QT"] = round(stats[algo_name]["avg_QT"] / self.nb_runs, 7)
             stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"] / self.nb_runs, 2)
             stats[algo_name]["avg_RS"] = round(stats[algo_name]["avg_RS"] / self.nb_runs, 2)
             if algo_name in ["ALT", "BidiALT"]:
@@ -104,7 +104,7 @@ class Benchmark:
                 stats[algo_name]["avg_travel_types"][key] = round(t + travel_types[key] / self.nb_runs, 2)
 
     def testMultipleQueriesMultiModal(self, graph, algos, lm_dists=None, prepro_time=0):
-        stats = {algo_name: {"avg_CT": 0, "avg_SS": 0, "avg_RS": 0, "max_avg_lb": 0,
+        stats = {algo_name: {"avg_QT": 0, "avg_SS": 0, "avg_RS": 0, "max_avg_lb": 0,
                              "avg_travel_types": {}} for algo_name in algos}
 
         queries_timer = Timer()
@@ -124,7 +124,7 @@ class Benchmark:
 
         for i in range(self.nb_runs):
             for algo_name in algos:
-                stats[algo_name]["avg_CT"] += threads[i].stat[algo_name]["avg_CT"]
+                stats[algo_name]["avg_QT"] += threads[i].stat[algo_name]["avg_QT"]
                 stats[algo_name]["avg_SS"] += threads[i].stat[algo_name]["avg_SS"]
                 stats[algo_name]["avg_RS"] += threads[i].stat[algo_name]["avg_RS"]
                 if algo_name == "ALT":
@@ -133,11 +133,12 @@ class Benchmark:
 
         # round
         for algo_name in algos:
-            stats[algo_name]["avg_CT"] = round(stats[algo_name]["avg_CT"] / self.nb_runs, 6)
+            stats[algo_name]["avg_QT"] = round(stats[algo_name]["avg_QT"] / self.nb_runs, 6)
             stats[algo_name]["avg_SS"] = round(stats[algo_name]["avg_SS"] / self.nb_runs, 2)
             stats[algo_name]["avg_RS"] = round(stats[algo_name]["avg_RS"] / self.nb_runs, 2)
             if algo_name in ["ALT", "BidiALT"]:
                 stats[algo_name]["max_avg_lb"] = round(stats[algo_name]["max_avg_lb"] / self.nb_runs, 2)
+                print("MAX AVG LB : ", stats[algo_name]["max_avg_lb"])
                 stats[algo_name]["lm_dists_CT"] = prepro_time
             else:
                 stats[algo_name]["lm_dists_CT"] = 0

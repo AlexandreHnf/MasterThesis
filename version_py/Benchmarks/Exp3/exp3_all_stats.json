@@ -4,19 +4,19 @@
             "planar": {
                 "avg_RS": 417,
                 "lm_dists_CT": 3.201983200000541,
-                "avg_CT": 0.004164,
+                "avg_QT": 0.004164,
                 "avg_SS": 329
             },
             "random": {
                 "avg_RS": 420,
                 "lm_dists_CT": 1.4877224000010756,
-                "avg_CT": 0.004482,
+                "avg_QT": 0.004482,
                 "avg_SS": 332
             },
             "farthest": {
                 "avg_RS": 459,
                 "lm_dists_CT": 2.898622599999726,
-                "avg_CT": 0.00429,
+                "avg_QT": 0.00429,
                 "avg_SS": 364
             }
         },
@@ -29,19 +29,19 @@
             "planar": {
                 "avg_RS": 141,
                 "lm_dists_CT": 0.6102635000006558,
-                "avg_CT": 0.001366,
+                "avg_QT": 0.001366,
                 "avg_SS": 113
             },
             "random": {
                 "avg_RS": 147,
                 "lm_dists_CT": 0.34970719999910216,
-                "avg_CT": 0.001224,
+                "avg_QT": 0.001224,
                 "avg_SS": 118
             },
             "farthest": {
                 "avg_RS": 145,
                 "lm_dists_CT": 0.6705307999982324,
-                "avg_CT": 0.001472,
+                "avg_QT": 0.001472,
                 "avg_SS": 117
             }
         },
@@ -54,19 +54,19 @@
             "planar": {
                 "avg_RS": 19352,
                 "lm_dists_CT": 762.2073536000007,
-                "avg_CT": 4.621322,
+                "avg_QT": 4.621322,
                 "avg_SS": 17538
             },
             "random": {
                 "avg_RS": 23533,
                 "lm_dists_CT": 200.75953759999902,
-                "avg_CT": 5.397077,
+                "avg_QT": 5.397077,
                 "avg_SS": 21495
             },
             "farthest": {
                 "avg_RS": 32901,
                 "lm_dists_CT": 284.0302456999998,
-                "avg_CT": 12.252469,
+                "avg_QT": 12.252469,
                 "avg_SS": 30191
             }
         },
@@ -79,19 +79,19 @@
             "planar": {
                 "avg_RS": 9404,
                 "lm_dists_CT": 381.84608300000036,
-                "avg_CT": 1.365764,
+                "avg_QT": 1.365764,
                 "avg_SS": 8457
             },
             "random": {
                 "avg_RS": 8356,
                 "lm_dists_CT": 110.39500580000094,
-                "avg_CT": 0.824056,
+                "avg_QT": 0.824056,
                 "avg_SS": 7506
             },
             "farthest": {
                 "avg_RS": 13196,
                 "lm_dists_CT": 162.7768304000001,
-                "avg_CT": 1.919941,
+                "avg_QT": 1.919941,
                 "avg_SS": 11998
             }
         },
@@ -104,19 +104,19 @@
             "planar": {
                 "avg_RS": 29,
                 "lm_dists_CT": 0.06303999999909138,
-                "avg_CT": 0.000198,
+                "avg_QT": 0.000198,
                 "avg_SS": 19
             },
             "random": {
                 "avg_RS": 32,
                 "lm_dists_CT": 0.053914500000246335,
-                "avg_CT": 0.00022,
+                "avg_QT": 0.00022,
                 "avg_SS": 21
             },
             "farthest": {
                 "avg_RS": 30,
                 "lm_dists_CT": 0.0932024999983696,
-                "avg_CT": 0.000199,
+                "avg_QT": 0.000199,
                 "avg_SS": 20
             }
         },
@@ -129,19 +129,19 @@
             "planar": {
                 "avg_RS": 2301,
                 "lm_dists_CT": 56.141157800000656,
-                "avg_CT": 0.087009,
+                "avg_QT": 0.087009,
                 "avg_SS": 1959
             },
             "random": {
                 "avg_RS": 2143,
                 "lm_dists_CT": 10.372410200001468,
-                "avg_CT": 0.112267,
+                "avg_QT": 0.112267,
                 "avg_SS": 1844
             },
             "farthest": {
                 "avg_RS": 3290,
                 "lm_dists_CT": 18.153170400000818,
-                "avg_CT": 0.146712,
+                "avg_QT": 0.146712,
                 "avg_SS": 2873
             }
         },

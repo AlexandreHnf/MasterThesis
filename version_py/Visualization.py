@@ -31,7 +31,7 @@ def show(legend, title, ylabel, xlabel, save_filename):
 
 def plotBenchmarkResult(filename, title, categories, ylabel, xlabel, ymetric, kept_graphs, save_filename):
     """
-    ymetrics = computation time (CT) or
+    ymetrics = computation time (QT) or
                 search space (SS) or
                 nb relaxed edges (RE) or
                 speed up or
@@ -240,7 +240,6 @@ def plotModalitiesPieChart(filename, title, graph, algo, save_filename):
 
 
 def plotPrefExpResult(filename, title, ylabel, xlabel, xmetric, ymetric, graph, save_filename):
-    # TODO : "zoomer" sur l'axe y pour mieux voir les différences
     stats = getJsonData(filename)
 
     fig = plt.figure()
@@ -280,7 +279,7 @@ def plotPrefAvgMaxLb(filename, title, ylabel, xlabel, xmetric, graph, save_filen
 def plotExp1(metrics, kept_graphs):
     """
     priority queues : bin, fib, list
-    avg CT - |V|
+    avg QT - |V|
     avg rel - |V|
     avg SS - |V|
     """
@@ -301,7 +300,7 @@ def plotExp1(metrics, kept_graphs):
 def plotExp2(metrics, kept_graphs):
     """
     heuristics : euclidean, manhattan, octile
-    avg CT - |V|
+    avg QT - |V|
     avg rel - |V|
     avg SS - |V|
     """
@@ -322,7 +321,7 @@ def plotExp2(metrics, kept_graphs):
 def plotExp3(metrics, kept_graphs):
     """
     landmark selections : random, farthest, planar
-    avg CT - |V|
+    avg QT - |V|
     avg rel - |V|
     avg SS - |V|
     """
@@ -343,7 +342,7 @@ def plotExp3(metrics, kept_graphs):
 def plotExp4(metrics, kept_graphs):
     """
     landmarks number : 1, 2, 4, 8, 16, 32
-    avg CT - |V|
+    avg QT - |V|
     avg rel - |V|
     avg SS - |V|
     """
@@ -368,7 +367,7 @@ def plotExp5(kept_graphs):
     """
     graphs = ",".join([str(g + 1) for g in kept_graphs])
     # preprocessing time - |V| with k=16, planar
-    save_filename = getFileExpPath(5, "plot_prepro_CT_{0}.png".format(graphs))
+    save_filename = getFileExpPath(5, "plot_prepro_QT_{0}.png".format(graphs))
     plotPreprocessingResult(getFileExpPath(5, "exp5_all_stats.json"),
                             "Exp 5 - Preprocessing - k={0}, {1}".format(NB_LANDMARKS, LANDMARK_SELECTION),
                             "computation time (sec.)", "|V|",
@@ -376,7 +375,7 @@ def plotExp5(kept_graphs):
 
     # preprocessing time - |V| with [random, farthest, planar]
     categories = ["random", "farthest", "planar"]
-    save_filename = getFileExpPath(5, "plot_prepro_CT_selections_{0}.png".format(graphs))
+    save_filename = getFileExpPath(5, "plot_prepro_QT_selections_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(3, "exp3_all_stats.json"),
                         "Exp 5 - Preprocessing - random, farthest, planar",
                         categories, "preprocessing time (sec.)",
@@ -384,7 +383,7 @@ def plotExp5(kept_graphs):
 
     # preprocessing time - |V| with k=[1,2,4,8,16,32]
     categories = ["1", "2", "4", "8", "16", "32"]
-    save_filename = getFileExpPath(5, "plot_prepro_CT_k_{0}.png".format(graphs))
+    save_filename = getFileExpPath(5, "plot_prepro_QT_k_{0}.png".format(graphs))
     plotBenchmarkResult(getFileExpPath(4, "exp4_all_stats.json"),
                         "Exp 5 - Preprocessing - k=[1,2,4,8,16,32]",
                         categories, "preprocessing time (sec.)",
@@ -452,7 +451,7 @@ def plotExp7(metrics, improvements, graphs):
         save_filename = getFileExpPath(7, "plot_prepro_" + graph + ".png")
         plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
                        "Exp 7 - preprocessing time - " + graph,
-                       "preprocessing time", "|added edges|", "lm_dists_CT",
+                       "preprocessing time (sec.)", "|added edges|", "lm_dists_CT",
                        "ALT", graph, save_filename)
 
         save_filename = getFileExpPath(7, "plot_avgDeg_" + graph + ".png")
@@ -600,11 +599,11 @@ def multipleXticks():
 
 
 def main():
-    metrics = {"avg_CT": "avg CT (sec.)",
+    metrics = {"avg_QT": "avg QT (sec.)",
                "avg_RS": "avg relaxed space size",
                "avg_SS": "avg search space size"}
 
-    improvements = {"avg_CT": "Speedup (CT)",
+    improvements = {"avg_QT": "Speedup (QT)",
                     "avg_RS": "avg relaxed space size improvement",
                     "avg_SS": "avg search space size improvement"}
 

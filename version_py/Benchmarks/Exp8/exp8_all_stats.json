@@ -8,7 +8,7 @@
         "avg_deg_after": 2.56,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.000459,
+                "avg_QT": 0.000459,
                 "avg_SS": 161.4,
                 "avg_RS": 211.0,
                 "max_avg_lb": 0,
@@ -22,7 +22,7 @@
                 "nb_villo_stations": 32
             },
             "ALT": {
-                "avg_CT": 0.000161,
+                "avg_QT": 0.000161,
                 "avg_SS": 18.2,
                 "avg_RS": 29.8,
                 "max_avg_lb": 263.03,
@@ -46,7 +46,7 @@
         "avg_deg_after": 1.86,
         "stats": {
             "Dijkstra": {
-                "avg_CT": 0.004171,
+                "avg_QT": 0.004171,
                 "avg_SS": 1124.0,
                 "avg_RS": 1302.1,
                 "max_avg_lb": 0,
@@ -60,7 +60,7 @@
                 "nb_villo_stations": 113
             },
             "ALT": {
-                "avg_CT": 0.001631,
+                "avg_QT": 0.001631,
                 "avg_SS": 189.1,
                 "avg_RS": 241.6,
                 "max_avg_lb": 485.91,

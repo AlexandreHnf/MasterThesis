@@ -40,7 +40,7 @@ def experiment1(graphs):
             # print(stat)
         all_stats[graph.getName()]["stats"] = stats
 
-        header = ["priority", "avg_CT", "avg_SS", "avg_RS"]
+        header = ["priority", "avg_QT", "avg_SS", "avg_RS"]
         filename = IO.getFileExpPath(1, graph.getName() + "_exp1.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -74,7 +74,7 @@ def experiment2(graphs):
             # print(stat)
         all_stats[graph.getName()]["stats"] = stats
 
-        header = ["heuristic", "avg_CT", "avg_SS", "avg_RS"]
+        header = ["heuristic", "avg_QT", "avg_SS", "avg_RS"]
         filename = IO.getFileExpPath(2, graph.getName() + "_exp2.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -116,7 +116,7 @@ def experiment3(graphs):
             # print(stat)
         all_stats[graph.getName()]["stats"] = stats
 
-        header = ["landmark_selection", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
+        header = ["landmark_selection", "avg_QT", "avg_SS", "avg_RS", "lm_dists_CT"]
         filename = IO.getFileExpPath(3, graph.getName() + "_exp3.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -157,7 +157,7 @@ def experiment4(graphs):
             # print(stat)
         all_stats[graph.getName()]["stats"] = stats
 
-        header = ["nb_landmark", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
+        header = ["nb_landmark", "avg_QT", "avg_SS", "avg_RS", "lm_dists_CT"]
         filename = IO.getFileExpPath(4, graph.getName() + "_exp4.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -224,7 +224,7 @@ def experiment6(graphs):
 
         all_stats[graph.getName()]["stats"] = stats
 
-        header = ["algo", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT"]
+        header = ["algo", "avg_QT", "avg_SS", "avg_RS", "lm_dists_CT"]
         filename = IO.getFileExpPath(6, graph.getName() + "_exp6.csv")
         IO.writeDictDictStatsToCsv(stats, header, filename)
 
@@ -253,6 +253,8 @@ def experiment7(graphs):
 
         stats = {}
 
+        b = Benchmark(graph, NB_RUNS)
+
         nb_exp = 0
         for s in SPEEDS:
             for n in ADDED_EDGES:
@@ -264,7 +266,7 @@ def experiment7(graphs):
                 print("nb edges after added lines = ", multi_graph.getNbEdges())
 
                 # Benchmark
-                b = Benchmark(multi_graph, NB_RUNS)
+                # b = Benchmark(multi_graph, NB_RUNS)
                 pre_timer = Timer()
                 pre_timer.start()
                 alt_pre = ALTpreprocessing(multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
@@ -282,8 +284,8 @@ def experiment7(graphs):
                                                     "ALT": stat["ALT"]}
                 nb_exp += 1
 
-        header = ["speed_limit", "nb_added_edges", "D_avg_CT", "D_avg_SS", "D_avg_RS",
-                  "ALT_avg_CT", "ALT_avg_SS", "ALT_avg_RS", "lm_dists_CT"]
+        header = ["speed_limit", "nb_added_edges", "D_avg_QT", "D_avg_SS", "D_avg_RS",
+                  "ALT_avg_QT", "ALT_avg_SS", "ALT_avg_RS", "lm_dists_CT"]
         filename = IO.getFileExpPath(7, graph.getName() + "_exp7.csv")
         IO.writeDictStatsToCsv(stats, header, filename)
 
@@ -322,7 +324,7 @@ def experiment8(graphs, show):
         stats = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
 
         # print(stats)
-        header = ["algo", "avg_CT", "avg_SS", "avg_RS", "lm_dists_CT", "nb_villo_stations"]
+        header = ["algo", "avg_QT", "avg_SS", "avg_RS", "lm_dists_CT", "nb_villo_stations"]
         stats["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
         stats["ALT"]["nb_villo_stations"] = len(villo_closests)
 
@@ -405,7 +407,7 @@ def experiment9(graphs, fixed_pref, pref_range, step):
             nb += 1
             x = round(x + step, 1)
 
-        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_RS",
+        header = ["c1", "c2", "algo", "avg_QT", "avg_SS", "avg_RS",
                   "lm_dists_CT", "nb_villo_stations"]
         filename = IO.getFileExpPath(9, graph.getName() + "_exp9.csv")
         # print(stats)
@@ -476,7 +478,7 @@ def experiment10(graphs, fixed_pref, pref_range, step, worst_case):
             nb += 1
             x = round(x + step, 1)
 
-        header = ["c1", "c2", "algo", "avg_CT", "avg_SS", "avg_RS",
+        header = ["c1", "c2", "algo", "avg_QT", "avg_SS", "avg_RS",
                   "lm_dists_CT", "nb_villo_stations"]
         filename = IO.getFileExpPath(10, graph.getName() + "_exp10.csv")
         # print(stats)
@@ -493,10 +495,6 @@ def experiment11():
     # TODO : change nb runs to 1000 + use the 6 graphs
     """
     print("EXPERIMENT 11 : Multi-Labelling algorithm pareto optimal multi-modal network")
-
-
-# TODO : idea : vu qu'on sait que + le lower bound de d(v,t) est "tight", plus ALT performe bien,
-# on peut prendre une mesure de ça: genre la différence entre le lowerbound et d(v,t) en moyenne
 
 
 # =====================================================

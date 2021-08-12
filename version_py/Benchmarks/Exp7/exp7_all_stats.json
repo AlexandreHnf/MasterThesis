@@ -2,776 +2,777 @@
     "4_Bruxelles_Capitale": {
         "0.1": {
             "0": {
-                "ALT": {
-                    "avg_CT": 0.415155,
-                    "lm_dists_CT": 24.268259900003613,
-                    "avg_SS": 1452.26,
-                    "max_avg_lb": 7972.11,
-                    "avg_travel_types": {
-                        "foot": 287.11
-                    },
-                    "avg_RS": 1726.51
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.991899,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 14940.62,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 288.53
-                    },
-                    "avg_RS": 16650.7
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54392
+                "nb_edges_after": 54392,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.591988,
+                    "avg_RS": 16034.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 21.452818800000387,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.202705,
+                    "avg_RS": 3960.4
+                }
             },
             "200": {
-                "ALT": {
-                    "avg_CT": 0.380005,
-                    "lm_dists_CT": 26.50818050000089,
-                    "avg_SS": 1648.81,
-                    "max_avg_lb": 7813.5,
-                    "avg_travel_types": {
-                        "foot": 203.98
-                    },
-                    "avg_RS": 1920.44
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.807998,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12612.47,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 203.93
-                    },
-                    "avg_RS": 14153.67
-                },
                 "avg_degree_after": 2.15,
-                "nb_edges_after": 54592
+                "nb_edges_after": 54592,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.552878,
+                    "avg_RS": 16097.3
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 23.447406799999953,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.277077,
+                    "avg_RS": 3980.8
+                }
             },
             "10": {
-                "ALT": {
-                    "avg_CT": 0.483284,
-                    "lm_dists_CT": 25.350288399997225,
-                    "avg_SS": 2130.28,
-                    "max_avg_lb": 7959.82,
-                    "avg_travel_types": {
-                        "foot": 309.45
-                    },
-                    "avg_RS": 2465.91
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.826563,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 15458.06,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 311.12
-                    },
-                    "avg_RS": 17241.34
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54402
+                "nb_edges_after": 54402,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.580637,
+                    "avg_RS": 16038.0
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 21.875419899999542,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.274332,
+                    "avg_RS": 3961.2
+                }
             },
             "100": {
-                "ALT": {
-                    "avg_CT": 0.343711,
-                    "lm_dists_CT": 29.793945500001428,
-                    "avg_SS": 1260.36,
-                    "max_avg_lb": 7933.24,
-                    "avg_travel_types": {
-                        "foot": 240.29
-                    },
-                    "avg_RS": 1512.01
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.853585,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12681.53,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 239.69
-                    },
-                    "avg_RS": 14193.9
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54492
+                "nb_edges_after": 54492,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.521407,
+                    "avg_RS": 16066.8
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 23.289398199998686,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.237143,
+                    "avg_RS": 3971.9
+                }
             },
             "50": {
-                "ALT": {
-                    "avg_CT": 0.389565,
-                    "lm_dists_CT": 24.13141370000085,
-                    "avg_SS": 1504.5,
-                    "max_avg_lb": 7922.24,
-                    "avg_travel_types": {
-                        "foot": 167.37
-                    },
-                    "avg_RS": 1771.95
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.617178,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13400.64,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 166.96
-                    },
-                    "avg_RS": 14977.0
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54442
+                "nb_edges_after": 54442,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.736657,
+                    "avg_RS": 16052.6
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 22.065424200000052,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.267497,
+                    "avg_RS": 3965.8
+                }
             }
         },
         "10000000000.0": {
             "0": {
-                "ALT": {
-                    "avg_CT": 0.618372,
-                    "lm_dists_CT": 28.936859000001277,
-                    "avg_SS": 1583.74,
-                    "max_avg_lb": 7726.62,
-                    "avg_travel_types": {
-                        "foot": 258.02
-                    },
-                    "avg_RS": 1873.09
-                },
-                "Dijkstra": {
-                    "avg_CT": 3.094441,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 14354.0,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 270.02
-                    },
-                    "avg_RS": 16014.15
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54392
+                "nb_edges_after": 54392,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.595305,
+                    "avg_RS": 16034.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 24.380409800000052,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.156757,
+                    "avg_RS": 3960.4
+                }
             },
             "200": {
-                "ALT": {
-                    "avg_CT": 0.220797,
-                    "lm_dists_CT": 30.61322160000418,
-                    "avg_SS": 531.85,
-                    "max_avg_lb": 7696.6,
-                    "avg_travel_types": {
-                        "Public Transport": 1.67,
-                        "foot": 310.88
-                    },
-                    "avg_RS": 689.58
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.968504,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13600.23,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 4.04,
-                        "foot": 127.87
-                    },
-                    "avg_RS": 15641.32
-                },
                 "avg_degree_after": 2.15,
-                "nb_edges_after": 54592
+                "nb_edges_after": 54592,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 90.1,
+                        "Public Transport": 5.9
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13090.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.595848,
+                    "avg_RS": 14903.3
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 98.2,
+                        "Public Transport": 3.4
+                    },
+                    "lm_dists_CT": 24.829760499998883,
+                    "avg_SS": 5355.8,
+                    "max_avg_lb": 2449.41,
+                    "avg_QT": 0.380582,
+                    "avg_RS": 6019.6
+                }
             },
             "10": {
-                "ALT": {
-                    "avg_CT": 0.559007,
-                    "lm_dists_CT": 39.27005349999672,
-                    "avg_SS": 1437.3,
-                    "max_avg_lb": 7716.32,
-                    "avg_travel_types": {
-                        "Public Transport": 1.03,
-                        "foot": 263.24
-                    },
-                    "avg_RS": 1696.35
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.761932,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12744.25,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.42,
-                        "foot": 244.58
-                    },
-                    "avg_RS": 14277.15
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54402
+                "nb_edges_after": 54402,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 134.5,
+                        "Public Transport": 1.5
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 12583.4,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.555364,
+                    "avg_RS": 14078.3
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 144.2,
+                        "Public Transport": 1.5
+                    },
+                    "lm_dists_CT": 29.213826600000175,
+                    "avg_SS": 2840.1,
+                    "max_avg_lb": 5876.74,
+                    "avg_QT": 0.191027,
+                    "avg_RS": 3205.2
+                }
             },
             "100": {
-                "ALT": {
-                    "avg_CT": 0.382924,
-                    "lm_dists_CT": 26.593942599996808,
-                    "avg_SS": 809.31,
-                    "max_avg_lb": 7732.64,
-                    "avg_travel_types": {
-                        "Public Transport": 1.54,
-                        "foot": 197.07
-                    },
-                    "avg_RS": 1000.19
-                },
-                "Dijkstra": {
-                    "avg_CT": 3.120517,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13368.88,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 3.45,
-                        "foot": 139.37
-                    },
-                    "avg_RS": 15233.67
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54492
+                "nb_edges_after": 54492,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 100.4,
+                        "Public Transport": 3.3
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13255.1,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.882629,
+                    "avg_RS": 15016.6
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 102.5,
+                        "Public Transport": 3.2
+                    },
+                    "lm_dists_CT": 28.77659549999953,
+                    "avg_SS": 4815.2,
+                    "max_avg_lb": 3135.61,
+                    "avg_QT": 0.247803,
+                    "avg_RS": 5338.2
+                }
             },
             "50": {
-                "ALT": {
-                    "avg_CT": 0.434506,
-                    "lm_dists_CT": 43.34630869999819,
-                    "avg_SS": 1079.32,
-                    "max_avg_lb": 8042.54,
-                    "avg_travel_types": {
-                        "Public Transport": 1.39,
-                        "foot": 155.91
-                    },
-                    "avg_RS": 1312.37
-                },
-                "Dijkstra": {
-                    "avg_CT": 3.167344,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13746.09,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 3.27,
-                        "foot": 172.69
-                    },
-                    "avg_RS": 15559.41
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54442
+                "nb_edges_after": 54442,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 122.5,
+                        "Public Transport": 2.9
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13925.5,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.760076,
+                    "avg_RS": 15745.8
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 120.7,
+                        "Public Transport": 2.8
+                    },
+                    "lm_dists_CT": 32.08063399999992,
+                    "avg_SS": 2497.5,
+                    "max_avg_lb": 3724.05,
+                    "avg_QT": 0.280913,
+                    "avg_RS": 2824.7
+                }
             }
         },
         "nb_nodes": 25448,
+        "nb_edges": 54392,
+        "avg_deg": 2.14,
         "120": {
             "0": {
-                "ALT": {
-                    "avg_CT": 0.391649,
-                    "lm_dists_CT": 27.216084100000444,
-                    "avg_SS": 1442.69,
-                    "max_avg_lb": 7863.82,
-                    "avg_travel_types": {
-                        "foot": 174.13
-                    },
-                    "avg_RS": 1710.95
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.128548,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13340.31,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 174.76
-                    },
-                    "avg_RS": 14881.49
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54392
+                "nb_edges_after": 54392,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.715665,
+                    "avg_RS": 16034.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 24.287102600001163,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.197647,
+                    "avg_RS": 3960.4
+                }
             },
             "200": {
-                "ALT": {
-                    "avg_CT": 0.299215,
-                    "lm_dists_CT": 30.812215899997682,
-                    "avg_SS": 727.67,
-                    "max_avg_lb": 8103.11,
-                    "avg_travel_types": {
-                        "Public Transport": 1.66,
-                        "foot": 220.78
-                    },
-                    "avg_RS": 914.35
-                },
-                "Dijkstra": {
-                    "avg_CT": 3.11447,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13535.69,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 2.58,
-                        "foot": 103.58
-                    },
-                    "avg_RS": 15469.88
-                },
                 "avg_degree_after": 2.15,
-                "nb_edges_after": 54592
+                "nb_edges_after": 54592,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 78.0,
+                        "Public Transport": 2.2
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 8895.7,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.465155,
+                    "avg_RS": 10280.5
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 81.1,
+                        "Public Transport": 2.3
+                    },
+                    "lm_dists_CT": 33.53969270000016,
+                    "avg_SS": 3643.6,
+                    "max_avg_lb": 2771.38,
+                    "avg_QT": 0.174088,
+                    "avg_RS": 4028.6
+                }
             },
             "10": {
-                "ALT": {
-                    "avg_CT": 0.382983,
-                    "lm_dists_CT": 37.501273000001675,
-                    "avg_SS": 1099.75,
-                    "max_avg_lb": 8008.03,
-                    "avg_travel_types": {
-                        "foot": 205.25
-                    },
-                    "avg_RS": 1331.07
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.333432,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13356.26,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.38,
-                        "foot": 192.11
-                    },
-                    "avg_RS": 14939.48
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54402
+                "nb_edges_after": 54402,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 126.0,
+                        "Public Transport": 1.4
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 12855.5,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.453449,
+                    "avg_RS": 14413.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 126.0,
+                        "Public Transport": 1.4
+                    },
+                    "lm_dists_CT": 22.61639020000075,
+                    "avg_SS": 1465.7,
+                    "max_avg_lb": 6415.15,
+                    "avg_QT": 0.105319,
+                    "avg_RS": 1725.1
+                }
             },
             "100": {
-                "ALT": {
-                    "avg_CT": 0.296836,
-                    "lm_dists_CT": 38.90683310000168,
-                    "avg_SS": 836.09,
-                    "max_avg_lb": 7905.38,
-                    "avg_travel_types": {
-                        "Public Transport": 2.48,
-                        "foot": 229.25
-                    },
-                    "avg_RS": 1034.97
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.475049,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13803.94,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 4.45,
-                        "foot": 165.83
-                    },
-                    "avg_RS": 15650.33
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54492
+                "nb_edges_after": 54492,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 91.6,
+                        "Public Transport": 2.1
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 11937.4,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.486972,
+                    "avg_RS": 13618.9
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 116.2,
+                        "Public Transport": 1.9
+                    },
+                    "lm_dists_CT": 23.59654710000177,
+                    "avg_SS": 3406.4,
+                    "max_avg_lb": 3553.49,
+                    "avg_QT": 0.124369,
+                    "avg_RS": 3791.4
+                }
             },
             "50": {
-                "ALT": {
-                    "avg_CT": 0.387462,
-                    "lm_dists_CT": 30.033676099999866,
-                    "avg_SS": 875.03,
-                    "max_avg_lb": 7613.99,
-                    "avg_travel_types": {
-                        "Public Transport": 1.53,
-                        "foot": 237.15
-                    },
-                    "avg_RS": 1099.81
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.680929,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12849.3,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 2.14,
-                        "foot": 200.67
-                    },
-                    "avg_RS": 14491.88
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54442
+                "nb_edges_after": 54442,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 121.1,
+                        "Public Transport": 4.1
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13888.4,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.645616,
+                    "avg_RS": 15614.2
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 128.0,
+                        "Public Transport": 3.7
+                    },
+                    "lm_dists_CT": 22.817531200000303,
+                    "avg_SS": 3160.4,
+                    "max_avg_lb": 4623.5,
+                    "avg_QT": 0.311932,
+                    "avg_RS": 3580.1
+                }
             }
         },
         "90": {
             "0": {
-                "ALT": {
-                    "avg_CT": 0.618377,
-                    "lm_dists_CT": 27.191795599996112,
-                    "avg_SS": 1749.08,
-                    "max_avg_lb": 7766.86,
-                    "avg_travel_types": {
-                        "foot": 191.89
-                    },
-                    "avg_RS": 2065.05
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.83045,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 14656.86,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 187.06
-                    },
-                    "avg_RS": 16336.03
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54392
+                "nb_edges_after": 54392,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.637368,
+                    "avg_RS": 16034.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 24.605378900001597,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.235133,
+                    "avg_RS": 3960.4
+                }
             },
             "200": {
-                "ALT": {
-                    "avg_CT": 0.360149,
-                    "lm_dists_CT": 29.547370399995998,
-                    "avg_SS": 614.72,
-                    "max_avg_lb": 7870.32,
-                    "avg_travel_types": {
-                        "Public Transport": 2.68,
-                        "foot": 231.95
-                    },
-                    "avg_RS": 788.98
-                },
-                "Dijkstra": {
-                    "avg_CT": 3.150509,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 14079.23,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 2.51,
-                        "foot": 116.19
-                    },
-                    "avg_RS": 16082.24
-                },
                 "avg_degree_after": 2.15,
-                "nb_edges_after": 54592
+                "nb_edges_after": 54592,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 93.7,
+                        "Public Transport": 2.1
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13809.0,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.708703,
+                    "avg_RS": 15639.2
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 93.7,
+                        "Public Transport": 5.1
+                    },
+                    "lm_dists_CT": 26.859461599999122,
+                    "avg_SS": 5425.3,
+                    "max_avg_lb": 2980.81,
+                    "avg_QT": 0.279762,
+                    "avg_RS": 5994.1
+                }
             },
             "10": {
-                "ALT": {
-                    "avg_CT": 0.518698,
-                    "lm_dists_CT": 29.47158660000423,
-                    "avg_SS": 1427.19,
-                    "max_avg_lb": 7989.87,
-                    "avg_travel_types": {
-                        "Public Transport": 2.12,
-                        "foot": 202.09
-                    },
-                    "avg_RS": 1691.99
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.451568,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13655.37,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.37,
-                        "foot": 191.71
-                    },
-                    "avg_RS": 15251.47
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54402
+                "nb_edges_after": 54402,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 145.8,
+                        "Public Transport": 1.6
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13058.7,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.563942,
+                    "avg_RS": 14621.2
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 148.7,
+                        "Public Transport": 1.3
+                    },
+                    "lm_dists_CT": 29.00616959999934,
+                    "avg_SS": 3099.0,
+                    "max_avg_lb": 6220.59,
+                    "avg_QT": 0.19747,
+                    "avg_RS": 3482.8
+                }
             },
             "100": {
-                "ALT": {
-                    "avg_CT": 0.285434,
-                    "lm_dists_CT": 31.165413199996692,
-                    "avg_SS": 868.13,
-                    "max_avg_lb": 8260.9,
-                    "avg_travel_types": {
-                        "Public Transport": 2.46,
-                        "foot": 206.17
-                    },
-                    "avg_RS": 1081.03
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.2695,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13341.01,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 2.17,
-                        "foot": 170.91
-                    },
-                    "avg_RS": 15107.29
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54492
+                "nb_edges_after": 54492,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 104.1,
+                        "Public Transport": 3.9
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 16893.7,
+                    "max_avg_lb": 0,
+                    "avg_QT": 1.046726,
+                    "avg_RS": 19057.6
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 107.5,
+                        "Public Transport": 4.1
+                    },
+                    "lm_dists_CT": 22.83153560000028,
+                    "avg_SS": 4812.4,
+                    "max_avg_lb": 3601.77,
+                    "avg_QT": 0.296303,
+                    "avg_RS": 5384.0
+                }
             },
             "50": {
-                "ALT": {
-                    "avg_CT": 0.381464,
-                    "lm_dists_CT": 47.601541399999405,
-                    "avg_SS": 1011.39,
-                    "max_avg_lb": 7716.17,
-                    "avg_travel_types": {
-                        "Public Transport": 1.24,
-                        "foot": 218.74
-                    },
-                    "avg_RS": 1229.9
-                },
-                "Dijkstra": {
-                    "avg_CT": 3.066818,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12410.92,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.82,
-                        "foot": 151.43
-                    },
-                    "avg_RS": 14007.28
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54442
+                "nb_edges_after": 54442,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 113.9,
+                        "Public Transport": 3.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13506.4,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.544768,
+                    "avg_RS": 15222.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 125.6,
+                        "Public Transport": 2.7
+                    },
+                    "lm_dists_CT": 29.839095200000884,
+                    "avg_SS": 3429.5,
+                    "max_avg_lb": 4611.97,
+                    "avg_QT": 0.232865,
+                    "avg_RS": 3865.9
+                }
             }
         },
-        "avg_deg": 2.14,
-        "nb_edges": 54392,
         "30": {
             "0": {
-                "ALT": {
-                    "avg_CT": 0.560073,
-                    "lm_dists_CT": 27.68099899999652,
-                    "avg_SS": 1335.76,
-                    "max_avg_lb": 8123.71,
-                    "avg_travel_types": {
-                        "foot": 178.02
-                    },
-                    "avg_RS": 1587.1
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.560671,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13524.17,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 177.21
-                    },
-                    "avg_RS": 15090.58
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54392
+                "nb_edges_after": 54392,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.637327,
+                    "avg_RS": 16034.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 23.74046499999895,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.256089,
+                    "avg_RS": 3960.4
+                }
             },
             "200": {
-                "ALT": {
-                    "avg_CT": 0.180377,
-                    "lm_dists_CT": 33.09862520000024,
-                    "avg_SS": 528.7,
-                    "max_avg_lb": 7734.76,
-                    "avg_travel_types": {
-                        "Public Transport": 1.64,
-                        "foot": 216.87
-                    },
-                    "avg_RS": 683.22
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.990274,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12790.37,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 4.17,
-                        "foot": 155.48
-                    },
-                    "avg_RS": 14516.5
-                },
                 "avg_degree_after": 2.15,
-                "nb_edges_after": 54592
+                "nb_edges_after": 54592,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 96.2,
+                        "Public Transport": 2.4
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13307.5,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.570501,
+                    "avg_RS": 14962.3
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 98.2,
+                        "Public Transport": 2.2
+                    },
+                    "lm_dists_CT": 27.488495600000533,
+                    "avg_SS": 4420.6,
+                    "max_avg_lb": 3647.93,
+                    "avg_QT": 0.257892,
+                    "avg_RS": 4932.2
+                }
             },
             "10": {
-                "ALT": {
-                    "avg_CT": 0.449576,
-                    "lm_dists_CT": 29.436514799999713,
-                    "avg_SS": 1234.73,
-                    "max_avg_lb": 8205.24,
-                    "avg_travel_types": {
-                        "Public Transport": 1.05,
-                        "foot": 180.84
-                    },
-                    "avg_RS": 1491.09
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.618446,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13766.62,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.42,
-                        "foot": 164.08
-                    },
-                    "avg_RS": 15387.91
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54402
+                "nb_edges_after": 54402,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 144.0,
+                        "Public Transport": 1.6
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13876.3,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.651629,
+                    "avg_RS": 15485.0
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 143.9,
+                        "Public Transport": 1.6
+                    },
+                    "lm_dists_CT": 27.304382300000725,
+                    "avg_SS": 3249.4,
+                    "max_avg_lb": 6462.69,
+                    "avg_QT": 0.189613,
+                    "avg_RS": 3676.9
+                }
             },
             "100": {
-                "ALT": {
-                    "avg_CT": 0.222603,
-                    "lm_dists_CT": 23.70337219999783,
-                    "avg_SS": 801.9,
-                    "max_avg_lb": 7671.41,
-                    "avg_travel_types": {
-                        "Public Transport": 1.53,
-                        "foot": 163.56
-                    },
-                    "avg_RS": 1006.8
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.106581,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13341.53,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 2.02,
-                        "foot": 134.09
-                    },
-                    "avg_RS": 15008.74
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54492
+                "nb_edges_after": 54492,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 101.9,
+                        "Public Transport": 2.9
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14706.0,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.819916,
+                    "avg_RS": 16506.8
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 114.7,
+                        "Public Transport": 3.0
+                    },
+                    "lm_dists_CT": 27.787183200000072,
+                    "avg_SS": 5856.2,
+                    "max_avg_lb": 4113.5,
+                    "avg_QT": 0.46157,
+                    "avg_RS": 6472.6
+                }
             },
             "50": {
-                "ALT": {
-                    "avg_CT": 0.431012,
-                    "lm_dists_CT": 29.919465800005128,
-                    "avg_SS": 977.4,
-                    "max_avg_lb": 8130.45,
-                    "avg_travel_types": {
-                        "Public Transport": 1.41,
-                        "foot": 227.34
-                    },
-                    "avg_RS": 1224.89
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.560779,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 14559.52,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.92,
-                        "foot": 123.61
-                    },
-                    "avg_RS": 16337.96
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54442
+                "nb_edges_after": 54442,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 112.2,
+                        "Public Transport": 1.9
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13280.5,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.555456,
+                    "avg_RS": 14926.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 117.2,
+                        "Public Transport": 1.9
+                    },
+                    "lm_dists_CT": 27.377483099999154,
+                    "avg_SS": 3315.8,
+                    "max_avg_lb": 5069.81,
+                    "avg_QT": 0.263785,
+                    "avg_RS": 3702.4
+                }
             }
         },
         "15": {
             "0": {
-                "ALT": {
-                    "avg_CT": 0.597016,
-                    "lm_dists_CT": 24.950228100002278,
-                    "avg_SS": 1566.61,
-                    "max_avg_lb": 7662.25,
-                    "avg_travel_types": {
-                        "foot": 350.15
-                    },
-                    "avg_RS": 1811.99
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.991092,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12020.21,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "foot": 307.28
-                    },
-                    "avg_RS": 13424.13
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54392
+                "nb_edges_after": 54392,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 186.0
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 14396.8,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.712338,
+                    "avg_RS": 16034.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 176.6
+                    },
+                    "lm_dists_CT": 23.348216700000194,
+                    "avg_SS": 3537.3,
+                    "max_avg_lb": 7550.92,
+                    "avg_QT": 0.192489,
+                    "avg_RS": 3960.4
+                }
             },
             "200": {
-                "ALT": {
-                    "avg_CT": 0.158173,
-                    "lm_dists_CT": 24.86080729999958,
-                    "avg_SS": 689.2,
-                    "max_avg_lb": 7813.41,
-                    "avg_travel_types": {
-                        "Public Transport": 1.69,
-                        "foot": 185.49
-                    },
-                    "avg_RS": 859.63
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.569599,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 13802.49,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 4.05,
-                        "foot": 156.44
-                    },
-                    "avg_RS": 15568.32
-                },
                 "avg_degree_after": 2.15,
-                "nb_edges_after": 54592
+                "nb_edges_after": 54592,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 95.8,
+                        "Public Transport": 1.9
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13211.9,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.513695,
+                    "avg_RS": 14857.3
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 95.6,
+                        "Public Transport": 1.7
+                    },
+                    "lm_dists_CT": 29.851987300000474,
+                    "avg_SS": 2834.9,
+                    "max_avg_lb": 4496.54,
+                    "avg_QT": 0.172189,
+                    "avg_RS": 3174.9
+                }
             },
             "10": {
-                "ALT": {
-                    "avg_CT": 0.486374,
-                    "lm_dists_CT": 34.136178100001416,
-                    "avg_SS": 1696.12,
-                    "max_avg_lb": 7972.02,
-                    "avg_travel_types": {
-                        "Public Transport": 1.11,
-                        "foot": 323.81
-                    },
-                    "avg_RS": 1985.6
-                },
-                "Dijkstra": {
-                    "avg_CT": 2.076409,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 14461.94,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.27,
-                        "foot": 378.49
-                    },
-                    "avg_RS": 16134.49
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54402
+                "nb_edges_after": 54402,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 175.1,
+                        "Public Transport": 1.1
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 15104.7,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.602759,
+                    "avg_RS": 16825.9
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 174.8,
+                        "Public Transport": 1
+                    },
+                    "lm_dists_CT": 24.349147200000516,
+                    "avg_SS": 3826.1,
+                    "max_avg_lb": 7200.28,
+                    "avg_QT": 0.352742,
+                    "avg_RS": 4273.3
+                }
             },
             "100": {
-                "ALT": {
-                    "avg_CT": 0.312109,
-                    "lm_dists_CT": 30.802662699999928,
-                    "avg_SS": 894.22,
-                    "max_avg_lb": 7442.43,
-                    "avg_travel_types": {
-                        "Public Transport": 1.34,
-                        "foot": 220.02
-                    },
-                    "avg_RS": 1087.39
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.861077,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12159.58,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.73,
-                        "foot": 193.34
-                    },
-                    "avg_RS": 13713.3
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54492
+                "nb_edges_after": 54492,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 110.3,
+                        "Public Transport": 1.9
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13123.1,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.611195,
+                    "avg_RS": 14695.7
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 110.1,
+                        "Public Transport": 1.9
+                    },
+                    "lm_dists_CT": 24.816993600001297,
+                    "avg_SS": 3870.8,
+                    "max_avg_lb": 5098.92,
+                    "avg_QT": 0.220289,
+                    "avg_RS": 4302.2
+                }
             },
             "50": {
-                "ALT": {
-                    "avg_CT": 0.280202,
-                    "lm_dists_CT": 29.17831880000449,
-                    "avg_SS": 839.16,
-                    "max_avg_lb": 7783.1,
-                    "avg_travel_types": {
-                        "Public Transport": 1.24,
-                        "foot": 202.03
-                    },
-                    "avg_RS": 1036.7
-                },
-                "Dijkstra": {
-                    "avg_CT": 1.538986,
-                    "lm_dists_CT": 0,
-                    "avg_SS": 12843.39,
-                    "max_avg_lb": 0,
-                    "avg_travel_types": {
-                        "Public Transport": 1.57,
-                        "foot": 143.44
-                    },
-                    "avg_RS": 14410.06
-                },
                 "avg_degree_after": 2.14,
-                "nb_edges_after": 54442
+                "nb_edges_after": 54442,
+                "Dijkstra": {
+                    "avg_travel_types": {
+                        "foot": 110.8,
+                        "Public Transport": 2.7
+                    },
+                    "lm_dists_CT": 0,
+                    "avg_SS": 13801.1,
+                    "max_avg_lb": 0,
+                    "avg_QT": 0.670476,
+                    "avg_RS": 15459.2
+                },
+                "ALT": {
+                    "avg_travel_types": {
+                        "foot": 111.1,
+                        "Public Transport": 2.7
+                    },
+                    "lm_dists_CT": 25.90429949999998,
+                    "avg_SS": 2722.9,
+                    "max_avg_lb": 5826.84,
+                    "avg_QT": 0.177763,
+                    "avg_RS": 3072.8
+                }
             }
         }
     }

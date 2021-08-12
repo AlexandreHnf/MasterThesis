@@ -19,7 +19,7 @@ class ALT(Astar):
         max_dist = 0
         for dist1, dist2 in zip(self.lm_dists[ID1], self.lm_dists[ID2]):
             try:
-                d = abs(dist1 - dist2)
+                d = abs(dist1 - dist2)  # dist1 = d(ID1, L), dist2 = d(ID2, L)
                 if d > max_dist:
                     max_dist = d
             except TypeError:

@@ -18,7 +18,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 39.1,
                     "lm_dists_CT": 1.8537362999995821,
-                    "avg_CT": 0.000184,
+                    "avg_QT": 0.000184,
                     "avg_SS": 25.32,
                     "max_avg_lb": 92.76
                 },
@@ -34,7 +34,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 208.28,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000466,
+                    "avg_QT": 0.000466,
                     "avg_SS": 161.4,
                     "max_avg_lb": 0
                 }
@@ -50,7 +50,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 42.92,
                     "lm_dists_CT": 1.4204958000045735,
-                    "avg_CT": 0.000258,
+                    "avg_QT": 0.000258,
                     "avg_SS": 28.28,
                     "max_avg_lb": 92.06
                 },
@@ -66,7 +66,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 213.79,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000599,
+                    "avg_QT": 0.000599,
                     "avg_SS": 166.22,
                     "max_avg_lb": 0
                 }
@@ -82,7 +82,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 38.85,
                     "lm_dists_CT": 1.7241334000063944,
-                    "avg_CT": 0.000208,
+                    "avg_QT": 0.000208,
                     "avg_SS": 24.92,
                     "max_avg_lb": 93.67
                 },
@@ -98,7 +98,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 208.15,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.00053,
+                    "avg_QT": 0.00053,
                     "avg_SS": 161.77,
                     "max_avg_lb": 0
                 }
@@ -114,7 +114,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 40.45,
                     "lm_dists_CT": 1.5642834000027506,
-                    "avg_CT": 0.000195,
+                    "avg_QT": 0.000195,
                     "avg_SS": 26.49,
                     "max_avg_lb": 92.2
                 },
@@ -130,7 +130,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 205.62,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000493,
+                    "avg_QT": 0.000493,
                     "avg_SS": 159.46,
                     "max_avg_lb": 0
                 }
@@ -146,7 +146,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 40.84,
                     "lm_dists_CT": 1.8407631999943987,
-                    "avg_CT": 0.000212,
+                    "avg_QT": 0.000212,
                     "avg_SS": 26.81,
                     "max_avg_lb": 91.97
                 },
@@ -162,7 +162,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 204.74,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000513,
+                    "avg_QT": 0.000513,
                     "avg_SS": 158.89,
                     "max_avg_lb": 0
                 }
@@ -178,7 +178,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 41.51,
                     "lm_dists_CT": 1.6341519999987213,
-                    "avg_CT": 0.00024,
+                    "avg_QT": 0.00024,
                     "avg_SS": 27.45,
                     "max_avg_lb": 91.25
                 },
@@ -194,7 +194,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 207.02,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.00059,
+                    "avg_QT": 0.00059,
                     "avg_SS": 160.6,
                     "max_avg_lb": 0
                 }
@@ -210,7 +210,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 42.57,
                     "lm_dists_CT": 2.5611172999997507,
-                    "avg_CT": 0.000225,
+                    "avg_QT": 0.000225,
                     "avg_SS": 27.85,
                     "max_avg_lb": 92.39
                 },
@@ -226,7 +226,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 213.61,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.00054,
+                    "avg_QT": 0.00054,
                     "avg_SS": 166.67,
                     "max_avg_lb": 0
                 }
@@ -242,7 +242,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 40.4,
                     "lm_dists_CT": 1.441830600000685,
-                    "avg_CT": 0.000233,
+                    "avg_QT": 0.000233,
                     "avg_SS": 26.3,
                     "max_avg_lb": 92.51
                 },
@@ -258,7 +258,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 207.01,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000535,
+                    "avg_QT": 0.000535,
                     "avg_SS": 161.02,
                     "max_avg_lb": 0
                 }
@@ -274,7 +274,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 42.58,
                     "lm_dists_CT": 1.73233519999485,
-                    "avg_CT": 0.000241,
+                    "avg_QT": 0.000241,
                     "avg_SS": 28.05,
                     "max_avg_lb": 93.39
                 },
@@ -290,7 +290,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 211.51,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000574,
+                    "avg_QT": 0.000574,
                     "avg_SS": 164.32,
                     "max_avg_lb": 0
                 }
@@ -306,7 +306,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 40.55,
                     "lm_dists_CT": 1.690219199997955,
-                    "avg_CT": 0.000232,
+                    "avg_QT": 0.000232,
                     "avg_SS": 26.19,
                     "max_avg_lb": 92.89
                 },
@@ -322,7 +322,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 212.86,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000599,
+                    "avg_QT": 0.000599,
                     "avg_SS": 165.65,
                     "max_avg_lb": 0
                 }
@@ -338,7 +338,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 38.48,
                     "lm_dists_CT": 1.7826500000010128,
-                    "avg_CT": 0.000285,
+                    "avg_QT": 0.000285,
                     "avg_SS": 24.83,
                     "max_avg_lb": 90.97
                 },
@@ -354,7 +354,7 @@
                     "nb_villo_stations": 32,
                     "avg_RS": 202.45,
                     "lm_dists_CT": 0,
-                    "avg_CT": 0.000777,
+                    "avg_QT": 0.000777,
                     "avg_SS": 156.69,
                     "max_avg_lb": 0
                 }

@@ -17,12 +17,10 @@ class MultiModalGraph(Graph):
 
     def addPublicTransportEdges(self, nb_added_edges, speed_limit):
         """
-        - Embark (?)
-        - Line
-        - Disembark (?)
+        choose x pairs of nodes and add new edges = public transport lines
         """
         nb_added = 0
-        while (nb_added < nb_added_edges):
+        while nb_added < nb_added_edges:
             v1, v2 = selectRandomPair(list(self.nodes_coords.keys()))
             v1_coords = self.getGeoCoords(v1)
             v2_coords = self.getGeoCoords(v2)
@@ -31,11 +29,14 @@ class MultiModalGraph(Graph):
             dist_km = haversine(v1_coords[0], v1_coords[1], v2_coords[0], v2_coords[1])
             edge_weight = 3600 * (dist_km / speed_limit)  # speed limit in km/h
 
-            # add new edge v1 --> v2  /!\ ATTENTION : le reverse graph sera pas multimodal pour les bidirectional
+            # add new edge v1 --> v2
             new_edge = Edge(v2, "Public Transport", edge_weight, dist_km, speed_limit)
             self.addEdge(v1, new_edge)
 
             nb_added += 1
+
+        # re-create the reverse graph (becomes multimodal)
+        self.rev_adj_list = self.createReverseGraph(self.adj_list)
 
     def toStationBased(self, stations_nodes):
         """
