@@ -56,7 +56,11 @@ CAR_CONSUMPTION =       7    # L / 100km
 
 # Exp 7 - multimodal public transport
 SPEEDS =                [0.1, 15, 30, 90, 1e10]
-# ADDED_EDGES =           [0, 10, 50, 100, 200]
+SPEEDS_LABELS =         {0.1: "0.1 km/h (~0)",
+                         15: "15 km/h (bus/tram)",
+                         30: "30 km/h (metro)",
+                         90: "90 km/h (train)",
+                         1e10: "1e10 km/h (~inf.)"}
 ADDED_EDGES =           [0, 10, 50, 100, 200, 600, 1000]
 FOOT_PUBLIC_TRANSPORT = ["foot", "Public Transport"]
 EXP7_GRAPH =            4
@@ -66,7 +70,6 @@ EXP8_GRAPHS =           [1, 2, 3, 4, 5]
 FOOT_VILLO =            ["foot", "toStation", "fromStation", "Villo"]
 CAR_VILLO =             ["foot", "toStation", "fromStation", "car"]
 
-
 TO_STATION_COST =       60
 FROM_STATION_COST =     60
 
@@ -74,7 +77,7 @@ EXPERIMENTS =           [1]
 NB_RUNS =               500
 
 # Visualization parameters
-EXPERIMENT_PLOT =       8
+EXPERIMENT_PLOT =       7
 KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]
 MARKERS =               ["s", "*", "x", "v", "^", "o", "d", "p"]
 MARKER_SIZE =           20

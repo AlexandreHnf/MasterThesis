@@ -130,13 +130,13 @@ def plotExp7Result(filename, title, ylabel, xlabel, ymetric, algo, graph, save_f
             y.append(stats[graph][str(s)][str(ae)][algo][ymetric])
 
         # scatter points
-        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=str(s) + "km/h")
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=SPEEDS_LABELS[s])
         plt.plot(x, y)
         plt.xticks(x, x)
         m += 1
 
     # show
-    show("upper left", title, ylabel, xlabel, save_filename)
+    show("upper right", title, ylabel, xlabel, save_filename)
 
 
 def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_filename):
@@ -161,7 +161,7 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_f
             y.append(improv)
 
         # scatter points
-        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=str(s) + "km/h")
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=SPEEDS_LABELS[s])
         plt.plot(x, y)
         plt.xticks(x, x)
         m += 1
@@ -190,14 +190,16 @@ def plotExp7ModalitiesLines(filename, title, ylabel, xlabel, graph, categories, 
             y.append(avg_percentage)
 
         # scatter points
-        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=mod)
-        plt.plot(x, y)
-        plt.xticks(x, x)
+        # ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=mod)
+        # plt.plot(x, y)
+        # plt.xticks(x, x)
+        plt.bar(x, y, width=0.2)
         m += 1
 
     # show
-    plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
-    show("center right", title, ylabel, xlabel, save_filename)
+    # plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
+    plt.legend(categories, loc="center right")
+    show(None, title, ylabel, xlabel, save_filename)
 
 
 def plotExp7AvgDegResult(filename, title, ylabel, xlabel, graph, save_filename):
@@ -230,7 +232,7 @@ def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, graph, save_filename):
             y.append(stats[graph][str(s)][str(ae)]["ALT"]["max_avg_lb"])
 
         # scatter points
-        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=str(s) + "km/h")
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=SPEEDS_LABELS[s])
         plt.plot(x, y)
         plt.xticks(x, x)
         m += 1
@@ -510,38 +512,38 @@ def plotExp7(metrics, improvements, graphs):
     """
 
     for graph in graphs:
-        for metric in metrics:
-            save_filename = getFileExpPath(7, "plot_" + metric + "_" + graph + ".png")
-            plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
-                           "Exp 7 - Nb added edges - " + metric + " - " + graph,
-                           metrics[metric], "|added edges|", metric,
-                           "ALT", graph, save_filename)
-
-        for metric in improvements:
-            save_filename = getFileExpPath(7, "plot_improv_" + metric + "_" + graph + ".png")
-            plotImprovementsExp7(getFileExpPath(7, "exp7_all_stats.json"),
-                                 "Exp 7 - improvement - " + metric + " - " + graph,
-                                 improvements[metric], "|added edges|", metric,
-                                 graph, save_filename)
-
-        save_filename = getFileExpPath(7, "plot_prepro_" + graph + ".png")
-        plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
-                       "Exp 7 - preprocessing time - " + graph,
-                       "preprocessing time (sec.)", "|added edges|", "lm_dists_CT",
-                       "ALT", graph, save_filename)
-
-        save_filename = getFileExpPath(7, "plot_avgDeg_" + graph + ".png")
-        plotExp7AvgDegResult(getFileExpPath(7, "exp7_all_stats.json"),
-                             "Exp 7 - avg deg - " + graph,
-                             "avg deg after", "|added edges|",
-                             graph, save_filename)
-
-        # plot : mac avg lower bound - ALT
-        save_filename = getFileExpPath(7, "plot_max_avg_lb_" + graph + ".png")
-        plotMaxAvgLbExp7(getFileExpPath(7, "exp7_all_stats.json"),
-                         "Exp 7 - Max average distance lower bound - " + graph,
-                         "max avg lower bound", "|added edges|",
-                         graph, save_filename)
+        # for metric in metrics:
+        #     save_filename = getFileExpPath(7, "plot_" + metric + "_" + graph + ".png")
+        #     plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
+        #                    "Exp 7 - Nb added edges - " + metric + " - " + graph,
+        #                    metrics[metric], "|added edges|", metric,
+        #                    "ALT", graph, save_filename)
+        #
+        # for metric in improvements:
+        #     save_filename = getFileExpPath(7, "plot_improv_" + metric + "_" + graph + ".png")
+        #     plotImprovementsExp7(getFileExpPath(7, "exp7_all_stats.json"),
+        #                          "Exp 7 - improvement - " + metric + " - " + graph,
+        #                          improvements[metric], "|added edges|", metric,
+        #                          graph, save_filename)
+        #
+        # save_filename = getFileExpPath(7, "plot_prepro_" + graph + ".png")
+        # plotExp7Result(getFileExpPath(7, "exp7_all_stats.json"),
+        #                "Exp 7 - preprocessing time - " + graph,
+        #                "preprocessing time (sec.)", "|added edges|", "lm_dists_CT",
+        #                "ALT", graph, save_filename)
+        #
+        # save_filename = getFileExpPath(7, "plot_avgDeg_" + graph + ".png")
+        # plotExp7AvgDegResult(getFileExpPath(7, "exp7_all_stats.json"),
+        #                      "Exp 7 - avg deg - " + graph,
+        #                      "avg deg after", "|added edges|",
+        #                      graph, save_filename)
+        #
+        # # plot : mac avg lower bound - ALT
+        # save_filename = getFileExpPath(7, "plot_max_avg_lb_" + graph + ".png")
+        # plotMaxAvgLbExp7(getFileExpPath(7, "exp7_all_stats.json"),
+        #                  "Exp 7 - Max average distance lower bound - " + graph,
+        #                  "max avg lower bound", "|added edges|",
+        #                  graph, save_filename)
 
         # plot modalities lines :
         save_filename = getFileExpPath(7, "plot_modalities_" + graph + ".png")
@@ -679,7 +681,8 @@ def launchPlotExp(metrics, improvements, exp):
         plotExp10(metrics, [GRAPH_ULB])
 
 
-# ===============================================================
+# ==============================================================
+
 
 def testPlot3D():
     # creating an empty canvas
