@@ -266,12 +266,12 @@ def experiment7(graphs):
                 print("nb edges after added lines = ", multi_graph.getNbEdges())
 
                 # Benchmark
-                # b = Benchmark(multi_graph, NB_RUNS)
                 pre_timer = Timer()
                 pre_timer.start()
                 alt_pre = ALTpreprocessing(multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
                 lm_dists = alt_pre.getLmDistances()
                 pre_timer.stop()
+                pre_timer.printTimeElapsedMin("lm dists")
                 prepro_time = pre_timer.getTimeElapsedSec()
                 algos = ["Dijkstra", "ALT"]
                 stat = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
@@ -348,9 +348,6 @@ def experiment9(graphs, fixed_pref, pref_range, step):
     Multi modal station-based graph with : car & villo
     Simple queries with weighted summed edge weights (2 metrics)
     => Preprocessing without pref (= same pref for both modalities), then query with pref
-    => PROBLEM : ca va pas prendre en compte les nouveaux nodes ajoutés des stations villo !!
-    => instead : faire un prepro avec les prefs identiques, mais avec les stations
-    TODO : apres le preprocessing pref[1,1], faire des queries avec prefs[1,x], x=1=>X, puis prefs[x,1]
     """
     print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
     all_stats = {}
@@ -653,11 +650,12 @@ def testRandomPairs():
         print(s, t)
 
 
-def showVilloStations(graph_name):
-    p = OSMgraphParser(graph_name)
-    graph = p.parse("foot")
+def showVilloStations(graph_names):
+    for g in graph_names:
+        p = OSMgraphParser(GRAPHS[g])
+        graph = p.parse("foot")
 
-    multi_graph, villo_closests = addVilloStations(graph, True)
+        multi_graph, villo_closests = addVilloStations(graph, True)
 
 
 def main():
@@ -667,7 +665,7 @@ def main():
 
     # testRandomPairs()
 
-    # showVilloStations(GRAPH_BXL_CAP)
+    # showVilloStations([0, 1, 2, 3, 4])
 
 
 if __name__ == "__main__":

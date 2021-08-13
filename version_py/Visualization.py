@@ -4,6 +4,7 @@
 
 import csv
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 from IO import *
 import numpy as np
 
@@ -135,7 +136,7 @@ def plotExp7Result(filename, title, ylabel, xlabel, ymetric, algo, graph, save_f
         m += 1
 
     # show
-    show("upper right", title, ylabel, xlabel, save_filename)
+    show("upper left", title, ylabel, xlabel, save_filename)
 
 
 def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_filename):
@@ -166,7 +167,37 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_f
         m += 1
 
     # show
-    show("upper left", title, ylabel, xlabel, save_filename)
+    show("upper right", title, ylabel, xlabel, save_filename)
+
+
+def plotExp7ModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, save_filename):
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    m = 0
+    for mod in categories:
+        x = [str(s) for s in SPEEDS]
+        y = []
+        for s in SPEEDS:
+            avg_percentage = 0
+            for ae in ADDED_EDGES:
+                travel_types = stats[graph][str(s)][str(ae)][algo]["avg_travel_types"]
+                tot = sum(travel_types.values())
+                if mod in travel_types:
+                    percentage = (travel_types[mod] * 100) / tot
+                    avg_percentage += percentage / len(ADDED_EDGES)
+            y.append(avg_percentage)
+
+        # scatter points
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=mod)
+        plt.plot(x, y)
+        plt.xticks(x, x)
+        m += 1
+
+    # show
+    plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
+    show("center right", title, ylabel, xlabel, save_filename)
 
 
 def plotExp7AvgDegResult(filename, title, ylabel, xlabel, graph, save_filename):
@@ -205,7 +236,7 @@ def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, graph, save_filename):
         m += 1
 
     # show
-    show("upper left", title, ylabel, xlabel, save_filename)
+    show("upper right", title, ylabel, xlabel, save_filename)
 
 
 def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, xmetric, save_filename):
@@ -512,6 +543,14 @@ def plotExp7(metrics, improvements, graphs):
                          "max avg lower bound", "|added edges|",
                          graph, save_filename)
 
+        # plot modalities lines :
+        save_filename = getFileExpPath(7, "plot_modalities_" + graph + ".png")
+        plotExp7ModalitiesLines(getFileExpPath(7, "exp7_all_stats.json"),
+                                "Exp 7 -Modalities repartition - " + graph,
+                                "Percentage", "Speeds",
+                                graph, FOOT_PUBLIC_TRANSPORT,
+                                "ALT", save_filename)
+
 
 # ====================================================
 
@@ -545,12 +584,11 @@ def plotExp8(metrics, improvements, kept_graphs):
                                metric, kept_graphs, save_filename)
 
     # plot : modality1 - modality2 for Dijkstra & ALT
-    categories = ["foot", "toStation", "fromStation", "Villo"]
     for g in kept_graphs:
         save_filename = getFileExpPath(8, "plot_piechart_{0}.png".format(str(g + 1)))
         plotModalitiesPieChart(getFileExpPath(8, "exp8_all_stats.json"),
                                "Exp 8 - Graph " + str(g + 1),
-                               GRAPHS[g], "ALT", categories, save_filename)
+                               GRAPHS[g], "ALT", FOOT_VILLO, save_filename)
 
 
 # ====================================================
@@ -572,8 +610,7 @@ def plotExp9(metrics, graphs):
         plotModalitiesLines(getFileExpPath(9, "exp9_all_stats.json"),
                             "Exp 9 - Travel types - " + graph,
                             "Travel types frequency", "c2", graph,
-                            ["Villo", "fromStation", "toStation", "car"],
-                            "Dijkstra", "c2", save_filename)
+                            CAR_VILLO, "Dijkstra", "c2", save_filename)
 
         # plot max avg lb
         save_filename = getFileExpPath(9, "plot_max_avg_lb_" + graph + ".png")
@@ -644,6 +681,34 @@ def launchPlotExp(metrics, improvements, exp):
 
 # ===============================================================
 
+def testPlot3D():
+    # creating an empty canvas
+    fig = plt.figure()
+
+    # defining the axes with the projection
+    # as 3D so as to plot 3D graphs
+    ax = plt.axes(projection="3d")
+
+    # creating a wide range of points x,y,z
+    x = [0, 1, 2, 3, 4, 5, 6]
+    y = [0, 1, 4, 9, 16, 25, 36]
+    z = [0, 1, 4, 9, 16, 25, 36]
+
+    # plotting a 3D line graph with X-coordinate,
+    # Y-coordinate and Z-coordinate respectively
+    ax.plot3D(x, y, z, 'red')
+
+    # plotting a scatter plot with X-coordinate,
+    # Y-coordinate and Z-coordinate respectively
+    # and defining the points color as cividis
+    # and defining c as z which basically is a
+    # defination of 2D array in which rows are RGB
+    # or RGBA
+    ax.scatter3D(x, y, z, c=z, cmap='cividis')
+
+    # Showing the above plot
+    plt.show()
+
 
 def multipleXticks():
     fig = plt.figure()
@@ -670,6 +735,7 @@ def main():
 
     launchPlotExp(metrics, improvements, EXPERIMENT_PLOT)
     # multipleXticks()
+    # testPlot3D()
 
 
 if __name__ == "__main__":

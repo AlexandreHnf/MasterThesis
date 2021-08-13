@@ -119,9 +119,6 @@ def main():
     # testPaths()
     # showGraphQtree()
 
-    # TODO : prendre en compte les coordonnées plutot que paires s,t,
-    # ou alors on laisse comme ca et les s, t random vont se charger de trouver les bonnes paires ?
-
 
 if __name__ == "__main__":
     main()

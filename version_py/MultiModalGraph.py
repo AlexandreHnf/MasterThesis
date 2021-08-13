@@ -99,7 +99,7 @@ def addVilloStations(graph, show=False):
     # print(villo_coords)
 
     if show:
-        # showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
+        showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
         print("show villo")
 
     # get Villo stations nodes in the graph

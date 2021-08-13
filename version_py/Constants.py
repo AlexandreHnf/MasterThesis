@@ -55,21 +55,26 @@ GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
 # Exp 7 - multimodal public transport
-SPEEDS = [0.1, 15, 30, 90, 120, 1e10]
-ADDED_EDGES = [0, 10, 50, 100, 200]
-EXP7_GRAPH = 4
+SPEEDS =                [0.1, 15, 30, 90, 1e10]
+# ADDED_EDGES =           [0, 10, 50, 100, 200]
+ADDED_EDGES =           [0, 10, 50, 100, 200, 600, 1000]
+FOOT_PUBLIC_TRANSPORT = ["foot", "Public Transport"]
+EXP7_GRAPH =            4
 
 # EXP 8
-EXP8_GRAPHS = [1, 2, 3, 4, 5]
+EXP8_GRAPHS =           [1, 2, 3, 4, 5]
+FOOT_VILLO =            ["foot", "toStation", "fromStation", "Villo"]
+CAR_VILLO =             ["foot", "toStation", "fromStation", "car"]
+
 
 TO_STATION_COST =       60
 FROM_STATION_COST =     60
 
 EXPERIMENTS =           [1]
-NB_RUNS =               100
+NB_RUNS =               500
 
 # Visualization parameters
-EXPERIMENT_PLOT =       5
-KEPT_GRAPHS =           [0, 1, 2, 3, 4]
+EXPERIMENT_PLOT =       8
+KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]
 MARKERS =               ["s", "*", "x", "v", "^", "o", "d", "p"]
 MARKER_SIZE =           20
