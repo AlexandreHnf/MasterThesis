@@ -75,7 +75,9 @@ TO_STATION_COST =       60
 FROM_STATION_COST =     60
 
 # ================================
-# EXP 9
+# EXP 9 & 10
+C1 = 0
+C2 = 1
 PREF_RANGE =            [2, 0]
 PREF_STEP =             -0.2
 EXP9_GRAPHS =           [1, 2, 3]
@@ -84,16 +86,16 @@ PRICE_VILLO =           0       # 0 €
 GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
-# ================================
-# EXP 10
+EXP10_GRAPH =           3
+PREF_COMBI =            ["00", "01", "10", "11"]
 
 # ================================
-EXPERIMENTS =           [9]
+EXPERIMENTS =           [10]
 NB_RUNS =               100
 
 # ================================
 # Visualization parameters
-EXPERIMENT_PLOT =       9
+EXPERIMENT_PLOT =       10
 KEPT_GRAPHS =           [0, 1, 2]
 MARKERS =               ["s", "*", "x", "v", "^", "o", "d", "p"]
 MARKER_SIZE =           20

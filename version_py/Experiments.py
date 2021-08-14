@@ -336,10 +336,17 @@ def experiment8(graphs, show):
 
 
 def getPref(fixed_pref, x):
-    if fixed_pref == 1:
+    if fixed_pref == 0:    # fix c1
         return [1, x]
-    elif fixed_pref == 2:
+    elif fixed_pref == 1:  # fix c2
         return [x, 1]
+
+
+def getWorseCase(pref_range, worst_case):
+    if worst_case == 2:
+        return 1
+    else:
+        return pref_range[worst_case]
 
 
 def experiment9(graphs, fixed_pref, pref_range, step):
@@ -349,7 +356,7 @@ def experiment9(graphs, fixed_pref, pref_range, step):
     Simple queries with weighted summed edge weights (2 metrics)
     => Preprocessing without pref (= same pref for both modalities), then query with pref
     """
-    print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : Dijkstra & ALT")
+    print("EXPERIMENT 9 : Multi-modal station-based graph with personal car and villo bike : ALT")
     all_stats = {}
     for graph in graphs:
         print("GRAPH : ", graph.getName())
@@ -374,6 +381,7 @@ def experiment9(graphs, fixed_pref, pref_range, step):
         all_stats[graph.getName()]["nb_nodes_after"] = simple_multi_graph.getNbNodes()
         all_stats[graph.getName()]["nb_edges_after"] = simple_multi_graph.getNbEdges()
         all_stats[graph.getName()]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
+        all_stats[graph.getName()]["fixed"] = "c{0}".format((fixed_pref+1) % 2 + 1)
 
         nb = 0
         all_stats[graph.getName()]["stats"] = {}
@@ -412,7 +420,7 @@ def experiment9(graphs, fixed_pref, pref_range, step):
     IO.dicToJson(all_stats, IO.getFileExpPath(9, "exp9_all_stats.json"))
 
 
-def experiment10(graphs, fixed_pref, pref_range, step, worst_case):
+def experiment10(graph, pref_range, step):
     """
     Experiment 10 :
     Multi-modal villo-station-based graph :
@@ -420,30 +428,19 @@ def experiment10(graphs, fixed_pref, pref_range, step, worst_case):
     puis query avec tout le range de preference
     => p-e séparer cette fonctioni en 2 ? Un avec le plus petit worst case et l'autre le plus grand
     """
+    print("EXPERIMENT 10 : Multi-modal station-based graph with car and villo : ALT, diff prepro")
     all_stats = {}
-    for graph in graphs:
-        print("GRAPH : ", graph.getName())
+    print("GRAPH : ", graph.getName())
+    base_multi_graph, villo_closests = addVilloStations(graph)
 
-        all_stats[graph.getName()] = {"nb_nodes": graph.getNbNodes(),
-                                      "nb_edges": graph.getNbEdges(),
-                                      "avg_deg": graph.getAvgDegree()}
+    for fixed_pref in range(2):  # 0 = c1 or 1 = c2
+        for worst_case in range(3):  # 0 = low extremity, 1 = high extremity, 2 = c1=c2
+            label = "{0}{1}".format(fixed_pref, worst_case)
+            print("label : ", label)
+            all_stats[label] = {"fixed": "c{0}".format((fixed_pref+1) % 2 + 1)}
 
-        base_multi_graph, villo_closests = addVilloStations(graph)
-        simple_multi_graph = copy.deepcopy(base_multi_graph)
-        simple_multi_graph.toWeightedSum(getPref(fixed_pref, pref_range[worst_case]))
-
-        all_stats[graph.getName()]["nb_nodes_after"] = simple_multi_graph.getNbNodes()
-        all_stats[graph.getName()]["nb_edges_after"] = simple_multi_graph.getNbEdges()
-        all_stats[graph.getName()]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
-
-        nb = 0
-        all_stats[graph.getName()]["stats"] = {}
-        stats = {}
-
-        x = pref_range[0]
-        while x >= pref_range[1]:
-            # for x in range(pref_range[0], pref_range[1], step):
-            prefs = getPref(fixed_pref, x)
+            simple_multi_graph = copy.deepcopy(base_multi_graph)
+            simple_multi_graph.toUserAdapted(getPref(fixed_pref, getWorseCase(pref_range, worst_case)))
 
             # preprocessing with same pref for both modalities
             pre_timer = Timer()
@@ -454,31 +451,35 @@ def experiment10(graphs, fixed_pref, pref_range, step, worst_case):
             pre_timer.printTimeElapsedMin("lm dists")
             prepro_time = pre_timer.getTimeElapsedSec()
 
-            multi_graph = copy.deepcopy(base_multi_graph)
-            multi_graph.toWeightedSum(prefs)
+            all_stats[label]["nb_nodes_after"] = simple_multi_graph.getNbNodes()
+            all_stats[label]["nb_edges_after"] = simple_multi_graph.getNbEdges()
+            all_stats[label]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
 
-            # Benchmark query with varying preferences
-            b = Benchmark(multi_graph, NB_RUNS)
-            algos = ["Dijkstra", "ALT"]
-            stat = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
+            nb = 0
+            all_stats[label]["stats"] = {}
+            stats = {}
+            st_pairs = Random.getRandomPairs(base_multi_graph.getNodesIDs(), NB_RUNS)
 
-            stats[nb] = prefs + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
+            x = pref_range[0]
+            while x >= pref_range[1]:
+                prefs = getPref(fixed_pref, x)
 
-            stat["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
-            stat["ALT"]["nb_villo_stations"] = len(villo_closests)
+                multi_graph = copy.deepcopy(base_multi_graph)
+                multi_graph.toUserAdapted(prefs)
 
-            all_stats[graph.getName()]["stats"][nb] = {"c1": prefs[0], "c2": prefs[1],
-                                                       "Dijkstra": stat["Dijkstra"],
-                                                       "ALT": stat["ALT"]}
+                # Benchmark query with varying preferences
+                b = Benchmark(multi_graph, NB_RUNS, st_pairs)
+                algos = ["ALT"]
+                stat = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
 
-            nb += 1
-            x = round(x + step, 1)
+                stats[nb] = prefs + list(stat["ALT"].values())
+                stat["ALT"]["nb_villo_stations"] = len(villo_closests)
 
-        header = ["c1", "c2", "algo", "avg_QT", "avg_SS", "avg_RS",
-                  "lm_dists_CT", "nb_villo_stations"]
-        filename = IO.getFileExpPath(10, graph.getName() + "_exp10.csv")
-        # print(stats)
-        IO.writeDictStatsToCsv(stats, header, filename)
+                all_stats[label]["stats"][nb] = {"c1": prefs[0], "c2": prefs[1],
+                                                           "ALT": stat["ALT"]}
+
+                nb += 1
+                x = round(x + step, 1)
 
     IO.dicToJson(all_stats, IO.getFileExpPath(10, "exp10_all_stats.json"))
 
@@ -487,8 +488,7 @@ def experiment11():
     """
     Experiment 11 :
     Multi-Labelling algorithm pareto optimal
-    TODO TOTEST
-    # TODO : change nb runs to 1000 + use the 6 graphs
+    TODO
     """
     print("EXPERIMENT 11 : Multi-Labelling algorithm pareto optimal multi-modal network")
 
@@ -616,7 +616,7 @@ def launchMultimodalExperiment(exp):
         # car base layer
         # graphs = all_graphs[0]
         graphs = [parseSingleGraph(g, "car") for g in EXP9_GRAPHS]
-        experiment9(graphs, 1, PREF_RANGE, PREF_STEP)
+        experiment9(graphs, C1, PREF_RANGE, PREF_STEP)
         timer.stop()
         timer.printTimeElapsedMin("Exp 9")
         print("==========================================================================")
@@ -626,8 +626,8 @@ def launchMultimodalExperiment(exp):
         timer.start()
         # car base layer
         # graphs = all_graphs[0]
-        graphs = [parseSingleGraph(3)]
-        experiment10(graphs, 1, [2, 0], -0.2, 0)
+        graph = parseSingleGraph(EXP10_GRAPH, "car")
+        experiment10(graph, PREF_RANGE, PREF_STEP)  # 1, [2, 0], -0.2, 0
         timer.stop()
         timer.printTimeElapsedMin("Exp 10")
         print("==========================================================================")
