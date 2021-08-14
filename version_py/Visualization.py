@@ -172,7 +172,7 @@ def plotImprovementsExp7(filename, title, ylabel, xlabel, ymetric, graph, save_f
     show("upper right", title, ylabel, xlabel, save_filename)
 
 
-def plotExp7ModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, save_filename):
+def plotExp7ModalitiesBars(filename, title, ylabel, xlabel, graph, categories, algo, save_filename):
     stats = getJsonData(filename)
 
     fig = plt.figure()
@@ -190,18 +190,12 @@ def plotExp7ModalitiesLines(filename, title, ylabel, xlabel, graph, categories, 
                     percentage = (travel_types[mod] * 100) / tot
                     avg_percentage += percentage / len(ADDED_EDGES)
 
-            # in log scale
-            # z = 0
-            # if avg_percentage != 0:
-            #     z = math.log(avg_percentage)
-            # y.append(z)
             y.append(avg_percentage)
 
         # scatter points
         plt.bar(x, y, width=0.2)
         m += 1
 
-    # plt.yscale('log')
     # show
     # plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
     plt.legend(categories, loc="center right")
@@ -270,6 +264,70 @@ def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo
 
     # show
     plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
+    show(None, "", ylabel, xlabel, save_filename)
+
+
+def plotModalitiesLines3D(filename, title, ylabel, xlabel, kept_graphs, categories, algo, xmetric, save_filename):
+    stats = getJsonData(filename)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    colors = {"Villo": "blue", "toStation": "orange", "fromStation": "brown", "car": "red"}
+    markers = {"Villo": "s", "toStation": "*", "fromStation": "v", "car": "d"}
+    v = 0
+    for g in kept_graphs:
+        graph = GRAPHS[g]
+        for t in categories:
+            x, y = [], []
+            for k in stats[graph]["stats"]:
+                x.append(stats[graph]["stats"][k][xmetric])
+                if t not in stats[graph]["stats"][k][algo]["avg_travel_types"]:
+                    y.append(0)
+                else:
+                    y.append(stats[graph]["stats"][k][algo]["avg_travel_types"][t])
+            z = [v for _ in range(len(x))]
+
+            ax.scatter(xs=x, ys=y, zs=z, marker=markers[t], c=colors[t])
+
+        v += 1
+
+    ax.set_zlabel("Graphs")
+    ax.legend(["Villo", "toStation", "fromStation", "car"], loc="best")
+    show(None, title, ylabel, xlabel, save_filename)
+
+
+def plotPrefModalitiesBars(filename, title, ylabel, xlabel, graph, categories, algo, xmetric, save_filename):
+    stats = getJsonData(filename)
+
+    cols = ["cyan", "g", "r", "b"]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    data = []
+    for t in categories:
+        subdata = []
+        for k in stats[graph]["stats"]:
+            percentage = 0
+            travel_types = stats[graph]["stats"][k][algo]["avg_travel_types"]
+            tot = sum(travel_types.values())
+            if t in travel_types:
+                percentage = (travel_types[t] * 100) / tot
+            subdata.append(percentage)
+        data.append(subdata)
+
+    # show multiple bars
+    c = 0
+    shift = 0.00
+    for d in data:
+        x = np.arange(len(d))
+        ax.bar(x + shift, d, color=cols[c], width=0.25)
+        shift += 0.25
+        c += 1
+
+    # show
+    ax.legend(labels=categories)
+    # plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
     show(None, "", ylabel, xlabel, save_filename)
 
 
@@ -555,11 +613,11 @@ def plotExp7(metrics, improvements, graphs):
 
         # plot modalities lines :
         save_filename = getFileExpPath(7, "plot_modalities_" + graph + ".png")
-        plotExp7ModalitiesLines(getFileExpPath(7, "exp7_all_stats.json"),
-                                "Exp 7 -Modalities repartition - " + graph,
-                                "Percentage", "Speeds",
-                                graph, FOOT_PUBLIC_TRANSPORT,
-                                "ALT", save_filename)
+        plotExp7ModalitiesBars(getFileExpPath(7, "exp7_all_stats.json"),
+                               "Exp 7 -Modalities repartition - " + graph,
+                               "Percentage", "Speeds",
+                               graph, FOOT_PUBLIC_TRANSPORT,
+                               "ALT", save_filename)
 
 
 # ====================================================
@@ -617,25 +675,37 @@ def plotExp9(metrics, kept_graphs):
                           metrics[metric], "c2", "c2", metric,
                           kept_graphs, save_filename)
 
-    # save_filename = getFileExpPath(9, "plot_prepro_{0}.png".format(graphs))
-    # plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
-    #                   "Exp 9 - Preprocessing - Graphs: " + graphs,
-    #                   "Preprocessing time (sec.)", "c2", "c2", "lm_dists_CT",
-    #                   kept_graphs, save_filename)
+    save_filename = getFileExpPath(9, "plot_prepro_{0}.png".format(graphs))
+    plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
+                      "Exp 9 - Preprocessing - Graphs: " + graphs,
+                      "Preprocessing time (sec.)", "c2", "c2", "lm_dists_CT",
+                      kept_graphs, save_filename)
 
-    # plot max avg lb
     save_filename = getFileExpPath(9, "plot_max_avg_lb_{0}.png".format(graphs))
     plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
                       "Exp 9 - Max avg lower bound - Graphs: " + graphs,
                       "Max avg dist lb", "c2", "c2", "max_avg_lb",
                       kept_graphs, save_filename)
 
+    # for graph in kept_graphs:
+    #     save_filename = getFileExpPath(9, "plot_modalities_{0}.png".format(graphs))
+    #     plotModalitiesLines(getFileExpPath(9, "exp9_all_stats.json"),
+    #                         "Exp 9 - Travel types - " + str(graph + 1),
+    #                         "Travel types frequency", "c2", GRAPHS[graph],
+    #                         CAR_VILLO, "ALT", "c2", save_filename)
+
+    save_filename = getFileExpPath(9, "plot_modalities_{0}.png".format(graphs))
+    plotModalitiesLines3D(getFileExpPath(9, "exp9_all_stats.json"),
+                          "Exp 9 - Travel types - Graphs: " + graphs,
+                          "Travel types frequency", "c2", kept_graphs,
+                          CAR_VILLO, "ALT", "c2", save_filename)
+
     for graph in kept_graphs:
-        save_filename = getFileExpPath(9, "plot_modalities_{0}.png".format(graphs))
-        plotModalitiesLines(getFileExpPath(9, "exp9_all_stats.json"),
-                            "Exp 9 - Travel types - " + str(graph + 1),
-                            "Travel types frequency", "c2", GRAPHS[graph],
-                            CAR_VILLO, "ALT", "c2", save_filename)
+        save_filename = getFileExpPath(9, "plot_modalitiesBars_{0}.png".format(str(graph+1)))
+        plotPrefModalitiesBars(getFileExpPath(9, "exp9_all_stats.json"),
+                               "Exp 9 - Modalities repartition - bars - Graph " + str(graph+1),
+                               "Percentage", "c2", GRAPHS[graph],
+                               CAR_VILLO, "ALT", "c2", save_filename)
 
 
 # ====================================================
@@ -701,31 +771,23 @@ def launchPlotExp(metrics, improvements, exp):
 
 
 def testPlot3D():
-    # creating an empty canvas
+    np.random.seed(42)
+
+    ages = np.random.randint(low=8, high=30, size=35)
+    heights = np.random.randint(130, 195, 35)
+    weights = np.random.randint(30, 160, 35)
+    gender_labels = np.random.choice([0, 1], 35)  # 0 for male, 1 for female
+
     fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
 
-    # defining the axes with the projection
-    # as 3D so as to plot 3D graphs
-    ax = plt.axes(projection="3d")
+    ax.scatter(xs=heights, ys=weights, zs=ages, c=gender_labels)
 
-    # creating a wide range of points x,y,z
-    x = [0, 1, 2, 3, 4, 5, 6]
-    y = [0, 1, 4, 9, 16, 25, 36]
-    z = [0, 1, 4, 9, 16, 25, 36]
+    ax.set_title("Age-wise body weight-height distribution")
+    ax.set_xlabel("Height (cm)")
+    ax.set_ylabel("Weight (kg)")
+    ax.set_zlabel("Age (years)")
 
-    # plotting a 3D line graph with X-coordinate,
-    # Y-coordinate and Z-coordinate respectively
-    ax.plot3D(x, y, z, 'red')
-
-    # plotting a scatter plot with X-coordinate,
-    # Y-coordinate and Z-coordinate respectively
-    # and defining the points color as cividis
-    # and defining c as z which basically is a
-    # defination of 2D array in which rows are RGB
-    # or RGBA
-    ax.scatter3D(x, y, z, c=z, cmap='cividis')
-
-    # Showing the above plot
     plt.show()
 
 
@@ -743,6 +805,30 @@ def multipleXticks():
     plt.show()
 
 
+def testMultipleBars():
+    data = [[30, 25, 50, 20, 2, 8],
+            [40, 23, 51, 17, 5, 9],
+            [35, 22, 45, 19, 7, 7]]
+    X = np.arange(6)
+    print(X)
+    fig = plt.figure()
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.bar(X + 0.00, data[0], color='b', width=0.25)
+    ax.bar(X + 0.25, data[1], color='g', width=0.25)
+    ax.bar(X + 0.50, data[2], color='r', width=0.25)
+
+    ax.set_xticks(X, ('G1', 'G2', 'G3', 'G4', 'G5', 'G6'))
+    plt.show()
+
+def testSingleBar():
+    fig = plt.figure()
+    ax=fig.add_subplot(111)
+    langs = ['C', 'C++', 'Java', 'Python', 'PHP']
+    students = [23, 17, 35, 29, 12]
+    ax.bar(langs, students)
+    plt.show()
+
+
 def main():
     metrics = {"avg_QT": "avg QT (sec.)",
                "avg_RS": "avg relaxed space size",
@@ -755,7 +841,8 @@ def main():
     launchPlotExp(metrics, improvements, EXPERIMENT_PLOT)
     # multipleXticks()
     # testPlot3D()
-
+    # testMultipleBars()
+    # testSingleBar()
 
 if __name__ == "__main__":
     main()
