@@ -6,6 +6,7 @@ from Graph import Graph
 from Random import *
 from Utils import haversine, getCarGasPrice
 from Edge import Edge
+from UserAdaptedEdge import UserAdaptedEdge
 from Quadtree import *
 from ParseOSMgraph import OSMgraphParser
 from copy import deepcopy
@@ -75,11 +76,23 @@ class MultiModalGraph(Graph):
         """
         if edge.getTravelType() == "car":
             ws = prefs[0] * edge.getWeight() + prefs[1] * getCarGasPrice(edge.getLengthKm())
-            # print("car : {0} . {1} + {2} . {3} = {4}".format(prefs[0], edge.getWeight(), prefs[1], getCarGasPrice(edge.getLengthKm()), ws))
+            # print("car : {0} . {1} + {2} . {3} = {4}".
+            #       format(prefs[0], edge.getWeight(), prefs[1], getCarGasPrice(edge.getLengthKm()), ws))
             return ws
-        else:  # bike or foot
+
+        elif edge.getTravelType() == "toStation":
+            # get the non-null preference
+            ws = (prefs[0]+prefs[1]) * edge.getWeight()
+            return ws
+
+        elif edge.getTravelType() == "fromStation":
+            ws = (prefs[0]+prefs[1]) * edge.getWeight()
+            return ws
+
+        else :  # bike or foot
             ws = prefs[0] * edge.getWeight() + prefs[1] * PRICE_VILLO
-            # print("{0} : {1} . {2} + {3} . {4} = {5}".format(edge.getTravelType(), prefs[0], edge.getWeight(), prefs[1], 0, ws))
+            # print("{0} : {1} . {2} + {3} . {4} = {5}".
+            #       format(edge.getTravelType(), prefs[0], edge.getWeight(), prefs[1], 0, ws))
             return ws
 
     def toWeightedSum(self, prefs):
@@ -88,6 +101,18 @@ class MultiModalGraph(Graph):
                 weighted_sum = self.getWeightedSum(edge, prefs)
                 # print(edge.getTravelType(), edge.getWeight())
                 edge.setWeight(weighted_sum)
+
+    def toUserAdapted(self, prefs):
+        for v in self.getNodesIDs():
+            e = self.getAdj(v)
+            for i in range(len(e)):
+                e[i] = UserAdaptedEdge(e[i].getExtremityNode(),
+                                       e[i].getTravelType(),
+                                       e[i].getWeight(),
+                                       e[i].getLengthKm(),
+                                       e[i].getSpeed(), prefs)
+
+        self.rev_adj_list = self.createReverseGraph(self.adj_list)
 
 
 # =====================================================================

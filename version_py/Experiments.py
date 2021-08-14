@@ -360,7 +360,16 @@ def experiment9(graphs, fixed_pref, pref_range, step):
 
         base_multi_graph, villo_closests = addVilloStations(graph)
         simple_multi_graph = copy.deepcopy(base_multi_graph)
-        simple_multi_graph.toWeightedSum([1, 1])
+        simple_multi_graph.toUserAdapted([1, 1])
+
+        # preprocessing with same pref for both modalities
+        pre_timer = Timer()
+        pre_timer.start()
+        alt_pre = ALTpreprocessing(simple_multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
+        lm_dists = alt_pre.getLmDistances()
+        pre_timer.stop()
+        pre_timer.printTimeElapsedMin("lm dists")
+        prepro_time = pre_timer.getTimeElapsedSec()
 
         all_stats[graph.getName()]["nb_nodes_after"] = simple_multi_graph.getNbNodes()
         all_stats[graph.getName()]["nb_edges_after"] = simple_multi_graph.getNbEdges()
@@ -377,17 +386,8 @@ def experiment9(graphs, fixed_pref, pref_range, step):
             # for x in range(pref_range[0], pref_range[1], step):
             prefs = getPref(fixed_pref, x)
 
-            # preprocessing with same pref for both modalities
-            pre_timer = Timer()
-            pre_timer.start()
-            alt_pre = ALTpreprocessing(simple_multi_graph, LANDMARK_SELECTION, None, NB_LANDMARKS)
-            lm_dists = alt_pre.getLmDistances()
-            pre_timer.stop()
-            pre_timer.printTimeElapsedMin("lm dists")
-            prepro_time = pre_timer.getTimeElapsedSec()
-
             multi_graph = copy.deepcopy(base_multi_graph)
-            multi_graph.toWeightedSum(prefs)
+            multi_graph.toUserAdapted(prefs)
 
             # Benchmark query with varying preferences
             b = Benchmark(multi_graph, NB_RUNS, st_pairs)

@@ -28,7 +28,7 @@ GRAPH_VILLO =           "villo"
 
 
 SPEED_FOOT =            5   # km/h
-SPEED_BIKE =            20  # km/h https://cyclinguphill.com/average-speeds-cycling/
+SPEED_BIKE =            25  # km/h https://cyclinguphill.com/average-speeds-cycling/
 NOT_VALID_MAXSPEEDS =   not_valid = ["signals",
                                      "variable",
                                      "30; 50",
@@ -52,9 +52,6 @@ BUCKET_SIZE =           40
 SEED =                  -1
 ENCODING =              'utf-8'
 SHOW =                  False
-
-GAS_PRICE_KM =          1.4  # € / L
-CAR_CONSUMPTION =       7    # L / 100km
 
 # ================================
 # Exp 7 - multimodal public transport
@@ -84,12 +81,15 @@ PREF_STEP =             -0.2
 EXP9_GRAPHS =           [1, 2, 3]
 PRICE_VILLO =           0       # 0 €
 
+GAS_PRICE_KM =          1.4  # € / L
+CAR_CONSUMPTION =       7    # L / 100km
+
 # ================================
 # EXP 10
 
 # ================================
 EXPERIMENTS =           [9]
-NB_RUNS =               1000
+NB_RUNS =               100
 
 # ================================
 # Visualization parameters
