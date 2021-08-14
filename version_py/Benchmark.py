@@ -18,11 +18,15 @@ from Thread import SingleQueryThread, MultipleQueriesThread, MultipleQueriesMult
 
 
 class Benchmark:
-    def __init__(self, graph, nb_runs):
+    def __init__(self, graph, nb_runs, st_pairs=None):
         self.graph = graph
         self.nb_runs = nb_runs
         self.irange = (1, self.graph.getNbNodes())
-        self.st_pairs = Random.getRandomPairs(self.graph.getNodesIDs(), nb_runs)
+        self.st_pairs = None
+        if st_pairs:
+            self.st_pairs = st_pairs
+        else:
+            self.st_pairs = Random.getRandomPairs(self.graph.getNodesIDs(), nb_runs)
 
     def testSingleQuery(self, algo_name, priority, bucket_size, heuristic, lm_dists):
         stats = {"avg_QT": 0, "avg_SS": 0, "avg_RS": 0}

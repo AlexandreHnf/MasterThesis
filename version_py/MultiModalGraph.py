@@ -78,7 +78,7 @@ class MultiModalGraph(Graph):
             # print("car : {0} . {1} + {2} . {3} = {4}".format(prefs[0], edge.getWeight(), prefs[1], getCarGasPrice(edge.getLengthKm()), ws))
             return ws
         else:  # bike or foot
-            ws = prefs[0] * edge.getWeight() + prefs[1] * 0  # 0€
+            ws = prefs[0] * edge.getWeight() + prefs[1] * PRICE_VILLO
             # print("{0} : {1} . {2} + {3} . {4} = {5}".format(edge.getTravelType(), prefs[0], edge.getWeight(), prefs[1], 0, ws))
             return ws
 
@@ -96,7 +96,6 @@ def addVilloStations(graph, show=False):
     timer = Timer()
     timer.start()
     villo_coords = OSMgraphParser.getVilloNodes()
-    # print(villo_coords)
 
     if show:
         showVilloStations(graph.getQtree(), graph.getNodesCoords(), villo_coords, False)
@@ -108,6 +107,7 @@ def addVilloStations(graph, show=False):
         closest = graph.findClosestNode(coord)
         if closest:
             villo_closests.append(closest)
+    print("Nb villo stations retrieved : ", len(villo_closests))
 
     # transform the graph into a multi-modal foot-villo graph
     nodes_coords = deepcopy(graph.getNodesCoords())

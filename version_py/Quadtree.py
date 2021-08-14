@@ -302,10 +302,10 @@ def showVilloStations(qtree, nodes_coords, villo_coords, showBoundaries=True):
         qtree.draw(ax)
 
     # show graph coords :
-    showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
+    # showPoints(ax, list(nodes_coords.items()), "lightblue", 4)
 
     # show villo coords:
-    showVilloPoints(ax, villo_coords, "red", 4)
+    showVilloPoints(ax, villo_coords, "blue", 7)
 
     plt.tight_layout()
     plt.show()

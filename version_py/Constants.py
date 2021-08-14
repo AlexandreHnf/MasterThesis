@@ -8,6 +8,7 @@ earthRadiusKm = 6371
 
 limit_connection_ratio = 0.5
 
+# ================================
 # Graphs
 GRAPH_ULB =             "1_ULB"
 GRAPH_BXL =             "2_Bruxelles"
@@ -38,6 +39,7 @@ NOT_VALID_MAXSPEEDS =   not_valid = ["signals",
                                      "BE:urban"]
 
 
+# ================================
 # Benchmarks parameters
 GRAPH =                 GRAPH_BXL
 
@@ -54,6 +56,7 @@ SHOW =                  False
 GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
+# ================================
 # Exp 7 - multimodal public transport
 SPEEDS =                [0.1, 15, 30, 90, 1e10]
 SPEEDS_LABELS =         {0.1: "0.1 km/h (~0)",
@@ -65,19 +68,32 @@ ADDED_EDGES =           [0, 10, 50, 100, 200, 600, 1000]
 FOOT_PUBLIC_TRANSPORT = ["foot", "Public Transport"]
 EXP7_GRAPH =            4
 
+# ================================
 # EXP 8
 EXP8_GRAPHS =           [1, 2, 3, 4, 5]
 FOOT_VILLO =            ["foot", "toStation", "fromStation", "Villo"]
-CAR_VILLO =             ["foot", "toStation", "fromStation", "car"]
+CAR_VILLO =             ["Villo", "toStation", "fromStation", "car"]
 
 TO_STATION_COST =       60
 FROM_STATION_COST =     60
 
-EXPERIMENTS =           [1]
-NB_RUNS =               500
+# ================================
+# EXP 9
+PREF_RANGE =            [2, 0]
+PREF_STEP =             -0.2
+EXP9_GRAPHS =           [1, 2, 3]
+PRICE_VILLO =           0       # 0 €
 
+# ================================
+# EXP 10
+
+# ================================
+EXPERIMENTS =           [9]
+NB_RUNS =               1000
+
+# ================================
 # Visualization parameters
-EXPERIMENT_PLOT =       7
-KEPT_GRAPHS =           [0, 1, 2, 3, 4, 5]
+EXPERIMENT_PLOT =       9
+KEPT_GRAPHS =           [0, 1, 2]
 MARKERS =               ["s", "*", "x", "v", "^", "o", "d", "p"]
 MARKER_SIZE =           20

@@ -3,6 +3,8 @@
 
 
 import csv
+import math
+
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 from IO import *
@@ -187,15 +189,19 @@ def plotExp7ModalitiesLines(filename, title, ylabel, xlabel, graph, categories, 
                 if mod in travel_types:
                     percentage = (travel_types[mod] * 100) / tot
                     avg_percentage += percentage / len(ADDED_EDGES)
+
+            # in log scale
+            # z = 0
+            # if avg_percentage != 0:
+            #     z = math.log(avg_percentage)
+            # y.append(z)
             y.append(avg_percentage)
 
         # scatter points
-        # ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=mod)
-        # plt.plot(x, y)
-        # plt.xticks(x, x)
         plt.bar(x, y, width=0.2)
         m += 1
 
+    # plt.yscale('log')
     # show
     # plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
     plt.legend(categories, loc="center right")
@@ -315,20 +321,21 @@ def plotModalitiesPieChart(filename, title, graph, algo, categories, save_filena
     plt.show()
 
 
-def plotPrefExpResult(filename, title, ylabel, xlabel, xmetric, ymetric, graph, save_filename):
+def plotPrefExpResult(filename, title, ylabel, xlabel, xmetric, ymetric, graphs, save_filename):
     stats = getJsonData(filename)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
     m = 0
-    for algo in ["Dijkstra", "ALT"]:
+    for g in graphs:
+        graph = GRAPHS[g]
         x, y = [], []
         for k in stats[graph]["stats"]:
             x.append(stats[graph]["stats"][k][xmetric])
-            y.append(stats[graph]["stats"][k][algo][ymetric])
+            y.append(stats[graph]["stats"][k]["ALT"][ymetric])
 
         # scatter points
-        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=algo)
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=graph)
         plt.plot(x, y)
         plt.xticks(x, x)
         m += 1
@@ -345,6 +352,7 @@ def plotPrefAvgMaxLb(filename, title, ylabel, xlabel, xmetric, graph, save_filen
         y.append(stats[graph]["stats"][k]["ALT"]["max_avg_lb"])
 
     plt.plot(x, y, marker="d")
+    plt.xticks(x, x)
 
     # show
     show(None, title, ylabel, xlabel, save_filename)
@@ -596,30 +604,38 @@ def plotExp8(metrics, improvements, kept_graphs):
 # ====================================================
 
 
-def plotExp9(metrics, graphs):
+def plotExp9(metrics, kept_graphs):
     """
-
+    station-based multimodal network
+    User pref - preprocessing c1=c2=1, then vary c1/c2 during query
     """
-    for graph in graphs:
-        for metric in metrics:
-            save_filename = getFileExpPath(9, "plot_" + metric + "" + graph + ".png")
-            plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
-                              "Exp 9 - prefs - " + metric + " - " + graph,
-                              metrics[metric], "c2", "c2", metric,
-                              graph, save_filename)
+    graphs = ",".join([str(g + 1) for g in KEPT_GRAPHS])
+    for metric in metrics:
+        save_filename = getFileExpPath(9, "plot_{0}_{1}.png".format(metric, graphs))
+        plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
+                          "Exp 9 - prefs - " + metric + " - Graphs : " + graphs,
+                          metrics[metric], "c2", "c2", metric,
+                          kept_graphs, save_filename)
 
-        save_filename = getFileExpPath(9, "plot_travelTypes_" + graph + ".png")
+    save_filename = getFileExpPath(9, "plot_prepro_{0}.png".format(graphs))
+    plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
+                      "Exp 9 - Preprocessing - Graphs: " + graphs,
+                      "Preprocessing time (sec.)", "c2", "c2", "lm_dists_CT",
+                      kept_graphs, save_filename)
+
+    # plot max avg lb
+    save_filename = getFileExpPath(9, "plot_max_avg_lb_{0}.png".format(graphs))
+    plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
+                      "Exp 9 - Max avg lower bound - Graphs: " + graphs,
+                      "Max avg dist lb", "c2", "c2", "max_avg_lb",
+                      kept_graphs, save_filename)
+
+    for graph in kept_graphs:
+        save_filename = getFileExpPath(9, "plot_modalities_{0}.png".format(graphs))
         plotModalitiesLines(getFileExpPath(9, "exp9_all_stats.json"),
-                            "Exp 9 - Travel types - " + graph,
-                            "Travel types frequency", "c2", graph,
-                            CAR_VILLO, "Dijkstra", "c2", save_filename)
-
-        # plot max avg lb
-        save_filename = getFileExpPath(9, "plot_max_avg_lb_" + graph + ".png")
-        plotPrefAvgMaxLb(getFileExpPath(9, "exp9_all_stats.json"),
-                         "Exp 9 - Max avg lower bound - " + graph,
-                         "Max avg dist lb", "c2", "c2",
-                         graph, save_filename)
+                            "Exp 9 - Travel types - " + str(graph + 1),
+                            "Travel types frequency", "c2", GRAPHS[graph],
+                            CAR_VILLO, "ALT", "c2", save_filename)
 
 
 # ====================================================
@@ -676,9 +692,9 @@ def launchPlotExp(metrics, improvements, exp):
     if exp == 8 or exp == -1:
         plotExp8(metrics, improvements, KEPT_GRAPHS)
     if exp == 9 or exp == -1:
-        plotExp9(metrics, [GRAPH_ULB])
+        plotExp9(metrics, KEPT_GRAPHS)
     if exp == 10 or exp == -1:
-        plotExp10(metrics, [GRAPH_ULB])
+        plotExp10(metrics, KEPT_GRAPHS)
 
 
 # ==============================================================

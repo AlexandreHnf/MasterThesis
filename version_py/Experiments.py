@@ -370,6 +370,8 @@ def experiment9(graphs, fixed_pref, pref_range, step):
         all_stats[graph.getName()]["stats"] = {}
         stats = {}
 
+        st_pairs = Random.getRandomPairs(base_multi_graph.getNodesIDs(), NB_RUNS)
+
         x = pref_range[0]
         while x >= pref_range[1]:
             # for x in range(pref_range[0], pref_range[1], step):
@@ -388,17 +390,14 @@ def experiment9(graphs, fixed_pref, pref_range, step):
             multi_graph.toWeightedSum(prefs)
 
             # Benchmark query with varying preferences
-            b = Benchmark(multi_graph, NB_RUNS)
-            algos = ["Dijkstra", "ALT"]
+            b = Benchmark(multi_graph, NB_RUNS, st_pairs)
+            algos = ["ALT"]
             stat = b.testMultipleQueriesMultiModal(multi_graph, algos, lm_dists, prepro_time)
 
-            stats[nb] = prefs + list(stat["Dijkstra"].values()) + list(stat["ALT"].values())
-
-            stat["Dijkstra"]["nb_villo_stations"] = len(villo_closests)
+            stats[nb] = prefs + list(stat["ALT"].values())
             stat["ALT"]["nb_villo_stations"] = len(villo_closests)
 
             all_stats[graph.getName()]["stats"][nb] = {"c1": prefs[0], "c2": prefs[1],
-                                                       "Dijkstra": stat["Dijkstra"],
                                                        "ALT": stat["ALT"]}
 
             nb += 1
@@ -616,8 +615,8 @@ def launchMultimodalExperiment(exp):
         timer.start()
         # car base layer
         # graphs = all_graphs[0]
-        graphs = [parseSingleGraph(3)]
-        experiment9(graphs, 1, [2, 0], -0.2)
+        graphs = [parseSingleGraph(g, "car") for g in EXP9_GRAPHS]
+        experiment9(graphs, 1, PREF_RANGE, PREF_STEP)
         timer.stop()
         timer.printTimeElapsedMin("Exp 9")
         print("==========================================================================")
@@ -659,13 +658,12 @@ def showVilloStations(graph_names):
 
 
 def main():
-    launchSingleModalExperiment(EXPERIMENTS)
-
-    # launchAllExperiments()
+    # launchSingleModalExperiment(EXPERIMENTS)
+    launchMultimodalExperiment(EXPERIMENTS)
 
     # testRandomPairs()
 
-    # showVilloStations([0, 1, 2, 3, 4])
+    # showVilloStations([0])
 
 
 if __name__ == "__main__":
