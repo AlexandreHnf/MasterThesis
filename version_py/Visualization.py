@@ -221,6 +221,9 @@ def plotExp7AvgDegResult(filename, title, ylabel, xlabel, graph, save_filename):
 
 
 def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, graph, save_filename):
+    """
+    For exp 7
+    """
     stats = getJsonData(filename)
 
     fig = plt.figure()
@@ -241,61 +244,6 @@ def plotMaxAvgLbExp7(filename, title, ylabel, xlabel, graph, save_filename):
     show("upper right", title, ylabel, xlabel, save_filename)
 
 
-def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, xmetric, save_filename):
-    stats = getJsonData(filename)
-
-    fig = plt.figure()
-    ax1 = fig.add_subplot(111)
-    m = 0
-    for t in categories:
-        x, y = [], []
-        for k in stats[graph]["stats"]:
-            x.append(stats[graph]["stats"][k][xmetric])
-            if t not in stats[graph]["stats"][k][algo]["avg_travel_types"]:
-                y.append(0)
-            else:
-                y.append(stats[graph]["stats"][k][algo]["avg_travel_types"][t])
-
-        # scatter points
-        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=t)
-        plt.plot(x, y)
-        plt.xticks(x, x)
-        m += 1
-
-    # show
-    plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
-    show(None, "", ylabel, xlabel, save_filename)
-
-
-def plotModalitiesLines3D(filename, title, ylabel, xlabel, categories, modalities, algo, save_filename):
-    stats = getJsonData(filename)
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-
-    colors = {"Villo": "blue", "toStation": "orange", "fromStation": "brown", "car": "red"}
-    markers = {"Villo": "s", "toStation": "*", "fromStation": "v", "car": "d"}
-    v = 0
-    for c in categories:
-        xmetric = stats[c]["fixed"]
-        for m in modalities:
-            x, y = [], []
-            for k in stats[c]["stats"]:
-                x.append(stats[c]["stats"][k][xmetric])
-                if m not in stats[c]["stats"][k][algo]["avg_travel_types"]:
-                    y.append(0)
-                else:
-                    y.append(stats[c]["stats"][k][algo]["avg_travel_types"][m])
-            z = [v for _ in range(len(x))]
-
-            ax.scatter(xs=x, ys=y, zs=z, marker=markers[m], c=colors[m])
-
-        v += 1
-
-    ax.set_zlabel("Graphs")
-    ax.legend(["Villo", "toStation", "fromStation", "car"], loc="best")
-    show(None, title, ylabel, xlabel, save_filename)
-
-
 def plotModalitiesPieChart(filename, title, graph, algo, categories, save_filename):
     """
     code from : https://www.pythonprogramming.in/how-to-pie-chart-with-different-color-themes-in-matplotlib.html
@@ -304,6 +252,8 @@ def plotModalitiesPieChart(filename, title, graph, algo, categories, save_filena
     # 13 = red,
     # 7 = lightgreen
     # 4 = blue
+
+    For exp 8
     """
     stats = getJsonData(filename)
 
@@ -313,7 +263,6 @@ def plotModalitiesPieChart(filename, title, graph, algo, categories, save_filena
     for cat in categories:
         sizes.append(stats[graph]["stats"][algo]["avg_travel_types"][cat])
 
-    # sizes = [11, 3, 5, 6]
     labels = ["{0} %s".format(cat) % i for cat, i in zip(sizes, categories)]
 
     fig1, ax1 = plt.subplots(figsize=(5, 5))
@@ -344,44 +293,108 @@ def plotModalitiesPieChart(filename, title, graph, algo, categories, save_filena
     plt.show()
 
 
-def plotPrefExpResult(filename, title, ylabel, xlabel, ymetric, categories, save_filename):
+def plotModalitiesLines(filename, title, ylabel, xlabel, graph, categories, algo, xmetric, save_filename):
+    """
+    For exp 9 and 10
+    """
     stats = getJsonData(filename)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
     m = 0
+    for t in categories:
+        x, y = [], []
+        for k in stats[graph]["stats"]:
+            x.append(stats[graph]["stats"][k][xmetric])
+            if t not in stats[graph]["stats"][k][algo]["avg_travel_types"]:
+                y.append(0)
+            else:
+                y.append(stats[graph]["stats"][k][algo]["avg_travel_types"][t])
+
+        # scatter points
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=t)
+        plt.plot(x, y)
+        plt.xticks(x, x)
+        m += 1
+
+    # show
+    plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
+    show(None, "", ylabel, xlabel, save_filename)
+
+
+def plotModalitiesLines3D(filename, title, ylabel, xlabel, zlabel, categories, modalities, algo, save_filename):
+    """
+    For exp 9 and 10
+    """
+    stats = getJsonData(filename)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    colors = {"Villo": "blue", "toStation": "orange", "fromStation": "brown", "car": "red"}
+    markers = {"Villo": "s", "toStation": "*", "fromStation": "v", "car": "d"}
+    v = 0
     for c in categories:
-        xmetric = stats[c]["fixed"]
+        xmetric = stats[c]["variable_pref"]
+        max_y = 0
+        for m in modalities:
+            x, y = [], []
+            for k in stats[c]["stats"]:
+                x.append(stats[c]["stats"][k][xmetric])
+                if m not in stats[c]["stats"][k][algo]["avg_travel_types"]:
+                    y.append(0)
+                else:
+                    y.append(stats[c]["stats"][k][algo]["avg_travel_types"][m])
+            z = [v for _ in range(len(x))]
+            max_y = max(max_y, max(y))
+
+            # plt.plot(xs=x, ys=y, zs=z)
+            ax.scatter(xs=x, ys=y, zs=z, marker=markers[m], c=colors[m], s=10)
+
+        # plot surface at the graph height
+        xx = np.array([PREF_RANGE[0], PREF_RANGE[1]])
+        yy = np.array([0, max_y])
+        xx, yy = np.meshgrid(xx, yy)
+        zz = np.array([[v, v], [v, v]])
+        ax.plot_surface(xx, yy, zz, alpha=0.2)
+
+        v += 1
+
+    # ax.set_zlabel(zlabel)
+    ax.set_zticks([i for i in range(len(categories))])
+    ax.set_zticklabels(list(categories.values()))
+    ax.legend(["Villo", "toStation", "fromStation", "car"], loc="best")
+    show(None, title, ylabel, xlabel, save_filename)
+
+
+def plotPrefExpResult(filename, title, ylabel, xlabel, ymetric, categories, save_filename):
+    """
+    For exp 9 and 10
+    """
+    stats = getJsonData(filename)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+    m = 0
+    for c, clabel in categories.items():
+        xmetric = stats[c]["variable_pref"]
         x, y = [], []
         for k in stats[c]["stats"]:
             x.append(stats[c]["stats"][k][xmetric])
             y.append(stats[c]["stats"][k]["ALT"][ymetric])
 
         # scatter points
-        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=c)
+        ax1.scatter(x, y, s=MARKER_SIZE, marker=MARKERS[m], label=clabel)
         plt.plot(x, y)
         plt.xticks(x, x)
         m += 1
 
-    show("upper left", title, ylabel, xlabel, save_filename)
-
-
-def plotPrefAvgMaxLb(filename, title, ylabel, xlabel, xmetric, graph, save_filename):
-    stats = getJsonData(filename)
-
-    x, y = [], []
-    for k in stats[graph]["stats"]:
-        x.append(stats[graph]["stats"][k][xmetric])
-        y.append(stats[graph]["stats"][k]["ALT"]["max_avg_lb"])
-
-    plt.plot(x, y, marker="d")
-    plt.xticks(x, x)
-
-    # show
-    show(None, title, ylabel, xlabel, save_filename)
+    show("best", title, ylabel, xlabel, save_filename)
 
 
 def plotPrefModalitiesBars(filename, title, ylabel, xlabel, category, modalities, algo, save_filename):
+    """
+    For exp 9 and 10
+    """
     stats = getJsonData(filename)
 
     cols = ["cyan", "g", "r", "b"]
@@ -390,6 +403,7 @@ def plotPrefModalitiesBars(filename, title, ylabel, xlabel, category, modalities
     ax = fig.add_subplot(111)
 
     data = []
+    xticks = [stats[category]["stats"][k][xlabel] for k in stats[category]["stats"]]
     for m in modalities:
         subdata = []
         for k in stats[category]["stats"]:
@@ -406,13 +420,15 @@ def plotPrefModalitiesBars(filename, title, ylabel, xlabel, category, modalities
     shift = 0.00
     for d in data:
         x = np.arange(len(d))
-        ax.bar(x + shift, d, color=cols[c], width=0.25)
-        shift += 0.25
+        ax.bar(x + shift, d, color=cols[c], width=0.2)
+        shift += 0.2
         c += 1
 
     # show
+    idx = np.asarray([i for i in range(len(xticks))])
+    ax.set_xticks(idx)
+    ax.set_xticklabels(xticks)
     ax.legend(labels=modalities)
-    # plt.legend(bbox_to_anchor=(0, 1, 1, 0), loc="lower left", mode="expand", ncol=4)
     show(None, title, ylabel, xlabel, save_filename)
 
 
@@ -674,19 +690,19 @@ def plotExp9(metrics, kept_graphs):
         plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
                           "Exp 9 - prefs - " + metric + " - Graphs : " + graphs,
                           metrics[metric], "c2", metric,
-                          kept_graphs, save_filename)
+                          EXP9_CATEGORIES, save_filename)
 
     save_filename = getFileExpPath(9, "plot_prepro_{0}.png".format(graphs))
     plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
                       "Exp 9 - Preprocessing - Graphs: " + graphs,
                       "Preprocessing time (sec.)", "c2", "lm_dists_CT",
-                      kept_graphs, save_filename)
+                      EXP9_CATEGORIES, save_filename)
 
     save_filename = getFileExpPath(9, "plot_max_avg_lb_{0}.png".format(graphs))
     plotPrefExpResult(getFileExpPath(9, "exp9_all_stats.json"),
                       "Exp 9 - Max avg lower bound - Graphs: " + graphs,
                       "Max avg dist lb", "c2", "max_avg_lb",
-                      kept_graphs, save_filename)
+                      EXP9_CATEGORIES, save_filename)
 
     # for graph in kept_graphs:
     #     save_filename = getFileExpPath(9, "plot_modalities_{0}.png".format(graphs))
@@ -698,7 +714,7 @@ def plotExp9(metrics, kept_graphs):
     save_filename = getFileExpPath(9, "plot_modalities_{0}.png".format(graphs))
     plotModalitiesLines3D(getFileExpPath(9, "exp9_all_stats.json"),
                           "Exp 9 - Travel types - Graphs: " + graphs,
-                          "Travel types frequency", "c2", kept_graphs,
+                          "Travel types frequency", "c2", "Graphs", EXP9_CATEGORIES,
                           CAR_VILLO, "ALT", save_filename)
 
     for graph in kept_graphs:
@@ -718,35 +734,36 @@ def plotExp10(metrics, graph):
     User pref - vary c1 and c2 and using worst case users
     """
     for metric in metrics:
-        save_filename = getFileExpPath(10, "plot_{0}_{1}.png".format(metric, str(graph+1)))
+        save_filename = getFileExpPath(10, "plot_{0}_{1}.png".format(metric, str(graph)))
         plotPrefExpResult(getFileExpPath(10, "exp10_all_stats.json"),
-                          "Exp 10 - prefs - " + metric + " - Graph : " + str(graph+1),
+                          "Exp 10 - prefs - " + metric + " - Graph : " + str(graph),
                           metrics[metric], "c", metric,
-                          PREF_COMBI, save_filename)
+                          EXP10_CATEGORIES, save_filename)
 
-    save_filename = getFileExpPath(10, "plot_prepro_{0}.png".format(str(graph+1)))
+    save_filename = getFileExpPath(10, "plot_prepro_{0}.png".format(str(graph)))
     plotPrefExpResult(getFileExpPath(10, "exp10_all_stats.json"),
-                      "Exp 10 - Preprocessing - Graph: " + str(graph+1),
+                      "Exp 10 - Preprocessing - Graph: " + str(graph),
                       "Preprocessing time (sec.)", "c", "lm_dists_CT",
-                      PREF_COMBI, save_filename)
+                      EXP10_CATEGORIES, save_filename)
 
-    save_filename = getFileExpPath(10, "plot_max_avg_lb_{0}.png".format(str(graph+1)))
+    save_filename = getFileExpPath(10, "plot_max_avg_lb_{0}.png".format(str(graph)))
     plotPrefExpResult(getFileExpPath(10, "exp10_all_stats.json"),
-                      "Exp 10 - Max avg lower bound - Graph: " + str(graph+1),
+                      "Exp 10 - Max avg lower bound - Graph: " + str(graph),
                       "Max avg dist lb", "c", "max_avg_lb",
-                      PREF_COMBI, save_filename)
+                      EXP10_CATEGORIES, save_filename)
 
-    save_filename = getFileExpPath(10, "plot_modalities_{0}.png".format(str(graph+1)))
+    save_filename = getFileExpPath(10, "plot_modalities_{0}.png".format(str(graph)))
     plotModalitiesLines3D(getFileExpPath(10, "exp10_all_stats.json"),
-                          "Exp 10 - Travel types - Graph: " + str(graph+1),
-                          "Travel types frequency", "c2", PREF_COMBI,
-                          CAR_VILLO, "ALT", save_filename)
+                          "Exp 10 - Travel types - Graph: " + str(graph),
+                          "Travel types frequency", "c", "Preferences combinations",
+                          EXP10_CATEGORIES, CAR_VILLO, "ALT", save_filename)
 
-    for pref_combi in PREF_COMBI:
-        save_filename = getFileExpPath(10, "plot_modalitiesBars_{0}_{1}.png".format(str(graph+1), pref_combi))
+    for pref_combi, label in EXP10_CATEGORIES.items():
+        save_filename = getFileExpPath(10, "plot_modalitiesBars_{0}_{1}.png".format(str(graph), pref_combi))
+        xlabel = "c{0}".format((int(pref_combi[0])+1) % 2 + 1)
         plotPrefModalitiesBars(getFileExpPath(10, "exp10_all_stats.json"),
-                               "Exp 10 - Modalities repartition - bars - Graph " + str(graph+1),
-                               "Percentage", "c", pref_combi,
+                               "Exp 10 - Modalities repartition - {0} - Graph {1}".format(label, str(graph)),
+                               "Percentage", xlabel, pref_combi,
                                CAR_VILLO, "ALT", save_filename)
 
 
@@ -794,6 +811,11 @@ def testPlot3D():
     ax = fig.add_subplot(111, projection='3d')
 
     ax.scatter(xs=heights, ys=weights, zs=ages, c=gender_labels)
+    xx = np.array([130, 195])
+    yy = np.array([30, 160])
+    xx, yy = np.meshgrid(xx, yy)
+    zz = np.array(((xx + yy) / (xx + yy)) + 10)
+    ax.plot_surface(xx, yy, zz, alpha=0.2)
 
     ax.set_title("Age-wise body weight-height distribution")
     ax.set_xlabel("Height (cm)")

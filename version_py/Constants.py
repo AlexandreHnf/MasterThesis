@@ -81,17 +81,28 @@ C2 = 1
 PREF_RANGE =            [2, 0]
 PREF_STEP =             -0.2
 EXP9_GRAPHS =           [1, 2, 3]
+EXP9_CATEGORIES =       {"1_ULB": "1 ULB",
+                         "2_Bruxelles": "2 Bxl",
+                         "3_Bruxelles_Capitale_centre": "3 Bxl Cap ctr",
+                        }
+
 PRICE_VILLO =           0       # 0 €
 
 GAS_PRICE_KM =          1.4  # € / L
 CAR_CONSUMPTION =       7    # L / 100km
 
 EXP10_GRAPH =           3
-PREF_COMBI =            ["00", "01", "10", "11"]
+EXP10_CATEGORIES =      {"00": "F:c1, E:low",
+                         "01": "F:c1, E:high",
+                         "02": "F:c1, E:middle",
+                         "10": "F:c2, E:low",
+                         "11": "F:c2, E:high",
+                         "12": "F:c2, E:middle"}
+
 
 # ================================
 EXPERIMENTS =           [10]
-NB_RUNS =               100
+NB_RUNS =               200
 
 # ================================
 # Visualization parameters

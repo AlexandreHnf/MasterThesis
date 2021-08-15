@@ -381,7 +381,7 @@ def experiment9(graphs, fixed_pref, pref_range, step):
         all_stats[graph.getName()]["nb_nodes_after"] = simple_multi_graph.getNbNodes()
         all_stats[graph.getName()]["nb_edges_after"] = simple_multi_graph.getNbEdges()
         all_stats[graph.getName()]["avg_deg_after"] = simple_multi_graph.getAvgDegree()
-        all_stats[graph.getName()]["fixed"] = "c{0}".format((fixed_pref+1) % 2 + 1)
+        all_stats[graph.getName()]["variable_pref"] = "c{0}".format((fixed_pref+1) % 2 + 1)
 
         nb = 0
         all_stats[graph.getName()]["stats"] = {}
@@ -437,7 +437,7 @@ def experiment10(graph, pref_range, step):
         for worst_case in range(3):  # 0 = low extremity, 1 = high extremity, 2 = c1=c2
             label = "{0}{1}".format(fixed_pref, worst_case)
             print("label : ", label)
-            all_stats[label] = {"fixed": "c{0}".format((fixed_pref+1) % 2 + 1)}
+            all_stats[label] = {"variable_pref": "c{0}".format((fixed_pref+1) % 2 + 1)}
 
             simple_multi_graph = copy.deepcopy(base_multi_graph)
             simple_multi_graph.toUserAdapted(getPref(fixed_pref, getWorseCase(pref_range, worst_case)))
