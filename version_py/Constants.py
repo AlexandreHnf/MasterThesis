@@ -106,7 +106,7 @@ NB_RUNS =               200
 
 # ================================
 # Visualization parameters
-EXPERIMENT_PLOT =       10
+EXPERIMENT_PLOT =       8
 KEPT_GRAPHS =           [0, 1, 2]
 MARKERS =               ["s", "*", "x", "v", "^", "o", "d", "p"]
 MARKER_SIZE =           20
