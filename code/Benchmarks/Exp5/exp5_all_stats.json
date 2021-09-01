@@ -1,0 +1,62 @@
+{
+    "6_Belgique": {
+        "nb_edges": 871716,
+        "stats": [
+            "planar",
+            16,
+            969.4061224000034
+        ],
+        "nb_nodes": 395301,
+        "avg_deg": 2.21
+    },
+    "2_Bruxelles": {
+        "nb_edges": 1960,
+        "stats": [
+            "planar",
+            16,
+            0.48999920000642305
+        ],
+        "nb_nodes": 1115,
+        "avg_deg": 1.76
+    },
+    "3_Bruxelles_Capitale_centre": {
+        "nb_edges": 9892,
+        "stats": [
+            "planar",
+            16,
+            2.862557000000379
+        ],
+        "nb_nodes": 4755,
+        "avg_deg": 2.08
+    },
+    "4_Bruxelles_Capitale": {
+        "nb_edges": 54392,
+        "stats": [
+            "planar",
+            16,
+            24.854325200001767
+        ],
+        "nb_nodes": 25448,
+        "avg_deg": 2.14
+    },
+    "1_ULB": {
+        "nb_edges": 349,
+        "stats": [
+            "planar",
+            16,
+            0.06262910000077682
+        ],
+        "nb_nodes": 149,
+        "avg_deg": 2.34
+    },
+    "5_Belgique_centre": {
+        "nb_edges": 466262,
+        "stats": [
+            "planar",
+            16,
+            404.78159250000317
+        ],
+        "nb_nodes": 213888,
+        "avg_deg": 2.18
+    }
+}
