@@ -18,8 +18,10 @@ code/__pycache__/*
 __pychache__/*
 *.pyc
 
-code/Graphs
-code/Graphs/*
+code/Graphs/5_Bruxelles_centre
+code/Graphs/5_Belgique_centre_bbox
+code/Graphs/6_Belgique
+code/Graphs/6_Belgique_bbox
 
 # Generated files
 .idea/**/contentModel.xml
